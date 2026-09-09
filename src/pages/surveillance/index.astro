@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { surveillanceEntries } from '../../data/surveillance';
+
+const confirmed = surveillanceEntries.filter(e => e.state === 'CONFIRMED').length;
+---
+<BaseLayout
+  title="Surveillance Technology in Illinois | NoRec.US"
+  description="Documented surveillance technologies used by Illinois agencies, with primary sources, vendor links, legal frameworks, and open investigations."
+>
+<main class="page_shell">
+  <header class="article_header surveillance_index_header">
+    <p class="eyebrow">ILLINOIS SURVEILLANCE INDEX</p>
+    <h1>Documented surveillance technology in Illinois.</h1>
+    <p class="article_deck">Browse by technology, provider, or jurisdiction. Each entry separates documented Illinois use from vendor capability and unresolved questions.</p>
+  </header>
+
+  <section class="surveillance_index_intro">
+    <div class="evidence_box">
+      <span class="status_label">SCOPE</span>
+      <p>The index covers state and local government use in Illinois. Status labels distinguish current documentation, historical use, legal frameworks, and open investigations.</p>
+    </div>
+    <div class="surveillance_stats">
+      <div><strong>{surveillanceEntries.length}</strong><span>tracked categories</span></div>
+      <div><strong>{confirmed}</strong><span>currently confirmed</span></div>
+      <div><strong>{surveillanceEntries.filter(e => e.providers?.length).length}</strong><span>with named providers</span></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">TECHNOLOGY INDEX</p>
+    <h2>Systems, not rumors.</h2>
+    <div class="surveillance_catalog">
+      {surveillanceEntries.map(entry => (
+        <article class="surveillance_entry" id={entry.slug}>
+          <div class="surveillance_entry_head">
+            <div>
+              <span class="surveillance_category">{entry.category}</span>
+              <h2>{entry.name}</h2>
+            </div>
+            <span class={`surveillance_state state_${entry.state.toLowerCase().replaceAll(' ','_')}`}>{entry.state}</span>
+          </div>
+
+          <p class="surveillance_summary">{entry.summary}</p>
+
+          <div class="surveillance_evidence_grid">
+            <div>
+              <span class="mini_label">ILLINOIS EVIDENCE</span>
+              <p>{entry.evidence}</p>
+            </div>
+            <div>
+              <span class="mini_label">DOCUMENTED USE</span>
+              <p>{entry.illinoisUse}</p>
+            </div>
+          </div>
+
+          {entry.providers?.length && (
+            <div class="provider_refs">
+              <span class="mini_label">CONFIRMED PROVIDERS / PLATFORMS</span>
+              <div>
+                {entry.providers.map(provider => <a href={provider.href}>{provider.name} →</a>)}
+              </div>
+            </div>
+          )}
+
+          {entry.caveat && <div class="surveillance_caveat"><strong>Caveat:</strong> {entry.caveat}</div>}
+
+          <details class="surveillance_sources">
+            <summary>Sources ({entry.sourceLinks.length})</summary>
+            <ul>
+              {entry.sourceLinks.map(source => (
+                <li><a href={source.href}>{source.label}</a> <span>{source.sourceType}</span></li>
+              ))}
+            </ul>
+          </details>
+
+          {entry.detailHref && <a class="button button_dark surveillance_more" href={entry.detailHref}>Full section →</a>}
+        </article>
+      ))}
+    </div>
+  </section>
+
+
+  <section class="technology_dossiers">
+    <p class="eyebrow">DETAILED TECHNOLOGY DOSSIERS</p>
+    <h2>Technology dossiers</h2>
+    <div class="provider_grid">
+      <a href="/surveillance/alpr/"><strong>Automated License Plate Readers</strong><span>Illinois law, statewide/local deployments, providers, retention, sharing and audits.</span></a>
+      <a href="/surveillance/drones/"><strong>Police Drones / UAS</strong><span>Freedom from Drone Surveillance Act, reporting, flight records and local examples.</span></a>
+      <a href="/surveillance/human-fingerprints/"><strong>Human Fingerprints / ABIS</strong><span>Illinois State Police biometric identification and fingerprint infrastructure.</span></a>
+      <a href="/surveillance/face/illinois-id-photos/"><strong>Facial Recognition / Illinois IDs</strong><span>Secretary of State credential photos, law, IDEMIA and disclosure framework.</span></a>
+    </div>
+  </section>
+
+  <section class="jurisdiction_directory">
+    <p class="eyebrow">JURISDICTIONAL FILES</p>
+    <h2>What is documented where.</h2>
+    <p>Jurisdiction files bring the available records for local agencies and systems into one place.</p>
+    <div class="hero_actions"><a class="button button_dark" href="/surveillance/map/">Open county map</a><a class="button button_light" href="/surveillance/jurisdictions/">Browse directory</a></div>
+    <div class="provider_grid">
+      <a href="/county/61008/"><strong>Boone County / Belvidere</strong><span>Flock ALPR, Policy 450, retention, audits, locations, field observations</span></a>
+      <a href="/county/60098/"><strong>McHenry County / Huntley</strong><span>Flock ALPR, vehicle fingerprinting, drones, body/in-car video, Sheriff's systems</span></a>
+    </div>
+  </section>
+
+  <section class="provider_directory">
+    <p class="eyebrow">PROVIDER DIRECTORY</p>
+    <h2>Providers and platforms</h2>
+    <p>Provider pages document known Illinois relationships alongside the broader capabilities described by each vendor.</p>
+    <div class="provider_grid">
+      <a href="/providers/flock-safety/"><strong>Flock Safety</strong><span>ALPR / vehicle intelligence</span></a>
+      <a href="/providers/motorola-solutions/"><strong>Motorola Solutions</strong><span>ALPR, body/in-car video</span></a>
+      <a href="/providers/axon/"><strong>Axon</strong><span>Body-worn cameras / evidence software</span></a>
+      <a href="/providers/fusus/"><strong>Axon Fusus</strong><span>RTCC / camera and sensor integration</span></a>
+      <a href="/providers/idemia/"><strong>IDEMIA</strong><span>Illinois SoS DL/ID + facial recognition</span></a>
+      <a href="/providers/soundthinking/"><strong>SoundThinking / ShotSpotter</strong><span>Acoustic gunshot detection</span></a>
+    </div>
+  </section>
+
+</main>
+</BaseLayout>

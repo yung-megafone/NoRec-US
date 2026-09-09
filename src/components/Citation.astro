@@ -1,0 +1,10 @@
+---
+const {
+  n,
+  title,
+  sourceId,
+} = Astro.props;
+const target = sourceId ?? `source-${n}`;
+const label = title ? `Source ${n}: ${title}` : `Source ${n}`;
+---
+<sup class="citation"><a href={`#${target}`} aria-label={label} title={title}>[{n}]</a></sup>

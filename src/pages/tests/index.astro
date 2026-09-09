@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="NoRec.US Test Bench"
+  description="Internal launch checks for NoRec.US."
+  active=""
+  noindex={true}
+>
+<main class="page_shell test_bench">
+  <header class="article_header">
+    <p class="eyebrow">YOU FOUND THE PANEL</p>
+    <h1>Test bench.</h1>
+    <p class="article_deck">This page is intentionally absent from navigation and the sitemap. It exists so the site operator can poke the production server without remembering a pile of URLs.</p>
+  </header>
+
+  <section class="test_status_box">
+    <span class="status_label">CLIENT CHECK</span>
+    <p id="js-status">JavaScript status: waiting for the local test script.</p>
+    <p id="origin-status">Origin check: waiting.</p>
+  </section>
+
+  <section>
+    <p class="eyebrow">ERROR DOCUMENTS</p>
+    <h2>Make Apache earn its keep.</h2>
+    <div class="test_grid">
+      <a href="/tests/definitely-not-a-real-page-404">
+        <strong>Trigger real 404</strong>
+        <span>Should return HTTP 404 and render the custom 404 document.</span>
+      </a>
+      <a href="/tests/forbidden">
+        <strong>Trigger real 403</strong>
+        <span>.htaccess intentionally forbids this route; it should render the custom 403 document with HTTP 403.</span>
+      </a>
+      <a href="/500.html">
+        <strong>Preview 500 document</strong>
+        <span>Static preview only. Intentionally generating a real server failure is not part of the public test bench.</span>
+      </a>
+      <a href="/404.html">
+        <strong>Preview 404 document</strong>
+        <span>Loads the static error page directly with HTTP 200 for visual comparison.</span>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">REDIRECTS</p>
+    <h2>Canonical host / old-route checks.</h2>
+    <div class="test_grid">
+      <a href="http://norec.us/tests/">
+        <strong>HTTP → HTTPS</strong>
+        <span>Should land back here over HTTPS.</span>
+      </a>
+      <a href="https://www.norec.us/tests/">
+        <strong>www → apex</strong>
+        <span>Should redirect to https://norec.us/tests/.</span>
+      </a>
+      <a href="/deflock/">
+        <strong>Legacy /deflock/ redirect</strong>
+        <span>Should 301 into the jurisdictional Surveillance section.</span>
+      </a>
+      <a href="/deflock/boone-county/">
+        <strong>Legacy Boone DeFlock redirect</strong>
+        <span>Should 301 to /county/61008/.</span>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">SECURITY / PRIVACY</p>
+    <h2>Quick browser checks.</h2>
+    <div class="test_grid">
+      <a href="/js/test-bench.js">
+        <strong>Same-origin JS</strong>
+        <span>Should load as plain JavaScript from NoRec.US.</span>
+      </a>
+      <a href="/archive/deflock/MANIFEST.sha256">
+        <strong>Archive artifact</strong>
+        <span>Should remain downloadable/readable while carrying X-Robots-Tag: noindex.</span>
+      </a>
+      <a href="/robots.txt">
+        <strong>robots.txt</strong>
+        <span>Should exclude /archive/ and point to the sitemap.</span>
+      </a>
+      <a href="/sitemap.xml">
+        <strong>sitemap.xml</strong>
+        <span>/tests/ and error pages should not appear here.</span>
+      </a>
+    </div>
+    <div class="evidence_box">
+      <span class="status_label">DEVTOOLS</span>
+      <p>For the header checks, open the browser Network panel and inspect this page. Expected response headers include Content-Security-Policy, Referrer-Policy: no-referrer, X-Content-Type-Options: nosniff, X-Frame-Options: DENY, Permissions-Policy, and Strict-Transport-Security.</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">CONTENT SMOKE TEST</p>
+    <h2>Content smoke tests.</h2>
+    <div class="test_grid">
+      <a href="/surveillance/"><strong>Surveillance index</strong><span>Technology, jurisdictions, providers.</span></a>
+      <a href="/surveillance/map/"><strong>Illinois county map</strong><span>County coverage and contribution links.</span></a>
+      <a href="/county/61101/"><strong>Winnebago / Rockford · 61101</strong><span>Flock, Axon, drones, cameras and analytics.</span></a>
+      <a href="/county/61008/"><strong>Boone / Belvidere · 61008</strong><span>Local ALPR research and records.</span></a>
+      <a href="/county/60178/"><strong>DeKalb County · 60178</strong><span>Genetec, Flock, Axon, Fusus, Fleet 3 and drones.</span></a>
+      <a href="/county/60134/"><strong>Kane County · 60134</strong><span>Flock, Getac, Evidence.com and municipal drones.</span></a>
+      <a href="/county/60098/"><strong>McHenry / Huntley · 60098</strong><span>Local surveillance documentation.</span></a>
+      <a href="/surveillance/face/illinois-id-photos/"><strong>Illinois SoS facial recognition</strong><span>Credential-photo case file.</span></a>
+      <a href="/sources/"><strong>Source filters</strong><span>Search/type/jurisdiction filtering should work under CSP.</span></a>
+      <a href="/why-privacy-matters/"><strong>IDC?</strong><span>Privacy explainer route.</span></a>
+      <a href="/brand/"><strong>Brand assets</strong><span>Favicon and wordmark files.</span></a>
+    </div>
+  </section>
+</main>
+<script src="/js/test-bench.js" defer></script>
+</BaseLayout>

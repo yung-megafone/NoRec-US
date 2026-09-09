@@ -1,0 +1,81 @@
+# NoRec.US — Apache/cPanel launch hardening
+# This file is copied to the static build root by Astro.
+
+Options -Indexes
+
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+
+  # Legacy NoRec county routes -> county-seat ZIP routes
+  RewriteRule ^surveillance/winnebago-county/?$ /county/61101/ [R=301,L]
+  RewriteRule ^surveillance/boone-county/?$ /county/61008/ [R=301,L]
+  RewriteRule ^surveillance/dekalb-county/?$ /county/60178/ [R=301,L]
+  RewriteRule ^surveillance/kane-county/?$ /county/60134/ [R=301,L]
+  RewriteRule ^surveillance/mchenry-county/?$ /county/60098/ [R=301,L]
+
+  # Operator test-bench route. This intentionally produces a real 403.
+  RewriteRule ^tests/forbidden/?$ - [F,L]
+
+  # Canonical host.
+  RewriteCond %{HTTP_HOST} ^www\.norec\.us$ [NC]
+  RewriteRule ^ https://norec.us%{REQUEST_URI} [R=301,L,NE]
+
+  # Force HTTPS while avoiding common reverse-proxy redirect loops.
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+  RewriteRule ^ https://norec.us%{REQUEST_URI} [R=301,L,NE]
+</IfModule>
+
+# Custom static error documents.
+ErrorDocument 403 /403.html
+ErrorDocument 404 /404.html
+ErrorDocument 500 /500.html
+
+<IfModule mod_headers.c>
+  # Baseline browser security/privacy headers.
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "no-referrer"
+  Header always set X-Permitted-Cross-Domain-Policies "none"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=(), browsing-topics=()"
+  Header always set Cross-Origin-Opener-Policy "same-origin"
+
+  # The public site deliberately loads code/assets only from NoRec.US.
+  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'none'; worker-src 'self'; manifest-src 'self'; upgrade-insecure-requests"
+
+  # HTTPS only, but intentionally no includeSubDomains/preload yet.
+  Header always set Strict-Transport-Security "max-age=31536000"
+
+  # Keep raw evidence artifacts accessible but out of ordinary search results.
+  <FilesMatch "\.(?i:pdf|docx|md|sha256)$">
+    Header set X-Robots-Tag "noindex"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json application/xml image/svg+xml
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # HTML should revalidate so corrections propagate quickly.
+  ExpiresByType text/html "access plus 0 seconds"
+
+  # Locally served static assets.
+  ExpiresByType text/css "access plus 7 days"
+  ExpiresByType application/javascript "access plus 7 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+  ExpiresByType application/pdf "access plus 1 day"
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType text/plain .sha256
+  AddType text/markdown .md
+</IfModule>

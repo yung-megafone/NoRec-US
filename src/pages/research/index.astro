@@ -1,0 +1,161 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CommunityLinks from '../../components/CommunityLinks.astro';
+import InvestigationCard from '../../components/InvestigationCard.astro';
+import { investigations } from '../../data/investigations';
+
+const openCount = investigations.filter(i => i.status !== 'Closed').length;
+---
+<BaseLayout
+  title="Research & FOIA | NoRec.US"
+  description="Open NoRec.US investigations, unanswered surveillance questions, public-records requests, and the documents needed to establish the facts."
+>
+  <main class="page_shell">
+    <header class="article_header research_header">
+      <p class="eyebrow">RESEARCH & FOIA</p>
+      <h1>Unknown is not the end of the story.</h1>
+      <p class="article_deck">When public records establish only part of a surveillance system, the remaining questions stay visible until additional evidence resolves them.</p>
+    </header>
+
+    <section class="research_intro">
+      <div class="research_intro_copy">
+        <p class="eyebrow">PUBLIC INVESTIGATION LOG</p>
+        <h2>Show the work, not just the conclusion.</h2>
+        <p>This docket records open questions, public-records requests, responses, and findings without promoting inference into fact.</p>
+        <p>Public-records requests are used to obtain policies, contracts, logs, retention schedules, technical documents, training material, procurement records, and other evidence that may not appear on an agency website.</p>
+      </div>
+      <aside class="research_stats">
+        <div><strong>{investigations.length}</strong><span>tracked investigations</span></div>
+        <div><strong>{openCount}</strong><span>open</span></div>
+        <div><strong>{investigations.filter(i => i.state === 'UNDER INVESTIGATION').length}</strong><span>under investigation</span></div>
+      </aside>
+    </section>
+
+    <section class="research_rules">
+      <p class="eyebrow">HOW THIS PAGE WORKS</p>
+      <div class="research_rule_grid">
+        <article>
+          <span class="status_label">DOCUMENTED</span>
+          <h3>Supported by the record.</h3>
+          <p>Responsive records or other reliable sources establish the point directly.</p>
+        </article>
+        <article>
+          <span class="status_label">UNKNOWN</span>
+          <h3>The evidence stops here.</h3>
+          <p>A plausible inference is not enough. We state the limit instead of filling it with guesswork.</p>
+        </article>
+        <article>
+          <span class="status_label">UNDER INVESTIGATION</span>
+          <h3>There is a specific way to find out.</h3>
+          <p>The question is tied to identifiable records or agencies rather than indefinite speculation.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">ACTIVE DOCKET</p>
+      <h2>Current investigations</h2>
+      <div class="investigation_list">
+        {investigations.map(item => <InvestigationCard item={item} />)}
+      </div>
+    </section>
+
+
+    <section class="local_research_highlights">
+      <p class="eyebrow">LOCAL RESEARCH · BOONE COUNTY / BELVIDERE</p>
+      <h2>Findings established through local records.</h2>
+      <p>The <a href="/county/61008/">Boone County / Belvidere surveillance file</a> contains the full local record. Key findings are summarized here because they originated as open research questions.</p>
+
+      <div class="local_findings_grid">
+        <article>
+          <span class="status_label">DOCUMENTED</span>
+          <h3>30-day Flock-hosted retention</h3>
+          <p>Boone County Sheriff's Office Policy 450 states that data hosted by Flock is purged after 30 days.</p>
+        </article>
+        <article>
+          <span class="status_label">DOCUMENTED</span>
+          <h3>County exports can persist longer</h3>
+          <p>The same policy says ALPR data downloaded to the county server should be stored no longer than one year, subject to evidence and records-retention requirements.</p>
+        </article>
+        <article>
+          <span class="status_label">DOCUMENTED</span>
+          <h3>Vehicle attributes go beyond the plate</h3>
+          <p>The policy describes detections containing the plate together with vehicle make, model, color, and unique identifiers — part of what NoRec describes as vehicle/property fingerprinting.</p>
+        </article>
+        <article>
+          <span class="status_label">DOCUMENTED</span>
+          <h3>Annual browsing audits</h3>
+          <p>Policy 450 directs the Sheriff or designee to audit ALPR detection-browsing inquiries at least once per calendar year, including a random sample.</p>
+        </article>
+        <article>
+          <span class="status_label">DOCUMENTED</span>
+          <h3>Belvidere location record</h3>
+          <p>The supplied City of Belvidere FOIA response lists seven Flock locations: six shown as installed and one shown as planning.</p>
+        </article>
+        <article>
+          <span class="status_label">UNKNOWN</span>
+          <h3>Sharing, users, and audit results</h3>
+          <p>The published source set does not establish the complete current sharing list, number of authorized users, or the findings of the required annual audits.</p>
+        </article>
+      </div>
+
+      <div class="hero_actions">
+        <a class="button button_dark" href="/county/61008/">Full Boone County / Belvidere case file</a>
+        <a class="button button_light" href="/archive/deflock/26-164_BCSO_Policy_450_ALPRs.pdf">Policy 450</a>
+        <a class="button button_light" href="/archive/deflock/Belvidere_Flock_Camera_Locations_FOIA_Response.docx">Belvidere FOIA response</a>
+      </div>
+    </section>
+
+    <section class="foia_principles">
+      <p class="eyebrow">FOIA PRINCIPLES</p>
+      <h2>Request the records that define the system.</h2>
+      <div class="foia_grid">
+        <article>
+          <h3>Request records, not explanations.</h3>
+          <p>Public-records laws generally work best when the request identifies existing records: contracts, policies, logs, invoices, reports, emails, data dictionaries, retention schedules, or training material.</p>
+        </article>
+        <article>
+          <h3>Separate capability from use.</h3>
+          <p>A manual saying a product can perform a search does not prove an agency performed that search. A contract for a feature does not prove it was enabled. Capability and documented use remain separate questions.</p>
+        </article>
+        <article>
+          <h3>Ask for aggregate data when individual records are sensitive.</h3>
+          <p>Search counts, requesting-agency totals, retention periods, policy changes, and contract values can reveal scale without publishing personal investigative information.</p>
+        </article>
+        <article>
+          <h3>Expect exemptions and partial responses.</h3>
+          <p>A redaction is not automatically evidence of misconduct. The useful question is what exemption was asserted, whether it fits the withheld material, and whether a narrower request or appeal can resolve the issue.</p>
+        </article>
+        <article>
+          <h3>Preserve the response.</h3>
+          <p>The request, correspondence, responsive files, metadata, dates, and agency explanation all become part of the evidentiary record.</p>
+        </article>
+        <article>
+          <h3>Publish corrections.</h3>
+          <p>If a response disproves a working theory, the page should change. The purpose of a records request is to learn what happened, not to manufacture confirmation.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="foia_request_structure">
+      <p class="eyebrow">REQUEST ANATOMY</p>
+      <h2>Elements of a strong records request</h2>
+      <ol>
+        <li><strong>Agency and subject:</strong> identify the system, vendor, program, or policy with enough precision to route the request.</li>
+        <li><strong>Date range:</strong> define a meaningful period where possible instead of asking for an unlimited historical search.</li>
+        <li><strong>Record categories:</strong> policies, contracts, invoices, logs, training, data dictionaries, correspondence, audit material, or aggregate statistics.</li>
+        <li><strong>Format request:</strong> ask for native electronic records where practical, including spreadsheets in machine-readable form.</li>
+        <li><strong>Segregability:</strong> request release of non-exempt portions when some information must be withheld.</li>
+        <li><strong>Clarification preference:</strong> invite the agency to contact the requester before denying an ambiguous request that could be narrowed.</li>
+      </ol>
+    </section>
+
+    <section class="research_community">
+      <p class="eyebrow">CONTRIBUTE</p>
+      <h2>Have a record or a lead?</h2>
+      <p>Primary records can go straight into GitHub. Leads, local observations, and discussion can go to the Telegram group.</p>
+      <CommunityLinks compact={true} />
+    </section>
+
+  </main>
+</BaseLayout>

@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FapItem from '../../components/FapItem.astro';
+import Citation from '../../components/Citation.astro';
+---
+
+<BaseLayout
+  title="Why Privacy Matters | NoRec.US"
+  description="Why government surveillance deserves scrutiny even when the people operating it are trustworthy and the technology works."
+>
+  <main class="page_shell">
+    <header class="article_header privacy_header">
+      <p class="eyebrow">WHY PRIVACY MATTERS</p>
+      <h1>You do not need to believe in a malicious government to care about surveillance.</h1>
+      <p class="article_deck">Assume the agency is honest. Assume the employee follows policy. Assume the technology is accurate. There are still questions about scale, permanence, security, sharing, consent, and what power should exist in the first place.</p>
+    </header>
+
+    <section class="privacy_thesis">
+      <p class="about_pullquote">The question is not only whether you have something to hide. It is whether someone else should have something to search.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">THE FIRST DISTINCTION</p>
+      <h2>Privacy is not the same thing as secrecy.</h2>
+      <p>Most private things are not crimes. Medical appointments are not crimes. Political organizing is not a crime. Religious attendance is not a crime. Visiting a friend, driving to a protest, meeting a journalist, going to therapy, changing jobs, attending a support group, or spending the night somewhere other than home are all ordinary parts of life.</p>
+      <p>The privacy question is not whether those acts must be hidden from everyone. It is whether they should become easily searchable, reconstructable, shareable, or permanently attributable through government or commercial systems.</p>
+      <p>A society can reject criminal conduct while still deciding that lawful life should not automatically produce a searchable behavioral record.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">TRUST IS NOT THE WHOLE THREAT MODEL</p>
+      <h2>Good people can operate vulnerable systems.</h2>
+      <p>Privacy debates often get reduced to motive: <em>Do you think the government is trying to hurt you?</em> That is only one possible failure mode.</p>
+      <p>A sensitive system can expose people through credential theft, phishing, software vulnerabilities, supply-chain compromise, misconfiguration, ransomware, contractor failures, lost devices, insecure integrations, overbroad permissions, or ordinary human mistakes. None of those require a malicious public employee.</p>
+      <p>Biometric systems make this especially important. A password can be changed. A cryptographic key can be rotated. A face is not a replaceable credential. That does not mean a stolen facial image automatically defeats every biometric system; it means the underlying identifier is persistent, so exposure can create unusually durable risk.</p>
+      <p>Data minimization is therefore a security control as much as a privacy principle: information that was never collected cannot later leak from that collection.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">SCALE CHANGES THE QUESTION</p>
+      <h2>Being visible is not the same as being searchable.</h2>
+      <p>People have always been observable in public. A police officer can see a car. A witness can recognize a face. A camera can record a street. None of those facts, standing alone, are new.</p>
+      <p>What changes is the ability to index those observations, search them later, connect them across locations, share them between agencies, or combine them with other databases. A task that once required many people and many hours can become a query.</p>
+      <p>That difference matters because practical anonymity can disappear long before formal secrecy does. A stranger on a sidewalk may see your face without knowing your name. A large biometric or vehicle-tracking system can turn the same observation into an identity or a movement history.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">DATA FUSION</p>
+      <h2>The most revealing system may be the connection between systems.</h2>
+      <p>A license-plate reader knows something about a vehicle. A facial-recognition system knows something about an identity. A camera knows something about a place and time. A phone record knows something about a device. A dispatch system knows something about an incident. A commercial database may add addresses, vehicles, associates, or historical records.</p>
+      <p>Each dataset can look limited in isolation. Combined, they can reveal patterns that no single sensor could produce.</p>
+      <p>The relevant record therefore includes integrations, sharing rules, exports, APIs, vendor relationships, and secondary dissemination—not only the camera itself.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">FUNCTION CREEP</p>
+      <h2>Systems outlive the emergency used to justify them.</h2>
+      <p>A capability may be introduced for a narrow and compelling reason: stolen cars, violent crime, identity fraud, missing persons, or a specific security threat. The original purpose can be legitimate.</p>
+      <p>The harder question comes later. Once the infrastructure exists, adding a new user, integration, query type, retention period, or purpose can be much easier than building the system from scratch. What began as an exceptional tool can become ordinary infrastructure.</p>
+      <p>This does not mean expansion is inevitable or always improper. It means expansion should be visible, justified, and independently reviewable rather than treated as a technical detail.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">POLICY CHANGES</p>
+      <h2>You are not only trusting today's rules.</h2>
+      <p>A database may be created under one administration, one police chief, one vendor contract, or one interpretation of the law and remain available under the next. Access policies can change. Laws can change. Agency missions can change. Vendors can be acquired. New integrations can appear.</p>
+      <p>That is why privacy protections should not depend entirely on the belief that the people currently in charge are reasonable. Durable limits matter precisely because institutions persist longer than individual decision-makers.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">COMMERCIAL INCENTIVES</p>
+      <h2>Surveillance can also be a market.</h2>
+      <p>Private companies can create genuinely useful tools for government. The problem is not that a vendor earns money.</p>
+      <p>The concern is that a commercial system introduces incentives that are different from public necessity. More customers, more cameras, more searchable data, more integrations, more features, and longer subscriptions can all be good for the vendor even when the public-interest case for each expansion is weak.</p>
+      <p>Procurement is part of surveillance policy. Contracts, renewals, grants, data-sharing terms, technical capabilities, retention options, and exit conditions define what public agencies are buying with public money.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">LEGITIMATE USES EXIST</p>
+      <h2>Acknowledging benefits makes the privacy argument stronger, not weaker.</h2>
+      <p>A facial-recognition search may help identify the unknown suspect in a murder. An ALPR may help recover a stolen car or find a vehicle connected to an abduction. A camera can document an event more accurately than memory. Data sharing can help one jurisdiction obtain evidence held by another.</p>
+      <p>Those are not imaginary benefits and NoRec does not need to pretend otherwise.</p>
+      <p>The disagreement is about proportionality: what population-scale infrastructure should exist to obtain those benefits, how narrowly searches should be authorized, how long innocent people's records should remain, and whether less intrusive alternatives could accomplish the same goal.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">THE "NOTHING TO HIDE" TEST</p>
+      <h2>Try applying it to every other kind of information.</h2>
+      <p>Most people who say they have nothing to hide still close the bathroom door. They use passwords. They do not publish their entire bank history. They choose who sees their private messages. They may be perfectly willing to tell one person something they do not want broadcast to everyone.</p>
+      <p>That is not hypocrisy. Privacy is contextual. Information can be harmless in one context and invasive in another.</p>
+      <p>The same principle applies to government data. A photograph may be appropriate for issuing an ID. A location may be appropriate for responding to a 911 call. A plate number may be visible on a public road. None of those facts automatically settle every later use of that information.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">THE BREACH QUESTION</p>
+      <h2>What happens when the system fails?</h2>
+      <p>The cost of a breach depends partly on how much information existed to steal. A narrowly scoped system with short retention and limited exports creates a different risk than a large historical database with many users and integrations.</p>
+      <p>Security controls matter. So do architectural choices made before the breach: whether raw data was retained, whether derived biometric templates existed, whether exports were allowed, whether credentials were shared, whether access was logged, and whether old records were ever deleted.</p>
+      <p>NoRec's position is not that every database will be breached. It is that breach risk belongs in the policy analysis before a sensitive database is created or expanded.</p>
+    </section>
+
+    <section id="privacy-fap" class="fap_section">
+      <p class="eyebrow">FAP · FREQUENTLY ARGUED POINTS</p>
+      <h2>The arguments people actually make.</h2>
+
+      <FapItem id="privacy-fap-trust" question="What if the agency is trustworthy?" stance="mixed">
+        <p>Then evaluate the system on security, scope, oversight, and permanence instead of bad intent. A trustworthy agency can still inherit a vulnerable vendor, an overbroad retention policy, weak credentials, or a future rule change.</p>
+      </FapItem>
+
+      <FapItem id="privacy-fap-crime" question="Should privacy ever outweigh solving a serious crime?" stance="mixed">
+        <p>Sometimes a narrowly targeted search for a grave offense can be justified. The privacy question is not whether investigators should be prevented from using every powerful tool. It is what predicate should be required, what database may be searched, what happens to non-matches, and whether the exceptional case becomes routine practice.</p>
+      </FapItem>
+
+      <FapItem id="privacy-fap-public" question="If it's happening in public, isn't it fair game?" stance="mixed">
+        <p>Public observation is real, but automation changes scale. Seeing one person once is different from being able to search millions of observations and reconstruct where a person or vehicle has appeared. The policy question is whether technological capability should erase practical anonymity by default.</p>
+      </FapItem>
+
+      <FapItem id="privacy-fap-warrant" question="Would warrants fix the problem?" stance="mixed">
+        <p>Warrants can be an important safeguard because they impose a legal predicate and independent review. They do not, by themselves, resolve retention, vendor security, data-sharing, database composition, or what happens to records belonging to people who were never the target of a warrant.</p>
+      </FapItem>
+
+      <FapItem id="privacy-fap-accuracy" question="If the technology becomes perfectly accurate, is there still a privacy issue?" stance="mixed">
+        <p>Yes, but it is a different issue. Perfect accuracy would remove the false-match objection. It would not answer whether everyone should be identifiable everywhere, whether every appearance should be searchable later, or whether a government should maintain the infrastructure required to do that.</p>
+      </FapItem>
+
+      <FapItem id="privacy-fap-delete" question="Isn't deletion enough?" stance="mixed">
+        <p>Deletion is one of the most useful privacy controls when it is real, timely, and verifiable. The remaining questions are how long data exists before deletion, whether backups or exports persist, whether another recipient kept a copy, and whether deletion rules can be changed later.</p>
+      </FapItem>
+    </section>
+
+    <section class="privacy_closing">
+      <p class="eyebrow">NOREC'S POSITION</p>
+      <h2>Use the least surveillance necessary for a demonstrated need.</h2>
+      <p>NoRec.US is not asking readers to assume the worst about every institution. It is asking institutions to justify powerful systems before those systems become ordinary.</p>
+      <p>Collect less. Retain less. Share less. Require a real purpose. Log access. Audit it. Publish the rules. Make expansion visible. Delete data when the purpose is over. And where a capability is not necessary or proportionate, do not build it merely because technology makes it possible.</p>
+
+      <div class="hero_actions">
+        <a class="button button_dark" href="/surveillance/face/illinois-id-photos/">See the Illinois case study</a>
+        <a class="button button_light" href="/sources/">Browse primary sources</a>
+        <a class="button button_light" href="/about/">About NoRec.US</a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

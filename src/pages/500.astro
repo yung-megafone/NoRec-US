@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="500 · Server error | NoRec.US" description="NoRec.US encountered a server-side error while handling the request." active="" noindex={true}>
+  <main class="page_shell error_page">
+    <header class="article_header">
+      <p class="eyebrow">HTTP 500</p>
+      <h1>Server error.</h1>
+      <p class="article_deck">The server could not complete this request. Try one of the main sections below or return later.</p>
+    </header>
+
+    <section class="error_links" aria-label="Useful destinations">
+      <a href="/surveillance/"><strong>Surveillance</strong><span>Technologies, jurisdictions, and providers</span></a>
+      <a href="/sources/"><strong>Sources</strong><span>Primary records and archived evidence</span></a>
+      <a href="/research/"><strong>Research</strong><span>FOIA work, findings, and unresolved questions</span></a>
+      <a href="/"><strong>Home</strong><span>Return to NoRec.US</span></a>
+    </section>
+  </main>
+</BaseLayout>

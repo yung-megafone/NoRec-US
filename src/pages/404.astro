@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="404 · Page not found | NoRec.US" description="The requested NoRec.US page could not be found." active="" noindex={true}>
+  <main class="page_shell error_page">
+    <header class="article_header">
+      <p class="eyebrow">HTTP 404</p>
+      <h1>That record isn't here.</h1>
+      <p class="article_deck">The URL may be outdated, mistyped, or the material may have moved.</p>
+    </header>
+
+    <section class="error_links" aria-label="Useful destinations">
+      <a href="/surveillance/"><strong>Surveillance</strong><span>Technologies, jurisdictions, and providers</span></a>
+      <a href="/sources/"><strong>Sources</strong><span>Primary records and archived evidence</span></a>
+      <a href="/research/"><strong>Research</strong><span>FOIA work, findings, and unresolved questions</span></a>
+      <a href="/"><strong>Home</strong><span>Return to NoRec.US</span></a>
+    </section>
+  </main>
+</BaseLayout>

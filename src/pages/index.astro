@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout active="home">
+  <aside class="sidebar" aria-label="Research status">
+    <section class="sidebar_block poster_entry">
+      <p class="eyebrow">SCANNED A POSTER?</p>
+      <h2>Illinois ID photos & facial recognition</h2>
+      <p>Start with what Illinois law actually establishes, what it does not establish, and what NoRec.US is still investigating.</p>
+      <p><a class="text_link" href="/surveillance/face/illinois-id-photos/">See the evidence →</a></p>
+    </section>
+
+    <section class="sidebar_block">
+      <h2>Evidence status</h2>
+      <dl class="status_key">
+        <div>
+          <dt><span class="status documented">Documented</span></dt>
+          <dd>Supported directly by primary evidence.</dd>
+        </div>
+        <div>
+          <dt><span class="status unknown">Unknown</span></dt>
+          <dd>Not established by the available public record.</dd>
+        </div>
+        <div>
+          <dt><span class="status investigating">Under investigation</span></dt>
+          <dd>Actively being researched or pursued through records requests.</dd>
+        </div>
+      </dl>
+    </section>
+  </aside>
+
+  <article id="content">
+    <p class="eyebrow">PRIVACY · PUBLIC RECORDS · PRIMARY SOURCES</p>
+    <h1>Know what is watching.</h1>
+    <p class="lede">NoRec.US documents government surveillance systems and publishes the evidence behind the claims.</p>
+
+    <p>Facial recognition. License-plate readers. Vehicle tracking. Surveillance cameras. Cell-site simulators. Government databases. NoRec.US exists to make those systems understandable without asking you to take anyone's word for it.</p>
+
+    <div class="callout">
+      <strong>Our rule is simple:</strong> if the evidence does not establish something, we do not present it as fact.
+    </div>
+
+    <h2>Start here</h2>
+    <div class="topic_grid">
+      <a class="topic_card" href="/surveillance/face/illinois-id-photos/">
+        <span class="topic_label">FACE</span>
+        <strong>Illinois ID photos</strong>
+        <span>Driver's-license and state-ID photographs, facial-recognition law, and open questions.</span>
+      </a>
+
+      <a class="topic_card" href="/surveillance/vehicles/alpr/">
+        <span class="topic_label">VEHICLES</span>
+        <strong>ALPR & vehicle surveillance</strong>
+        <span>Automated plate readers, networked vehicle tracking, contracts, policies, and records.</span>
+      </a>
+
+      <a class="topic_card" href="/sources/">
+        <span class="topic_label">RECORDS</span>
+        <strong>Source library</strong>
+        <span>Statutes, policies, contracts, FOIA responses, and other primary-source material.</span>
+      </a>
+
+      <a class="topic_card" href="/research/">
+        <span class="topic_label">OPEN QUESTIONS</span>
+        <strong>Research & FOIA</strong>
+        <span>What remains unknown, what is being requested, and where the evidence is incomplete.</span>
+      </a>
+    </div>
+
+    <h2>Not neutral about privacy. Strict about evidence.</h2>
+    <p>NoRec.US is openly skeptical of mass surveillance. That position does not change the evidentiary standard. Advocacy belongs in the conclusions; factual claims belong in the records.</p>
+
+    <p class="privacy_note"><strong>This page does not need to track you.</strong> No advertising, tracking pixels, third-party fonts, social-media embeds, or invasive analytics are required to read it.</p>
+  </article>
+</BaseLayout>

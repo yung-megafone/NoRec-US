@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SourceCard from '../../components/SourceCard.astro';
+import { sources } from '../../data/sources';
+
+const jurisdictions = [...new Set(sources.map(s => s.jurisdiction))];
+---
+<BaseLayout
+  title="Sources | NoRec.US"
+  description="Primary-source library for NoRec.US research, including statutes, regulations, government reports, policies, contracts, and public records."
+>
+  <main class="page_shell">
+    <header class="article_header">
+      <p class="eyebrow">SOURCE LIBRARY</p>
+      <h1>Source library.</h1>
+      <p class="article_deck">Every material claim should be traceable to evidence. This library indexes the statutes, regulations, government publications, records, contracts, policies, and technical material cited throughout the site.</p>
+    </header>
+
+    <section class="source_intro">
+      <div class="evidence_box">
+        <span class="status_label">SOURCE POLICY</span>
+        <p>Primary sources are preferred. Secondary reporting can provide context and identify leads, but claims about laws, policies, contracts, or agency records should point to the underlying material whenever possible.</p>
+      </div>
+      <div class="source_stats">
+        <div><strong>{sources.length}</strong><span>indexed sources</span></div>
+        <div><strong>{sources.filter(s => s.status === 'Primary').length}</strong><span>primary sources</span></div>
+        <div><strong>{jurisdictions.length}</strong><span>jurisdictions</span></div>
+      </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">HOW SOURCE IDS WORK</p>
+      <h2>A citation number is page-local. The source ID is permanent.</h2>
+      <p>A page may cite a source as <sup>[1]</sup> because that is easy to read. The durable identifier is something like <code>IL-LAW-001</code>. That ID can stay attached to the record even when the same source appears as citation [4] somewhere else.</p>
+      <p>Archived entries include local copies and SHA-256 hashes so the cited material can be verified even if the original page changes. Related files are preserved together when they form one record set.</p>
+    </section>
+
+    <section class="source_controls" aria-label="Source library filters">
+      <label>
+        <span>Search</span>
+        <input id="source-search" type="search" placeholder="law, facial recognition, GAO, Illinois…" />
+      </label>
+      <label>
+        <span>Type</span>
+        <select id="source-type">
+          <option value="">All types</option>
+          {[...new Set(sources.map(s => s.type))].sort().map(type => <option value={type}>{type}</option>)}
+        </select>
+      </label>
+      <label>
+        <span>Jurisdiction</span>
+        <select id="source-jurisdiction">
+          <option value="">All jurisdictions</option>
+          {jurisdictions.sort().map(j => <option value={j}>{j}</option>)}
+        </select>
+      </label>
+    </section>
+
+    <p id="source-count" class="source_count">{sources.length} sources shown</p>
+
+    <section class="source_library" id="source-library">
+      {sources.map(source => (
+        <div
+          class="source_filter_item"
+          data-search={`${source.id} ${source.title} ${source.agency} ${source.notes ?? ''} ${source.tags.join(' ')}`.toLowerCase()}
+          data-type={source.type}
+          data-jurisdiction={source.jurisdiction}
+        >
+          <SourceCard source={source} />
+        </div>
+      ))}
+    </section>
+
+    <noscript><p class="evidence_box">Filtering requires JavaScript. All sources remain visible without it.</p></noscript>
+    <script src="/js/source-filters.js" defer></script>
+  </main>
+</BaseLayout>

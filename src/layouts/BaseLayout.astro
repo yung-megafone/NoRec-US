@@ -1,9 +1,12 @@
 ---
 import '../styles/global.css';
+
 const {
   title = 'NoRec.US',
   description = 'Government surveillance, documented from the source.',
-  active = 'home'
+  active = 'home',
+  noindex = false,
+  canonical
 } = Astro.props;
 
 const nav = [
@@ -11,8 +14,17 @@ const nav = [
   ['surveillance', '/surveillance/', 'Surveillance'],
   ['sources', '/sources/', 'Sources'],
   ['research', '/research/', 'Research'],
+  ['privacy', '/why-privacy-matters/', 'IDC?'],
   ['about', '/about/', 'About']
 ];
+
+const canonicalUrl =
+  canonical ??
+  new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).toString();
+
+const robots = noindex
+  ? 'noindex, nofollow, noarchive'
+  : 'index, follow';
 ---
 <!doctype html>
 <html lang="en">
@@ -20,17 +32,46 @@ const nav = [
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+    <meta name="referrer" content="no-referrer" />
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#000000" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="NoRec.US" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={new URL("/brand/norec-wordmark.png", Astro.site ?? Astro.url.origin).toString()} />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL("/brand/norec-wordmark.png", Astro.site ?? Astro.url.origin).toString()} />
+
     <title>{title}</title>
   </head>
   <body>
+    <a class="skip_link" href="#site_content">Skip to content</a>
+
     <div id="main">
       <header id="header">
         <div id="logo">
           <div id="logo_text">
-            <h1><a href="/">NoRec<span class="logo_colour">.US</span></a></h1>
-            <p class="tagline">Government surveillance, documented from the source.</p>
+            <a href="/" class="site_brand" aria-label="NoRec.US — Surveillance, documented.">
+              <img
+                src="/brand/norec-wordmark-dark.png"
+                alt="NoRec.US — Surveillance, documented."
+                width="1086"
+                height="362"
+              />
+            </a>
           </div>
         </div>
 
@@ -41,20 +82,40 @@ const nav = [
                 <a href={href} aria-current={active === key ? 'page' : undefined}>{label}</a>
               </li>
             ))}
+            <li class="nav_github">
+              <a
+                href="https://github.com/yung-megafone/NoRec-US"
+                rel="external"
+                aria-label="NoRec.US on GitHub"
+                title="GitHub"
+              >
+                <img
+                  src="/brand/social/github-alt.svg"
+                  alt=""
+                  width="22"
+                  height="22"
+                  aria-hidden="true"
+                />
+              </a>
+            </li>
           </ul>
         </nav>
       </header>
 
-      <main id="site_content">
+      <main id="site_content" tabindex="-1">
         <slot />
       </main>
 
       <footer id="footer">
+        <p class="footer_brandline">
+          <img src="/brand/norec-icon-dark.png" alt="" width="28" height="28" aria-hidden="true" />
+          <span>NoRec.US · Surveillance, documented.</span>
+        </p>
         <p>
-          NoRec.US · Open source under the MIT License ·
+          NoRec.US original material · MIT License ·
           Design adapted from <a href="https://www.html5webtemplates.co.uk/" rel="external">black_white by HTML5webtemplates.co.uk</a>
         </p>
-      </footer>
+</footer>
     </div>
   </body>
 </html>

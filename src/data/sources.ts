@@ -1,0 +1,468 @@
+
+export type SourceRecord = {
+  id: string;
+  citation: number;
+  title: string;
+  shortTitle: string;
+  jurisdiction: string;
+  agency: string;
+  type: string;
+  status: 'Primary' | 'Secondary';
+  reviewed: string;
+  originalUrl: string;
+  archivedFiles?: { label: string; url: string; sha256: string }[];
+  notes?: string;
+  tags: string[];
+};
+
+export const sources: SourceRecord[] = [
+  {
+    id: 'IL-LAW-001',
+    citation: 1,
+    title: '625 ILCS 5/6-110.1 — Confidentiality of captured photographs or images',
+    shortTitle: '625 ILCS 5/6-110.1',
+    jurisdiction: 'Illinois',
+    agency: 'Illinois General Assembly',
+    type: 'Statute',
+    status: 'Primary',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://www.ilga.gov/legislation/ilcs/fulltext?DocName=062500050K6-110.1',
+    archivedFiles: [
+      { label: 'Archived PDF', url: '/archive/625-ilcs-5-6-110-1.pdf', sha256: '9f5d2d748d2f3ef117840696d8d0350b062a8cabe427abdda798844855ab96c8' },
+    ],
+    notes: 'Driver’s-license and permit photographs; confidentiality, disclosure, and facial-recognition provisions.',
+    tags: ['facial recognition', 'driver license', 'law enforcement', 'immigration', 'Illinois']
+  },
+  {
+    id: 'IL-LAW-002',
+    citation: 2,
+    title: '15 ILCS 335/11 — Illinois Identification Card Act',
+    shortTitle: '15 ILCS 335/11',
+    jurisdiction: 'Illinois',
+    agency: 'Illinois General Assembly',
+    type: 'Statute',
+    status: 'Primary',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://www.ilga.gov/legislation/ilcs/fulltext?DocName=001503350K11',
+    archivedFiles: [
+      { label: 'Archived §11 PDF', url: '/archive/15-ilcs-335-11.pdf', sha256: 'a53afee1c30e010e0bcd932add724a522f99ce4f834a0f1da8dd99d927cbb9f2' },
+    ],
+    notes: 'State-ID photographs and facial-recognition-related provisions.',
+    tags: ['facial recognition', 'state ID', 'Illinois']
+  },
+  {
+    id: 'IL-LAW-003',
+    citation: 3,
+    title: '15 ILCS 335 — Identification-card application and photograph provisions',
+    shortTitle: 'Illinois Identification Card Act',
+    jurisdiction: 'Illinois',
+    agency: 'Illinois General Assembly',
+    type: 'Statute',
+    status: 'Primary',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://www.ilga.gov/Legislation/ILCS/Articles?ActID=204&ChapterID=4',
+    archivedFiles: [
+      { label: 'Archived full Act PDF', url: '/archive/15-ilcs-335-full.pdf', sha256: '7fa611f5f8a2502c7560d523e65cbee3d23fc8741f03b2754eb6da1c1ad0e582' },
+    ],
+    notes: 'Statutory framework for Illinois identification cards and photographs.',
+    tags: ['state ID', 'minors', 'photographs', 'Illinois']
+  },
+  {
+    id: 'IL-SOS-001',
+    citation: 4,
+    title: 'Driver’s License and State ID Card Information',
+    shortTitle: 'Illinois State ID information',
+    jurisdiction: 'Illinois',
+    agency: 'Illinois Secretary of State',
+    type: 'Agency guidance',
+    status: 'Primary',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://www.ilsos.gov/departments/drivers/drivers_license/drlicid.html',
+    archivedFiles: [
+      { label: 'Archived agency page PDF', url: '/archive/ilsos-driver-license-state-id-info.pdf', sha256: 'cbe58571ad6250e608ba3902ce85718bf38ab89e4c1c2292bb64d3aafc791ff3' },
+    ],
+    notes: 'Secretary of State information stating there is no minimum age for an Illinois state ID card.',
+    tags: ['state ID', 'minors', 'age', 'Illinois']
+  },
+  {
+    id: 'IL-LAW-004',
+    citation: 5,
+    title: '625 ILCS 5/6-107 — Graduated driver licensing / instruction permits',
+    shortTitle: '625 ILCS 5/6-107',
+    jurisdiction: 'Illinois',
+    agency: 'Illinois General Assembly',
+    type: 'Statute',
+    status: 'Primary',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://www.ilga.gov/legislation/ilcs/fulltext?DocName=062500050K6-107',
+    archivedFiles: [
+      { label: 'Archived PDF', url: '/archive/625-ilcs-5-6-107.pdf', sha256: 'a0f13603b67fe871329588886d1b1e6dcce0ffff2f4019c37a8033798e78b170' },
+    ],
+    notes: 'Includes conditions under which Illinois instruction permits may be issued to applicants beginning at age 15.',
+    tags: ['driver license', 'permit', 'minors', 'age', 'Illinois']
+  },
+  {
+    id: 'IL-BILL-001',
+    citation: 6,
+    title: 'HB5521 — Biometric Surveillance Act',
+    shortTitle: 'HB5521',
+    jurisdiction: 'Illinois',
+    agency: 'Illinois General Assembly',
+    type: 'Bill',
+    status: 'Primary',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://ilga.gov/legislation/BillStatus?DocNum=5521&DocTypeID=HB&GAID=18&LegId=167496&SessionID=114',
+    archivedFiles: [
+      { label: 'Archived bill PDF', url: '/archive/hb5521.pdf', sha256: 'bfea15618b3ece75ab4e9cd4888d26287af93c64c4f837422c14809e3a2b7e26' },
+    ],
+    notes: 'Introduced legislation; not current law.',
+    tags: ['facial recognition', 'biometrics', 'legislation', 'Illinois']
+  },
+  {
+    id: 'IL-RULE-001',
+    citation: 7,
+    title: '92 Ill. Adm. Code 1030.140 — Use of Captured Images',
+    shortTitle: '92 Ill. Adm. Code 1030.140',
+    jurisdiction: 'Illinois',
+    agency: 'Illinois Secretary of State / JCAR',
+    type: 'Administrative rule',
+    status: 'Primary',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://www.ilga.gov/ftp/JCAR/AdminCode/092/092010300001400R.html',
+    archivedFiles: [
+      { label: 'Archived rule PDF', url: '/archive/92-ill-adm-code-1030-140.pdf', sha256: '612988baa658ed18b6da5b0cd02d65873f160a246e813cf7dc6f2793c081bd13' },
+    ],
+    notes: 'Rules governing access, secondary dissemination, retention by recipients, and lawful civil or criminal law-enforcement investigations.',
+    tags: ['facial recognition', 'captured images', 'law enforcement', 'civil investigation', 'Illinois']
+  },
+  {
+    id: 'US-NIST-001',
+    citation: 8,
+    title: 'Face Recognition Technology Evaluation — Demographic Effects',
+    shortTitle: 'NIST FRTE — Demographic Effects',
+    jurisdiction: 'United States',
+    agency: 'National Institute of Standards and Technology',
+    type: 'Technical evaluation',
+    status: 'Primary',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://pages.nist.gov/frvt/html/frvt_demographics.html',
+    archivedFiles: [
+      { label: 'Archived FRTE demographic-effects page', url: '/archive/nist-frte-demographic-effects-web.pdf', sha256: '4ffe86e6fb2a02cbe7140a0c0e4507c2c1e0f711c7155970abeb2b33e3a3b029' },
+      { label: 'NISTIR 8280 — FRVT Part 3: Demographic Effects', url: '/archive/nistir-8280.pdf', sha256: '3ed91eb7aad23d2a974f6501b4b248cfdf46e236f8d60a0b56dee3134e6ee436' },
+      { label: 'NISTIR 8429 — FRVT Part 8: Summarizing Demographic Differentials', url: '/archive/nistir-8429.pdf', sha256: 'fe24a3abac44e623a9fdbe8e8ae4b9c90bd73475cf8666f74b7cc42d0a0491ea' },
+    ],
+    notes: 'Ongoing measurements of demographic differentials in face-recognition performance.',
+    tags: ['facial recognition', 'accuracy', 'bias', 'NIST']
+  },
+  {
+    id: 'US-GAO-001',
+    citation: 9,
+    title: 'GAO-24-107206 — Forensic Technology',
+    shortTitle: 'GAO-24-107206',
+    jurisdiction: 'United States',
+    agency: 'U.S. Government Accountability Office',
+    type: 'Government report',
+    status: 'Primary',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://www.gao.gov/products/gao-24-107206',
+    archivedFiles: [
+      { label: 'Archived GAO report PDF', url: '/archive/gao-24-107206.pdf', sha256: '1dc39cfb2eff2617980b4b16003475c4b1915427da9e672c18de294384a25ec0' },
+    ],
+    notes: 'Benefits and limitations of forensic algorithms used in criminal investigations.',
+    tags: ['facial recognition', 'forensics', 'law enforcement', 'GAO']
+  },
+  {
+    id: 'US-GAO-002',
+    citation: 10,
+    title: 'GAO-20-522 — Facial Recognition Technology',
+    shortTitle: 'GAO-20-522',
+    jurisdiction: 'United States',
+    agency: 'U.S. Government Accountability Office',
+    type: 'Government report',
+    status: 'Primary',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://www.gao.gov/products/gao-20-522',
+    archivedFiles: [
+      { label: 'Archived GAO report PDF', url: '/archive/gao-20-522.pdf', sha256: 'abd2c5dca4122bd33af365e4df19117bbb07e95119e358fe5d8d6b59a8b2381f' },
+    ],
+    notes: 'Privacy, security, permanence, consent, and accuracy issues involving facial-image datasets.',
+    tags: ['facial recognition', 'privacy', 'security', 'GAO']
+  },
+  {
+    id: 'US-GAO-003',
+    citation: 11,
+    title: 'GAO-21-518 / GAO-22-106100 — Federal use of facial recognition',
+    shortTitle: 'GAO federal FRT oversight reports',
+    jurisdiction: 'United States',
+    agency: 'U.S. Government Accountability Office',
+    type: 'Government report',
+    status: 'Primary',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://www.gao.gov/products/gao-21-518',
+    archivedFiles: [
+      { label: 'Archived GAO-21-518 PDF', url: '/archive/gao-21-518.pdf', sha256: 'c9068ed063740ebc8997c6b93d13a4a8683e4986a855cc2b789112e268850e92' },
+      { label: 'Archived GAO-22-106100 PDF', url: '/archive/gao-22-106100.pdf', sha256: '443d3a9ba977c400f48483c8e0659a6a7c76313630be5a9d29e7404ce6643524' },
+    ],
+    notes: 'Federal use of non-federal systems, tracking deficiencies, and privacy-risk assessment.',
+    tags: ['facial recognition', 'federal agencies', 'commercial systems', 'GAO']
+  },
+  {
+    id: 'US-DOJ-001',
+    citation: 12,
+    title: 'Artificial Intelligence and Criminal Justice — Final Report',
+    shortTitle: 'DOJ AI and Criminal Justice report',
+    jurisdiction: 'United States',
+    agency: 'U.S. Department of Justice',
+    type: 'Government report',
+    status: 'Primary',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://www.justice.gov/olp/media/1381796/dl?inline=',
+    archivedFiles: [
+      { label: 'Archived DOJ report PDF', url: '/archive/doj-ai-criminal-justice-final-2024-12-03.pdf', sha256: '1d2127672a770e163066311d0cf52ee79aebd7efd9461a056cb68ea4ed6ad817' },
+    ],
+    notes: 'Recommendations concerning thresholds, human review, corroboration, bias, and investigative leads.',
+    tags: ['facial recognition', 'AI', 'criminal justice', 'DOJ']
+  },
+  {
+    id: 'US-FBI-001',
+    citation: 13,
+    title: 'Law Enforcement’s Use of Facial Recognition Technology',
+    shortTitle: 'FBI — Law Enforcement’s Use of FRT',
+    jurisdiction: 'United States',
+    agency: 'Federal Bureau of Investigation',
+    type: 'Agency testimony / statement',
+    status: 'Primary',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://www.fbi.gov/news/speeches-and-testimony/law-enforcements-use-of-facial-recognition-technology',
+    archivedFiles: [
+      { label: 'Archived FBI page PDF', url: '/archive/fbi-law-enforcement-use-frt.pdf', sha256: '6a47eda57e86d16776cac35d4d5381faac21ec4d019b99a5aca7c5c148885b4e' },
+    ],
+    notes: 'FBI description of FACE Services, candidate review, investigative leads, and state/federal repositories.',
+    tags: ['facial recognition', 'FBI', 'law enforcement']
+  },
+  {
+    id: 'IL-ALPR-001',
+    citation: 14,
+    title: '625 ILCS 5/2-130 — Automated license plate reader provisions',
+    shortTitle: '625 ILCS 5/2-130',
+    jurisdiction: 'Illinois',
+    agency: 'Illinois General Assembly',
+    type: 'Statute',
+    status: 'Primary',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://www.ilga.gov/legislation/ilcs/fulltext?DocName=062500050K2-130',
+    notes: 'Defines ALPR devices, ALPR information, ALPR systems, users, and Illinois restrictions.',
+    tags: ['ALPR', 'license plate readers', 'vehicle surveillance', 'Illinois']
+  },
+  {
+    id: 'IL-ISP-ALPR-001',
+    citation: 15,
+    title: 'Automated License Plate Reader Transparency Page',
+    shortTitle: 'ISP ALPR Transparency Page',
+    jurisdiction: 'Illinois',
+    agency: 'Illinois State Police',
+    type: 'Agency transparency page',
+    status: 'Primary',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://isp.illinois.gov/CriminalInvestigations/TransparencyPage',
+    notes: 'Statewide ALPR program information, annual reports, statistics, agreements, directives, and vendor records.',
+    tags: ['ALPR', 'Motorola Solutions', 'Illinois State Police', 'vehicle surveillance']
+  },
+  {
+    id: 'IL-DRONE-001',
+    citation: 16,
+    title: '725 ILCS 167 — Freedom from Drone Surveillance Act',
+    shortTitle: 'Freedom from Drone Surveillance Act',
+    jurisdiction: 'Illinois',
+    agency: 'Illinois General Assembly',
+    type: 'Statute',
+    status: 'Primary',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://www.ilga.gov/Legislation/ILCS/Articles?ActID=3520&Chapter=CRIMINAL+PROCEDURE&ChapterID=54&MajorTopic=RIGHTS+AND+REMEDIES',
+    notes: 'Illinois framework governing law-enforcement drone use, statutory exceptions, disclosure, and reporting.',
+    tags: ['drones', 'UAS', 'law enforcement', 'Illinois']
+  },
+  {
+    id: 'IL-ISP-ABIS-001',
+    citation: 17,
+    title: 'Illinois State Police Bureau of Identification',
+    shortTitle: 'ISP Bureau of Identification',
+    jurisdiction: 'Illinois',
+    agency: 'Illinois State Police',
+    type: 'Agency page',
+    status: 'Primary',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://isp.illinois.gov/BureauOfIdentification',
+    notes: 'ISP overview of criminal-history identification services and its Automated Biometric Identification System (ABIS).',
+    tags: ['fingerprints', 'ABIS', 'biometrics', 'Illinois State Police']
+  },
+  {
+    id: 'IL-WIN-ALPR-001',
+    citation: 18,
+    title: 'Winnebago County — Five-Year Flock LPR Agreement',
+    shortTitle: 'Winnebago County Flock agreement',
+    jurisdiction: 'Winnebago County, Illinois',
+    agency: 'Winnebago County Board / Sheriff’s Office',
+    type: 'Contract / board record',
+    status: 'Primary',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://wincoil.gov/images/2024_05_23_Board_Agenda_PACKET.pdf',
+    notes: 'May 2024 county record authorizing a five-year Flock agreement for license-plate readers throughout Winnebago County; $719,250 appropriation.',
+    tags: ['ALPR', 'Flock Safety', 'Winnebago County', 'Sheriff']
+  },
+  {
+    id: 'IL-RFD-FLOCK-001',
+    citation: 19,
+    title: 'Rockford Police — 2026 Flock Safety Sole-Source Contract',
+    shortTitle: 'Rockford 2026 Flock contract',
+    jurisdiction: 'Rockford, Illinois',
+    agency: 'Rockford Police Department / City of Rockford',
+    type: 'Procurement / council record',
+    status: 'Primary',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://rockfordil.legistar.com/LegislationDetail.aspx?GUID=4A7C95F1-BFEC-4ECC-BFE1-0ED3276BCC38&ID=7870155&Options=ID%7CText%7C&Search=Flock',
+    notes: '$443,998.16 contract; supporting memo identifies Flock Operating System software, LPRs, and PTZ cameras used by the Police Department Intelligence Unit.',
+    tags: ['ALPR', 'Flock Safety', 'PTZ', 'Rockford', 'intelligence']
+  },
+  {
+    id: 'IL-RFD-BWC-001',
+    citation: 20,
+    title: 'Rockford Police Department — Body-Worn Camera Policy',
+    shortTitle: 'Rockford BWC policy',
+    jurisdiction: 'Rockford, Illinois',
+    agency: 'Rockford Police Department',
+    type: 'Agency policy',
+    status: 'Primary',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://www.rockfordil.gov/DocumentCenter/View/294/Body-Worn-Camera-Policy-101321-PDF',
+    notes: 'Rockford policy references AXON docking stations and secure web-based digital-media storage.',
+    tags: ['body camera', 'Axon', 'Rockford', 'video evidence']
+  },
+  {
+    id: 'IL-DK-ALPR-001',
+    citation: 21,
+    title: 'DeKalb Resolution 2021-093 — Twelve Genetec License Plate Readers',
+    shortTitle: 'DeKalb 2021 Genetec LPR purchase',
+    jurisdiction: 'DeKalb, Illinois',
+    agency: 'City of DeKalb / DeKalb Police Department',
+    type: 'Procurement / resolution',
+    status: 'Primary',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://www.cityofdekalb.com/DocumentCenter/View/13234/Res-2021-093-Passed-101121-Genetec-LPR',
+    notes: 'Authorized purchase of twelve CDS Genetec license-plate readers for $145,865.',
+    tags: ['ALPR', 'Genetec', 'DeKalb', 'license plate readers']
+  },
+  {
+    id: 'IL-DK-FLOCK-001',
+    citation: 22,
+    title: 'DeKalb Resolution 2026-059 — Flock Safety ALPR Service',
+    shortTitle: 'DeKalb 2026 Flock contract',
+    jurisdiction: 'DeKalb, Illinois',
+    agency: 'City of DeKalb / DeKalb Police Department',
+    type: 'Contract / resolution',
+    status: 'Primary',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://www.cityofdekalb.com/1599/2026-Resolutions',
+    notes: 'Two-year 2026–2027 Flock Safety ALPR service contract not to exceed $27,500.',
+    tags: ['ALPR', 'Flock Safety', 'DeKalb']
+  },
+  {
+    id: 'IL-DK-AXON-001',
+    citation: 23,
+    title: 'DeKalb Resolution 2025-085 — Axon Five-Year Agreement',
+    shortTitle: 'DeKalb Axon 2026–2031 agreement',
+    jurisdiction: 'DeKalb, Illinois',
+    agency: 'City of DeKalb / DeKalb Police Department',
+    type: 'Contract / procurement',
+    status: 'Primary',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://www.cityofdekalb.com/DocumentCenter/View/19825/Res-2025-085-Passed-092225-Axon',
+    notes: 'Five-year $1,247,755.20 Axon agreement including Body 4, Fleet 3, Evidence.com, Fusus user licensing, Fleet ALPR licensing, real-time location, alerts, and livestream features.',
+    tags: ['Axon', 'Body 4', 'Fleet 3', 'Fusus', 'ALPR', 'Evidence.com', 'DeKalb']
+  },
+  {
+    id: 'IL-DRONE-RPT-2024',
+    citation: 24,
+    title: 'State Fiscal Year 2024 Illinois Freedom from Drone Surveillance Act Report',
+    shortTitle: 'Illinois SFY 2024 drone report',
+    jurisdiction: 'Illinois',
+    agency: 'Illinois Criminal Justice Information Authority',
+    type: 'Government report',
+    status: 'Primary',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://agency.icjia-api.cloud/uploads/SFY_24_Drone_Report_with_Appendices_491dfa4810.pdf',
+    notes: 'Statewide agency-by-agency UAS inventory and reported-flight data used across NoRec jurisdiction files.',
+    tags: ['drones', 'UAS', 'Illinois', 'flight logs']
+  },
+  {
+    id: 'IL-DK-UAS-001',
+    citation: 25,
+    title: 'DeKalb County Sheriff — Unmanned Aerial System Operations Policy 606',
+    shortTitle: 'DeKalb County Sheriff UAS policy',
+    jurisdiction: 'DeKalb County, Illinois',
+    agency: 'DeKalb County Sheriff’s Office',
+    type: 'Agency policy',
+    status: 'Primary',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://dekalbcountyilsheriff.org/wp-content/uploads/2023/08/Policy-606-Unmanned_Aerial_System__UAS__Operations.pdf',
+    notes: 'Sheriff UAS policy addressing facial recognition, prohibited use, retention, reporting, and disclosure.',
+    tags: ['drones', 'UAS', 'facial recognition', 'DeKalb County', 'Sheriff']
+  },
+  {
+    id: 'IL-KANE-FLOCK-001',
+    citation: 26,
+    title: 'Kane County Sheriff — 2025 Flock Safety Renewal',
+    shortTitle: 'Kane County 2025 Flock renewal',
+    jurisdiction: 'Kane County, Illinois',
+    agency: 'Kane County Sheriff’s Office / County Board',
+    type: 'Contract / resolution',
+    status: 'Primary',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://www.kanecountyil.gov/Lists/Events/Attachments/7382/AG%20PKT%2025-01%20JPS.pdf',
+    notes: 'Renewal for 25 Flock Safety LPR cameras dispersed countywide at a 2025 cost of $61,000.',
+    tags: ['ALPR', 'Flock Safety', 'Kane County', 'Sheriff']
+  },
+  {
+    id: 'IL-KANE-VIDEO-001',
+    citation: 27,
+    title: 'Kane County Sheriff — Getac In-Car and Body-Worn Camera Lease',
+    shortTitle: 'Kane County Getac camera system',
+    jurisdiction: 'Kane County, Illinois',
+    agency: 'Kane County Sheriff’s Office',
+    type: 'Contract / resolution',
+    status: 'Primary',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://www.kanecountyil.gov/MeetingMinutes/5452/20-07-14%20COB%20minutes-full.pdf',
+    notes: '2020 five-year Getac in-car/body-worn camera lease with cloud-hosted evidence management and retention-rule support.',
+    tags: ['body camera', 'in-car camera', 'Getac', 'Kane County', 'video evidence']
+  },
+  {
+    id: 'IL-KANE-EVID-001',
+    citation: 28,
+    title: 'Kane County State’s Attorney — Evidence.com eDiscovery Selection',
+    shortTitle: 'Kane County Evidence.com eDiscovery',
+    jurisdiction: 'Kane County, Illinois',
+    agency: 'Kane County State’s Attorney / Finance Committee',
+    type: 'Meeting minutes',
+    status: 'Primary',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://www.kanecountyil.gov/MeetingMinutes/6392/22-11-23.pdf',
+    notes: '2022 committee minutes describing selection of Axon Evidence.com for eDiscovery, including storage, transcription, and keyword-search capabilities.',
+    tags: ['Axon', 'Evidence.com', 'eDiscovery', 'Kane County', 'video evidence']
+  },
+  {
+    id: 'US-AXON-FUSUS-001',
+    citation: 29,
+    title: 'Axon Fusus — Real-Time Intelligence Platform',
+    shortTitle: 'Axon Fusus product documentation',
+    jurisdiction: 'United States',
+    agency: 'Axon',
+    type: 'Vendor documentation',
+    status: 'Vendor',
+    reviewed: '2026-09-09',
+    originalUrl: 'https://www.axon.com/products/axon-fusus',
+    notes: 'Official Axon product documentation for Fusus real-time video, alerts, field data, ALPR overlays, and RTCC integration. Vendor capability does not establish local configuration.',
+    tags: ['Axon', 'Fusus', 'RTCC', 'video integration', 'ALPR']
+  }
+
+];

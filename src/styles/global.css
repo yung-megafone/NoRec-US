@@ -201,3 +201,33 @@ p { margin: 0 0 1.2rem; line-height: 1.7; }
   .source_list li { grid-template-columns: 1fr; gap: .3rem; }
   .meta_list > div { grid-template-columns: 6rem 1fr; }
 }
+
+/* Inline evidence citations */
+.citation {
+  position: relative;
+  top: -.15em;
+  margin-left: .12em;
+  font: 700 .68em/1 ui-monospace, SFMono-Regular, Consolas, monospace;
+  white-space: nowrap;
+}
+.citation a {
+  padding: .08em .12em;
+  text-decoration: none;
+  border-bottom: 1px dotted currentColor;
+}
+.citation a:hover { border-bottom-style: solid; }
+.source_list li { scroll-margin-top: 1rem; }
+.source_list li:target {
+  margin-inline: -.65rem;
+  padding-inline: .65rem;
+  background: var(--soft);
+  box-shadow: inset 4px 0 0 var(--black);
+}
+.minor_callout {
+  margin: 1rem 0 1.2rem;
+  padding: 1.1rem;
+  border: 2px solid var(--black);
+  background: var(--white);
+}
+.minor_callout h3 { margin-top: .8rem; }
+.minor_callout p:last-child { margin-bottom: 0; }

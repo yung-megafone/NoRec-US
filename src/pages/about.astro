@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CommunityLinks from '../components/CommunityLinks.astro';
+---
+
+<BaseLayout
+  title="About | NoRec.US"
+  description="Why NoRec.US exists, what it documents, and the standards it uses to separate evidence from unanswered questions."
+>
+  <main class="page_shell">
+    <header class="article_header about_header">
+      <p class="eyebrow">ABOUT NOREC.US</p>
+      <h1>Surveillance is easier to accept when nobody tells you it is there.</h1>
+      <p class="article_deck">NoRec.US is an independent privacy and public-records project documenting government surveillance technology, connected systems, and the records that establish how they operate.</p>
+    </header>
+
+    <section class="about_manifesto">
+      <p class="about_pullquote">This project did not begin with a theory that every camera, database, or government employee is malicious. It began with a simpler question: <strong>what is being collected, who can search it, who can receive it, how long does it exist, and why did most of us never hear about it?</strong></p>
+    </section>
+
+    <section>
+      <p class="eyebrow">HOW THIS STARTED</p>
+      <h2>One camera became a much larger question.</h2>
+      <p>NoRec.US grew out of concern about automated license plate readers, particularly networked systems such as Flock Safety cameras. A license-plate camera can look simple when considered by itself: a camera sees a vehicle, records a plate, and helps an agency find a vehicle of interest.</p>
+      <p>The larger questions begin with the surrounding system.</p>
+      <p>Where does the observation go? How long is it retained? What else is recorded with it? Which agencies can search it? Can another jurisdiction search it? Can observations from many locations be combined? Can the resulting history reveal where a vehicle has been, which vehicles repeatedly appear together, or patterns that were never visible from a single camera?</p>
+      <p>That led to a broader concern: <strong>data fusion</strong>. Modern surveillance is not necessarily one extraordinary sensor watching everything. It can be many ordinary systems whose records become far more revealing when they are searchable, shareable, retained, and combined.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">THE MOMENT THAT CLARIFIED THE PROJECT</p>
+      <h2>If people do not know a system exists, meaningful public debate is difficult.</h2>
+      <p>On September 9, 2026, while researching Illinois surveillance law, the founder of NoRec.US learned that Illinois law expressly addresses facial-recognition search services involving photographs maintained by the Secretary of State for driver's licenses, permits, and identification cards.</p>
+      <p>That discovery was striking precisely because it was not obscure personal information. It was written into Illinois law. Yet someone who actively follows privacy, surveillance, public records, and government technology had gone through the Illinois credentialing process without coming away aware of that facial-recognition framework.</p>
+
+      <div class="evidence_box evidence_unknown">
+        <span class="status_label">PERSONAL EXPERIENCE — NOT A GENERAL CLAIM</span>
+        <p>The founder does not recall being informed at the DMV that photographs maintained by the Secretary of State are subject to statutory provisions concerning facial-recognition search services. NoRec.US has <strong>not</strong> established that Illinois DMV facilities universally fail to provide such notice, and does not present that personal experience as proof of a statewide practice.</p>
+      </div>
+
+      <p>One person's experience cannot establish statewide notice practices. It does illustrate a broader problem: consequential surveillance capabilities can be lawful and publicly documented while remaining largely invisible to the people represented in the underlying records.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">WHAT NOREC IS</p>
+      <h2>An evidence project with a point of view.</h2>
+      <p>NoRec.US is strongly pro-privacy and skeptical of population-scale surveillance. It is not politically neutral about whether governments and their contractors should accumulate increasingly searchable records of people's identities, movements, associations, vehicles, devices, and activities.</p>
+      <p>That does <strong>not</strong> mean the evidence gets bent to fit the position.</p>
+      <p>Surveillance technologies can have legitimate uses. A facial-recognition search may help identify the unknown suspect in a serious violent crime. An ALPR may locate a stolen vehicle or generate a useful lead in an abduction. Cameras can document events accurately. Data sharing can help an agency pursue evidence held in another jurisdiction.</p>
+      <p>Those benefits deserve to be stated plainly because the real debate begins after acknowledging them: <strong>what infrastructure is justified to obtain those benefits, what population should be made searchable, what safeguards constrain access, what happens to innocent people's records, and what occurs when the system inevitably outlives the circumstances under which it was first approved?</strong></p>
+    </section>
+
+    <section>
+      <p class="eyebrow">THE STANDARD</p>
+      <h2>Show the record. Mark the uncertainty.</h2>
+      <p>NoRec.US is built around three labels:</p>
+
+      <div class="about_status_grid">
+        <article class="status_card">
+          <span class="status_label">DOCUMENTED</span>
+          <h3>The record establishes it.</h3>
+          <p>A statute, regulation, contract, policy, public record, agency publication, technical record, or other sufficiently reliable source directly supports the claim.</p>
+        </article>
+        <article class="status_card">
+          <span class="status_label">UNKNOWN</span>
+          <h3>We do not have the answer.</h3>
+          <p>The available evidence does not establish the fact. An inference may seem plausible, but plausibility is not documentation.</p>
+        </article>
+        <article class="status_card">
+          <span class="status_label">UNDER INVESTIGATION</span>
+          <h3>There is a question worth answering.</h3>
+          <p>The issue is being researched through records requests, source comparison, or other evidence capable of resolving it.</p>
+        </article>
+      </div>
+
+      <p>A statute can establish that a facial-recognition search service exists without establishing historical retention. A vendor can offer a capability without proving that a particular agency enabled it. Those distinctions remain explicit throughout the site.</p>
+      <p><strong>“We don't know” is an acceptable result.</strong> It is often the beginning of the next records request.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">PRIMARY SOURCES FIRST</p>
+      <h2>Read the underlying record.</h2>
+      <p>Wherever practical, claims link directly to the material supporting them: statutes, regulations, government policies, contracts, procurement records, meeting records, audits, technical documentation, FOIA responses, and other primary sources.</p>
+      <p>Secondary reporting and research can provide context and identify records worth pursuing. When the underlying document is available, readers should be able to inspect it directly.</p>
+      <p>Citations stay close to the claims they support so the underlying record is easy to inspect.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">WHY THE SCOPE IS BROADER THAN FLOCK</p>
+      <h2>The network matters as much as the sensor.</h2>
+      <p>Flock Safety and automated license plate readers helped start this project, but NoRec.US is not an anti-Flock website and is not limited to ALPRs. Vendors change. Contracts end. New sensors appear. Databases become interoperable. Capabilities that were once expensive become routine.</p>
+      <p>The enduring questions are about systems and power:</p>
+      <ul class="about_questions">
+        <li>Can a person, vehicle, device, or location be identified?</li>
+        <li>Can observations be searched retrospectively?</li>
+        <li>Can records be combined to reveal patterns?</li>
+        <li>Who owns or operates the infrastructure?</li>
+        <li>Which agencies, contractors, or jurisdictions can access it?</li>
+        <li>What legal predicate, if any, is required?</li>
+        <li>How long is information retained?</li>
+        <li>Can it be exported or shared again?</li>
+        <li>Is access logged and independently audited?</li>
+        <li>What happens after a breach, compromised credential, bad query, or policy change?</li>
+      </ul>
+      <p>A surveillance system should be evaluated not only by what its operator says it is for today, but by what the architecture makes possible tomorrow.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">WHY SECURITY BELONGS IN A PRIVACY PROJECT</p>
+      <h2>Good intentions do not patch vulnerabilities.</h2>
+      <p>Assume every authorized user acts in good faith. Sensitive databases still depend on administrators, credentials, software, networks, contractors, backups, integrations, endpoints, and human beings.</p>
+      <p>Systems get breached. Credentials get phished. Vendors are compromised. Software has vulnerabilities. Access is misconfigured. Employees make mistakes. A database can expose people even when nobody who was supposed to use it intended harm.</p>
+      <p>That is one reason data minimization matters. Information that was never collected cannot later leak from that collection. Information deleted under a meaningful retention policy is no longer sitting there waiting for a future compromise. Information never shared does not become another organization's security obligation.</p>
+      <p>Biometrics make this question particularly important. Passwords can be changed. Keys can be rotated. A face is not a replaceable credential. That does not mean every exposed facial image or template can automatically defeat every biometric system; it means the underlying characteristic is persistent, so careless collection and retention can create unusually durable consequences.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">COMMERCIAL SURVEILLANCE</p>
+      <h2>Public power can be privately packaged.</h2>
+      <p>Private companies can build useful technology, often faster and more efficiently than an agency could build it internally. The fact that a system has a vendor is not proof that the system is abusive.</p>
+      <p>Commercialization does, however, add another incentive to the equation. A surveillance vendor can benefit from more customers, more integrations, larger networks, new capabilities, longer contracts, and greater dependence on its platform. Public agencies can gain powerful capabilities without building the underlying infrastructure themselves.</p>
+      <p>NoRec.US therefore follows the money as well as the technology: contracts, subscriptions, grants, procurement records, renewals, vendor representations, data-sharing arrangements, and the rules governing what happens to information when an agency changes providers.</p>
+      <p>Taxpayers should be able to see what surveillance capabilities they are purchasing and the conditions attached to them.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">WHAT THIS PROJECT IS NOT</p>
+      <h2>No assumption of bad intent.</h2>
+      <p>NoRec.US is not built around the claim that every camera is sinister, every police officer is abusing a database, every contractor is stealing data, or every unexplained technical capability is secretly active.</p>
+      <p>It is also not a promise of ideological neutrality. The project begins from the view that privacy has value, that surveillance power deserves scrutiny, and that population-scale tracking or identification should carry a substantial burden of justification.</p>
+      <p>The standard is simple: <strong>criticize what can be demonstrated, investigate what cannot, correct what turns out to be wrong, and do not manufacture certainty because a stronger headline would be more exciting.</strong></p>
+    </section>
+
+    <section>
+      <p class="eyebrow">OPEN BY DESIGN</p>
+      <h2>Copy it. Check it. Improve it. Use it.</h2>
+      <p>The project's original code is open source, and contributions from developers, researchers, journalists, public-records researchers, privacy advocates, subject-matter experts, and skeptical readers are welcome.</p>
+      <p>If another project can use the research, reproduce the website, build a better interface, mirror public records, challenge an interpretation, or turn the material into something that reaches people NoRec never would, that is a success.</p>
+      <p>The objective is to make the underlying information harder to overlook and easier to verify.</p>
+    </section>
+
+    <section class="about_closing">
+      <p class="eyebrow">THE POINT</p>
+      <h2>You cannot meaningfully debate a system you do not know exists.</h2>
+      <p>People may look at the same evidence and reach different conclusions about what surveillance is justified. That disagreement is legitimate.</p>
+      <p>But first, the evidence has to be visible.</p>
+      <p><strong>NoRec.US exists to put it in front of you.</strong></p>
+      <div class="hero_actions">
+        <a class="button button_dark" href="/surveillance/face/illinois-id-photos/">Start with Illinois facial recognition</a>
+        <a class="button button_light" href="/sources/">Browse sources</a>
+        <a class="button button_light" href="/research/">Open investigations</a>
+      </div>
+    </section>
+  
+  <section>
+    <p class="eyebrow">COMMUNITY</p>
+    <h2>Follow the research or contribute.</h2>
+    <p>NoRec.US is open to researchers, journalists, developers, and anyone interested in documenting surveillance systems with verifiable evidence.</p>
+    <CommunityLinks />
+  </section>
+
+</main>
+</BaseLayout>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Citation from '../../../../components/Citation.astro';
 ---
 <BaseLayout
   active="surveillance"
@@ -18,6 +19,7 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
       <nav class="toc" aria-label="On this page">
         <a href="#bottom-line">Bottom line</a>
         <a href="#documented">What is documented</a>
+        <a href="#minors">Minors & age scope</a>
         <a href="#statutes">Read the statutes</a>
         <a href="#unknown">What remains unknown</a>
         <a href="#investigation">Under investigation</a>
@@ -57,7 +59,7 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
   <article id="content" class="evidence_page">
     <p class="eyebrow">SURVEILLANCE / FACE / ILLINOIS</p>
     <h1>Illinois ID photos & facial recognition</h1>
-    <p class="lede">Illinois law requires the Secretary of State to maintain photographs collected through driver's licenses, permits, and identification cards. State law also expressly addresses government requests for <em>facial recognition search services</em>.</p>
+    <p class="lede">Illinois law requires the Secretary of State to maintain photographs collected through driver's licenses, permits, and identification cards.<Citation n={1} title="625 ILCS 5/6-110.1" /> State law also expressly addresses government requests for <em>facial recognition search services</em>.<Citation n={1} title="625 ILCS 5/6-110.1" /><Citation n={2} title="15 ILCS 335/11" /></p>
 
     <div class="callout caution_callout">
       <strong>What this page does not claim:</strong> the statutes alone do not tell us how long historical photographs are retained, whether persistent biometric templates or embeddings are separately stored, which agencies actually submit searches, or how often searches occur.
@@ -71,7 +73,7 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
           <span class="finding_source">625 ILCS 5/6-110.1(a)</span>
         </div>
         <h3>Illinois maintains a file of photographs collected during licensing and identification.</h3>
-        <p>The Illinois Vehicle Code says the Secretary of State shall maintain, or contract to maintain, a file containing photographs and signatures obtained while issuing driver's licenses, permits, or identification cards.</p>
+        <p>The Illinois Vehicle Code says the Secretary of State shall maintain, or contract to maintain, a file containing photographs and signatures obtained while issuing driver's licenses, permits, or identification cards.<Citation n={1} title="625 ILCS 5/6-110.1" /></p>
       </div>
 
       <div class="finding finding_documented">
@@ -80,7 +82,7 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
           <span class="finding_source">625 ILCS 5/6-110.1(b) · 15 ILCS 335/11(f)</span>
         </div>
         <h3>Illinois statutes expressly contemplate facial-recognition search services for government requests.</h3>
-        <p>Both the Vehicle Code and the Illinois Identification Card Act contain restrictions on providing facial-recognition search services for federal immigration enforcement. The statutory exception language also refers to requests involving criminal activity other than immigration-law violations.</p>
+        <p>Both the Vehicle Code and the Illinois Identification Card Act contain restrictions on providing facial-recognition search services for federal immigration enforcement.<Citation n={1} title="625 ILCS 5/6-110.1" /><Citation n={2} title="15 ILCS 335/11" /> The statutory exception language also refers to requests involving criminal activity other than immigration-law violations.<Citation n={1} title="625 ILCS 5/6-110.1" /><Citation n={2} title="15 ILCS 335/11" /></p>
       </div>
 
       <div class="finding finding_documented">
@@ -89,7 +91,7 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
           <span class="finding_source">625 ILCS 5/6-110.1(a)(3)</span>
         </div>
         <h3>Stored photographs may be disclosed to law enforcement for civil or criminal investigations, subject to statutory restrictions.</h3>
-        <p>The Vehicle Code lists law-enforcement officials conducting civil or criminal law-enforcement investigations among the parties to whom otherwise-confidential photographs and signatures may be disclosed, with additional restrictions elsewhere in the Code.</p>
+        <p>The Vehicle Code lists law-enforcement officials conducting civil or criminal law-enforcement investigations among the parties to whom otherwise-confidential photographs and signatures may be disclosed, with additional restrictions elsewhere in the Code.<Citation n={1} title="625 ILCS 5/6-110.1" /></p>
       </div>
     </section>
 
@@ -104,25 +106,42 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
           <div role="columnheader">Primary authority</div>
         </div>
         <div class="fact_row" role="row">
-          <div role="cell">Photographs and signatures collected during driver's-license, permit, and identification-card issuance are maintained in a file or contracted filing system.</div>
+          <div role="cell">Photographs and signatures collected during driver's-license, permit, and identification-card issuance are maintained in a file or contracted filing system.<Citation n={1} title="625 ILCS 5/6-110.1" /></div>
           <div role="cell"><span class="status documented">Documented</span></div>
           <div role="cell"><a href="https://www.ilga.gov/legislation/ilcs/fulltext?DocName=062500050K6-110.1">625 ILCS 5/6-110.1(a)</a></div>
         </div>
         <div class="fact_row" role="row">
-          <div role="cell">The Vehicle Code expressly uses the term “facial recognition search services.”</div>
+          <div role="cell">The Vehicle Code expressly uses the term “facial recognition search services.”<Citation n={1} title="625 ILCS 5/6-110.1" /></div>
           <div role="cell"><span class="status documented">Documented</span></div>
           <div role="cell"><a href="https://www.ilga.gov/legislation/ilcs/fulltext?DocName=062500050K6-110.1">625 ILCS 5/6-110.1(b)</a></div>
         </div>
         <div class="fact_row" role="row">
-          <div role="cell">The Illinois Identification Card Act separately addresses facial-recognition search services and photographs obtained while issuing identification cards.</div>
+          <div role="cell">The Illinois Identification Card Act separately addresses facial-recognition search services and photographs obtained while issuing identification cards.<Citation n={2} title="15 ILCS 335/11" /></div>
           <div role="cell"><span class="status documented">Documented</span></div>
           <div role="cell"><a href="https://www.ilga.gov/legislation/ilcs/fulltext?DocName=001503350K11">15 ILCS 335/11(f)</a></div>
         </div>
         <div class="fact_row" role="row">
-          <div role="cell">The statutes restrict use for federal immigration-law enforcement, while preserving exceptions described in the statutory text.</div>
+          <div role="cell">The statutes restrict use for federal immigration-law enforcement, while preserving exceptions described in the statutory text.<Citation n={1} title="625 ILCS 5/6-110.1" /><Citation n={2} title="15 ILCS 335/11" /></div>
           <div role="cell"><span class="status documented">Documented</span></div>
           <div role="cell"><a href="https://www.ilga.gov/legislation/ilcs/fulltext?DocName=062500050K6-110.1">625 ILCS 5/6-110.1(b)</a>; <a href="https://www.ilga.gov/legislation/ilcs/fulltext?DocName=001503350K11">15 ILCS 335/11(f)</a></div>
         </div>
+      </div>
+    </section>
+
+    <section id="minors" class="section_anchor">
+      <p class="eyebrow">AGE SCOPE</p>
+      <h2>This is not an adults-only records system</h2>
+      <div class="minor_callout">
+        <span class="status documented">Documented</span>
+        <h3>Illinois state ID cards have no minimum age.</h3>
+        <p>The Illinois Secretary of State states that there is <strong>no minimum age</strong> for a state identification card.<Citation n={4} title="Illinois Secretary of State — Driver’s License and State ID Card Information" /> The Identification Card Act allows any Illinois resident who is a natural person to apply, requires the card to include a photograph, and generally requires the applicant to be photographed unless an authorized exception applies.<Citation n={3} title="15 ILCS 335/4 and 15 ILCS 335/5" /></p>
+        <p>Illinois law separately provides for instruction permits for minors; the Vehicle Code allows certain instruction permits beginning at age 15.<Citation n={5} title="625 ILCS 5/6-103 and 6-107.1" /></p>
+      </div>
+
+      <div class="callout caution_callout">
+        <strong>What this establishes:</strong> the photographs collected by Illinois credentialing systems are not limited to adults, and the Identification Card Act's facial-recognition provision applies to photographs obtained while issuing identification cards.<Citation n={2} title="15 ILCS 335/11" /><Citation n={3} title="15 ILCS 335/4 and 15 ILCS 335/5" /><Citation n={4} title="Illinois Secretary of State — Driver’s License and State ID Card Information" />
+        <br /><br />
+        <strong>What this does not establish:</strong> these sources do not prove that every minor's photograph is enrolled in a separately stored biometric template, nor do they establish how minor records are technically handled by the facial-recognition system.
       </div>
     </section>
 
@@ -206,7 +225,7 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
     <section class="section_anchor legislative_context">
       <p class="eyebrow">LEGISLATIVE CONTEXT · NOT CURRENT LAW</p>
       <h2>A 2026 proposal would go substantially further</h2>
-      <p>House Bill 5521, introduced in the 104th General Assembly, proposes an Illinois Biometric Surveillance Act and would sharply restrict law-enforcement use of biometric identification systems. As of this page's September 9, 2026 review, the General Assembly lists the bill's last action as re-referral to the House Rules Committee on March 27, 2026.</p>
+      <p>House Bill 5521, introduced in the 104th General Assembly, proposes an Illinois Biometric Surveillance Act and would sharply restrict law-enforcement use of biometric identification systems. As of this page's September 9, 2026 review, the General Assembly lists the bill's last action as re-referral to the House Rules Committee on March 27, 2026.<Citation n={6} title="HB5521 — Biometric Surveillance Act" /></p>
       <p><strong>HB5521 is a proposal, not evidence that its proposed restrictions are currently law.</strong></p>
       <p><a class="text_link" href="https://ilga.gov/legislation/BillStatus?DocNum=5521&DocTypeID=HB&GAID=18&LegId=167496&SessionID=114">View HB5521 on ILGA.gov →</a></p>
     </section>
@@ -214,16 +233,28 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
     <section id="sources" class="section_anchor">
       <h2>Primary sources</h2>
       <ol class="source_list">
-        <li>
-          <span class="source_id">IL-LAW-001</span>
+        <li id="source-1">
+          <span class="source_id">[1] · IL-LAW-001</span>
           <div><strong>625 ILCS 5/6-110.1</strong><br />Illinois Vehicle Code — Confidentiality of captured photographs or images<br /><a href="https://www.ilga.gov/legislation/ilcs/fulltext?DocName=062500050K6-110.1">Illinois General Assembly</a></div>
         </li>
-        <li>
-          <span class="source_id">IL-LAW-002</span>
+        <li id="source-2">
+          <span class="source_id">[2] · IL-LAW-002</span>
           <div><strong>15 ILCS 335/11</strong><br />Illinois Identification Card Act — Records<br /><a href="https://www.ilga.gov/legislation/ilcs/fulltext?DocName=001503350K11">Illinois General Assembly</a></div>
         </li>
-        <li>
-          <span class="source_id">IL-BILL-001</span>
+        <li id="source-3">
+          <span class="source_id">[3] · IL-LAW-003</span>
+          <div><strong>15 ILCS 335/4 and 15 ILCS 335/5</strong><br />Illinois Identification Card Act — eligibility, card photograph, and application requirements<br /><a href="https://www.ilga.gov/legislation/ilcs/fulltext?DocName=001503350K4">Section 4 on Illinois General Assembly</a> · <a href="https://www.ilga.gov/legislation/ilcs/fulltext?DocName=001503350K5">Section 5 on Illinois General Assembly</a></div>
+        </li>
+        <li id="source-4">
+          <span class="source_id">[4] · IL-SOS-001</span>
+          <div><strong>Driver’s License and State ID Card Information</strong><br />Illinois Secretary of State — states that there is no minimum age for a state ID card<br /><a href="https://www.ilsos.gov/departments/drivers/drivers-license/drlicid.html">Illinois Secretary of State</a></div>
+        </li>
+        <li id="source-5">
+          <span class="source_id">[5] · IL-LAW-004</span>
+          <div><strong>625 ILCS 5/6-103 and 625 ILCS 5/6-107.1</strong><br />Illinois Vehicle Code — instruction permits for minors, including certain permits beginning at age 15<br /><a href="https://www.ilga.gov/legislation/ilcs/fulltext?DocName=062500050K6-103">Section 6-103 on Illinois General Assembly</a> · <a href="https://www.ilga.gov/legislation/ilcs/fulltext?DocName=062500050K6-107.1">Section 6-107.1 on Illinois General Assembly</a></div>
+        </li>
+        <li id="source-6">
+          <span class="source_id">[6] · IL-BILL-001</span>
           <div><strong>HB5521 — Biometric Surveillance Act</strong><br />104th General Assembly — legislative context only<br /><a href="https://ilga.gov/legislation/BillStatus?DocNum=5521&DocTypeID=HB&GAID=18&LegId=167496&SessionID=114">Illinois General Assembly</a></div>
         </li>
       </ol>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import Citation from '../../../../components/Citation.astro';
+import FapItem from '../../../../components/FapItem.astro';
 ---
 <BaseLayout
   active="surveillance"
@@ -10,8 +11,8 @@ import Citation from '../../../../components/Citation.astro';
   <aside class="sidebar" aria-label="Page navigation and research status">
     <section class="sidebar_block poster_entry">
       <p class="eyebrow">SCANNED A POSTER?</p>
-      <h2>You are in the right place.</h2>
-      <p>This page separates what Illinois law directly establishes from what NoRec.US has not yet verified.</p>
+      <h2>Illinois credential-photo research</h2>
+      <p>This page separates what Illinois law directly establishes from what remains unverified.</p>
     </section>
 
     <section class="sidebar_block">
@@ -21,6 +22,7 @@ import Citation from '../../../../components/Citation.astro';
         <a href="#documented">What is documented</a>
         <a href="#minors">Minors & age scope</a>
         <a href="#statutes">Read the statutes</a>
+        <a href="#fap">FAP — argued points</a>
         <a href="#unknown">What remains unknown</a>
         <a href="#investigation">Under investigation</a>
         <a href="#sources">Primary sources</a>
@@ -40,7 +42,7 @@ import Citation from '../../../../components/Citation.astro';
         </div>
         <div>
           <dt><span class="status investigating">Under investigation</span></dt>
-          <dd>An open question NoRec.US intends to research or pursue through records requests.</dd>
+          <dd>An open question being pursued through research or public-records requests.</dd>
         </div>
       </dl>
     </section>
@@ -146,8 +148,8 @@ import Citation from '../../../../components/Citation.astro';
     </section>
 
     <section id="statutes" class="section_anchor">
-      <h2>Read the statutes yourself</h2>
-      <p>NoRec.US strongly encourages reading the primary text rather than relying on our summary.</p>
+      <h2>Statutory text</h2>
+      <p>The primary statutory text is linked below alongside concise summaries.</p>
 
       <article class="source_extract">
         <div class="source_extract_head">
@@ -158,7 +160,7 @@ import Citation from '../../../../components/Citation.astro';
           <a class="source_button" href="https://www.ilga.gov/legislation/ilcs/fulltext?DocName=062500050K6-110.1">Open on ILGA.gov →</a>
         </div>
         <p>Section 6-110.1 is titled <em>Confidentiality of captured photographs or images</em>. Subsection (a) requires the Secretary of State to maintain a file of photographs and signatures obtained during issuance. Subsection (b) expressly discusses “facial recognition search services” and government requests.</p>
-        <p class="source_note">NoRec summary. Follow the primary-source link for the complete statutory language and all exceptions.</p>
+        <p class="source_note">Summary only. Follow the primary-source link for the complete statutory language and all exceptions.</p>
       </article>
 
       <article class="source_extract">
@@ -170,9 +172,136 @@ import Citation from '../../../../components/Citation.astro';
           <a class="source_button" href="https://www.ilga.gov/legislation/ilcs/fulltext?DocName=001503350K11">Open on ILGA.gov →</a>
         </div>
         <p>Section 11 governs records associated with Illinois identification cards. Subsection (f) separately addresses facial-recognition search services and photographs obtained in the process of issuing an identification card.</p>
-        <p class="source_note">This statute matters because a page about Illinois state-ID photographs should not rely only on the Vehicle Code.</p>
+        <p class="source_note">The Identification Card Act separately governs state-ID records and facial-recognition search services.</p>
       </article>
     </section>
+
+
+    <section id="fap" class="section_anchor fap_section">
+      <p class="eyebrow">FAP · FREQUENTLY ARGUED POINTS</p>
+      <h2>Arguments for and against facial recognition</h2>
+      <p class="lede_small">Facial recognition can have legitimate investigative value. The dispute is over when that value justifies making large populations searchable, which safeguards meaningfully constrain use, and who bears the consequences when those safeguards fail.</p>
+      <div class="fap_principle"><strong>How to read this section:</strong> an argument labeled “for” is not an endorsement, and an argument labeled “against” is not proof by itself. Where the evidence supports both a benefit and a risk, both are stated. Illinois-specific claims remain separate from broader evidence about facial-recognition technology.</div>
+
+      <div class="fap_group"><h3>Usefulness and necessity</h3>
+        <FapItem id="fap-serious-crime" question="Why shouldn't police use facial recognition to identify a murderer?" stance="for">
+          <h4>The case for it</h4><p>This is one of the strongest cases for facial recognition. When investigators possess an image of an unknown suspect in a serious crime, a one-to-many search can produce leads much faster than manually comparing photographs. Federal agencies describe facial recognition as a lead-generating tool, and GAO has found that forensic algorithms can improve speed and objectivity in investigations.<Citation n={9} title="GAO-24-107206" /><Citation n={13} title="FBI — Law Enforcement’s Use of Facial Recognition Technology" /></p>
+          <p>A categorical ban can therefore carry a real cost: some violent crimes, missing-person cases, or unidentified-person investigations may take longer to solve, or remain unsolved, when a useful comparison tool is unavailable.</p>
+          <h4>The privacy objection</h4><p>A compelling use does not answer what the searchable gallery should contain. Searching a narrowly defined collection of photographs connected to criminal justice is a different policy choice from making a general population of licensed drivers and state-ID holders searchable. The seriousness of one investigation can justify the search without automatically justifying the size, permanence, or secondary uses of the underlying database.</p>
+          <p><strong>NoRec position:</strong> the difficult question is not whether facial recognition can ever help solve a serious crime. It can. The question is what population-scale infrastructure society should maintain so that such a search is possible.</p>
+        </FapItem>
+        <FapItem id="fap-speed" question="If it saves investigators time, isn't that enough reason to use it?" stance="mixed">
+          <h4>The case for it</h4><p>Efficiency matters. Investigative resources are finite. A system that turns hours or days of manual comparison into a candidate list can free investigators to pursue corroborating evidence and other cases. GAO has recognized speed and objectivity as potential benefits of forensic algorithms.<Citation n={9} title="GAO-24-107206" /></p>
+          <h4>The counterargument</h4><p>Efficiency is not normally the only test for government power. Automation can turn something theoretically possible but labor-intensive into something routine. The policy question is whether the gain in efficiency is proportionate to the additional collection, access, and search capability.</p>
+        </FapItem>
+        <FapItem id="fap-missing" question="What about missing people, unidentified victims, or someone who cannot identify themselves?" stance="for">
+          <p>These are legitimate public-safety and humanitarian uses. Facial comparison may help identify an unknown deceased person, locate a missing person, or establish an identity when ordinary documents are unavailable. Federal descriptions of facial-recognition services include missing and wanted persons among supported uses.<Citation n={13} title="FBI — Law Enforcement’s Use of Facial Recognition Technology" /></p>
+          <p>The privacy response is not that these purposes are fictitious. It is that a beneficial purpose should be defined in policy and law rather than used as a blanket justification for unrelated searches.</p>
+        </FapItem>
+        <FapItem id="fap-exonerate" question="Can facial recognition help clear an innocent person?" stance="for">
+          <p>Potentially. A reliable comparison can point investigators away from an incorrect suspect or toward evidence inconsistent with an accusation. DOJ guidance emphasizes that results require human review and corroboration.<Citation n={12} title="DOJ — Artificial Intelligence and Criminal Justice" /></p>
+          <p>That benefit cuts both ways: if a system can redirect an investigation correctly, a false candidate can redirect it incorrectly. The evidentiary value depends on the algorithm, image quality, threshold, gallery, examiner, and independent corroboration.</p>
+        </FapItem>
+      </div>
+
+      <div class="fap_group"><h3>Accuracy, bias, and human review</h3>
+        <FapItem id="fap-accurate" question="What if facial recognition becomes nearly perfectly accurate?" stance="mixed">
+          <h4>The argument for broader use</h4><p>Accuracy is not static. Modern algorithms vary enormously in performance, and the best systems can perform far better than older ones under controlled conditions. NIST continuously evaluates current systems and shows substantial differences among algorithms.<Citation n={8} title="NIST Face Recognition Technology Evaluation" /></p>
+          <h4>What accuracy does not resolve</h4><p>Accuracy answers <em>whether the system identifies people correctly</em>. It does not answer <em>whether those people should be identified</em>, which databases should be searchable, how long data should exist, which agencies should have access, or what purposes justify a search.</p>
+          <p>A perfectly accurate system would eliminate one important objection—misidentification—while making another question sharper: how much identification power should the state possess?</p>
+        </FapItem>
+        <FapItem id="fap-bias" question="Is the demographic-bias argument outdated?" stance="mixed">
+          <p>It should be stated carefully. NIST does not support the blanket claim that every facial-recognition algorithm performs poorly on the same demographic groups. Performance varies by algorithm, application, image quality, age, sex, and demographic group; some high-performing algorithms show much smaller differentials than others.<Citation n={8} title="NIST FRTE — Demographic Effects" /></p>
+          <p>At the same time, demographic differentials have not simply vanished. NIST's current evaluation continues to measure differences in false-positive and false-negative rates across demographic groups.<Citation n={8} title="NIST FRTE — Demographic Effects" /> That makes procurement, testing, thresholds, image quality, and the consequences of a false candidate relevant to responsible deployment.</p>
+          <p><strong>NoRec position:</strong> privacy objections should not depend on exaggerating algorithmic bias. If disparities improve, that is good. Population-scale biometric search still raises separate questions.</p>
+        </FapItem>
+        <FapItem id="fap-human-review" question="Does a trained human reviewing every result solve the problem?" stance="mixed">
+          <p>Human review is an important safeguard. The FBI says its facial-recognition results are investigative leads rather than positive identifications and describes trained examiner review and additional investigation before action.<Citation n={13} title="FBI — Law Enforcement’s Use of Facial Recognition Technology" /> DOJ has likewise recommended trained human review, thresholds, corroboration, and safeguards against automation and confirmation bias.<Citation n={12} title="DOJ — Artificial Intelligence and Criminal Justice" /></p>
+          <p>But human review is not infallible. A reviewer can be influenced by a ranked candidate list, similarity score, case knowledge, or confirmation bias. Human review also does not resolve collection, retention, access, permissible-purpose, or gallery-scope questions.</p>
+        </FapItem>
+        <FapItem id="fap-lead-only" question="If a match is only an investigative lead, why worry?" stance="mixed">
+          <p>Calling a result a lead is a meaningful safeguard when agencies actually enforce that distinction. FBI policy says candidate photos are not positive identification and should not be the sole basis for law-enforcement action.<Citation n={13} title="FBI — Law Enforcement’s Use of Facial Recognition Technology" /></p>
+          <p>A lead can nevertheless affect a real person: who receives scrutiny, whose alibi is examined, who is interviewed, and which evidence investigators seek. DOJ recommends that facial-recognition results not establish probable cause or positive identification without corroboration.<Citation n={12} title="DOJ — Artificial Intelligence and Criminal Justice" /></p>
+        </FapItem>
+      </div>
+
+      <div class="fap_group"><h3>Privacy, consent, and public space</h3>
+        <FapItem id="fap-nothing-hide" question="If I'm not doing anything illegal, why should I care?" stance="against">
+          <p>Because privacy protects lawful life as well as unlawful conduct. Movements, associations, political activity, religious attendance, medical visits, relationships, and daily routines can be sensitive without being criminal.</p>
+          <p>The strongest opposing argument is that government already possesses identifying records for legitimate administrative purposes and that a person in public generally cannot expect to be unseen. Facial recognition can also help investigate crimes that harm other people's rights.</p>
+          <p>The response is one of scale. Being observable by people nearby is not identical to being cheaply searchable across large image collections. GAO has identified loss of anonymity and the ability to identify or track people in public as recurring privacy concerns.<Citation n={10} title="GAO-20-522" /></p>
+        </FapItem>
+        <FapItem id="fap-public" question="If my face is visible in public, how can recognizing it be a privacy issue?" stance="mixed">
+          <p>The argument for use is straightforward: faces are ordinarily exposed in public, and people have always been capable of recognizing one another. Facial recognition automates an observation humans can already make.</p>
+          <p>The counterargument is that automation changes practical anonymity. A stranger may see your face without knowing your name. A networked system can connect an otherwise anonymous face to an identity at machine speed and repeat that process at scale. GAO has described concerns that widespread facial recognition could enable identification and tracking in public without knowledge or consent.<Citation n={10} title="GAO-20-522" /></p>
+        </FapItem>
+        <FapItem id="fap-government-photo" question="The state already has my driver's-license photo. What's different about searching it?" stance="mixed">
+          <p>There is a legitimate administrative reason for the state to possess a driver's-license or ID photograph: issuing and controlling an identity credential. Illinois law requires the Secretary of State to maintain captured photographs.<Citation n={1} title="625 ILCS 5/6-110.1" /></p>
+          <p>The privacy distinction is <strong>secondary use</strong>. A photograph collected to issue a credential can also become part of an identification infrastructure useful to agencies pursuing unrelated investigations. Illinois itself treats the images as confidential and specifies who may receive them.<Citation n={1} title="625 ILCS 5/6-110.1" /></p>
+        </FapItem>
+        <FapItem id="fap-consent" question="Didn't I consent when I applied for the license or ID?" stance="interpretation">
+          <p>Applying for a government credential establishes that the applicant knowingly provided a photograph for that credentialing process. It does not, by itself, answer the legal or ethical scope of every later use. Illinois law—not a generalized theory of consent—sets confidentiality rules and exceptions for disclosure and facial-recognition-related requests.<Citation n={1} title="625 ILCS 5/6-110.1" /><Citation n={2} title="15 ILCS 335/11" /></p>
+        </FapItem>
+      </div>
+
+      <div class="fap_group"><h3>Illinois law and the scope of access</h3>
+        <FapItem id="fap-criminal-only" question="Does “criminal activity” mean Illinois facial-recognition searches are criminal-investigations-only?" stance="interpretation">
+          <p><strong>Not clearly.</strong> In 625 ILCS 5/6-110.1(b), the phrase appears in an exception to a prohibition concerning federal immigration-law enforcement. Read in context, it says that the subsection's immigration restriction does not apply to requests relating to other criminal activity.<Citation n={1} title="625 ILCS 5/6-110.1" /></p>
+          <p>Elsewhere, subsection (a)(3) permits disclosure of captured photographs for a “civil or criminal law enforcement investigation.”<Citation n={1} title="625 ILCS 5/6-110.1" /> Illinois Administrative Code §1030.140 likewise identifies Illinois, federal, and out-of-state criminal-justice agencies as authorized recipients of images for lawful civil or criminal law-enforcement investigations.<Citation n={7} title="92 Ill. Adm. Code 1030.140" /></p>
+          <p><strong>What remains unresolved:</strong> those provisions clearly address access to captured images, while subsection (b) specifically names facial-recognition search services. The cited text does not cleanly answer whether every civil investigation eligible to receive an image is also eligible for a facial-recognition search. NoRec therefore does not label civil facial-recognition searches as established fact.</p>
+        </FapItem>
+        <FapItem id="fap-immigration" question="Doesn't Illinois prohibit using these systems for immigration enforcement?" stance="interpretation">
+          <p>Illinois law does contain a meaningful restriction. The Vehicle Code and Identification Card Act prohibit the Secretary of State from providing specified facial-recognition search services or photographs when the purpose is enforcement of federal immigration laws, subject to the statutory language concerning other criminal activity.<Citation n={1} title="625 ILCS 5/6-110.1" /><Citation n={2} title="15 ILCS 335/11" /></p>
+          <p>That protection should be acknowledged rather than ignored. It does not answer retention, technical architecture, search volume, requesting agencies, non-immigration uses, or practical auditing.</p>
+        </FapItem>
+        <FapItem id="fap-confidential" question="If Illinois calls the photographs confidential, doesn't that protect them?" stance="mixed">
+          <p>Confidentiality is a real protection. Illinois statutes and administrative rules limit disclosure, identify eligible recipients, constrain secondary dissemination, and require secure handling in specified circumstances.<Citation n={1} title="625 ILCS 5/6-110.1" /><Citation n={7} title="92 Ill. Adm. Code 1030.140" /></p>
+          <p>“Confidential” does not mean “never accessed.” The same rules enumerate government and criminal-justice uses. The privacy question is the breadth of authorized access and whether the controls are sufficient.</p>
+        </FapItem>
+        <FapItem id="fap-minors" question="Why emphasize minors if state IDs can legitimately be issued to children?" stance="mixed">
+          <p>The fact that minors can receive state IDs is not itself evidence of wrongdoing. Children may need identification for ordinary reasons. Illinois says there is no minimum age for a state ID card.<Citation n={4} title="Illinois Secretary of State — Driver’s License and State ID Card Information" /></p>
+          <p>The relevance is scope. If the public assumes a driver's-license/ID photo system represents only adult motorists, that assumption is incorrect. The credential population can include minors. That matters when evaluating retention, secondary access, and facial-recognition capability associated with those records.</p>
+        </FapItem>
+      </div>
+
+      <div class="fap_group"><h3>Security, sharing, and commercialization</h3>
+        <FapItem id="fap-trust" question="What if I trust the government and its employees?" stance="against">
+          <p>Then the argument shifts from intent to security. A system can be compromised without an authorized employee deliberately abusing it. Credentials are phished, software contains vulnerabilities, cloud systems are misconfigured, contractors are breached, and trusted accounts can be hijacked.</p>
+          <p>GAO has identified data-security risks for facial-image datasets and noted that biometric information has a different consequence from a password because a person's face is effectively permanent and cannot simply be replaced after exposure.<Citation n={10} title="GAO-20-522" /></p>
+          <p>Trust in an agency therefore does not eliminate the case for data minimization, retention limits, access controls, auditing, and incident planning.</p>
+        </FapItem>
+        <FapItem id="fap-sharing" question="Why shouldn't agencies share the data if another agency has a legitimate case?" stance="mixed">
+          <p>Sharing can prevent duplication and help investigate a case when a useful record is held elsewhere. Illinois administrative rules contemplate dissemination to eligible criminal-justice agencies and impose conditions on secondary dissemination.<Citation n={7} title="92 Ill. Adm. Code 1030.140" /></p>
+          <p>But every additional recipient creates another place where policy, credentials, logging, retention, and security must work. GAO found federal agencies had used non-federal facial-recognition systems without adequate mechanisms to track employee use, creating privacy and risk-assessment problems.<Citation n={11} title="GAO-21-518 / GAO-22-106100" /></p>
+        </FapItem>
+        <FapItem id="fap-commercial" question="What's wrong with a private company providing the technology?" stance="mixed">
+          <p>Nothing about private development automatically makes a system illegitimate. Specialized vendors can build technology that would be expensive for each agency to develop independently, compete on accuracy and cost, and maintain infrastructure.</p>
+          <p>The concern is incentive and control. A vendor may benefit from expanding customers, searchable data, integrations, or capabilities. Government users can become dependent on systems partly outside public institutions. GAO has documented federal use of non-federal, including commercial, facial-recognition systems and called for improved tracking and risk assessment.<Citation n={11} title="GAO-21-518 / GAO-22-106100" /></p>
+          <p><strong>NoRec position:</strong> commercialization is not proof of abuse. It is a reason to ask who owns the infrastructure, who can access the data, what happens when a contract ends, what incentives favor expansion, and which records remain subject to public oversight.</p>
+        </FapItem>
+        <FapItem id="fap-breach" question="Is a biometric breach really worse than any other data breach?" stance="against">
+          <p>Not in every consequence, but biometrics have a distinctive revocation problem. A stolen password can be reset. A compromised key can be rotated. A person's face cannot be replaced in the same way.</p>
+          <p>That does not mean a stolen facial template automatically lets an attacker impersonate someone in every biometric system; implementations and templates differ. The narrower claim is that exposure of facial images or derived biometric data can create long-lived risk because the underlying physical characteristic is persistent. GAO has explicitly identified this concern.<Citation n={10} title="GAO-20-522" /></p>
+        </FapItem>
+      </div>
+
+      <div class="fap_group"><h3>Oversight and the actual disagreement</h3>
+        <FapItem id="fap-warrant" question="Would warrants, audits, retention limits, and strict policies solve NoRec's objection?" stance="mixed">
+          <p>They would solve or reduce several objections. A strong legal predicate can narrow when a search occurs. Audit logs can make misuse detectable. Retention limits reduce historical exposure. Independent review can test compliance. Public policies make rules contestable. Training and corroboration reduce the risk of treating a candidate as an identification.<Citation n={12} title="DOJ — Artificial Intelligence and Criminal Justice" /></p>
+          <p>Those are meaningful safeguards, not theater.</p>
+          <p><strong>NoRec's remaining objection is structural:</strong> even a well-governed population-scale biometric system creates an identification capability that would not otherwise exist. NoRec favors the narrowest collection and search authority compatible with a demonstrated need. Someone can reasonably conclude that strict safeguards make a particular use acceptable; NoRec can acknowledge that argument while still preferring less surveillance infrastructure.</p>
+        </FapItem>
+        <FapItem id="fap-ban" question="Is NoRec arguing that all facial recognition should be banned?" stance="mixed">
+          <p>NoRec's position on this page is narrower: population-scale government biometric search deserves a presumption against expansion and a high burden of justification. Device authentication, one-to-one verification, forensic one-to-many searching, real-time identification, and persistent tracking are materially different applications.</p>
+          <p>A person can oppose real-time mass identification while accepting a warrant-based forensic search for a violent felony. Another person can reject both. The FAP exists so those distinctions remain visible instead of collapsing the debate into “facial recognition good” versus “facial recognition bad.”</p>
+        </FapItem>
+        <FapItem id="fap-bottom" question="So what is NoRec actually arguing for?" stance="against">
+          <p>Evidence before rhetoric. Narrow purposes instead of open-ended authority. Data minimization instead of collection because storage is cheap. Defined retention instead of “keep it in case it becomes useful.” Search predicates that can be audited. Independent corroboration before action. Public rules for government systems. Meaningful restrictions on secondary dissemination. Procurement records and vendor relationships that can withstand scrutiny.</p>
+          <p>And, where a surveillance capability is not necessary or proportionate to a demonstrated need, <strong>do not build it merely because technology makes it possible.</strong></p>
+        </FapItem>
+      </div>
+    </section>
+
 
     <section id="unknown" class="section_anchor">
       <h2>What the statutes do not establish</h2>
@@ -215,10 +344,10 @@ import Citation from '../../../../components/Citation.astro';
       <h2>Under investigation</h2>
       <div class="investigation_panel">
         <span class="status investigating">Under investigation</span>
-        <h3>Building the operational record</h3>
-        <p>NoRec.US intends to pursue records capable of answering the questions the statutes leave open. Useful records may include retention schedules, facial-recognition policies, system documentation, vendor contracts, audit logs, aggregate search counts, requesting-agency records, data dictionaries, and records describing how photographs are prepared for or submitted to facial-recognition systems.</p>
-        <p>Until those records establish an answer, this page will continue to label those questions as unknown.</p>
-        <p><a class="text_link" href="/research/">Follow the research and FOIA work →</a></p>
+        <h3>Operational details not established</h3>
+        <p>The available record does not establish complete retention schedules, operational facial-recognition policies, audit activity, aggregate search counts, requesting-agency activity, system architecture, or how photographs are prepared for and submitted to facial-recognition systems.</p>
+        <p>Questions not resolved by the available record remain labeled <strong>UNKNOWN</strong>.</p>
+        <p><a class="text_link" href="/research/">Research &amp; FOIA docket →</a></p>
       </div>
     </section>
 
@@ -257,13 +386,21 @@ import Citation from '../../../../components/Citation.astro';
           <span class="source_id">[6] · IL-BILL-001</span>
           <div><strong>HB5521 — Biometric Surveillance Act</strong><br />104th General Assembly — legislative context only<br /><a href="https://ilga.gov/legislation/BillStatus?DocNum=5521&DocTypeID=HB&GAID=18&LegId=167496&SessionID=114">Illinois General Assembly</a></div>
         </li>
+
+        <li id="source-7"><span class="source_id">[7] · IL-RULE-001</span><div><strong>92 Ill. Adm. Code 1030.140 — Use of Captured Images</strong><br />Illinois Secretary of State rules governing access, recipient retention, secondary dissemination, and civil or criminal law-enforcement investigations<br /><a href="https://www.ilga.gov/ftp/JCAR/AdminCode/092/092010300001400R.html">Illinois General Assembly / JCAR</a></div></li>
+        <li id="source-8"><span class="source_id">[8] · US-NIST-001</span><div><strong>Face Recognition Technology Evaluation — Demographic Effects</strong><br />National Institute of Standards and Technology — ongoing measurements of demographic differentials<br /><a href="https://pages.nist.gov/frvt/html/frvt_demographics.html">NIST</a></div></li>
+        <li id="source-9"><span class="source_id">[9] · US-GAO-001</span><div><strong>GAO-24-107206 — Forensic Technology</strong><br />Benefits and limitations of forensic algorithms in criminal investigations<br /><a href="https://www.gao.gov/products/gao-24-107206">U.S. GAO</a></div></li>
+        <li id="source-10"><span class="source_id">[10] · US-GAO-002</span><div><strong>GAO-20-522 — Facial Recognition Technology</strong><br />Privacy, security, permanence, consent, and accuracy issues involving facial-image datasets<br /><a href="https://www.gao.gov/products/gao-20-522">U.S. GAO</a></div></li>
+        <li id="source-11"><span class="source_id">[11] · US-GAO-003</span><div><strong>GAO-21-518 and GAO-22-106100 — Federal use of facial recognition</strong><br />Non-federal systems, tracking deficiencies, and privacy-risk assessment<br /><a href="https://www.gao.gov/products/gao-21-518">GAO-21-518</a> · <a href="https://www.gao.gov/products/gao-22-106100">GAO-22-106100</a></div></li>
+        <li id="source-12"><span class="source_id">[12] · US-DOJ-001</span><div><strong>Artificial Intelligence and Criminal Justice — Final Report</strong><br />DOJ recommendations on thresholds, human review, bias, corroboration, and investigative leads<br /><a href="https://www.justice.gov/olp/media/1381796/dl?inline=">U.S. Department of Justice</a></div></li>
+        <li id="source-13"><span class="source_id">[13] · US-FBI-001</span><div><strong>Law Enforcement’s Use of Facial Recognition Technology</strong><br />FBI description of FACE Services, candidate review, investigative-lead use, and state/federal repositories<br /><a href="https://www.fbi.gov/news/speeches-and-testimony/law-enforcements-use-of-facial-recognition-technology">FBI</a></div></li>
       </ol>
     </section>
 
     <div class="methodology_box">
-      <p class="eyebrow">NORec.US METHODOLOGY</p>
-      <h2>See something overstated?</h2>
-      <p>This project is explicitly pro-privacy, but the factual record should survive hostile scrutiny. If a claim on this page goes beyond its cited evidence, it should be corrected.</p>
+      <p class="eyebrow">METHODOLOGY</p>
+      <h2>Corrections and methodology</h2>
+      <p>The project is explicitly pro-privacy. Factual claims are still limited to what the cited evidence supports, and errors should be corrected.</p>
       <p><a class="text_link" href="/about/">Read about the project →</a></p>
     </div>
   </article>

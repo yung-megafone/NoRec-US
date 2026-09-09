@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="403 · Access denied | NoRec.US" description="The requested NoRec.US resource is not publicly accessible." active="" noindex={true}>
+  <main class="page_shell error_page">
+    <header class="article_header">
+      <p class="eyebrow">HTTP 403</p>
+      <h1>This resource isn't publicly accessible.</h1>
+      <p class="article_deck">The server understood the request but does not permit access to this resource.</p>
+    </header>
+
+    <section class="error_links" aria-label="Useful destinations">
+      <a href="/surveillance/"><strong>Surveillance</strong><span>Technologies, jurisdictions, and providers</span></a>
+      <a href="/sources/"><strong>Sources</strong><span>Primary records and archived evidence</span></a>
+      <a href="/research/"><strong>Research</strong><span>FOIA work, findings, and unresolved questions</span></a>
+      <a href="/"><strong>Home</strong><span>Return to NoRec.US</span></a>
+    </section>
+  </main>
+</BaseLayout>

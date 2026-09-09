@@ -1,0 +1,30 @@
+---
+import type { SourceRecord } from '../data/sources';
+interface Props { source: SourceRecord }
+const { source } = Astro.props;
+---
+<article class="source_card" id={source.id.toLowerCase()}>
+  <div class="source_card_top">
+    <span class="source_badge">{source.id}</span>
+    <span class="source_kind">{source.status} · {source.type}</span>
+  </div>
+  <h2>{source.title}</h2>
+  <dl class="source_meta">
+    <div><dt>Agency</dt><dd>{source.agency}</dd></div>
+    <div><dt>Jurisdiction</dt><dd>{source.jurisdiction}</dd></div>
+    <div><dt>Reviewed</dt><dd>{source.reviewed}</dd></div>
+  </dl>
+  {source.notes && <p>{source.notes}</p>}
+  <div class="source_tags">
+    {source.tags.map(tag => <span>{tag}</span>)}
+  </div>
+  <div class="source_actions">
+    <a class="button button_dark" href={source.originalUrl}>Official source</a>
+    {source.archivedFiles?.map(file => <a class="button button_light" href={file.url}>{file.label}</a>)}
+  </div>
+  {source.archivedFiles?.length && (
+    <div class="source_hashes">
+      {source.archivedFiles.map(file => <code class="source_hash">SHA-256 {file.sha256} · {file.label}</code>)}
+    </div>
+  )}
+</article>

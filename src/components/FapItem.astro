@@ -1,0 +1,22 @@
+---
+interface Props {
+  id: string;
+  question: string;
+  stance?: 'for' | 'against' | 'mixed' | 'interpretation';
+}
+const { id, question, stance = 'mixed' } = Astro.props;
+const labels = {
+  for: 'Argument for',
+  against: 'Argument against',
+  mixed: 'Competing considerations',
+  interpretation: 'Statutory interpretation'
+};
+---
+<details class={`fap_item fap_${stance}`} id={id}>
+  <summary>
+    <span class="fap_marker">FAP</span>
+    <span class="fap_question">{question}</span>
+    <span class="fap_type">{labels[stance]}</span>
+  </summary>
+  <div class="fap_body"><slot /></div>
+</details>

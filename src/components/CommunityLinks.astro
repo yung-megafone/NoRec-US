@@ -1,0 +1,26 @@
+---
+const {
+  compact = false,
+  githubLabel = 'Contribute on GitHub',
+  telegramLabel = 'Join the Telegram group'
+} = Astro.props;
+
+const githubUrl = 'https://github.com/yung-megafone/NoRec-US';
+const telegramUrl = 'https://t.me/NoRec_US';
+---
+<div class:list={['community_links', compact && 'community_links_compact']}>
+  <a class="community_link community_link_primary" href={githubUrl} rel="external">
+    <img src="/brand/social/github.svg" alt="" width="26" height="26" aria-hidden="true" />
+    <span>
+      <strong>{githubLabel}</strong>
+      {!compact && <small>Records, research, corrections, and code.</small>}
+    </span>
+  </a>
+  <a class="community_link" href={telegramUrl} rel="external">
+    <img src="/brand/social/telegram.svg" alt="" width="26" height="26" aria-hidden="true" />
+    <span>
+      <strong>{telegramLabel}</strong>
+      {!compact && <small>Discuss findings, share leads, and follow the project.</small>}
+    </span>
+  </a>
+</div>

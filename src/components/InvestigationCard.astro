@@ -1,0 +1,44 @@
+---
+import type { Investigation } from '../data/investigations';
+interface Props { item: Investigation }
+const { item } = Astro.props;
+
+const stateClass = item.state.toLowerCase().replaceAll(' ', '_');
+const statusClass = item.status.toLowerCase().replaceAll(' ', '_').replaceAll('/', '_');
+---
+<article class={`investigation_card ${stateClass}`} id={item.id.toLowerCase()}>
+  <div class="investigation_topline">
+    <span class="investigation_id">{item.id}</span>
+    <span class={`investigation_state ${stateClass}`}>{item.state}</span>
+  </div>
+
+  <h2>{item.title}</h2>
+  <p class="investigation_summary">{item.summary}</p>
+
+  <dl class="investigation_meta">
+    <div><dt>Agency</dt><dd>{item.agency}</dd></div>
+    <div><dt>Jurisdiction</dt><dd>{item.jurisdiction}</dd></div>
+    <div><dt>Topic</dt><dd>{item.topic}</dd></div>
+    <div><dt>Request status</dt><dd><span class={`request_status ${statusClass}`}>{item.status}</span></dd></div>
+    <div><dt>Opened</dt><dd>{item.opened}</dd></div>
+    <div><dt>Updated</dt><dd>{item.updated}</dd></div>
+  </dl>
+
+  {item.currentFindings && (
+    <details class="investigation_details" open>
+      <summary>Current findings</summary>
+      <ul>{item.currentFindings.map(f => <li>{f}</li>)}</ul>
+    </details>
+  )}
+
+  <details class="investigation_details">
+    <summary>Unresolved questions</summary>
+    <ul>{item.questions.map(q => <li>{q}</li>)}</ul>
+  </details>
+
+  <details class="investigation_details">
+    <summary>Relevant records</summary>
+    <ul>{item.requestedRecords.map(r => <li>{r}</li>)}</ul>
+  </details>
+{item.publicRecordsLaw && <small class="investigation_law">{item.publicRecordsLaw}</small>}
+</article>

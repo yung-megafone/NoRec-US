@@ -1,0 +1,60 @@
+---
+import '../styles/global.css';
+const {
+  title = 'NoRec.US',
+  description = 'Government surveillance, documented from the source.',
+  active = 'home'
+} = Astro.props;
+
+const nav = [
+  ['home', '/', 'Home'],
+  ['surveillance', '/surveillance/', 'Surveillance'],
+  ['sources', '/sources/', 'Sources'],
+  ['research', '/research/', 'Research'],
+  ['about', '/about/', 'About']
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#000000" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div id="main">
+      <header id="header">
+        <div id="logo">
+          <div id="logo_text">
+            <h1><a href="/">NoRec<span class="logo_colour">.US</span></a></h1>
+            <p class="tagline">Government surveillance, documented from the source.</p>
+          </div>
+        </div>
+
+        <nav id="menubar" aria-label="Primary navigation">
+          <ul id="menu">
+            {nav.map(([key, href, label]) => (
+              <li class={active === key ? 'selected' : ''}>
+                <a href={href} aria-current={active === key ? 'page' : undefined}>{label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </header>
+
+      <main id="site_content">
+        <slot />
+      </main>
+
+      <footer id="footer">
+        <p>
+          NoRec.US · Open source under the MIT License ·
+          Design adapted from <a href="https://www.html5webtemplates.co.uk/" rel="external">black_white by HTML5webtemplates.co.uk</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

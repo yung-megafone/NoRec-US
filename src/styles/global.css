@@ -1,13 +1,14 @@
 :root {
-  --page-bg: #f0efe2;
-  --paper: #ffffff;
-  --ink: #111111;
-  --muted: #5e5e5e;
-  --black: #000000;
-  --white: #ffffff;
-  --line: #deded7;
-  --soft: #f5f5f1;
-  --signal: #b4232b;
+  color-scheme: dark;
+  --page-bg: #080909;
+  --paper: #111313;
+  --ink: #eceeea;
+  --muted: #a5aaa4;
+  --black: #f1f3ef;
+  --white: #0b0c0c;
+  --line: #343838;
+  --soft: #191c1c;
+  --signal: #e05a60;
   --max-width: 900px;
   font-family: "Trebuchet MS", Arial, sans-serif;
   color: var(--ink);
@@ -288,9 +289,9 @@ p { margin: 0 0 1.2rem; line-height: 1.7; }
   top:-5rem;
   z-index:9999;
   padding:.65rem .85rem;
-  background:#fff;
-  color:#000;
-  border:2px solid #000;
+  background:var(--paper);
+  color:var(--ink);
+  border:2px solid var(--ink);
   font-weight:700;
 }
 .skip_link:focus{top:.75rem}
@@ -414,7 +415,7 @@ summary:focus-visible{
 }
 .county_tile_covered{background:var(--black);color:#fff}
 .county_tile:hover,.county_tile:focus-visible{transform:translateY(-1px);box-shadow:0 2px 0 var(--black)}
-.county_tile_open:hover,.county_tile_open:focus-visible{background:#eee}
+.county_tile_open:hover,.county_tile_open:focus-visible{background:var(--soft)}
 .map_note{font-size:.72rem;color:var(--muted);text-align:center}
 .county_accessible_list{margin-top:2rem;border:1px solid var(--line);padding:.8rem}
 .county_accessible_list summary{cursor:pointer;font-weight:700}
@@ -670,4 +671,235 @@ ul#menu .nav_github a:focus-visible img{
     width:36px;
     height:34px;
   }
+}
+
+/* Geographic jurisdiction hierarchy */
+.jurisdiction_breadcrumbs{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:.45rem;
+  margin:0 0 1.25rem;
+  font:700 .72rem/1.4 "Century Gothic",Arial,sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+}
+.jurisdiction_breadcrumbs a{color:inherit}
+.jurisdiction_breadcrumbs span{color:var(--muted)}
+
+/* County -> municipality vector boundary maps */
+.legend_cross_county{
+  background:repeating-linear-gradient(135deg,var(--white) 0 4px,var(--black) 4px 6px);
+}
+.jurisdiction_map{
+  position:relative;
+  min-height:var(--jurisdiction-map-height,560px);
+  margin:1rem 0 1.25rem;
+  border:1px solid var(--black);
+  background:var(--white);
+  overflow:hidden;
+}
+.jurisdiction_map_status{
+  position:absolute;
+  z-index:2;
+  top:.65rem;
+  left:.65rem;
+  max-width:calc(100% - 1.3rem);
+  padding:.42rem .58rem;
+  border:1px solid var(--black);
+  background:var(--white);
+  color:var(--black);
+  font:700 .68rem/1.3 "Century Gothic",Arial,sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.035em;
+}
+.jurisdiction_map_svg{
+  display:block;
+  width:100%;
+  height:var(--jurisdiction-map-height,560px);
+}
+.jurisdiction_county_fill{
+  fill:#f4f4f4;
+  stroke:none;
+}
+.jurisdiction_county_outline{
+  fill:none;
+  stroke:var(--black);
+  stroke-width:3;
+  vector-effect:non-scaling-stroke;
+  pointer-events:none;
+}
+.jurisdiction_municipality{
+  stroke:var(--black);
+  stroke-width:1.6;
+  vector-effect:non-scaling-stroke;
+  cursor:pointer;
+  transition:opacity .12s ease,filter .12s ease;
+}
+.jurisdiction_municipality_documented{fill:#111}
+.jurisdiction_municipality_partial{fill:#777}
+.jurisdiction_municipality_unresearched{fill:#ddd}
+.jurisdiction_municipality_cross_county{
+  stroke-dasharray:7 4;
+}
+a:hover > .jurisdiction_municipality,
+a:focus-visible > .jurisdiction_municipality{
+  opacity:.72;
+  filter:contrast(1.25);
+  outline:none;
+}
+.jurisdiction_map_error .jurisdiction_map_svg{opacity:.18}
+.municipality_directory{margin-top:1.1rem}
+@media(max-width:700px){
+  .jurisdiction_map{min-height:420px}
+  .jurisdiction_map_svg{height:420px}
+}
+
+
+/* Dark-first jurisdiction and public-record surfaces */
+.public_records_section{margin-top:3rem;padding-top:1.5rem;border-top:2px solid var(--black)}
+.public_record_list{display:grid;gap:.8rem;margin:1rem 0}
+.public_record_card{border:1px solid var(--line);background:var(--soft);padding:1rem}
+.public_record_card h3{margin:.65rem 0 .45rem;font-size:1.05rem}
+.public_record_card p{margin-bottom:.8rem}
+.public_record_topline{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.record_date{font:700 .62rem/1.2 ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--muted);letter-spacing:.05em}
+@media(max-width:600px){.public_record_topline{align-items:flex-start;flex-direction:column;gap:.45rem}}
+
+/* --------------------------------------------------------------------------
+   NoRec.US grayscale dark theme
+   Keep the site dark-first without using bright inverse blocks for navigation,
+   status tiles, or evidence surfaces. White is reserved for readable text only.
+   -------------------------------------------------------------------------- */
+:root {
+  color-scheme: dark;
+  --page-bg: #080909;
+  --paper: #111313;
+  --ink: #e3e6e2;
+  --muted: #9ba19c;
+  --black: #d9ddd8;
+  --white: #0c0e0e;
+  --line: #343939;
+  --soft: #191c1c;
+}
+
+#logo {
+  border-bottom-color: var(--line);
+}
+
+#menubar {
+  background: #171919;
+  border-top: 1px solid #242828;
+  border-bottom: 1px solid #303535;
+}
+ul#menu li a {
+  color: #dfe2de;
+}
+ul#menu li a:hover,
+ul#menu li.selected a {
+  color: #f2f3f1;
+  background: #252929;
+}
+
+/* Surfaces that historically used --black as a light-mode fill. */
+.poster_entry,
+.fact_head,
+.methodology_box,
+.source_button,
+.form_settings .submit {
+  background: #1d2020;
+  color: #eef0ed;
+  border-color: #434949;
+}
+.poster_entry h2,
+.poster_entry .eyebrow,
+.poster_entry a,
+.methodology_box h2,
+.methodology_box .eyebrow,
+.methodology_box a,
+.source_button {
+  color: #eef0ed;
+}
+
+.status.documented {
+  background: #252929;
+  color: #eef0ed;
+  border-color: #5a6161;
+}
+
+.legend_swatch {
+  border-color: #707777;
+}
+.legend_covered {
+  background: #343939;
+}
+.legend_open {
+  background: #101212;
+}
+
+.county_tile {
+  background: #101212;
+  color: #dfe2de;
+  border-color: #596060;
+}
+.county_tile_covered {
+  background: #303535;
+  color: #f0f2ef;
+  border-color: #727979;
+}
+.county_tile:hover,
+.county_tile:focus-visible {
+  background: #222626;
+  border-color: #8c9494;
+  box-shadow: 0 2px 0 #4a5050;
+}
+.county_tile_open:hover,
+.county_tile_open:focus-visible {
+  background: #1c1f1f;
+}
+
+.jurisdiction_cards a,
+.topic_card,
+.finding,
+.deflock_feature,
+.surveillance_entry,
+.local_findings_grid article {
+  background: #0e1010;
+}
+
+.callout,
+.investigation_panel,
+.surveillance_evidence_grid > div,
+.surveillance_caveat,
+.public_record_card,
+.deflock_table th {
+  background: #181b1b;
+}
+
+.evidence_box,
+.map_legend,
+.county_accessible_list,
+.source_extract,
+.provider_scope_notice,
+.provider_evidence_grid article,
+.provider_capability_grid article,
+.provider_questions details,
+.research_question,
+.deflock_split article,
+.finding_grid article {
+  border-color: #3f4545;
+}
+
+/* GIS fills remain legible against the dark county map. */
+.jurisdiction_county_fill { fill: #101212; }
+.jurisdiction_county_outline { stroke: #7b8282; }
+.jurisdiction_municipality_documented { fill: #303535; }
+.jurisdiction_municipality_partial { fill: #555b5b; }
+.jurisdiction_municipality_unresearched { fill: #1b1e1e; }
+
+#footer {
+  color: #a9aeaa;
+}
+#footer a {
+  color: #c9cdca;
 }

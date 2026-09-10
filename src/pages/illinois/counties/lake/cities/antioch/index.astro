@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
+import { antiochFindings } from '../../../../../../data/illinois/counties/lake';
+import { antiochRecords } from '../../../../../../data/illinois/counties/lake-records';
+---
+<BaseLayout title="Antioch Surveillance | NoRec.US" description="Publicly documented surveillance-related technology and records for Antioch, Illinois." active="surveillance">
+<main class="page_shell">
+<nav class="jurisdiction_breadcrumbs" aria-label="Breadcrumb"><a href="/illinois/">Illinois</a><span>→</span><a href="/illinois/counties/lake/">Lake County</a><span>→</span><strong>Antioch</strong></nav>
+<header class="article_header"><p class="eyebrow">LOCAL SURVEILLANCE · ANTIOCH, ILLINOIS</p><h1>Antioch</h1><p class="article_deck">Findings on this page are attributed only to Antioch or its Police Department when supported by the cited record. Lake County Sheriff and privately owned systems remain separate unless the source establishes municipal access or ownership.</p></header>
+<section><p class="eyebrow">ANTIOCH</p><h2>Documented surveillance systems.</h2><div class="finding_grid">{antiochFindings.map(f => (<article><span class="status_label">{f.status.toUpperCase()}</span><p class="eyebrow finding_technology">{f.technology}</p><h3>{f.title}</h3><p>{f.summary}</p></article>))}</div></section>
+<PublicRecords records={antiochRecords} />
+<section><p class="eyebrow">UNRESOLVED</p><h2>What still needs primary records.</h2><ul class="about_questions"><li>Current installed inventory and exact installation status where contract or historical counts are the newest available source.</li><li>Current locations, sharing configuration, audits, users, retention exceptions, and other surveillance technologies not yet documented.</li></ul></section>
+</main></BaseLayout>

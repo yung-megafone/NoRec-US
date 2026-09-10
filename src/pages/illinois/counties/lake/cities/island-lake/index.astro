@@ -1,0 +1,5 @@
+---
+import MunicipalityStub from '../../../../../../components/jurisdictions/MunicipalityStub.astro';
+import { lakeMunicipalityFoiaLinks } from '../../../../../../data/illinois/counties/lake-records';
+---
+<MunicipalityStub name='Island Lake' form='village' county="Lake" counties=['Lake', 'McHenry'] records={lakeMunicipalityFoiaLinks['island-lake'] ?? []} />

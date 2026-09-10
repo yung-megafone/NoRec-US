@@ -308,3 +308,8 @@ DuPage is scaffolded with 39 municipal portions. Primary-record dossiers current
 ### McHenry County audit/infill
 
 McHenry County is scaffolded from the current county yearbook with 30 municipal entries/portions. Huntley, Crystal Lake, and Woodstock currently have documented municipal surveillance findings. Huntley historical inventory figures are explicitly date-scoped rather than presented as verified 2026 counts. County Sheriff findings remain separate from municipal statistics.
+
+
+### Lake County batch
+
+Lake County is scaffolded from the County's current Cities, Townships & Villages directory with all 52 incorporated cities/villages represented. Primary-record dossiers currently include Antioch, Gurnee, Lake Zurich, Libertyville, Mundelein, Vernon Hills, and Waukegan. County Sheriff drone policy is kept at the county level. Historical contract/install counts are date-scoped rather than silently treated as current inventory.

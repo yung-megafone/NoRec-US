@@ -49,21 +49,55 @@ Current provider dossiers include Flock Safety, Motorola Solutions, Axon, Axon F
 
 Current technology coverage includes automated license-plate readers, facial recognition and Illinois credential photographs, drones/UAS, vehicle/property fingerprinting, human fingerprints/ABIS, body and in-car video, evidence-management systems, and related surveillance infrastructure.
 
-## Illinois coverage
+## Geographic coverage
 
-NoRec.US is designed to scale county by county across Illinois. Published northern-Illinois county dossiers currently include:
+NoRec.US is currently **Illinois-focused**. The public information architecture follows a state → county → municipality hierarchy and uses full state names in routes so additional states can be added later without restructuring the project.
 
-| County | Local coverage | NoRec route |
-| --- | --- | --- |
-| Winnebago | Winnebago County Sheriff · Rockford Police | `/county/61101/` |
-| Boone | Boone County Sheriff · Belvidere Police | `/county/61008/` |
-| DeKalb | DeKalb Police · DeKalb County Sheriff | `/county/60178/` |
-| Kane | Kane County Sheriff · municipal systems | `/county/60134/` |
-| McHenry | McHenry County Sheriff · Huntley Police | `/county/60098/` |
+```text
+/illinois/
+/illinois/counties/boone/
+/illinois/counties/boone/cities/belvidere/
+```
 
-The numeric county routes use the **ZIP code of the county seat as a short NoRec identifier**. They do not imply that a single ZIP code represents the geographic boundaries of the county.
+The Illinois browser contains all 102 counties. A county or municipality may have a page before surveillance research has been contributed. **UNRESEARCHED means unknown / not yet reviewed; it does not mean surveillance-free.**
 
-The statewide browser lives at [`/surveillance/map/`](https://norec.us/surveillance/map/). A county without a published dossier is a coverage gap, not evidence that surveillance technology is absent there.
+Current researched county coverage includes Boone, Winnebago, DeKalb, Kane, and McHenry, with municipal dossiers separated from county-level findings where the evidence belongs to a city or village. Municipality scaffolding is being expanded county by county, beginning with Boone County and moving through Illinois.
+
+ZIP codes are **not** jurisdiction identifiers in the current data model. Earlier NoRec builds used county-seat ZIP codes in routes such as `/county/61008/`; those routes are legacy aliases/redirects only and must not be used for new content.
+
+### Counties and municipalities
+
+Municipal records are organized beneath counties for contributor-friendly navigation:
+
+```text
+src/
+├── data/
+│   └── illinois/
+│       └── counties/
+└── pages/
+    └── illinois/
+        └── counties/
+            └── boone/
+                ├── index.astro
+                └── cities/
+                    ├── belvidere/
+                    ├── caledonia/
+                    ├── capron/
+                    ├── cherry-valley/
+                    ├── loves-park/
+                    ├── poplar-grove/
+                    └── timberlane/
+```
+
+Some Illinois municipalities cross county lines. Those relationships must be represented explicitly rather than treating a county boundary as a city boundary or maintaining conflicting copies of the same research. County maps may show the portion of a cross-county municipality that intersects the selected county.
+
+### County maps
+
+County pages are being upgraded with privacy-friendly vector jurisdiction maps using government boundary data. Municipal polygons should be clickable and lead to the appropriate municipality dossier. The maps do not require commercial map tiles or third-party tracking scripts.
+
+### Coverage states
+
+Geographic coverage and surveillance findings are separate concepts. A jurisdiction's research state describes **how much NoRec has reviewed**, while technology findings describe **what the evidence establishes**. In particular, lack of contributed records must never be rendered as evidence that a jurisdiction does not use surveillance technology.
 
 ## Source library and archive
 
@@ -72,6 +106,14 @@ The source library assigns durable IDs to important records so claims can point 
 Where practical, NoRec.US also preserves local copies of public records in `public/archive/`. Archived records may include SHA-256 hashes so a later copy can be compared against the version used for the research.
 
 Primary-source material remains attributable to its issuing agency or original publisher. Archiving a government record does not make it NoRec.US intellectual property.
+
+### Jurisdiction public records / FOIA releases
+
+County and municipality dossiers should include a **Public Records / FOIA Releases** section when relevant records are available. Prefer the issuing agency's official URL and, where practical, preserve a NoRec-hosted archival copy in `public/archive/`. Local copies should retain attribution to the issuing agency and may include a hash for integrity checking.
+
+An empty records section means NoRec has not archived a responsive release for that jurisdiction yet. It does **not** establish that responsive records do not exist.
+
+For mapped systems such as ALPRs, distinguish different kinds of verification. An agency release may establish **ownership, inventory, or planned deployment** even when NoRec has not physically verified every installation against the released coordinates. County inventories must not be silently rolled into municipal statistics, and vice versa.
 
 ## Privacy by design
 
@@ -161,7 +203,7 @@ If a release has been copied over an older checkout rather than extracted into a
 │   └── sitemap.xml
 ├── src/
 │   ├── components/       Reusable evidence and interface components
-│   ├── data/             Structured sources, investigations, and surveillance data
+│   ├── data/             Structured sources, investigations, jurisdictions, and surveillance data
 │   ├── layouts/          Shared Astro layouts
 │   ├── pages/            File-based public routes
 │   └── styles/           Global styles

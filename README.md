@@ -2,6 +2,8 @@
   <img src="./public/brand/norec-wordmark-transparent.png" alt="NoRec.US — Surveillance, documented." width="560">
 </p>
 
+<p align="center"><strong>See what watches you.</strong></p>
+
 <p align="center">
   <a href="https://norec.us">Website</a> ·
   <a href="https://t.me/NoRec_US">Telegram</a> ·
@@ -21,11 +23,6 @@ NoRec.US is privacy-focused, but evidence comes first. **When the record stops, 
 
 ## Explore NoRec.US
 
-### Surveillance awareness map
-
-[`/map/`](https://norec.us/map/) is being built as an Illinois-wide view of surveillance infrastructure — not just ALPRs. Cameras, plate readers, gunshot detectors, traffic-enforcement systems, staffed surveillance, sensors, and other documented surveillance can all be represented.
-
-Map provenance matters. OpenStreetMap observations remain distinguishable from NoRec.US locations supported by FOIA responses, contracts, policies, or other records. Community mapping is useful evidence of what may physically exist; it is not silently promoted to an official agency inventory.
 
 ### Illinois jurisdictions
 
@@ -73,7 +70,7 @@ Installed, planned, returned, decommissioned, and historical equipment are not i
 
 Surveillance infrastructure is easier to understand and debate when people can inspect the underlying record themselves.
 
-NoRec.US exists to make that record easier to find, preserve, verify, correct, map, and understand. It is not intended to be a database of rumors, and documenting privacy risk does not require pretending that a technology can never have a legitimate use.
+NoRec.US exists to make that record easier to find, preserve, verify, correct, and understand. It is not intended to be a database of rumors, and documenting privacy risk does not require pretending that a technology can never have a legitimate use.
 
 The basic standard is simple:
 
@@ -91,15 +88,13 @@ A surveillance-awareness site should not needlessly surveil its own visitors.
 
 NoRec.US uses a deliberately simple static architecture with no advertising, no intentional behavioral analytics or tracking pixels, no social-media embeds, no third-party fonts, minimal client-side JavaScript, and locally hosted assets where practical.
 
-Mapping and GIS data are also designed to be served locally where practical instead of requiring each visitor to contact outside mapping services.
-
 Ordinary hosting, DNS, CDN, and security infrastructure may still process connection metadata necessary to deliver and protect the site. See the site's Privacy Notice for details.
 
 ## Help build it
 
 NoRec.US welcomes researchers, journalists, developers, designers, GIS contributors, privacy advocates, public-records requesters, and people who simply know their own communities.
 
-You do **not** need to write code. Useful contributions include FOIA responses, local research, corrections, stronger sources, archived records, map observations, accessibility improvements, documentation, design, and web development.
+You do **not** need to write code. Useful contributions include FOIA responses, local research, corrections, stronger sources, archived records, accessibility improvements, documentation, design, and web development.
 
 Small contributions count. Verify one citation. Research one town. Fix one typo. Submit one record.
 

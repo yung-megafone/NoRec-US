@@ -20,7 +20,7 @@ const countyRows = [["Jo Daviess", "Stephenson", "Winnebago", "Boone", "McHenry"
  ["Jackson", "Williamson", "Saline", "Gallatin"],
  ["Union", "Johnson", "Pope", "Hardin"],
  ["Alexander", "Pulaski", "Massac"]];
-const researchedCounties = new Set(['Whiteside', 'Carroll', 'Jo Daviess', 'Stephenson', 'Winnebago', 'Boone', 'Ogle', 'Lee', 'Kendall', 'DuPage', 'DeKalb', 'Kane', 'McHenry', 'Lake', 'Will']);
+const researchedCounties = new Set(['Cook', 'Whiteside', 'Carroll', 'Jo Daviess', 'Stephenson', 'Winnebago', 'Boone', 'Ogle', 'Lee', 'Kendall', 'DuPage', 'DeKalb', 'Kane', 'McHenry', 'Lake', 'Will']);
 const countySlug = (name: string) => name.toLowerCase().replace(/\./g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const counties = countyRows.flat().sort((a, b) => a.localeCompare(b));
 ---
@@ -62,6 +62,7 @@ const counties = countyRows.flat().sort((a, b) => a.localeCompare(b));
     <p class="eyebrow">CURRENT COVERAGE</p>
     <h2>Published county dossiers</h2>
     <div class="jurisdiction_cards">
+      <a href="/illinois/counties/cook/"><strong>Cook County</strong><span>134 municipalities · Sheriff UAS + GPS monitoring · Chicago CPD camera systems · Skokie ALPR/BWC · Evanston Flock · Oak Park former Flock</span></a>
       <a href="/illinois/counties/jo-daviess/"><strong>Jo Daviess County</strong><span>10 municipalities · Sheriff BWC · UAS · Galena Axon BWC + interview rooms</span></a>
       <a href="/illinois/counties/carroll/"><strong>Carroll County</strong><span>7 municipalities · Sheriff BWC · Mount Carroll BWC · Savanna BWC</span></a>
       <a href="/illinois/counties/whiteside/"><strong>Whiteside County</strong><span>11 municipalities · Sheriff BWC + UAS · RapidSOS · Sterling Flock/Axon/Avigilon · Rock Falls Flock/BWC</span></a>

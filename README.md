@@ -343,3 +343,8 @@ Carroll County is scaffolded with all seven incorporated municipalities identifi
 ### Whiteside County batch
 
 Whiteside County is scaffolded with all 11 incorporated municipalities identified by the Illinois State Archives and current County yearbook. County-level primary records document a 2023 Sheriff BWC inventory, an active Sheriff sUAS unit with expanded equipment in 2024, and RapidSOS emergency-location infrastructure. Sterling has a current Flock transparency portal plus Axon BWC/evidence and Avigilon camera/intercom records. Rock Falls has historical BWC records and a documented Flock LPR pilot with operational evidence by 2026. Fulton has a partial Flock finding pending direct Fulton-origin primary records.
+
+
+### Cook County batch
+
+Cook County is scaffolded with all 134 municipalities recognized by Cook County government, with municipal names/forms cross-checked against the Illinois State Archives. County-level research documents the Cook County Sheriff’s Aerial Support Response Team/UAS program and GPS electronic monitoring. Chicago receives an initial CPD dossier covering current BWC, ALPR, POD, in-car-video and helicopter-video policy evidence; Skokie receives detailed current ALPR and Axon BWC findings; Evanston receives a Flock contract finding; and Oak Park records its eight-camera Flock deployment as formerly used after the Village terminated it in August 2025. The remaining suburban municipality routes are explicit research queues.

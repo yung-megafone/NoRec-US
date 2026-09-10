@@ -1052,3 +1052,211 @@ ul#menu li.selected a {
     align-items:stretch;
   }
 }
+
+
+/* --------------------------------------------------------------------------
+   Navigation + loading QoL
+   -------------------------------------------------------------------------- */
+.nav_toggle{
+  display:none;
+  width:100%;
+  border:0;
+  background:#171919;
+  color:#eef0ed;
+  padding:.8rem 1rem;
+  align-items:center;
+  justify-content:space-between;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  font:700 .75rem/1 Arial,sans-serif;
+  cursor:pointer;
+}
+.nav_toggle_icon{
+  display:grid;
+  gap:4px;
+  width:20px;
+}
+.nav_toggle_icon i{
+  display:block;
+  height:2px;
+  background:currentColor;
+  transition:transform .16s ease,opacity .16s ease;
+}
+.nav_toggle[aria-expanded="true"] .nav_toggle_icon i:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.nav_toggle[aria-expanded="true"] .nav_toggle_icon i:nth-child(2){opacity:0}
+.nav_toggle[aria-expanded="true"] .nav_toggle_icon i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+ul#menu li.selected a{
+  position:relative;
+  background:#2b3030;
+  color:#fff;
+}
+ul#menu li.selected a::after{
+  content:"";
+  position:absolute;
+  left:12px;
+  right:12px;
+  bottom:4px;
+  height:2px;
+  background:#dfe2de;
+}
+
+/* Page-transition loader. Hidden by default so no-JS browsing is never blocked. */
+.site_loader{
+  display:none;
+}
+.js .site_loader{
+  position:fixed;
+  inset:0;
+  z-index:10000;
+  display:grid;
+  place-items:center;
+  background:#080909;
+  opacity:1;
+  visibility:visible;
+  transition:opacity .16s ease,visibility .16s ease;
+}
+.js.site_ready .site_loader{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+.site_loader_inner{
+  width:min(250px,72vw);
+  display:grid;
+  justify-items:center;
+  gap:.8rem;
+}
+.site_loader_inner img{
+  width:52px;
+  height:52px;
+  object-fit:contain;
+}
+.site_loader_track{
+  width:100%;
+  height:2px;
+  background:#252929;
+  overflow:hidden;
+}
+.site_loader_track span{
+  display:block;
+  width:42%;
+  height:100%;
+  background:#d9ddd8;
+  animation:norec_loader 1s ease-in-out infinite;
+}
+.site_loader_text{
+  color:#aeb4af;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  font:700 .62rem/1 ui-monospace,SFMono-Regular,Consolas,monospace;
+}
+@keyframes norec_loader{
+  0%{transform:translateX(-115%)}
+  100%{transform:translateX(340%)}
+}
+
+/* Polygon/SVG paint indicator. GIS is still fetched at build time, not from visitors. */
+.polygon_loader{
+  position:absolute;
+  inset:0;
+  z-index:5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:.65rem;
+  background:#101212;
+  color:#b8beba;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font:700 .66rem/1 ui-monospace,SFMono-Regular,Consolas,monospace;
+  transition:opacity .18s ease,visibility .18s ease;
+  pointer-events:none;
+}
+.polygon_loader_spinner{
+  width:18px;
+  height:18px;
+  border:2px solid #3b4141;
+  border-top-color:#d9ddd8;
+  border-radius:50%;
+  animation:polygon_spin .7s linear infinite;
+}
+.polygon_ready > .polygon_loader{
+  opacity:0;
+  visibility:hidden;
+}
+@keyframes polygon_spin{to{transform:rotate(360deg)}}
+
+.illinois_shape_map_wrap{
+  position:relative;
+  min-height:24rem;
+}
+.illinois_shape_map_wrap.polygon_ready{
+  min-height:0;
+}
+
+@media(max-width:760px){
+  #menubar{
+    position:relative;
+    min-height:0;
+  }
+  .nav_toggle{
+    display:flex;
+  }
+  ul#menu{
+    display:none;
+    position:absolute;
+    z-index:100;
+    top:100%;
+    left:0;
+    right:0;
+    margin:0;
+    padding:.45rem;
+    background:#171919;
+    border-top:1px solid #303535;
+    border-bottom:1px solid #303535;
+    box-shadow:0 12px 22px rgba(0,0,0,.42);
+  }
+  ul#menu.menu_open{
+    display:grid;
+    grid-template-columns:1fr;
+  }
+  ul#menu li{
+    width:100%;
+  }
+  ul#menu li a{
+    width:100%;
+    padding:.85rem .9rem;
+    text-align:left;
+    font-size:.72rem;
+  }
+  ul#menu li.selected a::after{
+    top:8px;
+    bottom:8px;
+    left:4px;
+    right:auto;
+    width:2px;
+    height:auto;
+  }
+  ul#menu .nav_github{
+    margin-left:0;
+  }
+  ul#menu .nav_github a{
+    justify-content:flex-start;
+  }
+  .illinois_shape_map_wrap{
+    min-height:20rem;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .site_loader_track span,
+  .polygon_loader_spinner{
+    animation:none;
+  }
+  .site_loader,
+  .polygon_loader,
+  .nav_toggle_icon i{
+    transition:none;
+  }
+}

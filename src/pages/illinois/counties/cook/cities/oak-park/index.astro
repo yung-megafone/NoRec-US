@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
+import { oakParkFindings } from '../../../../../../data/illinois/counties/cook';
+import { oakParkRecords } from '../../../../../../data/illinois/counties/cook-records';
+---
+<BaseLayout title="Oak Park Surveillance | NoRec.US" description="Publicly documented surveillance technology and records for Oak Park, Illinois." active="surveillance">
+<main class="page_shell">
+<nav class="jurisdiction_breadcrumbs" aria-label="Breadcrumb"><a href="/illinois/">Illinois</a><span>→</span><a href="/illinois/counties/cook/">Cook County</a><span>→</span><strong>Oak Park</strong></nav>
+<header class="article_header">
+  <p class="eyebrow">LOCAL SURVEILLANCE · OAK PARK, ILLINOIS</p>
+  <h1>Oak Park</h1>
+  <p class="article_deck">Oak Park is notable for a documented surveillance rollback: its eight-camera Flock ALPR deployment operated from 2022 until the Village terminated the contract in August 2025.</p>
+</header>
+<section>
+  <p class="eyebrow">DOCUMENTED SYSTEMS</p>
+  <h2>Current and historical surveillance findings.</h2>
+  <div class="finding_grid">
+    {oakParkFindings.map(f => (
+      <article>
+        <span class="status_label">{f.status.toUpperCase()}</span>
+        <p class="eyebrow finding_technology">{f.technology}</p>
+        <h3>{f.title}</h3>
+        <p>{f.summary}</p>
+      </article>
+    ))}
+  </div>
+</section>
+<PublicRecords records={oakParkRecords} />
+<section>
+  <p class="eyebrow">UNRESOLVED</p>
+  <h2>What still needs primary records.</h2>
+  <ul class="about_questions">
+    <li>Current device inventories, vendors, contracts, locations, policies, retention, sharing, access controls, and audit logs for documented systems.</li>
+    <li>Any additional ALPR, UAS, fixed-camera, facial-recognition, social-media analytics, real-time crime center, in-car video, or investigative-software systems not yet represented here.</li>
+  </ul>
+</section>
+</main>
+</BaseLayout>

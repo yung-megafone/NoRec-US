@@ -180,6 +180,10 @@ try {
       id={mapId}
       style={`--jurisdiction-map-height:${height}px`}
     >
+      <div class="polygon_loader" aria-hidden="true">
+        <span class="polygon_loader_spinner"></span>
+        <span>Preparing boundary map</span>
+      </div>
       <div class="jurisdiction_map_status">
         {countyName} County · click a municipal boundary to open its dossier
       </div>
@@ -232,3 +236,17 @@ try {
     </div>
   )
 }
+
+<script>
+  const revealJurisdictionMaps = () => {
+    document.querySelectorAll('.jurisdiction_map_loaded').forEach((map) => {
+      requestAnimationFrame(() => map.classList.add('polygon_ready'));
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', revealJurisdictionMaps, { once: true });
+  } else {
+    revealJurisdictionMaps();
+  }
+</script>

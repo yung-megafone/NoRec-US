@@ -164,7 +164,11 @@ if (allPoints.length) {
 ---
 
 {shapes.length >= 100 ? (
-  <div class="illinois_shape_map_wrap" data-boundary-source={source}>
+  <div class="illinois_shape_map_wrap polygon_map_pending" data-boundary-source={source}>
+    <div class="polygon_loader" aria-hidden="true">
+      <span class="polygon_loader_spinner"></span>
+      <span>Preparing county polygons</span>
+    </div>
     <svg
       class="illinois_shape_map"
       viewBox="0 0 760 1120"
@@ -211,3 +215,17 @@ if (allPoints.length) {
     ))}
   </div>
 )}
+
+<script>
+  const revealIllinoisMap = () => {
+    document.querySelectorAll('.illinois_shape_map_wrap.polygon_map_pending').forEach((map) => {
+      requestAnimationFrame(() => map.classList.add('polygon_ready'));
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', revealIllinoisMap, { once: true });
+  } else {
+    revealIllinoisMap();
+  }
+</script>

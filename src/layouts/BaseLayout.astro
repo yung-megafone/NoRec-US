@@ -12,11 +12,31 @@ const {
 const nav = [
   ['home', '/', 'Home'],
   ['surveillance', '/surveillance/', 'Surveillance'],
+  ['map', '/illinois/', 'Map'],
   ['sources', '/sources/', 'Sources'],
   ['research', '/research/', 'Research'],
   ['privacy', '/why-privacy-matters/', 'IDC?'],
   ['about', '/about/', 'About']
 ];
+
+const pathname = Astro.url.pathname;
+const inferredActive =
+  pathname === '/'
+    ? 'home'
+    : pathname.startsWith('/illinois/')
+      ? 'map'
+      : pathname.startsWith('/surveillance/')
+        ? 'surveillance'
+        : pathname.startsWith('/sources/')
+          ? 'sources'
+          : pathname.startsWith('/research/')
+            ? 'research'
+            : pathname.startsWith('/why-privacy-matters/')
+              ? 'privacy'
+              : pathname.startsWith('/about/')
+                ? 'about'
+                : active;
+const currentNav = inferredActive || active;
 
 const canonicalUrl =
   canonical ??
@@ -36,9 +56,11 @@ const robots = noindex
     <meta name="referrer" content="no-referrer" />
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#000000" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico?v=3" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=3" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png?v=3" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3" />
+    <link rel="manifest" href="/site.webmanifest?v=3" />
 
 
     <link rel="canonical" href={canonicalUrl} />
@@ -56,8 +78,19 @@ const robots = noindex
     <meta name="twitter:image" content={new URL("/brand/norec-wordmark.png", Astro.site ?? Astro.url.origin).toString()} />
 
     <title>{title}</title>
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
   </head>
   <body>
+    <div class="site_loader" id="site_loader" aria-hidden="true">
+      <div class="site_loader_inner">
+        <img src="/brand/norec-icon-dark.png" alt="" width="52" height="52" />
+        <div class="site_loader_track"><span></span></div>
+        <span class="site_loader_text">Loading NoRec.US</span>
+      </div>
+    </div>
+
     <a class="skip_link" href="#site_content">Skip to content</a>
 
     <div id="main">
@@ -76,10 +109,21 @@ const robots = noindex
         </div>
 
         <nav id="menubar" aria-label="Primary navigation">
+          <button
+            class="nav_toggle"
+            id="nav_toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="menu"
+          >
+            <span>Menu</span>
+            <span class="nav_toggle_icon" aria-hidden="true"><i></i><i></i><i></i></span>
+          </button>
+
           <ul id="menu">
             {nav.map(([key, href, label]) => (
-              <li class={active === key ? 'selected' : ''}>
-                <a href={href} aria-current={active === key ? 'page' : undefined}>{label}</a>
+              <li class={currentNav === key ? 'selected' : ''}>
+                <a href={href} aria-current={currentNav === key ? 'page' : undefined}>{label}</a>
               </li>
             ))}
             <li class="nav_github">
@@ -117,5 +161,64 @@ const robots = noindex
         </p>
 </footer>
     </div>
+
+    <script is:inline>
+      (() => {
+        const root = document.documentElement;
+        const loader = document.getElementById('site_loader');
+        const toggle = document.getElementById('nav_toggle');
+        const menu = document.getElementById('menu');
+
+        const hideLoader = () => {
+          root.classList.add('site_ready');
+          loader?.setAttribute('aria-hidden', 'true');
+        };
+
+        const showLoader = () => {
+          root.classList.remove('site_ready');
+          loader?.setAttribute('aria-hidden', 'false');
+        };
+
+        if (document.readyState === 'complete') {
+          requestAnimationFrame(hideLoader);
+        } else {
+          window.addEventListener('load', () => requestAnimationFrame(hideLoader), { once: true });
+        }
+
+        window.addEventListener('pageshow', hideLoader);
+
+        document.addEventListener('click', (event) => {
+          const link = event.target.closest('a[href]');
+          if (!link) return;
+          if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+          if (link.target === '_blank' || link.hasAttribute('download')) return;
+
+          const url = new URL(link.href, window.location.href);
+          if (url.origin !== window.location.origin) return;
+          if (url.pathname === window.location.pathname && url.search === window.location.search && url.hash) return;
+
+          showLoader();
+        });
+
+        const closeMenu = () => {
+          toggle?.setAttribute('aria-expanded', 'false');
+          menu?.classList.remove('menu_open');
+        };
+
+        toggle?.addEventListener('click', () => {
+          const open = toggle.getAttribute('aria-expanded') === 'true';
+          toggle.setAttribute('aria-expanded', String(!open));
+          menu?.classList.toggle('menu_open', !open);
+        });
+
+        menu?.addEventListener('click', (event) => {
+          if (event.target.closest('a')) closeMenu();
+        });
+
+        window.addEventListener('resize', () => {
+          if (window.innerWidth > 760) closeMenu();
+        });
+      })();
+    </script>
   </body>
 </html>

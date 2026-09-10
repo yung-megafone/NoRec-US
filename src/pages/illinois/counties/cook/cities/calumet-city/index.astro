@@ -1,0 +1,5 @@
+---
+import MunicipalityStub from '../../../../../../components/jurisdictions/MunicipalityStub.astro';
+import { cookMunicipalityFoiaLinks } from '../../../../../../data/illinois/counties/cook-records';
+---
+<MunicipalityStub name='Calumet City' form='city' county="Cook" counties={['Cook']} records={cookMunicipalityFoiaLinks['calumet-city'] ?? []} />

@@ -2,8 +2,6 @@
   <img src="./public/brand/norec-wordmark-transparent.png" alt="NoRec.US — Surveillance, documented." width="560">
 </p>
 
-<p align="center"><strong>See what watches you.</strong></p>
-
 <p align="center">
   <a href="https://norec.us">Website</a> ·
   <a href="https://t.me/NoRec_US">Telegram</a> ·

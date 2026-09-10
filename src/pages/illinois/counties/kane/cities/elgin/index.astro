@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
+import { elginFindings } from '../../../../../../data/illinois/counties/kane';
+import { elginRecords } from '../../../../../../data/illinois/counties/kane-records';
+---
+<BaseLayout title="Elgin Surveillance | NoRec.US" description="Publicly documented surveillance-related technology and records for Elgin, Illinois." active="surveillance">
+<main class="page_shell">
+<nav class="jurisdiction_breadcrumbs"><a href="/illinois/">Illinois</a><span>→</span><a href="/illinois/counties/kane/">Kane County</a><span>→</span><strong>Elgin</strong></nav>
+<header class="article_header"><p class="eyebrow">LOCAL SURVEILLANCE · ELGIN, ILLINOIS</p><h1>Elgin</h1><p class="article_deck">Municipal findings are attributed only where a City or Police Department record supports the attribution. County Sheriff systems are not counted as Elgin equipment.</p></header>
+<section><p class="eyebrow">ELGIN</p><h2>Documented surveillance systems.</h2><div class="finding_grid">{elginFindings.map(f => (<article><span class="status_label">{f.status.toUpperCase()}</span><p class="eyebrow finding_technology">{f.technology}</p><h3>{f.title}</h3><p>{f.summary}</p></article>))}</div></section>
+<PublicRecords records={elginRecords} />
+<section><p class="eyebrow">UNRESOLVED</p><h2>What still needs primary records.</h2><ul class="about_questions"><li>Current installed inventory, locations, vendors, retention, sharing, audit configuration, and authorized users.</li><li>Other surveillance technologies not yet established by the primary-source set.</li></ul></section>
+</main></BaseLayout>

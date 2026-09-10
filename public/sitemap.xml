@@ -20,7 +20,6 @@
   
   <url><loc>https://norec.us/illinois/counties/winnebago/</loc></url>
   <url><loc>https://norec.us/illinois/counties/dekalb/</loc></url>
-  <url><loc>https://norec.us/illinois/counties/kane/</loc></url>
   <url><loc>https://norec.us/providers/fusus/</loc></url>
 
   <url><loc>https://norec.us/illinois/</loc></url>
@@ -30,7 +29,6 @@
   <url><loc>https://norec.us/illinois/counties/winnebago/cities/rockford/</loc></url>
   <url><loc>https://norec.us/illinois/counties/dekalb/</loc></url>
   <url><loc>https://norec.us/illinois/counties/dekalb/cities/dekalb/</loc></url>
-  <url><loc>https://norec.us/illinois/counties/kane/</loc></url>
   <url><loc>https://norec.us/illinois/counties/boone/cities/caledonia/</loc></url>
   <url><loc>https://norec.us/illinois/counties/boone/cities/capron/</loc></url>
   <url><loc>https://norec.us/illinois/counties/boone/cities/cherry-valley/</loc></url>
@@ -218,4 +216,35 @@
   <url><loc>https://norec.us/illinois/counties/lake/cities/waukegan/</loc></url>
   <url><loc>https://norec.us/illinois/counties/lake/cities/winthrop-harbor/</loc></url>
   <url><loc>https://norec.us/illinois/counties/lake/cities/zion/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/algonquin/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/aurora/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/barrington-hills/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/bartlett/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/batavia/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/big-rock/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/burlington/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/campton-hills/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/carpentersville/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/east-dundee/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/elburn/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/elgin/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/geneva/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/gilberts/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/hampshire/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/hoffman-estates/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/huntley/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/kaneville/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/lily-lake/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/maple-park/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/montgomery/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/north-aurora/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/pingree-grove/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/sleepy-hollow/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/south-elgin/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/st-charles/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/sugar-grove/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/virgil/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/wayne/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/cities/west-dundee/</loc></url>
 </urlset>

@@ -313,3 +313,8 @@ McHenry County is scaffolded from the current county yearbook with 30 municipal 
 ### Lake County batch
 
 Lake County is scaffolded from the County's current Cities, Townships & Villages directory with all 52 incorporated cities/villages represented. Primary-record dossiers currently include Antioch, Gurnee, Lake Zurich, Libertyville, Mundelein, Vernon Hills, and Waukegan. County Sheriff drone policy is kept at the county level. Historical contract/install counts are date-scoped rather than silently treated as current inventory.
+
+
+### Kane County batch
+
+Kane County is scaffolded from the County's current communities directory with all 30 municipalities/municipal portions represented. County Sheriff findings include a documented 23-camera Flock grant deployment baseline and Getac body-worn/in-car video records. St. Charles and Elgin have primary-record municipal findings. Huntley redirects to the existing McHenry-canonical dossier to avoid maintaining two factual copies of the same cross-county municipality.

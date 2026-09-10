@@ -1,0 +1,5 @@
+---
+import MunicipalityStub from '../../../../../../components/jurisdictions/MunicipalityStub.astro';
+import { kaneMunicipalityFoiaLinks } from '../../../../../../data/illinois/counties/kane-records';
+---
+<MunicipalityStub name='Hoffman Estates' form='village' county="Kane" counties=['Kane', 'Cook'] records={kaneMunicipalityFoiaLinks['hoffman-estates'] ?? []} />

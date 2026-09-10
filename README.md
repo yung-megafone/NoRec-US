@@ -2,117 +2,120 @@
   <img src="./public/brand/norec-wordmark-transparent.png" alt="NoRec.US — Surveillance, documented." width="560">
 </p>
 
-<p align="center">
-  <strong>Government surveillance, documented from the source.</strong>
-</p>
+<p align="center"><strong>See what watches you.</strong></p>
 
 <p align="center">
   <a href="https://norec.us">Website</a> ·
   <a href="https://t.me/NoRec_US">Telegram</a> ·
-  <a href="./CONTRIBUTING.md">Contributing</a> ·
+  <a href="./CONTRIBUTING.md">Contribute</a> ·
   <a href="./LICENSE">License</a>
 </p>
 
 # NoRec.US
 
-**NoRec.US** is an open-source research and public-information project documenting government surveillance systems using statutes, contracts, policies, procurement records, public reports, public-records responses, and other verifiable evidence.
+**NoRec.US is an open-source surveillance-awareness and public-records project focused on Illinois.**
 
-The project began with automated license-plate reader research in northern Illinois and has expanded to cover facial recognition, drones, body-worn and in-car video, biometric systems, real-time intelligence platforms, evidence systems, vehicle/property fingerprinting, and related surveillance infrastructure.
+Surveillance information is often scattered across contracts, policies, meeting packets, public-records responses, maps, vendor documents, and agency websites. NoRec.US brings that evidence together so people can see what technology is being used, who operates it, what the rules say, and where the information came from.
 
-NoRec.US is privacy-focused, but its research standard is evidence first. A system can have legitimate uses and still deserve scrutiny. A privacy concern does not become a fact merely because it is plausible. **When the record stops, the claim stops with it.**
+The project began with automated license-plate reader research in northern Illinois and has expanded to cameras, facial recognition, drones, biometric systems, body-worn and in-car video, real-time intelligence platforms, evidence systems, gunshot detection, and other surveillance infrastructure.
 
-## What NoRec.US does
+NoRec.US is privacy-focused, but evidence comes first. **When the record stops, the claim stops with it.**
 
-NoRec.US connects three kinds of research:
+## Explore NoRec.US
 
-- **Technologies** — what surveillance systems can do and the legal or operational framework around them.
-- **Providers** — vendor relationships and published product capabilities, kept separate from verified local deployment.
-- **Jurisdictions** — what the available record establishes about counties, municipalities, agencies, and statewide systems.
+### Surveillance awareness map
 
-Research currently includes automatic license-plate readers (ALPRs), facial recognition and Illinois credential photographs, drones/UAS, fingerprints and biometric identification, body-worn and in-car video, evidence-management systems, and related surveillance infrastructure.
+[`/map/`](https://norec.us/map/) is being built as an Illinois-wide view of surveillance infrastructure — not just ALPRs. Cameras, plate readers, gunshot detectors, traffic-enforcement systems, staffed surveillance, sensors, and other documented surveillance can all be represented.
 
-## Evidence standard
+Map provenance matters. OpenStreetMap observations remain distinguishable from NoRec.US locations supported by FOIA responses, contracts, policies, or other records. Community mapping is useful evidence of what may physically exist; it is not silently promoted to an official agency inventory.
 
-NoRec.US separates established facts from unanswered questions.
+### Illinois jurisdictions
 
-| Status | Meaning |
-| --- | --- |
-| **DOCUMENTED** | Directly supported by a primary source such as a statute, contract, agency record, policy, procurement record, audit, or public-records response. |
-| **SECONDARY-SOURCE CONFIRMED** | Supported by reputable records-based reporting or a secondary database, but the underlying primary record is not yet part of the published source set. |
-| **UNKNOWN** | The available evidence does not establish an answer. |
-| **UNDER INVESTIGATION** | A specific unresolved question is being researched through identifiable records, agencies, or public-records requests. |
-| **HISTORICALLY DOCUMENTED** | Supported for a past deployment or relationship but not represented as current. |
-
-Vendor documentation describes **product capability**. It does not prove that a particular agency purchased, enabled, or used every available feature.
-
-## Illinois coverage
-
-NoRec.US is currently focused on Illinois. Research is organized geographically as:
+Research is organized geographically:
 
 ```text
 Illinois → County → Municipality
 ```
 
-The Illinois browser contains all 102 counties, with researched counties and municipalities progressively receiving source-backed dossiers. A jurisdiction may exist in the directory before anyone has completed research on it.
+The Illinois directory contains all 102 counties. Researched jurisdictions progressively receive source-backed dossiers covering agencies, technologies, policies, contracts, public records, and known deployments.
 
 **UNRESEARCHED means not yet reviewed. It does not mean surveillance-free.**
 
-Municipalities that cross county lines are represented without intentionally maintaining conflicting copies of the same factual dossier. County-owned, municipal, state, and federal systems should likewise remain distinguishable even when equipment is physically located in the same county.
+Physical location and ownership are also kept separate whenever the evidence permits it. A device located in a county is not automatically county-owned.
 
-Maps use government boundary data and are rendered as privacy-friendly vector geography without commercial map tiles or third-party tracking scripts.
+### Technologies and providers
 
-## Public records and source preservation
+Technology pages explain surveillance systems and their capabilities. Provider pages document vendors and published product capabilities.
 
-Primary sources are central to the project. Jurisdiction pages can link directly to agency records, FOIA/public-records portals, policies, contracts, meeting materials, audits, and other supporting evidence.
+Vendor documentation showing that a product *can* perform a function does not establish that a particular agency purchased, enabled, or used that function.
 
-Where practical, important public records are also preserved under [`public/archive/`](./public/archive/). Archived copies may include SHA-256 hashes so the copy used for research can later be compared with another version.
+### Public records
 
-A locally archived government record remains attributable to the issuing agency. Archiving it does not make it NoRec.US intellectual property.
+Primary records are the backbone of NoRec.US. Research can link directly to FOIA responses, contracts, policies, audits, procurement records, meeting materials, statutes, and agency reports.
 
-An empty public-records section means NoRec.US has not archived a relevant release there yet. It does **not** establish that responsive records do not exist.
+Where practical, important records are preserved under [`public/archive/`](./public/archive/) so the evidence used by the project does not disappear when an agency redesigns a website.
 
-## Research principles
+Archived third-party records remain attributable to their original source. Archiving a document does not make it NoRec.US intellectual property.
 
-1. **Primary sources first.** Prefer statutes, contracts, policies, audits, public reports, procurement records, meeting packets, and public-records responses.
-2. **Do not turn capability into deployment.** A vendor product page proves what a product can do, not what an agency actually enabled.
-3. **Attribute the correct agency.** A camera physically located in a county is not automatically county-owned.
-4. **Separate installed, planned, returned, and historical equipment.** These are not interchangeable inventory counts.
-5. **Preserve uncertainty.** “Unknown” is a legitimate research result.
-6. **Distinguish current from historical.** Old records are date-scoped rather than silently presented as current.
-7. **Correct the record.** Better evidence should change the page.
-8. **Acknowledge legitimate uses.** Public-safety value and privacy risk can both be real.
-9. **Publish the receipts.** Readers should be able to inspect the evidence behind consequential claims.
+## How to read the research
+
+NoRec.US deliberately distinguishes what is established from what remains uncertain.
+
+| Label | Meaning |
+| --- | --- |
+| **DOCUMENTED** | Directly supported by a primary record. |
+| **SECONDARY-SOURCE CONFIRMED** | Supported by credible records-based reporting or another secondary source, but the primary record is not yet in the published source set. |
+| **UNKNOWN** | The available evidence does not establish an answer. |
+| **UNDER INVESTIGATION** | A specific unresolved question is being researched. |
+| **HISTORICALLY DOCUMENTED** | Evidence establishes a past deployment or relationship, not necessarily a current one. |
+
+Installed, planned, returned, decommissioned, and historical equipment are not interchangeable. Better evidence should change the project rather than being forced to fit an earlier conclusion.
+
+## Why this exists
+
+Surveillance infrastructure is easier to understand and debate when people can inspect the underlying record themselves.
+
+NoRec.US exists to make that record easier to find, preserve, verify, correct, map, and understand. It is not intended to be a database of rumors, and documenting privacy risk does not require pretending that a technology can never have a legitimate use.
+
+The basic standard is simple:
+
+- prefer primary sources;
+- do not turn capability into claimed deployment;
+- attribute systems to the correct organization;
+- preserve uncertainty;
+- distinguish current from historical information;
+- correct the record when better evidence appears;
+- publish the receipts behind consequential claims.
 
 ## Privacy by design
 
-The public site is deliberately simple:
+A surveillance-awareness site should not needlessly surveil its own visitors.
 
-- static Astro output;
-- no advertising;
-- no intentional behavioral analytics or tracking pixels;
-- no social-media embeds;
-- no third-party fonts;
-- minimal client-side JavaScript;
-- locally bundled site assets where practical;
-- human-readable citations and direct source links.
+NoRec.US uses a deliberately simple static architecture with no advertising, no intentional behavioral analytics or tracking pixels, no social-media embeds, no third-party fonts, minimal client-side JavaScript, and locally hosted assets where practical.
 
-Ordinary hosting, DNS, CDN, and security infrastructure may still process connection metadata necessary to deliver and protect the site. See the site's Privacy Notice for the fuller explanation.
+Mapping and GIS data are also designed to be served locally where practical instead of requiring each visitor to contact outside mapping services.
 
-## Contributing
+Ordinary hosting, DNS, CDN, and security infrastructure may still process connection metadata necessary to deliver and protect the site. See the site's Privacy Notice for details.
 
-NoRec.US is a community research project. You do not need to be a professional developer, journalist, or surveillance researcher to contribute.
+## Help build it
 
-Useful contributions include public records and FOIA responses, stronger sourcing, corrections, local research, records preservation, accessibility improvements, responsive/web development, documentation, and investigation of agencies, policies, contracts, technologies, and vendors.
+NoRec.US welcomes researchers, journalists, developers, designers, GIS contributors, privacy advocates, public-records requesters, and people who simply know their own communities.
 
-For factual additions, provide the strongest source available and clearly distinguish **what the record shows** from **what you infer from it**.
+You do **not** need to write code. Useful contributions include FOIA responses, local research, corrections, stronger sources, archived records, map observations, accessibility improvements, documentation, design, and web development.
 
-See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for the full contribution guide.
+Small contributions count. Verify one citation. Research one town. Fix one typo. Submit one record.
 
-Pull requests, issues, forks, mirrors, and independent verification are welcome.
+See **[`CONTRIBUTING.md`](./CONTRIBUTING.md)** for research standards, map/data guidance, development workflow, and pull-request expectations.
 
-## Running the site locally
+## Corrections
 
-NoRec.US is built with **Astro 5, TypeScript, and plain CSS** and outputs a static site. Node.js and npm are required for local development.
+If NoRec.US overstates a record, attributes equipment to the wrong organization, relies on obsolete information, or misses context that materially changes a claim, please open an issue or submit the corrective evidence.
+
+**The goal is not to preserve the strongest claim. The goal is to leave the public record clearer than we found it.**
+
+## For developers
+
+NoRec.US uses **Astro 5, TypeScript, and plain CSS** and builds to a static site.
 
 ```bash
 git clone https://github.com/yung-megafone/NoRec-US.git
@@ -121,59 +124,29 @@ npm install
 npm run dev
 ```
 
-Create a production build with:
+Production build:
 
 ```bash
 npm run build
 ```
 
-The generated static site is written to `dist/`.
+The generated site is written to `dist/`. No database or application server is required for the public site.
 
-To preview that build locally:
+Developer conventions and contribution workflow live in [`CONTRIBUTING.md`](./CONTRIBUTING.md).
 
-```bash
-npm run preview
-```
+## Reuse and preservation
 
-No database or application server is required.
+Forking, mirroring, republishing, and adapting **NoRec.US original material** is encouraged under the applicable license. The static architecture is intentional: the project should remain easy to preserve and difficult to make dependent on one platform.
 
-## Repository structure
-
-```text
-.
-├── public/
-│   ├── archive/          Preserved public records
-│   ├── brand/            Locally bundled branding assets
-│   ├── documents/        Public documents
-│   └── images/           Site graphics
-├── src/
-│   ├── components/       Reusable site and evidence components
-│   ├── data/             Sources, jurisdictions, and research data
-│   ├── layouts/          Shared Astro layouts
-│   ├── pages/            Public routes
-│   └── styles/           Global styles
-├── astro.config.mjs
-├── package.json
-└── tsconfig.json
-```
-
-## Corrections
-
-If NoRec.US overstates a record, attributes a system to the wrong agency, relies on an obsolete source, or misses relevant context, please open an issue or provide the corrective record.
-
-The goal is not to preserve the strongest claim. **The goal is to leave the public record clearer than we found it.**
-
-## Reuse and mirroring
-
-Forking, mirroring, republishing, and adapting NoRec.US original material is encouraged. The static architecture is intentional: the project should remain easy to preserve and difficult to make dependent on a single platform.
-
-Please preserve source attribution and distinguish NoRec.US original material from third-party records and assets.
+Third-party records, datasets, trademarks, logos, photographs, vendor material, and other externally sourced works retain their own copyright, license, public-domain status, or other applicable terms.
 
 ## License
 
 NoRec.US original code and original project content are released under the [MIT License](./LICENSE), unless otherwise noted.
 
-Third-party material is not relicensed merely because it appears in this repository. This includes archived government/vendor records, trademarks, brand marks, and design assets. See [`THIRD_PARTY_NOTICES.md`](./THIRD_PARTY_NOTICES.md) for attribution and licensing notes.
+The MIT License applies only to material for which NoRec.US has the right to grant that license. **It does not relicense third-party material merely because that material is stored, quoted, transformed, or displayed in this repository.**
+
+See [`THIRD_PARTY_NOTICES.md`](./THIRD_PARTY_NOTICES.md) for third-party attribution and dataset notices.
 
 ## Design attribution
 
@@ -181,6 +154,4 @@ NoRec.US began with design inspiration from the **black_white** template by HTML
 
 ---
 
-<p align="center">
-  <strong>NoRec.US · Surveillance, documented.</strong>
-</p>
+<p align="center"><strong>NoRec.US · Surveillance, documented.</strong></p>

@@ -323,3 +323,8 @@ Kane County is scaffolded from the County's current communities directory with a
 ### Will County batch
 
 Will County is scaffolded with 36 incorporated municipal entries/portions. Initial primary-record research is organized for Joliet, Plainfield, and Romeoville, with county Sheriff findings kept separate. Aurora and Naperville use cross-county canonical redirects rather than duplicated municipal datasets. Unresearched municipalities explicitly remain unknown rather than being labeled surveillance-free.
+
+
+### Stephenson County batch
+
+Stephenson County is scaffolded with all 11 incorporated municipalities identified by Illinois State Archives and county planning records. County-level findings currently document Sheriff body/squad video and the jail’s nearly 100-camera corrections system. Freeport has a separate municipal dossier covering documented ALPR, ShotSpotter, body-worn cameras, tip411, a residential doorbell-camera pilot, and two downtown fixed cameras approved in 2025. Historical records are date-scoped when current 2026 deployment status is unresolved.

@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
+import { freeportFindings } from '../../../../../../data/illinois/counties/stephenson';
+import { freeportRecords } from '../../../../../../data/illinois/counties/stephenson-records';
+---
+<BaseLayout title="Freeport Surveillance | NoRec.US" description="Publicly documented surveillance technology and records for Freeport, Illinois." active="surveillance">
+<main class="page_shell">
+<nav class="jurisdiction_breadcrumbs" aria-label="Breadcrumb"><a href="/illinois/">Illinois</a><span>→</span><a href="/illinois/counties/stephenson/">Stephenson County</a><span>→</span><strong>Freeport</strong></nav>
+<header class="article_header">
+  <p class="eyebrow">LOCAL SURVEILLANCE · FREEPORT, ILLINOIS</p>
+  <h1>Freeport</h1>
+  <p class="article_deck">Primary records document Freeport Police use of license-plate readers, ShotSpotter, body-worn cameras, tip411, a residential doorbell-camera pilot, and later downtown fixed cameras. Historical deployments are date-scoped where current 2026 status is not yet established.</p>
+</header>
+
+<section>
+  <p class="eyebrow">FREEPORT POLICE</p>
+  <h2>Documented surveillance and information systems.</h2>
+  <div class="finding_grid">
+    {freeportFindings.map(f => (
+      <article>
+        <span class="status_label">{f.status.toUpperCase()}</span>
+        <p class="eyebrow finding_technology">{f.technology}</p>
+        <h3>{f.title}</h3>
+        <p>{f.summary}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<PublicRecords records={freeportRecords} />
+
+<section>
+  <p class="eyebrow">UNRESOLVED</p>
+  <h2>What still needs primary records.</h2>
+  <ul class="about_questions">
+    <li>Current ALPR vendor, camera count, fixed/mobile split, locations, retention, sharing partners, user access, and audit logs.</li>
+    <li>Whether ShotSpotter remains active in 2026, the current coverage area, contract terms, alert retention, and evidentiary workflow.</li>
+    <li>Outcome and current status of the residential doorbell-camera pilot.</li>
+    <li>Current body-camera model/count, storage vendor, retention schedule, activation/audit policy, and integration with in-car video.</li>
+    <li>Complete fixed-camera inventory beyond the two downtown cameras approved in October 2025.</li>
+  </ul>
+</section>
+</main>
+</BaseLayout>

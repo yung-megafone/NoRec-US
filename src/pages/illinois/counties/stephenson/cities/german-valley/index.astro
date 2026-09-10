@@ -1,0 +1,5 @@
+---
+import MunicipalityStub from '../../../../../../components/jurisdictions/MunicipalityStub.astro';
+import { stephensonMunicipalityFoiaLinks } from '../../../../../../data/illinois/counties/stephenson-records';
+---
+<MunicipalityStub name='German Valley' form='village' county="Stephenson" counties={['Stephenson']} records={stephensonMunicipalityFoiaLinks['german-valley'] ?? []} />

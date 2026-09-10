@@ -1,59 +1,24 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CountyMunicipalityMap from '../../../../components/jurisdictions/CountyMunicipalityMap.astro';
+import PublicRecords from '../../../../components/jurisdictions/PublicRecords.astro';
+import { mchenryMunicipalities, mchenryCountyFindings, mchenryMunicipalitySource } from '../../../../data/illinois/counties/mchenry';
+import { mchenryCountyRecords } from '../../../../data/illinois/counties/mchenry-records';
 ---
-<BaseLayout title="McHenry County Surveillance | NoRec.US" description="Publicly documented surveillance technology used by Huntley Police, the McHenry County Sheriff's Office, and other McHenry County agencies.">
+<BaseLayout title="McHenry County Surveillance | NoRec.US" description="County and municipal surveillance research for McHenry County, Illinois." active="surveillance">
 <main class="page_shell">
-  <nav class="jurisdiction_breadcrumbs" aria-label="Breadcrumb">
-    <a href="/illinois/">Illinois</a><span>→</span><strong>Mchenry County</strong>
-  </nav>
-<header class="article_header">
-<p class="eyebrow">LOCAL SURVEILLANCE · MCHENRY COUNTY, ILLINOIS</p>
-<h1>McHenry County surveillance.</h1>
-<p class="article_deck">This file documents surveillance systems tied to local agencies through government reports, procurement records, public meetings, public records, and clearly identified secondary sources.</p>
-</header>
-<section>
-  <p class="eyebrow">MUNICIPALITIES</p>
-  <h2>City and village research</h2>
-  <div class="jurisdiction_cards">
-    <a href="/illinois/counties/mchenry/cities/huntley/"><strong>Huntley</strong><span>Municipal dossier available</span></a>
-  </div>
-  <p class="map_note">Additional municipalities can be added as records are contributed. An unlisted municipality should not be interpreted as having no surveillance technology.</p>
-</section>
+<nav class="jurisdiction_breadcrumbs" aria-label="Breadcrumb"><a href="/illinois/">Illinois</a><span>→</span><strong>McHenry County</strong></nav>
+<header class="article_header"><p class="eyebrow">LOCAL SURVEILLANCE · MCHENRY COUNTY, ILLINOIS</p><h1>McHenry County</h1><p class="article_deck">McHenry County is now fully scaffolded at the municipal level. County systems remain separate from municipal equipment, and an unresearched city or village is not represented as surveillance-free.</p></header>
 
+<section><p class="eyebrow">MUNICIPALITIES · COUNTY YEARBOOK</p><h2>Countywide municipal coverage.</h2><p>The current McHenry County yearbook identifies 30 cities and villages in or partly within the county. Huntley, Crystal Lake, and Woodstock presently have primary-record surveillance dossiers; the remaining municipalities are ready for records and contributions.</p>
+<div class="map_legend" aria-label="Municipality map legend"><span><i class="legend_swatch legend_covered"></i><strong>Research available</strong></span><span><i class="legend_swatch legend_open"></i><strong>Unresearched</strong></span><span><i class="legend_swatch legend_cross_county"></i><strong>Crosses county line</strong></span></div>
+<CountyMunicipalityMap county="McHenry" municipalities={mchenryMunicipalities} />
+<div class="jurisdiction_cards municipality_directory">{mchenryMunicipalities.map(m => (<a href={`/illinois/counties/mchenry/cities/${m.slug}/`}><strong>{m.name}</strong><span>{m.form.charAt(0).toUpperCase()+m.form.slice(1)} · {m.status === 'documented' || m.status === 'partial' ? 'Municipal dossier available' : 'Research needed'}{m.crossCounty ? ` · crosses ${m.counties.join(' / ')} counties` : ''}</span></a>))}</div>
+<p class="map_note"><a href={mchenryMunicipalitySource}>Official McHenry County Cities & Villages directory</a></p></section>
 
+<section><p class="eyebrow">MCHENRY COUNTY SHERIFF'S OFFICE</p><h2>County-level findings.</h2><div class="finding_grid">{mchenryCountyFindings.map(f => (<article><span class="status_label">{f.status.toUpperCase()}</span><p class="eyebrow finding_technology">{f.technology}</p><h3>{f.title}</h3><p>{f.summary}</p></article>))}</div></section>
 
+<PublicRecords records={mchenryCountyRecords} />
 
-<section>
-<p class="eyebrow">MCHENRY COUNTY SHERIFF'S OFFICE</p>
-<h2>ALPR, drones, and networked video evidence.</h2>
-<div class="finding_grid">
-<article><span class="status_label">DOCUMENTED</span><h3>Body + in-car video</h3><p>A McHenry County project report allocated $2.09 million for body cameras, in-car cameras, and Tasers for patrol deputies and states the equipment works together on one system with material stored in Evidence.com.</p></article>
-<article><span class="status_label">DOCUMENTED</span><h3>Two sheriff's drones</h3><p>The SFY 2024 statewide drone report is indexed as showing two McHenry County Sheriff's Office drones and 24 flights during the reporting period.</p></article>
-<article><span class="status_label">SECONDARY-SOURCE CONFIRMED</span><h3>ALPR use since 2022</h3><p>The EFF Atlas of Surveillance records McHenry County Sheriff's Office use of automated license-plate readers beginning in 2022, based on local reporting. The underlying sheriff procurement or policy record is not in the current archive.</p></article>
-<article><span class="status_label">UNKNOWN</span><h3>ALPR vendor and current configuration</h3><p>The material currently collected here does not establish the Sheriff's current ALPR vendor, reader count, locations, retention configuration, sharing network, or authorized-user count.</p></article>
-</div>
-<details class="surveillance_sources" open>
-<summary>Sources</summary>
-<ul>
-<li><a href="https://www.mchenrycountyil.gov/home/showpublisheddocument/108176/637949550960100000">McHenry County — Public Safety Video Equipment Bundle</a></li>
-<li><a href="https://s3.documentcloud.org/documents/25250137/illinois-sfy_24_drone_report_with_appendices_491dfa4810.pdf?t=1729799671970">Illinois SFY 2024 Freedom from Drone Surveillance Act report</a></li>
-<li><a href="https://www.atlasofsurveillance.org/search?location=Huntley%2C+IL&sort=technology_asc">EFF Atlas — McHenry County-area technology records</a></li>
-</ul>
-</details>
-</section>
-
-<section>
-<p class="eyebrow">COUNTYWIDE INDEXING</p>
-<h2>Additional reported ALPR deployments.</h2>
-<p>Public surveillance indexes identify additional ALPR deployments in McHenry, Lake in the Hills, Woodstock, Crystal Lake, and Johnsburg. These entries are supported here as secondary-source leads; underlying agency records are not included in the current source set.</p>
-</section>
-
-<section>
-<p class="eyebrow">UNRESOLVED</p>
-<h2>Not established by the published records.</h2>
-<p>For Huntley, the current source set does not establish the complete Flock inventory and locations, current ALPR policy, retention configuration, sharing settings, audit results, authorized-user count, or complete UAS records. For the Sheriff's Office, it does not establish the current ALPR vendor and inventory, retention and sharing configuration, audit results, or the underlying Evidence.com/Axon agreements.</p>
-<p>McHenry County publishes Sheriff's FOIA contact information for records requests.</p>
-<a class="button button_light" href="https://www.mchenrycountyil.gov/county-government/foia-requests">McHenry County FOIA information</a>
-</section>
-</main>
-</BaseLayout>
+<section><p class="eyebrow">RESEARCH GAPS</p><h2>What the audit still does not establish.</h2><ul class="about_questions"><li>Current McHenry County Sheriff ALPR vendor, inventory, locations, retention, sharing configuration, audits, and authorized users.</li><li>Current surveillance inventories for the 27 municipal dossiers still marked unresearched.</li><li>Current UAS inventory and activity beyond dated statewide reports.</li></ul></section>
+</main></BaseLayout>

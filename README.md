@@ -303,3 +303,8 @@ Kendall County includes a 15-municipality/municipal-portion directory, a GIS-dri
 ### DuPage County batch
 
 DuPage is scaffolded with 39 municipal portions. Primary-record dossiers currently include Wheaton, Naperville, and Elmhurst; remaining municipalities are explicitly unresearched stubs pending records. County-campus license-plate readers are kept separate from municipal and Sheriff inventories.
+
+
+### McHenry County audit/infill
+
+McHenry County is scaffolded from the current county yearbook with 30 municipal entries/portions. Huntley, Crystal Lake, and Woodstock currently have documented municipal surveillance findings. Huntley historical inventory figures are explicitly date-scoped rather than presented as verified 2026 counts. County Sheriff findings remain separate from municipal statistics.

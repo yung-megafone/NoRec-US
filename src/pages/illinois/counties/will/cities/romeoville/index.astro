@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
+import { romeovilleFindings } from '../../../../../../data/illinois/counties/will';
+import { romeovilleRecords } from '../../../../../../data/illinois/counties/will-records';
+---
+<BaseLayout title="Romeoville Surveillance | NoRec.US" description="Publicly documented surveillance-related technology and records for Romeoville, Illinois." active="surveillance">
+<main class="page_shell"><nav class="jurisdiction_breadcrumbs"><a href="/illinois/">Illinois</a><span>→</span><a href="/illinois/counties/will/">Will County</a><span>→</span><strong>Romeoville</strong></nav>
+<header class="article_header"><p class="eyebrow">LOCAL SURVEILLANCE · ROMEOVILLE, ILLINOIS</p><h1>Romeoville</h1><p class="article_deck">Municipal findings are attributed only where primary municipal records support the attribution. Will County Sheriff systems are not counted as Romeoville equipment.</p></header>
+<section><p class="eyebrow">ROMEOVILLE</p><h2>Documented surveillance systems.</h2><div class="finding_grid">{romeovilleFindings.map(f => (<article><span class="status_label">{f.status.toUpperCase()}</span><p class="eyebrow finding_technology">{f.technology}</p><h3>{f.title}</h3><p>{f.summary}</p></article>))}</div></section>
+<PublicRecords records={romeovilleRecords} />
+<section><p class="eyebrow">UNRESOLVED</p><h2>What still needs primary records.</h2><ul class="about_questions"><li>Current installed inventory, exact locations, vendors, contracts, retention, sharing, audits, and authorized users.</li><li>Other surveillance technologies not yet established in the primary-source set.</li></ul></section></main></BaseLayout>

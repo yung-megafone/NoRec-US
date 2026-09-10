@@ -49,7 +49,7 @@ export const leeCountyRecords: PublicRecordLink[] = [
   },
   {
     title: 'Lee County Public Safety Committee — Flock discussion',
-    description: 'Official committee minutes recording discussion of the uses and benefits of the Sheriff's Flock license-plate readers.',
+    description: "Official committee minutes recording discussion of the uses and benefits of the Sheriff's Flock license-plate readers.",
     officialUrl: 'https://www.leecountyil.com/AgendaCenter/ViewFile/Minutes/_10082024-959',
     kind: 'Official record',
     date: '2024-10-08',

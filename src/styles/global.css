@@ -379,21 +379,80 @@ summary:focus-visible{
 .legend_covered{background:var(--black)}
 .legend_open{background:var(--paper)}
 .county_map_intro{display:flex;justify-content:space-between;gap:1rem;align-items:end}
+
+/*
+ * Illinois is much taller than it is wide and keeps a comparatively straight
+ * eastern edge while the Mississippi side steps inward toward the south.
+ * The county list is still a cartogram rather than GIS geometry, but anchoring
+ * rows to an eastern spine and shifting them independently gives the page a
+ * recognizable Illinois silhouette without images or client-side mapping.
+ */
 .county_cartogram{
-  margin:1.25rem auto;
+  --tile-w:6.1rem;
+  --tile-gap:.28rem;
+  position:relative;
+  isolation:isolate;
+  margin:1.35rem auto 1rem;
+  width:min(100%,69rem);
+  padding:1.2rem 1.25rem 1.5rem;
   display:flex;
   flex-direction:column;
-  gap:.28rem;
-  max-width:72rem;
+  gap:var(--tile-gap);
+}
+.county_cartogram::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  top:.2rem;
+  bottom:.3rem;
+  left:9%;
+  right:9%;
+  background:color-mix(in srgb,var(--soft) 62%,transparent);
+  clip-path:polygon(
+    14% 0%, 86% 0%,
+    91% 7%, 90% 15%, 92% 23%, 91% 31%,
+    94% 39%, 92% 48%, 93% 56%, 91% 64%,
+    88% 72%, 91% 79%, 84% 86%, 88% 91%,
+    79% 96%, 72% 100%, 55% 99%, 48% 95%,
+    39% 91%, 34% 85%, 29% 79%, 23% 73%,
+    19% 66%, 16% 58%, 12% 50%, 15% 42%,
+    10% 34%, 12% 26%, 9% 18%, 13% 10%
+  );
+  filter:drop-shadow(0 0 1px var(--line));
+  opacity:.9;
 }
 .county_map_row{
   display:flex;
-  justify-content:center;
-  gap:.28rem;
+  justify-content:flex-end;
+  gap:var(--tile-gap);
+  width:100%;
+  padding-right:var(--row-east,0rem);
+  transform:translateX(var(--row-shift,0rem));
 }
+
+/* North -> south row placement.  The east edge stays almost fixed while the
+   west edge narrows and then hooks east through southern Illinois. */
+.county_map_row_1{--row-east:5.8rem;--row-shift:-.6rem}
+.county_map_row_2{--row-east:0rem;--row-shift:0rem}
+.county_map_row_3{--row-east:12.8rem;--row-shift:-.2rem}
+.county_map_row_4{--row-east:0rem;--row-shift:-.5rem}
+.county_map_row_5{--row-east:0rem;--row-shift:-1.5rem}
+.county_map_row_6{--row-east:6.4rem;--row-shift:-.7rem}
+.county_map_row_7{--row-east:0rem;--row-shift:0rem}
+.county_map_row_8{--row-east:0rem;--row-shift:0rem}
+.county_map_row_9{--row-east:6.4rem;--row-shift:-.3rem}
+.county_map_row_10{--row-east:12.8rem;--row-shift:.2rem}
+.county_map_row_11{--row-east:6.4rem;--row-shift:.8rem}
+.county_map_row_12{--row-east:12.8rem;--row-shift:1.3rem}
+.county_map_row_13{--row-east:12.8rem;--row-shift:1.8rem}
+.county_map_row_14{--row-east:19.2rem;--row-shift:2.5rem}
+.county_map_row_15{--row-east:25.6rem;--row-shift:3.1rem}
+.county_map_row_16{--row-east:25.6rem;--row-shift:3.9rem}
+.county_map_row_17{--row-east:32rem;--row-shift:4.7rem}
+
 .county_tile{
-  width:6.5rem;
-  min-height:3.3rem;
+  width:var(--tile-w);
+  min-height:3.15rem;
   border:1px solid var(--black);
   display:flex;
   flex-direction:column;
@@ -405,6 +464,7 @@ summary:focus-visible{
   color:var(--black);
   background:var(--paper);
   line-height:1.05;
+  transition:transform .12s ease,box-shadow .12s ease,background .12s ease;
 }
 .county_tile strong{font-size:.68rem}
 .county_tile span{
@@ -414,7 +474,7 @@ summary:focus-visible{
   letter-spacing:.08em;
 }
 .county_tile_covered{background:var(--black);color:#fff}
-.county_tile:hover,.county_tile:focus-visible{transform:translateY(-1px);box-shadow:0 2px 0 var(--black)}
+.county_tile:hover,.county_tile:focus-visible{position:relative;z-index:2;transform:translateY(-1px);box-shadow:0 2px 0 var(--black)}
 .county_tile_open:hover,.county_tile_open:focus-visible{background:var(--soft)}
 .map_note{font-size:.72rem;color:var(--muted);text-align:center}
 .county_accessible_list{margin-top:2rem;border:1px solid var(--line);padding:.8rem}
@@ -430,8 +490,12 @@ summary:focus-visible{
 .county_accessible_list span{color:var(--muted);font-size:.68rem}
 
 @media(max-width:900px){
-  .county_tile{width:5.4rem;min-height:3rem}
+  .county_cartogram{--tile-w:5.25rem;width:60rem}
   .county_tile strong{font-size:.62rem}
+  .county_map_row_1{--row-east:5rem}.county_map_row_3{--row-east:11rem}
+  .county_map_row_6,.county_map_row_9,.county_map_row_11{--row-east:5.5rem}
+  .county_map_row_10,.county_map_row_12,.county_map_row_13{--row-east:11rem}
+  .county_map_row_14{--row-east:16.5rem}.county_map_row_15,.county_map_row_16{--row-east:22rem}.county_map_row_17{--row-east:27.5rem}
 }
 @media(max-width:720px){
   .county_map_intro{display:block}
@@ -439,13 +503,15 @@ summary:focus-visible{
   .county_cartogram{
     overflow-x:auto;
     align-items:flex-start;
-    padding-bottom:.5rem;
+    width:60rem;
+    margin-left:0;
+    padding-bottom:.8rem;
   }
-  .county_map_row{justify-content:flex-start;min-width:max-content}
+  .county_cartogram::before{display:none}
+  .county_map_row{min-width:max-content}
   .county_tile{width:5rem}
   .county_accessible_list ul{columns:1}
 }
-
 
 
 /* NoRec.US identity */
@@ -917,4 +983,72 @@ ul#menu li.selected a {
 }
 #footer a {
   color: #c9cdca;
+}
+
+/* Illinois statewide county map — official ISGS boundary geometry when available. */
+.illinois_shape_map_wrap{
+  width:min(100%,46rem);
+  margin:1.4rem auto 1rem;
+}
+.illinois_shape_map{
+  display:block;
+  width:100%;
+  height:auto;
+  overflow:visible;
+}
+.illinois_county_shape{
+  stroke:#596060;
+  stroke-width:1.25;
+  vector-effect:non-scaling-stroke;
+  transition:fill .12s ease,stroke .12s ease,filter .12s ease;
+}
+.illinois_county_shape_open{fill:#101212}
+.illinois_county_shape_covered{fill:#303535}
+.illinois_shape_map a:hover .illinois_county_shape,
+.illinois_shape_map a:focus .illinois_county_shape,
+.illinois_shape_map a:focus-visible .illinois_county_shape{
+  fill:#222626;
+  stroke:#a2aaaa;
+  filter:brightness(1.1);
+}
+.illinois_shape_map a:hover .illinois_county_shape_covered,
+.illinois_shape_map a:focus-visible .illinois_county_shape_covered{fill:#474d4d}
+.illinois_county_label{
+  fill:#dfe2de;
+  font-family:ui-monospace,SFMono-Regular,Consolas,monospace;
+  font-size:8.5px;
+  font-weight:700;
+  pointer-events:none;
+  paint-order:stroke;
+  stroke:#0a0b0b;
+  stroke-width:2.2px;
+  stroke-linejoin:round;
+}
+
+/* If the boundary source is unavailable, fall back to the original centered cartogram. */
+.county_cartogram_fallback{
+  margin:1.35rem auto 1rem;
+  width:min(100%,69rem);
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:.28rem;
+}
+.county_cartogram_fallback::before{display:none}
+.county_cartogram_fallback .county_map_row{
+  display:flex;
+  justify-content:center;
+  gap:.28rem;
+  width:100%;
+  padding-right:0;
+  transform:none;
+}
+@media(max-width:720px){
+  .illinois_shape_map_wrap{width:min(100%,32rem)}
+  .illinois_county_label{font-size:9px}
+  .county_cartogram_fallback{
+    width:60rem;
+    overflow-x:auto;
+    align-items:stretch;
+  }
 }

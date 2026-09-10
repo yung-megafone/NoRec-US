@@ -22,7 +22,7 @@ export const leeCountyFindings: SurveillanceFinding[] = [
     technology: 'ALPR',
     title: 'Flock Safety license-plate readers',
     status: 'documented',
-    summary: 'Lee County's FY2025 preliminary capital budget lists six Flock Safety license-plate-reader cameras for the Sheriff at $24,900, with $18,000 annual amounts projected in later fiscal years. A 2025 Sheriff report also documents an operational Flock hit on a stolen vehicle entering Lee County.',
+    summary: "Lee County's FY2025 preliminary capital budget lists six Flock Safety license-plate-reader cameras for the Sheriff at $24,900, with $18,000 annual amounts projected in later fiscal years. A 2025 Sheriff report also documents an operational Flock hit on a stolen vehicle entering Lee County.",
     sourceIds: ['lee-budget-2024-08-08', 'lee-sheriff-report-2025-08-12'],
   },
   {

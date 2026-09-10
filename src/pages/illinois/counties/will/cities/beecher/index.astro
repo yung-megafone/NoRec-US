@@ -1,0 +1,5 @@
+---
+import MunicipalityStub from '../../../../../../components/jurisdictions/MunicipalityStub.astro';
+import { willMunicipalityFoiaLinks } from '../../../../../../data/illinois/counties/will-records';
+---
+<MunicipalityStub name='Beecher' form='village' county="Will" counties={['Will']} records={willMunicipalityFoiaLinks['beecher'] ?? []} />

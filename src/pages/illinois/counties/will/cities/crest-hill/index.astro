@@ -1,0 +1,5 @@
+---
+import MunicipalityStub from '../../../../../../components/jurisdictions/MunicipalityStub.astro';
+import { willMunicipalityFoiaLinks } from '../../../../../../data/illinois/counties/will-records';
+---
+<MunicipalityStub name='Crest Hill' form='city' county="Will" counties={['Will']} records={willMunicipalityFoiaLinks['crest-hill'] ?? []} />

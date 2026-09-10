@@ -6,10 +6,21 @@ const {
   name,
   form,
   county = 'Boone',
-  counties = [county],
+  counties: countiesProp,
   status = 'unresearched',
   records = [],
 } = Astro.props;
+
+const counties = Array.isArray(countiesProp)
+  ? countiesProp
+  : typeof countiesProp === 'string'
+    ? countiesProp
+        .replace(/^\s*\[/, '')
+        .replace(/\]\s*$/, '')
+        .split(',')
+        .map((value) => value.trim().replace(/^['"]|['"]$/g, ''))
+        .filter(Boolean)
+    : [county];
 
 const crossCounty = counties.length > 1;
 const formLabel = `${form.charAt(0).toUpperCase()}${form.slice(1)}`;

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CommunityLinks from '../../components/CommunityLinks.astro';
+import IllinoisCountyMap from '../../components/jurisdictions/IllinoisCountyMap.astro';
 
 const countyRows = [["Jo Daviess", "Stephenson", "Winnebago", "Boone", "McHenry", "Lake"],
  ["Carroll", "Ogle", "DeKalb", "Kane", "DuPage", "Cook"],
@@ -19,7 +20,7 @@ const countyRows = [["Jo Daviess", "Stephenson", "Winnebago", "Boone", "McHenry"
  ["Jackson", "Williamson", "Saline", "Gallatin"],
  ["Union", "Johnson", "Pope", "Hardin"],
  ["Alexander", "Pulaski", "Massac"]];
-const researchedCounties = new Set(['Winnebago', 'Boone', 'Ogle', 'Lee', 'Kendall', 'DeKalb', 'Kane', 'McHenry']);
+const researchedCounties = new Set(['Winnebago', 'Boone', 'Ogle', 'Lee', 'Kendall', 'DuPage', 'DeKalb', 'Kane', 'McHenry', 'Lake', 'Will']);
 const countySlug = (name: string) => name.toLowerCase().replace(/\./g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const counties = countyRows.flat().sort((a, b) => a.localeCompare(b));
 ---
@@ -48,30 +49,12 @@ const counties = countyRows.flat().sort((a, b) => a.localeCompare(b));
       </div>
     </div>
 
-    <div class="county_cartogram" role="group" aria-label="Illinois county coverage map">
-      {countyRows.map((row, rowIndex) => (
-        <div class={`county_map_row county_map_row_${rowIndex + 1}`}>
-          {row.map(county => {
-            const href = `/illinois/counties/${countySlug(county)}/`;
-            const covered = researchedCounties.has(county);
-            return (
-              <a
-                class:list={['county_tile', covered ? 'county_tile_covered' : 'county_tile_open']}
-                href={href}
-                aria-label={covered
-                  ? `${county} County — jurisdiction file available`
-                  : `${county} County — research needed`}
-              >
-                <strong>{county}</strong>
-                <span>{covered ? 'DATA' : 'OPEN'}</span>
-              </a>
-            );
-          })}
-        </div>
-      ))}
-    </div>
+    <IllinoisCountyMap
+      researchedCounties={researchedCounties}
+      countySlug={countySlug}
+      countyRows={countyRows}
+    />
 
-    <p class="map_note">County positions are approximate.</p>
   </section>
 
   <section>

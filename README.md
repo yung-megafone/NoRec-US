@@ -323,8 +323,3 @@ Kane County is scaffolded from the County's current communities directory with a
 ### Will County batch
 
 Will County is scaffolded with 36 incorporated municipal entries/portions. Initial primary-record research is organized for Joliet, Plainfield, and Romeoville, with county Sheriff findings kept separate. Aurora and Naperville use cross-county canonical redirects rather than duplicated municipal datasets. Unresearched municipalities explicitly remain unknown rather than being labeled surveillance-free.
-
-
-### Static county boundary maps
-
-`CountyMunicipalityMap.astro` resolves Illinois DNR ArcGIS county and municipality geometry while Astro is building the static site. The resulting SVG is written into the generated HTML, so visitors do **not** make requests to the Illinois GIS service. This avoids browser CORS failures, removes a third-party request from page views, and makes deployed maps independent of the GIS service after a successful build. If the service is unavailable during a build, the map collapses to a small notice and the municipality directory remains usable instead of leaving a large empty map frame.

@@ -298,3 +298,8 @@ Lee County now includes a complete municipal scaffold, GIS-ready county map, off
 ### Kendall County batch
 
 Kendall County includes a 15-municipality/municipal-portion directory, a GIS-driven county map, regional KenCom/Flock research, Sheriff UAS-policy references, and structured municipal dossiers for Oswego, Plano, and Yorkville. Cross-county municipalities remain explicitly marked so geographic presence is not confused with county ownership.
+
+
+### DuPage County batch
+
+DuPage is scaffolded with 39 municipal portions. Primary-record dossiers currently include Wheaton, Naperville, and Elmhurst; remaining municipalities are explicitly unresearched stubs pending records. County-campus license-plate readers are kept separate from municipal and Sheriff inventories.

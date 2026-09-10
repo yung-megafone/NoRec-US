@@ -1,21 +1,20 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CountyMunicipalityMap from '../../../../components/jurisdictions/CountyMunicipalityMap.astro';
+import PublicRecords from '../../../../components/jurisdictions/PublicRecords.astro';
+import { dupageMunicipalities, dupageMunicipalitySources, dupageCountyFindings } from '../../../../data/illinois/counties/dupage';
+import { dupageCountyRecords } from '../../../../data/illinois/counties/dupage-records';
 ---
-<BaseLayout title="DuPage County Surveillance | NoRec.US" description="Community surveillance research for DuPage County, Illinois." active="surveillance">
+<BaseLayout title="DuPage County Surveillance | NoRec.US" description="County and municipal surveillance research for DuPage County, Illinois." active="surveillance">
 <main class="page_shell">
-  <nav class="jurisdiction_breadcrumbs" aria-label="Breadcrumb">
-    <a href="/illinois/">Illinois</a><span>→</span><strong>DuPage County</strong>
-  </nav>
-  <header class="article_header">
-    <p class="eyebrow">LOCAL SURVEILLANCE · DUPAGE COUNTY, ILLINOIS</p>
-    <h1>DuPage County</h1>
-    <p class="article_deck">No surveillance research has been contributed for this county yet. This does not mean surveillance technology is absent.</p>
-  </header>
-  <section class="evidence_box">
-    <span class="status_label">UNRESEARCHED</span>
-    <h2>Research needed.</h2>
-    <p>NoRec.US has not yet reviewed enough primary records to publish findings for DuPage County. Contracts, policies, procurement records, meeting packets, FOIA responses, audits, inventories, and other primary records are welcome.</p>
-    <a class="button button_dark" href="https://github.com/yung-megafone/NoRec-US">Contribute on GitHub</a>
-  </section>
-</main>
-</BaseLayout>
+<nav class="jurisdiction_breadcrumbs" aria-label="Breadcrumb"><a href="/illinois/">Illinois</a><span>→</span><strong>DuPage County</strong></nav>
+<header class="article_header"><p class="eyebrow">LOCAL SURVEILLANCE · DUPAGE COUNTY, ILLINOIS</p><h1>DuPage County</h1><p class="article_deck">DuPage contains portions of 39 municipalities. County-level systems stay separate from municipal systems; Wheaton, Naperville, and Elmhurst already have primary-record findings in this batch.</p></header>
+<section><p class="eyebrow">MUNICIPALITIES · OFFICIAL BOUNDARIES</p><h2>Drill down from DuPage County to the municipality.</h2><p>DuPage County planning records identify portions of 39 incorporated municipalities. Cross-county communities remain linked to one municipal identity even when they appear in more than one county.</p>
+<div class="map_legend" aria-label="Municipality map legend"><span><i class="legend_swatch legend_covered"></i><strong>Research available</strong></span><span><i class="legend_swatch legend_open"></i><strong>Unresearched</strong></span><span><i class="legend_swatch legend_cross_county"></i><strong>Crosses county line</strong></span></div>
+<CountyMunicipalityMap county="DuPage" municipalities={dupageMunicipalities} />
+<div class="jurisdiction_cards municipality_directory">{dupageMunicipalities.map(m => (<a href={`/illinois/counties/dupage/cities/${m.slug}/`}><strong>{m.name}</strong><span>{m.form.charAt(0).toUpperCase()+m.form.slice(1)} · {m.status === 'documented' || m.status === 'partial' ? 'Municipal dossier available' : 'Research needed'}{m.crossCounty ? ` · crosses ${m.counties.join(' / ')} counties` : ''}</span></a>))}</div>
+<p class="map_note"><a href={dupageMunicipalitySources.countyMunicipalities}>DuPage municipality reference</a> · <a href={dupageMunicipalitySources.mobilityPlan}>DuPage Mobility Framework map</a></p></section>
+<section><p class="eyebrow">COUNTY SYSTEMS</p><h2>Documented county infrastructure.</h2><div class="finding_grid">{dupageCountyFindings.map(f => (<article><span class="status_label">{f.status.toUpperCase()}</span><p class="eyebrow finding_technology">{f.technology}</p><h3>{f.title}</h3><p>{f.summary}</p></article>))}</div></section>
+<PublicRecords records={dupageCountyRecords} />
+<section><p class="eyebrow">NEXT RECORDS</p><h2>High-value follow-up.</h2><ul class="about_questions"><li>Current county-campus LPR inventory, vendor, locations, retention, sharing, and audit configuration.</li><li>DuPage County Sheriff ALPR, UAS, fixed-camera, body/in-car camera, facial-recognition, analytics, and investigative-software inventories and policies.</li><li>Current municipal Flock/ALPR contracts and camera inventories across the remaining DuPage municipalities.</li></ul></section>
+</main></BaseLayout>

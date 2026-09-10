@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
+import { elmhurstFindings } from '../../../../../../data/illinois/counties/dupage';
+import { elmhurstRecords } from '../../../../../../data/illinois/counties/dupage-records';
+---
+<BaseLayout title="Elmhurst Surveillance | NoRec.US" description="Publicly documented surveillance-related technology and primary records for Elmhurst, Illinois." active="surveillance">
+<main class="page_shell">
+<nav class="jurisdiction_breadcrumbs" aria-label="Breadcrumb"><a href="/illinois/">Illinois</a><span>→</span><a href="/illinois/counties/dupage/">DuPage County</a><span>→</span><strong>Elmhurst</strong></nav>
+<header class="article_header"><p class="eyebrow">LOCAL SURVEILLANCE · ELMHURST, ILLINOIS</p><h1>Elmhurst</h1><p class="article_deck">Municipal findings are attributed only where primary records identify the City/Village or its police department. DuPage County systems are not automatically counted as municipal equipment.</p></header>
+<section><p class="eyebrow">ELMHURST</p><h2>Documented surveillance systems.</h2><div class="finding_grid">{elmhurstFindings.map(f => (<article><span class="status_label">{f.status.toUpperCase()}</span><p class="eyebrow finding_technology">{f.technology}</p><h3>{f.title}</h3><p>{f.summary}</p></article>))}</div></section>
+<PublicRecords records={elmhurstRecords} />
+<section><p class="eyebrow">UNRESOLVED</p><h2>What still needs primary records.</h2><ul class="about_questions"><li>Current device inventory, installation status, locations, vendors, contracts, retention, sharing, and audit configuration.</li><li>Current drone/UAS, body/in-car camera, fixed-camera, facial-recognition, social-media analytics, and investigative-software records.</li></ul></section>
+</main></BaseLayout>

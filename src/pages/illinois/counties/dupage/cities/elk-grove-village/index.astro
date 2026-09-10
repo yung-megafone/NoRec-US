@@ -1,0 +1,5 @@
+---
+import MunicipalityStub from '../../../../../../components/jurisdictions/MunicipalityStub.astro';
+import { dupageMunicipalityFoiaLinks } from '../../../../../../data/illinois/counties/dupage-records';
+---
+<MunicipalityStub name='Elk Grove Village' form='village' county="DuPage" counties=['Cook', 'DuPage'] records={dupageMunicipalityFoiaLinks['elk-grove-village'] ?? []} />

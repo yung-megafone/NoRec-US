@@ -10,11 +10,11 @@ DirectoryIndex index.html
 
 
   # Legacy NoRec county routes -> county-seat ZIP routes
-  RewriteRule ^surveillance/winnebago-county/?$ /county/61101/ [R=301,L]
-  RewriteRule ^surveillance/boone-county/?$ /county/61008/ [R=301,L]
-  RewriteRule ^surveillance/dekalb-county/?$ /county/60178/ [R=301,L]
-  RewriteRule ^surveillance/kane-county/?$ /county/60134/ [R=301,L]
-  RewriteRule ^surveillance/mchenry-county/?$ /county/60098/ [R=301,L]
+  RewriteRule ^surveillance/winnebago-county/?$ /illinois/counties/winnebago/ [R=301,L]
+  RewriteRule ^surveillance/boone-county/?$ /illinois/counties/boone/ [R=301,L]
+  RewriteRule ^surveillance/dekalb-county/?$ /illinois/counties/dekalb/ [R=301,L]
+  RewriteRule ^surveillance/kane-county/?$ /illinois/counties/kane/ [R=301,L]
+  RewriteRule ^surveillance/mchenry-county/?$ /illinois/counties/mchenry/ [R=301,L]
 
   # Operator test-bench route. This intentionally produces a real 403.
   RewriteRule ^tests/forbidden/?$ - [F,L]

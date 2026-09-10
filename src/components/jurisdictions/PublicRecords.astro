@@ -1,0 +1,44 @@
+---
+export type PublicRecordLink = {
+  title: string;
+  description?: string;
+  officialUrl?: string;
+  localUrl?: string;
+  kind?: 'FOIA release' | 'Official record' | 'FOIA portal' | 'Policy' | 'Archive';
+  date?: string;
+};
+
+const {
+  records = [],
+  emptyMessage = 'No NoRec-hosted FOIA releases are archived for this jurisdiction yet.',
+} = Astro.props as { records?: PublicRecordLink[]; emptyMessage?: string };
+---
+<section class="public_records_section">
+  <p class="eyebrow">PUBLIC RECORDS · FOIA</p>
+  <h2>Records and official sources.</h2>
+  <p>Primary government records are preferred. Where practical, NoRec keeps a local archival copy alongside the official source so citations remain auditable if a government URL later changes.</p>
+
+  {records.length > 0 ? (
+    <div class="public_record_list">
+      {records.map((record) => (
+        <article class="public_record_card">
+          <div class="public_record_topline">
+            <span class="status_label">{record.kind ?? 'PUBLIC RECORD'}</span>
+            {record.date && <span class="record_date">{record.date}</span>}
+          </div>
+          <h3>{record.title}</h3>
+          {record.description && <p>{record.description}</p>}
+          <div class="hero_actions">
+            {record.officialUrl && <a class="button button_light" href={record.officialUrl}>Official source</a>}
+            {record.localUrl && <a class="button button_dark" href={record.localUrl}>NoRec copy</a>}
+          </div>
+        </article>
+      ))}
+    </div>
+  ) : (
+    <div class="evidence_box evidence_unknown">
+      <span class="status_label">NO ARCHIVED RELEASES YET</span>
+      <p>{emptyMessage}</p>
+    </div>
+  )}
+</section>

@@ -1,0 +1,5 @@
+---
+import MunicipalityStub from '../../../../../../components/jurisdictions/MunicipalityStub.astro';
+import { booneMunicipalityFoiaLinks } from '../../../../../../data/illinois/counties/boone-records';
+---
+<MunicipalityStub name="Caledonia" form="village" county="Boone" records={booneMunicipalityFoiaLinks['caledonia'] ?? []} />

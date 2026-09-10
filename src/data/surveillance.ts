@@ -67,7 +67,7 @@ export const surveillanceEntries: SurveillanceEntry[] = [
     detailHref: '/surveillance/drones/',
     sourceLinks: [
       { label: '725 ILCS 167 — Freedom from Drone Surveillance Act', href: 'https://www.ilga.gov/Legislation/ILCS/Articles?ActID=3520&Chapter=CRIMINAL+PROCEDURE&ChapterID=54&MajorTopic=RIGHTS+AND+REMEDIES', sourceType: 'Primary' },
-      { label: 'McHenry County / Huntley jurisdiction file', href: '/county/60098/', sourceType: 'NoRec jurisdiction file' }
+      { label: 'McHenry County / Huntley jurisdiction file', href: '/illinois/counties/mchenry/', sourceType: 'NoRec jurisdiction file' }
     ]
   },
   {
@@ -113,7 +113,7 @@ export const surveillanceEntries: SurveillanceEntry[] = [
       { name: 'Flock Safety', href: '/providers/flock-safety/' },
       { name: 'Motorola Solutions', href: '/providers/motorola-solutions/' }
     ],
-    detailHref: '/county/61008/',
+    detailHref: '/illinois/counties/boone/',
     sourceLinks: [
       { label: 'NoRec archive — BCSO Policy 450 ALPRs', href: '/archive/deflock/26-164_BCSO_Policy_450_ALPRs.pdf', sourceType: 'Primary / FOIA' },
       { label: 'Illinois State Police ALPR Transparency Page', href: 'https://isp.illinois.gov/CriminalInvestigations/TransparencyPage', sourceType: 'Primary' }

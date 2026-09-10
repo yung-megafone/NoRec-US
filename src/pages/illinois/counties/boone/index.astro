@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { cameraRegistry } from '../../../../data/deflock';
+import CountyMunicipalityMap from '../../../../components/jurisdictions/CountyMunicipalityMap.astro';
+import PublicRecords from '../../../../components/jurisdictions/PublicRecords.astro';
+import { booneMunicipalities, booneMunicipalitySource } from '../../../../data/illinois/counties/boone';
+import { booneCountyRecords } from '../../../../data/illinois/counties/boone-records';
+
+const physical = cameraRegistry.filter(c => c.verification === 'confirmed');
+---
+<BaseLayout
+  title="Boone County Surveillance | NoRec.US"
+  description="FOIA records, camera observations, Policy 450, retention, audits, and ALPR findings in Boone County, Illinois."
+>
+<main class="page_shell">
+  <nav class="jurisdiction_breadcrumbs" aria-label="Breadcrumb">
+    <a href="/illinois/">Illinois</a><span>→</span><strong>Boone County</strong>
+  </nav>
+
+  <header class="article_header">
+    <p class="eyebrow">LOCAL SURVEILLANCE · BOONE COUNTY, ILLINOIS</p>
+    <h1>Boone County</h1>
+    <p class="article_deck">County-level records are kept separate from municipal systems. A camera located inside a city is not automatically counted as a city-owned camera, and Belvidere's municipal inventory is tracked on its own page.</p>
+  </header>
+
+  <section>
+    <p class="eyebrow">MUNICIPALITIES · OFFICIAL BOUNDARIES</p>
+    <h2>Drill down from Boone County to the municipality.</h2>
+    <p>The map shows incorporated municipal boundaries intersecting Boone County. Cross-county municipalities are clipped to the Boone County outline on this map, but their municipal dossier applies to the municipality as a whole unless a source says otherwise.</p>
+
+    <div class="map_legend" aria-label="Municipality map legend">
+      <span><i class="legend_swatch legend_covered"></i><strong>Research available</strong></span>
+      <span><i class="legend_swatch legend_open"></i><strong>Unresearched</strong></span>
+      <span><i class="legend_swatch legend_cross_county"></i><strong>Crosses county line</strong></span>
+    </div>
+
+    <CountyMunicipalityMap county="Boone" municipalities={booneMunicipalities} />
+
+    <div class="jurisdiction_cards municipality_directory">
+      {booneMunicipalities.map(municipality => (
+        <a href={`/illinois/counties/boone/cities/${municipality.slug}/`}>
+          <strong>{municipality.name}</strong>
+          <span>{municipality.form.charAt(0).toUpperCase() + municipality.form.slice(1)} · {municipality.status === 'documented' ? 'Municipal dossier available' : 'Research needed'}{municipality.crossCounty ? ` · also in ${municipality.counties.filter(c => c !== 'Boone').join(', ')} County` : ''}</span>
+        </a>
+      ))}
+    </div>
+
+    <p class="map_note">Municipality inventory is cross-checked against Census and Boone County materials. Boundary geometry is loaded from the Illinois DNR municipal/county GIS layers. <a href={booneMunicipalitySource.censusUrl}>Census place index</a> · <a href={booneMunicipalitySource.countyUrl}>Boone County community data</a> · <a href="https://maps.dnr.illinois.gov/geoservices/rest/services/BaseLayers/MapServer/23">Illinois DNR municipal boundaries</a></p>
+  </section>
+
+  <section class="evidence_box">
+    <span class="status_label">COUNTY INVENTORY</span>
+    <p>Boone County Sheriff's Office records document <strong>seven county ALPR units/entries, with one returned</strong>. That leaves six retained/current county units in the working inventory. Belvidere separately documents six installed municipal entries plus one planned entry; those city figures are not included in Boone County's county-owned total.</p>
+    <p>The 13-coordinate working registry remains useful for mapping the combined local landscape. Ownership is no longer treated as unresolved at the agency-inventory level; what remains pending is exact installation-to-coordinate matching for every device. Current reported coordinates are retained as canonical working coordinates until field verification or newer primary records establish a correction.</p>
+  </section>
+
+  <section>
+    <p class="eyebrow">DOCUMENTED · BCSO POLICY 450</p>
+    <h2>What the Boone County Sheriff's Office policy says.</h2>
+    <div class="finding_grid">
+      <article><strong>Vehicle attributes</strong><p>The policy describes detection of plates together with vehicle make, model, color, and unique identifiers.</p></article>
+      <article><strong>Search predicate</strong><p>The policy states reasonable suspicion or probable cause is not required before using an ALPR system itself during authorized operations; enforcement still requires an independent lawful basis.</p></article>
+      <article><strong>Alert verification</strong><p>Officers are directed to verify alerts and vehicle information rather than treating an ALPR hit alone as sufficient enforcement justification.</p></article>
+      <article><strong>Flock retention</strong><p>The policy states Flock-hosted data is purged after 30 days.</p></article>
+      <article><strong>County retention</strong><p>ALPR data downloaded to the county server should be stored no longer than one year, subject to evidence and records-retention requirements.</p></article>
+      <article><strong>Auditing</strong><p>The Sheriff or designee is to audit ALPR detection-browsing inquiries at least once per calendar year, including a random sample.</p></article>
+      <article><strong>Auditable access</strong><p>The policy describes individual credentials and system use capable of being fully audited.</p></article>
+      <article><strong>Immigration restriction</strong><p>The policy states data will not be shared by the county or its contractors/subcontractors for federal immigration-enforcement purposes involving specified federal immigration agencies.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">WORKING LOCATION REGISTRY</p>
+    <h2>{cameraRegistry.length} mapped records; installation matching is still being verified.</h2>
+    <p>This registry preserves the current working coordinates used by NoRec. It is a geographic research layer, not a substitute for the agency inventory established by the releases. Until every installation is matched in the field, the coordinates remain canonical working locations but should not be read as independently verified one-to-one agency assignments.</p>
+
+    <div class="table_wrap">
+      <table class="deflock_table compact">
+        <thead><tr><th>ID</th><th>Vendor</th><th>Installation verification</th><th>Coordinates</th><th>Source</th></tr></thead>
+        <tbody>
+          {cameraRegistry.map(c => (
+            <tr>
+              <td><code>{c.id}</code></td>
+              <td>{c.vendor}</td>
+              <td>{c.verification === 'confirmed' ? 'Physically confirmed' : 'Pending field verification'}</td>
+              <td>{c.latitude.toFixed(5)}, {c.longitude.toFixed(5)}</td>
+              <td>{c.source}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <p><strong>{physical.length} mapped records</strong> have already been physically confirmed at their recorded locations. The remaining entries are retained as the current canonical working coordinates pending verification.</p>
+    <a class="button button_light" href="/archive/deflock/Camera_Registry.md">Camera registry archive</a>
+  </section>
+
+  <PublicRecords records={booneCountyRecords} />
+
+  <section>
+    <p class="eyebrow">SUPPORTED / NOT SUPPORTED</p>
+    <h2>What the records support — and what they do not.</h2>
+    <div class="deflock_split">
+      <article>
+        <span class="status_label">SUPPORTED</span>
+        <ul>
+          <li>BCSO uses Flock Safety ALPR technology and has its own county inventory separate from Belvidere's municipal inventory.</li>
+          <li>The BCSO policy describes capture of more than the plate itself.</li>
+          <li>The policy permits ALPR use without requiring reasonable suspicion or probable cause merely to operate/query the system in the authorized context described.</li>
+          <li>Alert verification is required before enforcement action.</li>
+          <li>Flock-hosted retention is described as 30 days.</li>
+          <li>County-side downloaded data can remain up to one year under the policy, with exceptions for evidence/retention obligations.</li>
+          <li>Annual browsing audits are required by policy.</li>
+        </ul>
+      </article>
+      <article>
+        <span class="status_label">NOT YET ESTABLISHED</span>
+        <ul>
+          <li>Exact field-confirmed installation matching for every current mapped coordinate.</li>
+          <li>That ICE has direct access for immigration enforcement; the supplied policy says the opposite for that purpose.</li>
+          <li>That an officer may lawfully stop a vehicle solely because an ALPR alert occurred; the policy requires verification and a lawful basis.</li>
+          <li>Which agencies currently receive Boone County ALPR data.</li>
+          <li>How many users currently have system access.</li>
+          <li>What the annual audits actually found.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">FOLLOW-UP</p>
+    <h2>Records still worth obtaining.</h2>
+    <ul class="about_questions">
+      <li>Results of annual audits and any corrective actions.</li>
+      <li>Current sharing and authorized-agency lists.</li>
+      <li>Detection-browsing usage totals and access-log details.</li>
+      <li>Authorized-user counts and training records.</li>
+      <li>County retention schedules governing exported ALPR records.</li>
+      <li>Current contracts, pricing, renewals, and grants.</li>
+      <li>Installation dates and exact device-to-coordinate matching.</li>
+      <li>Regional or inter-agency search-access agreements.</li>
+    </ul>
+  </section>
+</main>
+</BaseLayout>

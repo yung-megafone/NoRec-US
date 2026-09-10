@@ -5,8 +5,8 @@
   <url><loc>https://norec.us/research/</loc></url>
   <url><loc>https://norec.us/sources/</loc></url>
   <url><loc>https://norec.us/surveillance/</loc></url>
-  <url><loc>https://norec.us/county/61008/</loc></url>
-  <url><loc>https://norec.us/county/60098/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/boone/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/mchenry/</loc></url>
   <url><loc>https://norec.us/surveillance/face/illinois-id-photos/</loc></url>
   <url><loc>https://norec.us/why-privacy-matters/</loc></url>
   <url><loc>https://norec.us/providers/axon/</loc></url>
@@ -18,9 +18,26 @@
   <url><loc>https://norec.us/surveillance/drones/</loc></url>
   <url><loc>https://norec.us/surveillance/human-fingerprints/</loc></url>
   <url><loc>https://norec.us/surveillance/jurisdictions/</loc></url>
-  <url><loc>https://norec.us/surveillance/map/</loc></url>
-  <url><loc>https://norec.us/county/61101/</loc></url>
-  <url><loc>https://norec.us/county/60178/</loc></url>
-  <url><loc>https://norec.us/county/60134/</loc></url>
+  
+  <url><loc>https://norec.us/illinois/counties/winnebago/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/dekalb/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/</loc></url>
   <url><loc>https://norec.us/providers/fusus/</loc></url>
+
+  <url><loc>https://norec.us/illinois/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/boone/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/boone/cities/belvidere/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/winnebago/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/winnebago/cities/rockford/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/mchenry/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/mchenry/cities/huntley/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/dekalb/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/dekalb/cities/dekalb/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/kane/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/boone/cities/caledonia/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/boone/cities/capron/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/boone/cities/cherry-valley/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/boone/cities/loves-park/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/boone/cities/poplar-grove/</loc></url>
+  <url><loc>https://norec.us/illinois/counties/boone/cities/timberlane/</loc></url>
 </urlset>

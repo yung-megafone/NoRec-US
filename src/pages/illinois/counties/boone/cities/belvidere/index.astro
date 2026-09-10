@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
+import { belvidereFoiaLocations } from '../../../../../../data/deflock';
+import { belvidereRecords } from '../../../../../../data/illinois/counties/boone-records';
+
+const installed = belvidereFoiaLocations.filter(row => row.status === 'Installed');
+const planned = belvidereFoiaLocations.filter(row => row.status === 'Planning');
+---
+<BaseLayout title="Belvidere Surveillance | NoRec.US" description="Publicly documented surveillance technology and records for Belvidere, Illinois." active="surveillance">
+<main class="page_shell">
+  <nav class="jurisdiction_breadcrumbs" aria-label="Breadcrumb">
+    <a href="/illinois/">Illinois</a><span>→</span><a href="/illinois/counties/boone/">Boone County</a><span>→</span><strong>Belvidere</strong>
+  </nav>
+
+  <header class="article_header">
+    <p class="eyebrow">LOCAL SURVEILLANCE · BELVIDERE, ILLINOIS</p>
+    <h1>Belvidere</h1>
+    <p class="article_deck">Municipal surveillance research for the City of Belvidere. County-owned systems are tracked on the Boone County page and are not counted as Belvidere city assets.</p>
+  </header>
+
+  <section class="evidence_box">
+    <span class="status_label">DOCUMENTED OWNERSHIP / INVENTORY</span>
+    <p>City records identify <strong>{installed.length} installed Flock ALPR entries</strong> and <strong>{planned.length} planned entry</strong> for Belvidere. These figures are municipal only and do not include Boone County Sheriff's Office cameras.</p>
+    <p>The released location names and the current mapped coordinates are treated as the canonical working inventory pending installation-level field verification. “Verification” on NoRec refers to confirming the physical installation/location, not whether the City of Belvidere owns the documented municipal system.</p>
+  </section>
+
+  <section>
+    <p class="eyebrow">CITY OF BELVIDERE · FOIA RESPONSE</p>
+    <h2>{installed.length} installed, {planned.length} planned.</h2>
+    <p>The supplied response is headed <strong>“FLOCK CAMERA LOCATIONS CITY OF BELVIDERE.”</strong> It lists seven municipal entries in total: six installed and one in planning.</p>
+
+    <div class="table_wrap">
+      <table class="deflock_table">
+        <thead><tr><th>Location name</th><th>Type</th><th>Status</th></tr></thead>
+        <tbody>
+          {belvidereFoiaLocations.map(row => <tr><td>{row.name}</td><td>{row.type}</td><td>{row.status}</td></tr>)}
+        </tbody>
+      </table>
+    </div>
+
+    <figure class="foia_figure">
+      <img src="/archive/deflock/Belvidere_Flock_Camera_Locations_FOIA_Response.png" alt="City of Belvidere Flock camera location response showing seven locations, six installed and one planning." />
+      <figcaption>NoRec archival image extracted from the City of Belvidere FOIA-response DOCX.</figcaption>
+    </figure>
+
+    <div class="evidence_box evidence_unknown">
+      <span class="status_label">INSTALLATION VERIFICATION PENDING</span>
+      <p>The ownership/inventory is established by the City release. NoRec has not yet personally matched every reported municipal location to the exact physical installation and mapped coordinate. Current reported coordinates remain the working canonical locations until field verification or a newer official record establishes otherwise.</p>
+    </div>
+  </section>
+
+  <PublicRecords records={belvidereRecords} />
+
+  <section class="evidence_box">
+    <span class="status_label">CONTRIBUTE</span>
+    <p>This jurisdiction file is community-maintained. Primary records, corrections, newer location records, and installation verification are welcome.</p>
+    <a class="button button_light" href="https://github.com/yung-megafone/NoRec-US">Contribute on GitHub</a>
+  </section>
+</main>
+</BaseLayout>

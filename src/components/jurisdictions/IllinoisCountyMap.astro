@@ -1,0 +1,211 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+
+const { researchedCounties = new Set<string>(), countySlug, countyRows = [] } = Astro.props;
+
+const localCandidates = [
+  path.join(process.cwd(), 'public', 'archive', 'illinois', 'reference', 'IL_BNDY_County.geojson'),
+  path.join(process.cwd(), 'public', 'data', 'illinois', 'county-boundaries.geojson'),
+];
+
+const remoteGeoJson =
+  'https://data.isgs.illinois.edu/arcgis/rest/services/Reference/County_Boundaries/MapServer/0/query?where=1%3D1&outFields=COUNTY_NAME%2CCO_FIPS&returnGeometry=true&outSR=4326&f=geojson';
+
+type Feature = {
+  type: 'Feature';
+  properties?: Record<string, unknown>;
+  geometry?: { type?: string; coordinates?: any };
+};
+
+type FeatureCollection = { type?: string; features?: Feature[] };
+
+const normalizeCountyName = (feature: Feature) => {
+  const props = feature.properties ?? {};
+  const raw = String(
+    props.COUNTY_NAME ?? props.COUNTY_NAM ?? props.NAME ?? props.County ?? props.county ?? '',
+  ).trim();
+  return raw
+    .toLowerCase()
+    .replace(/\b\w/g, (c) => c.toUpperCase())
+    .replace('Mcdonough', 'McDonough')
+    .replace('Mchenry', 'McHenry')
+    .replace('Mclean', 'McLean')
+    .replace('Dewitt', 'DeWitt')
+    .replace('Lasalle', 'LaSalle')
+    .replace('Jo Daviess', 'Jo Daviess')
+    .replace('St Clair', 'St. Clair');
+};
+
+const ringsFromGeometry = (geometry: Feature['geometry']): number[][][] => {
+  if (!geometry) return [];
+  if (geometry.type === 'Polygon') return geometry.coordinates ?? [];
+  if (geometry.type === 'MultiPolygon') return (geometry.coordinates ?? []).flat();
+  return [];
+};
+
+let data: FeatureCollection | null = null;
+let source: 'local' | 'remote' | 'fallback' = 'fallback';
+
+for (const file of localCandidates) {
+  if (!fs.existsSync(file)) continue;
+  try {
+    data = JSON.parse(fs.readFileSync(file, 'utf8'));
+    if (Array.isArray(data?.features) && data.features.length) {
+      source = 'local';
+      break;
+    }
+  } catch (error) {
+    console.warn(`[NoRec state map] Could not parse local county boundary mirror ${file}:`, error);
+  }
+}
+
+if (!data) {
+  try {
+    const response = await fetch(remoteGeoJson, {
+      headers: { Accept: 'application/geo+json,application/json' },
+    });
+    if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+    const candidate = (await response.json()) as FeatureCollection;
+    if (!Array.isArray(candidate?.features) || !candidate.features.length) {
+      throw new Error('Boundary service returned no county features');
+    }
+    data = candidate;
+    source = 'remote';
+  } catch (error) {
+    console.warn('[NoRec state map] ISGS county geometry unavailable; using centered cartogram.', error);
+  }
+}
+
+const features = (data?.features ?? []).filter((f) => ringsFromGeometry(f.geometry).length);
+const allPoints = features.flatMap((f) => ringsFromGeometry(f.geometry).flat());
+
+let shapes: Array<{
+  name: string;
+  href: string;
+  covered: boolean;
+  path: string;
+  labelX: number;
+  labelY: number;
+}> = [];
+
+// A few Illinois counties have irregular shapes where a simple bounding-box
+// center puts the label on/near a border. Keep the geometry untouched and
+// apply tiny SVG-space nudges only to the text labels.
+const labelTweaks: Record<string, { x?: number; y?: number }> = {
+  'Jo Daviess': { x: 8, y: 3 },
+  'Rock Island': { x: -4, y: 26 },
+  Cook: { x: 22, y: 6 },
+  Putnam: { y: 3 },
+  Woodford: { x: 8, y: 4 },
+  Calhoun: { x: -5, y: 2 },
+  Edwards: { x: -7, y: 1 },
+  Wabash: { x: 8, y: 3 },
+  Pope: { y: 6 },
+  Pulaski: { x: 4, y: -2 },
+};
+
+if (allPoints.length) {
+  const xs = allPoints.map((p) => p[0]);
+  const ys = allPoints.map((p) => p[1]);
+  const minX = Math.min(...xs);
+  const maxX = Math.max(...xs);
+  const minY = Math.min(...ys);
+  const maxY = Math.max(...ys);
+
+  const width = 760;
+  const height = 1120;
+  const pad = 24;
+  const sx = (width - pad * 2) / (maxX - minX);
+  const sy = (height - pad * 2) / (maxY - minY);
+  const scale = Math.min(sx, sy);
+  const offsetX = (width - (maxX - minX) * scale) / 2;
+  const offsetY = (height - (maxY - minY) * scale) / 2;
+
+  const project = ([x, y]: number[]) => [
+    offsetX + (x - minX) * scale,
+    height - (offsetY + (y - minY) * scale),
+  ];
+
+  const pathFor = (geometry: Feature['geometry']) =>
+    ringsFromGeometry(geometry)
+      .map((ring) =>
+        ring
+          .map((point, i) => {
+            const [x, y] = project(point);
+            return `${i ? 'L' : 'M'}${x.toFixed(2)},${y.toFixed(2)}`;
+          })
+          .join(' ') + ' Z',
+      )
+      .join(' ');
+
+  shapes = features
+    .map((feature) => {
+      const name = normalizeCountyName(feature);
+      const pts = ringsFromGeometry(feature.geometry).flat();
+      if (!name || !pts.length) return null;
+      const px = pts.map(project);
+      const bx = px.map((p) => p[0]);
+      const by = px.map((p) => p[1]);
+      const tweak = labelTweaks[name] ?? {};
+      return {
+        name,
+        href: `/illinois/counties/${countySlug(name)}/`,
+        covered: researchedCounties.has(name),
+        path: pathFor(feature.geometry),
+        labelX: (Math.min(...bx) + Math.max(...bx)) / 2 + (tweak.x ?? 0),
+        labelY: (Math.min(...by) + Math.max(...by)) / 2 + (tweak.y ?? 0),
+      };
+    })
+    .filter(Boolean) as typeof shapes;
+}
+---
+
+{shapes.length >= 100 ? (
+  <div class="illinois_shape_map_wrap" data-boundary-source={source}>
+    <svg
+      class="illinois_shape_map"
+      viewBox="0 0 760 1120"
+      role="img"
+      aria-label="Illinois county coverage map using official county boundaries"
+    >
+      {shapes.map((shape) => (
+        <a href={shape.href} aria-label={`${shape.name} County — ${shape.covered ? 'jurisdiction file available' : 'research needed'}`}>
+          <path
+            d={shape.path}
+            class:list={['illinois_county_shape', shape.covered ? 'illinois_county_shape_covered' : 'illinois_county_shape_open']}
+            fill-rule="evenodd"
+          >
+            <title>{shape.name} County — {shape.covered ? 'DATA' : 'OPEN'}</title>
+          </path>
+          <text x={shape.labelX} y={shape.labelY} class="illinois_county_label" text-anchor="middle" dominant-baseline="central">
+            {shape.name}
+          </text>
+        </a>
+      ))}
+    </svg>
+  </div>
+) : (
+  <div class="county_cartogram county_cartogram_fallback" role="group" aria-label="Illinois county coverage directory">
+    {countyRows.map((row: string[]) => (
+      <div class="county_map_row">
+        {row.map((county: string) => {
+          const href = `/illinois/counties/${countySlug(county)}/`;
+          const covered = researchedCounties.has(county);
+          return (
+            <a
+              class:list={['county_tile', covered ? 'county_tile_covered' : 'county_tile_open']}
+              href={href}
+              aria-label={covered
+                ? `${county} County — jurisdiction file available`
+                : `${county} County — research needed`}
+            >
+              <strong>{county}</strong>
+              <span>{covered ? 'DATA' : 'OPEN'}</span>
+            </a>
+          );
+        })}
+      </div>
+    ))}
+  </div>
+)}

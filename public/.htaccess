@@ -1,6 +1,9 @@
 # NoRec.US — Apache/cPanel launch hardening
 # This file is copied to the static build root by Astro.
-# Avoid Options/DirectoryIndex directives here: some cPanel shared hosts reject them in .htaccess and return HTTP 500.
+
+Options -Indexes
+
+DirectoryIndex index.html
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
@@ -52,9 +55,8 @@ ErrorDocument 500 /500.html
   </FilesMatch>
 </IfModule>
 
-<IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json application/xml image/svg+xml
-</IfModule>
+# Compression is intentionally left to the hosting/CDN layer.
+# Large inline SVG map pages caused server-side response failures on cPanel.
 
 <IfModule mod_expires.c>
   ExpiresActive On

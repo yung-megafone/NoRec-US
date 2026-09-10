@@ -44,6 +44,48 @@ const ringsFromGeometry = (geometry: Feature['geometry']): number[][][] => {
   return [];
 };
 
+const boundsFromPoints = (points: number[][]) => {
+  let minX = Infinity;
+  let maxX = -Infinity;
+  let minY = Infinity;
+  let maxY = -Infinity;
+  for (const point of points) {
+    const x = Number(point?.[0]);
+    const y = Number(point?.[1]);
+    if (!Number.isFinite(x) || !Number.isFinite(y)) continue;
+    if (x < minX) minX = x;
+    if (x > maxX) maxX = x;
+    if (y < minY) minY = y;
+    if (y > maxY) maxY = y;
+  }
+  return { minX, maxX, minY, maxY };
+};
+
+const simplifyProjectedRing = (
+  ring: number[][],
+  project: (point: number[]) => number[],
+  tolerance = 0.75,
+) => {
+  if (!Array.isArray(ring) || ring.length <= 4) return ring ?? [];
+  const toleranceSq = tolerance * tolerance;
+  const simplified: number[][] = [ring[0]];
+  let lastProjected = project(ring[0]);
+
+  for (let index = 1; index < ring.length - 1; index += 1) {
+    const point = ring[index];
+    const projected = project(point);
+    const dx = projected[0] - lastProjected[0];
+    const dy = projected[1] - lastProjected[1];
+    if (dx * dx + dy * dy >= toleranceSq) {
+      simplified.push(point);
+      lastProjected = projected;
+    }
+  }
+
+  simplified.push(ring[ring.length - 1]);
+  return simplified.length >= 4 ? simplified : ring;
+};
+
 let data: FeatureCollection | null = null;
 let source: 'local' | 'fallback' = 'fallback';
 
@@ -93,21 +135,7 @@ const labelTweaks: Record<string, { x?: number; y?: number }> = {
 };
 
 if (allPoints.length) {
-  // Do not spread the statewide coordinate arrays into Math.min/Math.max.
-  // The current county GeoJSON contains enough vertices to exceed V8's
-  // function-argument/call-stack limit on some platforms (notably Windows).
-  let minX = Infinity;
-  let maxX = -Infinity;
-  let minY = Infinity;
-  let maxY = -Infinity;
-  for (const point of allPoints) {
-    const x = point[0];
-    const y = point[1];
-    if (x < minX) minX = x;
-    if (x > maxX) maxX = x;
-    if (y < minY) minY = y;
-    if (y > maxY) maxY = y;
-  }
+  const { minX, maxX, minY, maxY } = boundsFromPoints(allPoints);
 
   const width = 760;
   const height = 1120;
@@ -126,7 +154,7 @@ if (allPoints.length) {
   const pathFor = (geometry: Feature['geometry']) =>
     ringsFromGeometry(geometry)
       .map((ring) =>
-        ring
+        simplifyProjectedRing(ring, project)
           .map((point, i) => {
             const [x, y] = project(point);
             return `${i ? 'L' : 'M'}${x.toFixed(2)},${y.toFixed(2)}`;
@@ -140,25 +168,16 @@ if (allPoints.length) {
       const name = normalizeCountyName(feature);
       const pts = ringsFromGeometry(feature.geometry).flat();
       if (!name || !pts.length) return null;
-      let countyMinX = Infinity;
-      let countyMaxX = -Infinity;
-      let countyMinY = Infinity;
-      let countyMaxY = -Infinity;
-      for (const point of pts) {
-        const [x, y] = project(point);
-        if (x < countyMinX) countyMinX = x;
-        if (x > countyMaxX) countyMaxX = x;
-        if (y < countyMinY) countyMinY = y;
-        if (y > countyMaxY) countyMaxY = y;
-      }
+      const px = pts.map(project);
+      const { minX: labelMinX, maxX: labelMaxX, minY: labelMinY, maxY: labelMaxY } = boundsFromPoints(px);
       const tweak = labelTweaks[name] ?? {};
       return {
         name,
         href: `/illinois/counties/${countySlug(name)}/`,
         covered: researchedCounties.has(name),
         path: pathFor(feature.geometry),
-        labelX: (countyMinX + countyMaxX) / 2 + (tweak.x ?? 0),
-        labelY: (countyMinY + countyMaxY) / 2 + (tweak.y ?? 0),
+        labelX: (labelMinX + labelMaxX) / 2 + (tweak.x ?? 0),
+        labelY: (labelMinY + labelMaxY) / 2 + (tweak.y ?? 0),
       };
     })
     .filter(Boolean) as typeof shapes;
@@ -166,11 +185,7 @@ if (allPoints.length) {
 ---
 
 {shapes.length >= 100 ? (
-  <div class="illinois_shape_map_wrap polygon_map_pending" data-boundary-source={source}>
-    <div class="polygon_loader" aria-hidden="true">
-      <span class="polygon_loader_spinner"></span>
-      <span>Preparing county polygons</span>
-    </div>
+  <div class="illinois_shape_map_wrap" data-boundary-source={source}>
     <svg
       class="illinois_shape_map"
       viewBox="0 0 760 1120"
@@ -217,17 +232,3 @@ if (allPoints.length) {
     ))}
   </div>
 )}
-
-<script>
-  const revealIllinoisMap = () => {
-    document.querySelectorAll('.illinois_shape_map_wrap.polygon_map_pending').forEach((map) => {
-      requestAnimationFrame(() => map.classList.add('polygon_ready'));
-    });
-  };
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', revealIllinoisMap, { once: true });
-  } else {
-    revealIllinoisMap();
-  }
-</script>

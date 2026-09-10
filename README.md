@@ -61,7 +61,7 @@ NoRec.US is currently **Illinois-focused**. The public information architecture 
 
 The Illinois browser contains all 102 counties. A county or municipality may have a page before surveillance research has been contributed. **UNRESEARCHED means unknown / not yet reviewed; it does not mean surveillance-free.**
 
-Current researched county coverage includes Boone, Winnebago, DeKalb, Kane, and McHenry, with municipal dossiers separated from county-level findings where the evidence belongs to a city or village. Municipality scaffolding is being expanded county by county, beginning with Boone County and moving through Illinois.
+Current researched county coverage includes Boone, Winnebago, DeKalb, Kane, and McHenry, with municipal dossiers separated from county-level findings where the evidence belongs to a city or village. Municipality scaffolding is being expanded county by county. Boone and Winnebago now have complete incorporated-municipality directories; later batches continue outward through Illinois.
 
 ZIP codes are **not** jurisdiction identifiers in the current data model. Earlier NoRec builds used county-seat ZIP codes in routes such as `/county/61008/`; those routes are legacy aliases/redirects only and must not be used for new content.
 
@@ -94,6 +94,8 @@ Some Illinois municipalities cross county lines. Those relationships must be rep
 ### County maps
 
 County pages are being upgraded with privacy-friendly vector jurisdiction maps using government boundary data. Municipal polygons should be clickable and lead to the appropriate municipality dossier. The maps do not require commercial map tiles or third-party tracking scripts.
+
+Structured jurisdiction metadata lives under `src/data/illinois/`. Shared types in `jurisdiction.ts` distinguish research status, government form, and surveillance-finding status; county-specific data files enumerate municipalities and reusable findings rather than forcing factual content to live only inside Astro templates.
 
 ### Coverage states
 

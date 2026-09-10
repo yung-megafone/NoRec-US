@@ -1,33 +1,58 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import CountyMunicipalityMap from '../../../../components/jurisdictions/CountyMunicipalityMap.astro';
+import PublicRecords from '../../../../components/jurisdictions/PublicRecords.astro';
+import { winnebagoMunicipalities, winnebagoMunicipalitySources } from '../../../../data/illinois/counties/winnebago';
+import { winnebagoCountyRecords } from '../../../../data/illinois/counties/winnebago-records';
 ---
 <BaseLayout
   title="Winnebago County Surveillance | NoRec.US"
-  description="Documented surveillance technology used by Winnebago County-area law-enforcement agencies, including Flock ALPR, Axon body cameras, drones, fixed cameras, gunshot detection, and social-media analytics."
+  description="County and municipal surveillance research for Winnebago County, Illinois, including public records, ALPR, drones, and city-level dossiers."
   active="surveillance"
 >
 <main class="page_shell">
   <nav class="jurisdiction_breadcrumbs" aria-label="Breadcrumb">
     <a href="/illinois/">Illinois</a><span>→</span><strong>Winnebago County</strong>
   </nav>
+
   <header class="article_header">
     <p class="eyebrow">LOCAL SURVEILLANCE · WINNEBAGO COUNTY, ILLINOIS</p>
     <h1>Winnebago County</h1>
-    <p class="article_deck">County and city records document overlapping ALPR networks, aerial surveillance, body-worn video, fixed cameras, and investigative software.</p>
+    <p class="article_deck">County-level findings are kept separate from municipal systems. Drill into a city or village for municipal findings; an unresearched municipality is an open research file, not a claim that surveillance is absent.</p>
   </header>
-<section>
-  <p class="eyebrow">MUNICIPALITIES</p>
-  <h2>City and village research</h2>
-  <div class="jurisdiction_cards">
-    <a href="/illinois/counties/winnebago/cities/rockford/"><strong>Rockford</strong><span>Municipal dossier available</span></a>
-  </div>
-  <p class="map_note">Additional municipalities can be added as records are contributed. An unlisted municipality should not be interpreted as having no surveillance technology.</p>
-</section>
 
+  <section>
+    <p class="eyebrow">MUNICIPALITIES · OFFICIAL BOUNDARIES</p>
+    <h2>Drill down from Winnebago County to the municipality.</h2>
+    <p>The directory is based on the Illinois State Archives local-government index and cross-checked against Winnebago County's own jurisdiction directory. Municipal polygons are loaded from Illinois government GIS data.</p>
+
+    <div class="map_legend" aria-label="Municipality map legend">
+      <span><i class="legend_swatch legend_covered"></i><strong>Research available</strong></span>
+      <span><i class="legend_swatch legend_open"></i><strong>Unresearched</strong></span>
+      <span><i class="legend_swatch legend_cross_county"></i><strong>Crosses county line</strong></span>
+    </div>
+
+    <CountyMunicipalityMap county="Winnebago" municipalities={winnebagoMunicipalities} />
+
+    <div class="jurisdiction_cards municipality_directory">
+      {winnebagoMunicipalities.map(municipality => (
+        <a href={`/illinois/counties/winnebago/cities/${municipality.slug}/`}>
+          <strong>{municipality.name}</strong>
+          <span>{municipality.form.charAt(0).toUpperCase() + municipality.form.slice(1)} · {municipality.status === 'documented' ? 'Municipal dossier available' : 'Research needed'}{municipality.crossCounty ? ` · also in ${municipality.counties.filter(c => c !== 'Winnebago').join(', ')} County` : ''}</span>
+        </a>
+      ))}
+    </div>
+
+    <p class="map_note">
+      <a href={winnebagoMunicipalitySources.stateArchives}>Illinois State Archives local-government index</a> ·
+      <a href={winnebagoMunicipalitySources.countyDirectory}>Winnebago County jurisdiction directory</a> ·
+      <a href={winnebagoMunicipalitySources.censusPlaces}>Census incorporated-place index</a>
+    </p>
+  </section>
 
   <section>
     <p class="eyebrow">WINNEBAGO COUNTY SHERIFF'S OFFICE</p>
-    <h2>Countywide Flock deployment and drones</h2>
+    <h2>Countywide Flock deployment and drones.</h2>
     <div class="finding_grid">
       <article>
         <span class="status_label">DOCUMENTED</span>
@@ -42,37 +67,27 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
       <article>
         <span class="status_label">DOCUMENTED</span>
         <h3>Nine drones / 13 reported flights</h3>
-        <p>Illinois' SFY 2024 drone report lists the Sheriff's Department as owning nine drones and reports 13 flights in the reporting data, including search, event-overwatch, damage-assessment, and crash-reconstruction uses.</p>
+        <p>Illinois' SFY 2024 drone report lists the Sheriff's Department as owning nine drones and reports 13 flights in the reporting data.</p>
       </article>
       <article>
-        <span class="status_label">SECONDARY-SOURCE CONFIRMED</span>
-        <h3>44 Flock readers reported in 2025</h3>
-        <p>EFF's Atlas of Surveillance reports 44 Winnebago County Sheriff's Office Flock readers as of September 2025. The underlying records used for that count are not included in NoRec's published source set.</p>
+        <span class="status_label">FOLLOW-UP NEEDED</span>
+        <h3>Current reader count and sharing remain unresolved</h3>
+        <p>NoRec has not yet published primary records establishing the Sheriff's Office's complete current ALPR inventory, exact deployment locations, sharing configuration, authorized-user count, or audit results.</p>
       </article>
     </div>
-
-    <details class="surveillance_sources" open>
-      <summary>Sources</summary>
-      <ul>
-        <li><a href="https://wincoil.gov/images/2024_05_23_Board_Agenda_PACKET.pdf">Winnebago County Board — May 23, 2024 agenda packet / Flock agreement</a></li>
-        <li><a href="https://contracts.wincoil.gov/">Winnebago County contract register</a></li>
-        <li><a href="https://agency.icjia-api.cloud/uploads/SFY_24_Drone_Report_with_Appendices_491dfa4810.pdf">Illinois SFY 2024 Freedom from Drone Surveillance Act report</a></li>
-        <li><a href="https://www.atlasofsurveillance.org/search?agency=Winnebago+County+Sheriff%27s+Office">EFF Atlas of Surveillance — Winnebago County Sheriff's Office</a></li>
-      </ul>
-    </details>
   </section>
 
-  
+  <PublicRecords records={winnebagoCountyRecords} />
 
   <section>
     <p class="eyebrow">UNRESOLVED</p>
-    <h2>Not established by the published records.</h2>
+    <h2>Records still worth obtaining.</h2>
     <ul class="about_questions">
-      <li>Winnebago County's complete current ALPR inventory, locations, retention configuration, sharing settings, authorized-user count, and audit results.</li>
-      <li>Rockford's current ALPR inventory divided among fixed, mobile, and Flock-operated devices.</li>
-      <li>The vendor, policy, retention rules, and alert-review process for Rockford's gunshot-detection system.</li>
-      <li>The vendor, product, query rules, data sources, and retention rules for Rockford's social-media analytics.</li>
-      <li>Complete current drone inventories, payloads, policies, and flight records for the Sheriff's Office and Rockford Police.</li>
+      <li>Current Winnebago County ALPR inventory and device locations.</li>
+      <li>Flock retention, sharing, hotlist, and authorized-user configuration.</li>
+      <li>Search and audit logs or annual audit results.</li>
+      <li>Current Sheriff drone inventory, payloads, policies, and flight logs.</li>
+      <li>Inter-agency agreements governing countywide search or camera access.</li>
     </ul>
   </section>
 </main>

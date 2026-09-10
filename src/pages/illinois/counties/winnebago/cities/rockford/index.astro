@@ -1,73 +1,51 @@
 ---
 import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
+import { rockfordFindings } from '../../../../../../data/illinois/counties/winnebago';
+import { rockfordRecords } from '../../../../../../data/illinois/counties/winnebago-records';
 ---
-<BaseLayout title="Rockford Surveillance | NoRec.US" description="Publicly documented surveillance technology and records for Rockford, Illinois." active="surveillance">
+<BaseLayout title="Rockford Surveillance | NoRec.US" description="Publicly documented surveillance technology and primary records for Rockford, Illinois." active="surveillance">
 <main class="page_shell">
   <nav class="jurisdiction_breadcrumbs" aria-label="Breadcrumb">
     <a href="/illinois/">Illinois</a><span>→</span><a href="/illinois/counties/winnebago/">Winnebago County</a><span>→</span><strong>Rockford</strong>
   </nav>
+
   <header class="article_header">
     <p class="eyebrow">LOCAL SURVEILLANCE · ROCKFORD, ILLINOIS</p>
     <h1>Rockford</h1>
-    <p class="article_deck">Municipal surveillance research for Rockford. Unknown or undocumented categories should not be interpreted as absence of surveillance technology.</p>
+    <p class="article_deck">Municipal findings for the City of Rockford and Rockford Police Department. County-owned systems are documented separately on the Winnebago County page.</p>
   </header>
-<section>
-    <p class="eyebrow">ROCKFORD POLICE DEPARTMENT</p>
-    <h2>Flock, Axon, cameras, analytics, and gunshot detection</h2>
-    <div class="finding_grid">
-      <article>
-        <span class="status_label">DOCUMENTED</span>
-        <h3>2026 Flock contract</h3>
-        <p>Rockford approved a $443,998.16 sole-source Flock contract in 2026. The city's supporting memorandum says earlier retail-crime grants funded Flock Operating System software, Flock license-plate readers, and Flock PTZ cameras for the Police Department Intelligence Unit.</p>
-      </article>
-      <article>
-        <span class="status_label">DOCUMENTED</span>
-        <h3>150+ mobile and stationary LPRs</h3>
-        <p>Rockford's crime-reduction page states the city purchased more than 150 mobile and stationary license-plate readers.</p>
-      </article>
-      <article>
-        <span class="status_label">DOCUMENTED</span>
-        <h3>Axon body-worn cameras</h3>
-        <p>Rockford's body-camera policy requires recordings to be uploaded through AXON docking stations and stored in a secure web-based digital-media system.</p>
-      </article>
-      <article>
-        <span class="status_label">DOCUMENTED</span>
-        <h3>Six drones / eight reported flights</h3>
-        <p>The SFY 2024 statewide drone report records six Rockford Police Department drones and eight flights during the reporting period.</p>
-      </article>
-      <article>
-        <span class="status_label">DOCUMENTED</span>
-        <h3>Fixed cameras</h3>
-        <p>The city reports that it quadrupled the number of cameras in high-traffic and high-crime areas.</p>
-      </article>
-      <article>
-        <span class="status_label">DOCUMENTED</span>
-        <h3>Gunshot-detection software</h3>
-        <p>Rockford lists gunshot-detection software among its enforcement technology. A 2022 City Council action also approved a Flock package containing gunshot detection and 64 license-plate readers.</p>
-      </article>
-      <article>
-        <span class="status_label">DOCUMENTED</span>
-        <h3>Social-media analytics</h3>
-        <p>The city states it instituted social-analytic software to track criminal use of social media. The current public page does not identify the vendor or product.</p>
-      </article>
-      <article>
-        <span class="status_label">DOCUMENTED</span>
-        <h3>Flock renewal funding continues</h3>
-        <p>A 2026 grant action states FY2027 organized-retail-crime funding will partially cover annual subscription fees for Flock Safety License Plate Reader Video Wing Enhanced.</p>
-      </article>
-    </div>
 
-    <details class="surveillance_sources" open>
-      <summary>Sources</summary>
-      <ul>
-        <li><a href="https://rockfordil.legistar.com/LegislationDetail.aspx?GUID=4A7C95F1-BFEC-4ECC-BFE1-0ED3276BCC38&ID=7870155&Options=ID%7CText%7C&Search=Flock">Rockford City Council — 2026 Flock sole-source contract</a></li>
-        <li><a href="https://rockfordil.gov/618/Crime-Reduction-Initiatives">City of Rockford — Crime Reduction Initiatives</a></li>
-        <li><a href="https://www.rockfordil.gov/DocumentCenter/View/294/Body-Worn-Camera-Policy-101321-PDF">Rockford Police Department — Body-Worn Camera Policy</a></li>
-        <li><a href="https://agency.icjia-api.cloud/uploads/SFY_24_Drone_Report_with_Appendices_491dfa4810.pdf">Illinois SFY 2024 Freedom from Drone Surveillance Act report</a></li>
-        <li><a href="https://rockfordil.legistar.com/LegislationDetail.aspx?GUID=3A458DD2-D27E-4632-8258-4CFE1375A353&ID=8144597&Options=&Search=">Rockford — FY2027 Organized Retail Crime grant action</a></li>
-      </ul>
-    </details>
+  <section>
+    <p class="eyebrow">ROCKFORD POLICE DEPARTMENT</p>
+    <h2>Documented surveillance systems.</h2>
+    <div class="finding_grid">
+      {rockfordFindings.map(finding => (
+        <article>
+          <span class="status_label">{finding.status.toUpperCase()}</span>
+          <p class="eyebrow finding_technology">{finding.technology}</p>
+          <h3>{finding.title}</h3>
+          <p>{finding.summary}</p>
+        </article>
+      ))}
+    </div>
   </section>
+
+  <PublicRecords records={rockfordRecords} />
+
+  <section>
+    <p class="eyebrow">UNRESOLVED</p>
+    <h2>What the current primary records do not yet answer.</h2>
+    <ul class="about_questions">
+      <li>The current ALPR inventory divided among fixed, mobile, and Flock-operated devices.</li>
+      <li>Exact locations and current sharing configuration for Rockford ALPR systems.</li>
+      <li>The vendor, product, query rules, source platforms, and retention rules for social-media analytics.</li>
+      <li>The current vendor, policy, retention rules, and alert-review process for gunshot detection.</li>
+      <li>Complete current drone inventory, payloads, policies, and flight records.</li>
+      <li>Current fixed-camera inventory, ownership, retention, and access rules.</li>
+    </ul>
+  </section>
+
   <section class="evidence_box">
     <span class="status_label">CONTRIBUTE</span>
     <p>This jurisdiction file is community-maintained. Primary records, corrections, and missing technology categories are welcome.</p>

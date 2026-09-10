@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
+import { planoFindings } from '../../../../../../data/illinois/counties/kendall';
+import { planoRecords } from '../../../../../../data/illinois/counties/kendall-records';
+---
+<BaseLayout title="Plano Surveillance | NoRec.US" description="Publicly documented surveillance-related technology and primary records for Plano, Illinois." active="surveillance">
+<main class="page_shell">
+  <nav class="jurisdiction_breadcrumbs" aria-label="Breadcrumb">
+    <a href="/illinois/">Illinois</a><span>→</span><a href="/illinois/counties/kendall/">Kendall County</a><span>→</span><strong>Plano</strong>
+  </nav>
+
+  <header class="article_header">
+    <p class="eyebrow">LOCAL SURVEILLANCE · PLANO, ILLINOIS</p>
+    <h1>Plano</h1>
+    <p class="article_deck">Municipal findings for the City of Plano and Plano Police Department. The 2025 primary records establish a four-camera Flock expansion and prior access to a KenCom-linked stationary reader.</p>
+  </header>
+
+  <section>
+    <p class="eyebrow">PLANO POLICE DEPARTMENT</p>
+    <h2>Documented surveillance systems.</h2>
+    <div class="finding_grid">
+      {planoFindings.map(finding => (
+        <article>
+          <span class="status_label">{finding.status.toUpperCase()}</span>
+          <p class="eyebrow finding_technology">{finding.technology}</p>
+          <h3>{finding.title}</h3>
+          <p>{finding.summary}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="evidence_box evidence_unknown">
+    <span class="status_label">OWNERSHIP / SCOPE</span>
+    <h2>Regional access is not the same thing as municipal ownership.</h2>
+    <p>KenCom operates a shared Kendall County public-safety environment. NoRec only assigns equipment counts to Plano when a primary record attributes the device or subscription to the municipality or its police department. Regional camera counts and other agencies' devices are not copied into this city dossier.</p>
+  </section>
+
+  <PublicRecords records={planoRecords} />
+
+  <section>
+    <p class="eyebrow">UNRESOLVED</p>
+    <h2>What still needs primary records.</h2>
+    <ul class="about_questions">
+      <li>Whether all four grant-funded Flock cameras were installed before the June 30, 2026 grant deadline.</li><li>Current camera IDs, installation locations, contract/renewal status, retention settings, and sharing configuration.</li><li>Current body-worn and in-car camera inventory, vendor, retention, and evidence-storage systems.</li><li>Drones/UAS, fixed-camera systems, facial recognition, social-media analytics, and other investigative software.</li>
+    </ul>
+  </section>
+</main>
+</BaseLayout>

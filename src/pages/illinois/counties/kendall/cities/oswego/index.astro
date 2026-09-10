@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
+import { oswegoFindings } from '../../../../../../data/illinois/counties/kendall';
+import { oswegoRecords } from '../../../../../../data/illinois/counties/kendall-records';
+---
+<BaseLayout title="Oswego Surveillance | NoRec.US" description="Publicly documented surveillance-related technology and primary records for Oswego, Illinois." active="surveillance">
+<main class="page_shell">
+  <nav class="jurisdiction_breadcrumbs" aria-label="Breadcrumb">
+    <a href="/illinois/">Illinois</a><span>→</span><a href="/illinois/counties/kendall/">Kendall County</a><span>→</span><strong>Oswego</strong>
+  </nav>
+
+  <header class="article_header">
+    <p class="eyebrow">LOCAL SURVEILLANCE · OSWEGO, ILLINOIS</p>
+    <h1>Oswego</h1>
+    <p class="article_deck">Municipal findings for the Village of Oswego and Oswego Police Department. Kendall County and KenCom regional systems are documented separately unless a source specifically attributes them to Oswego.</p>
+  </header>
+
+  <section>
+    <p class="eyebrow">OSWEGO POLICE DEPARTMENT</p>
+    <h2>Documented surveillance systems.</h2>
+    <div class="finding_grid">
+      {oswegoFindings.map(finding => (
+        <article>
+          <span class="status_label">{finding.status.toUpperCase()}</span>
+          <p class="eyebrow finding_technology">{finding.technology}</p>
+          <h3>{finding.title}</h3>
+          <p>{finding.summary}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="evidence_box evidence_unknown">
+    <span class="status_label">OWNERSHIP / SCOPE</span>
+    <h2>Regional access is not the same thing as municipal ownership.</h2>
+    <p>KenCom operates a shared Kendall County public-safety environment. NoRec only assigns equipment counts to Oswego when a primary record attributes the device or subscription to the municipality or its police department. Regional camera counts and other agencies' devices are not copied into this city dossier.</p>
+  </section>
+
+  <PublicRecords records={oswegoRecords} />
+
+  <section>
+    <p class="eyebrow">UNRESOLVED</p>
+    <h2>What still needs primary records.</h2>
+    <ul class="about_questions">
+      <li>Current Oswego-owned Flock camera count, camera IDs, installation locations, and current contract/renewal terms.</li><li>Current Flock retention, sharing configuration, hotlists, user permissions, and search/audit logs.</li><li>Current drone inventory, aircraft models/serials, payloads, flight logs, annual state reports, and retained recordings.</li><li>Current body-worn-camera inventory, vendor, retention, and cloud evidence-storage contract.</li><li>Fixed-camera networks, social-media analytics, facial recognition, and other investigative software.</li>
+    </ul>
+  </section>
+</main>
+</BaseLayout>

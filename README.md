@@ -61,7 +61,7 @@ NoRec.US is currently **Illinois-focused**. The public information architecture 
 
 The Illinois browser contains all 102 counties. A county or municipality may have a page before surveillance research has been contributed. **UNRESEARCHED means unknown / not yet reviewed; it does not mean surveillance-free.**
 
-Current researched county coverage includes Boone, Winnebago, DeKalb, Kane, and McHenry, with municipal dossiers separated from county-level findings where the evidence belongs to a city or village. Municipality scaffolding is being expanded county by county. Boone and Winnebago now have complete incorporated-municipality directories; later batches continue outward through Illinois.
+Current researched county coverage includes Boone, Winnebago, Ogle, Lee, Kendall, DeKalb, Kane, and McHenry, with municipal dossiers separated from county-level findings where the evidence belongs to a city or village. Municipality scaffolding is being expanded county by county. Boone, Winnebago, Ogle, Lee, and Kendall now have county-level municipality directories; later batches continue through Illinois.
 
 ZIP codes are **not** jurisdiction identifiers in the current data model. Earlier NoRec builds used county-seat ZIP codes in routes such as `/county/61008/`; those routes are legacy aliases/redirects only and must not be used for new content.
 
@@ -285,7 +285,7 @@ The template has been substantially adapted for Astro, evidence-oriented content
 
 ### County batch status
 
-The Illinois rollout is being expanded county-by-county. Boone and Winnebago contain municipal scaffolding and published research; Ogle now contains its complete incorporated-municipality research scaffold, GIS-ready county drill-down, official FOIA entry points, and an open surveillance research queue.
+The Illinois rollout is being expanded county-by-county. Boone, Winnebago, Ogle, Lee, and Kendall now contain municipality scaffolding and GIS-ready county drill-downs. Published surveillance findings remain evidence-driven: some county or municipal pages contain documented systems, while other municipality pages remain explicit research placeholders.
 
 Winnebago primary-source mirrors supplied to NoRec are stored under `public/archive/winnebago/` with a `MANIFEST.sha256`. Public-record cards should link both the authoritative government URL and the local `/archive/...` copy when both are available. Local mirrors are archival copies, not substitutes for checking the current official source.
 
@@ -293,3 +293,8 @@ Winnebago primary-source mirrors supplied to NoRec are stored under `public/arch
 ### Lee County batch
 
 Lee County now includes a complete municipal scaffold, GIS-ready county map, official FOIA/public-record links, documented Sheriff Flock LPR procurement/use, and the Sheriff UAS policy. Dixon has a separate municipal dossier so county-owned systems are not counted as city-owned equipment. Cross-county entries (Rochelle and the Village of Lee) are linked without duplicating canonical municipal research.
+
+
+### Kendall County batch
+
+Kendall County includes a 15-municipality/municipal-portion directory, a GIS-driven county map, regional KenCom/Flock research, Sheriff UAS-policy references, and structured municipal dossiers for Oswego, Plano, and Yorkville. Cross-county municipalities remain explicitly marked so geographic presence is not confused with county ownership.

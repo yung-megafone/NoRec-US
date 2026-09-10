@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="You scanned a QR code | NoRec.US"
+  description="A quick reminder about unknown QR codes, followed by the Illinois ID-photo surveillance research this code was meant to show you."
+>
+  <main class="qr_shell">
+    <section class="qr_intro">
+      <p class="eyebrow">YOU SCANNED A QR CODE</p>
+      <h1>That could have been a bad idea.</h1>
+      <p class="qr_intro_lede">A QR code is just a link you cannot read at a glance. A sticker can be replaced. A sign can be altered. A code can send you somewhere very different from where you thought you were going.</p>
+    </section>
+
+    <section class="qr_warning">
+      <p class="eyebrow">BEFORE YOU SCAN</p>
+      <h2>Treat random QR codes like random links.</h2>
+      <div class="qr_warning_grid">
+        <div>
+          <strong>Check the destination.</strong>
+          <p>Use your camera or scanner preview to inspect the domain before opening it. A familiar-looking page means nothing if the address is wrong.</p>
+        </div>
+        <div>
+          <strong>Do not enter credentials blindly.</strong>
+          <p>A QR code can lead to a convincing phishing page just as easily as an email can.</p>
+        </div>
+        <div>
+          <strong>Be suspicious of replacement stickers.</strong>
+          <p>Codes on parking meters, flyers, payment terminals, menus, or public signs can be covered with another code.</p>
+        </div>
+        <div>
+          <strong>Do not install anything because a code told you to.</strong>
+          <p>A QR destination asking for an app, profile, certificate, extension, or unusual permission deserves extra scrutiny.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="qr_turn">
+      <p class="eyebrow">THIS ONE</p>
+      <h2>Now for why the code was here.</h2>
+      <p>If you have an Illinois driver’s license, permit, or state ID, the Secretary of State maintains a photograph captured through that credential process. Illinois law also expressly addresses facial-recognition search services involving those photographs.</p>
+      <p><strong>The credential population is not adult-only.</strong> Illinois says there is no minimum age for a state ID card, and instruction permits may be issued beginning at age 15 under specified conditions.</p>
+      <div class="hero_actions">
+        <a class="button button_dark button_big" href="/surveillance/face/illinois-id-photos/">See the Illinois evidence →</a>
+        <a class="button button_light" href="/illinois/">Browse Illinois surveillance</a>
+      </div>
+    </section>
+
+    <section class="qr_receipt_panel">
+      <p class="eyebrow">THE SHORT VERSION</p>
+      <div class="receipt_row"><span>DOCUMENTED</span><strong>Illinois maintains captured credential photographs.</strong></div>
+      <div class="receipt_row"><span>DOCUMENTED</span><strong>State law expressly addresses facial-recognition search services.</strong></div>
+      <div class="receipt_row"><span>DOCUMENTED</span><strong>The credential population includes minors.</strong></div>
+      <div class="receipt_row receipt_unknown"><span>UNKNOWN</span><strong>Exact historical retention, template architecture, and total search volume.</strong></div>
+    </section>
+
+    <section class="qr_rule">
+      <p class="eyebrow">THE RULE</p>
+      <h2>If the evidence does not establish it, NoRec does not present it as fact.</h2>
+      <p>NoRec.US documents government surveillance systems using statutes, policies, contracts, public records, government reports, and other source material. Unknowns stay unknown until the record answers them.</p>
+    </section>
+  </main>
+</BaseLayout>

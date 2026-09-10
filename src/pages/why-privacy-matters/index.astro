@@ -93,10 +93,69 @@ import Citation from '../../components/Citation.astro';
 
     <section>
       <p class="eyebrow">THE BREACH QUESTION</p>
-      <h2>What happens when the system fails?</h2>
-      <p>The cost of a breach depends partly on how much information existed to steal. A narrowly scoped system with short retention and limited exports creates a different risk than a large historical database with many users and integrations.</p>
-      <p>Security controls matter. So do architectural choices made before the breach: whether raw data was retained, whether derived biometric templates existed, whether exports were allowed, whether credentials were shared, whether access was logged, and whether old records were ever deleted.</p>
-      <p>NoRec's position is not that every database will be breached. It is that breach risk belongs in the policy analysis before a sensitive database is created or expanded.</p>
+      <h2>“Secure” describes an intention. It does not make the data harmless to collect.</h2>
+      <p>The cost of a breach depends partly on how much information existed to steal. A narrowly scoped system with short retention and limited exports creates a different risk than a historical database containing names, addresses, dates of birth, Social Security numbers, driver's-license numbers, photographs, biometrics, financial information, or years of personal history.</p>
+      <p>That information is useful precisely because it identifies people. After a breach, the same property can make it useful for impersonation, account takeover, fraudulent applications, targeted phishing, identity theft, or combining one leak with information obtained somewhere else.</p>
+      <p>Credit monitoring after the fact does not put a Social Security number, driver's-license number, fingerprint, or personal history back inside the database. The security question therefore starts before collection: <strong>how much permanent identifying information needs to exist in one searchable place at all?</strong></p>
+    </section>
+
+    <section class="breach_history">
+      <p class="eyebrow">THIS IS NOT A HYPOTHETICAL</p>
+      <h2>Governments have already lost databases built from information people were required to provide.</h2>
+
+      <div class="breach_case">
+        <span class="breach_year">2015 · FEDERAL</span>
+        <h3>OPM: 21.5 million background-investigation records.</h3>
+        <p>The Office of Personnel Management disclosed that systems containing background-investigation records for <strong>21.5 million</strong> current, former, and prospective federal employees and contractors had been compromised.<Citation n={1} title="OPM Inspector General — FY2015 FISMA audit" /> The records included Social Security numbers and deeply personal background-investigation information; approximately 5.6 million fingerprint records were also affected.<Citation n={2} title="Department of the Navy — OPM breach FAQ" /></p>
+        <p>The important lesson is not merely that a sophisticated attacker existed. OPM's own Inspector General said it had reported critical IT-security weaknesses for years and warned that the agency was at increased risk of a breach.<Citation n={1} title="OPM Inspector General — FY2015 FISMA audit" /> Government possession did not make the information invulnerable.</p>
+      </div>
+
+      <div class="breach_case">
+        <span class="breach_year">2023 · DISTRICT OF COLUMBIA</span>
+        <h3>DC Health Link: a server exposed reports without proper authentication.</h3>
+        <p>Before the incident, DC Health Link's public privacy material told users that the site was equipped with security measures intended to protect personal information.<Citation n={3} title="DC Health Link — Privacy and Security" /> Then a misconfigured server allowed two reports containing customer PII to be accessed <strong>without proper authentication</strong>.<Citation n={4} title="U.S. House Oversight — DC Health Link breach hearing" /></p>
+        <p>The breach affected 56,415 customers. The stolen information included names, dates of birth, Social Security numbers, addresses, health-plan information and other PII.<Citation n={4} title="U.S. House Oversight — DC Health Link breach hearing" /> Congressional investigators reported that spreadsheets containing personal information were sold and posted on the dark web.<Citation n={5} title="U.S. House Oversight — dark-web sale of DC Health Link data" /></p>
+        <p>This is the mundane failure mode that deserves as much attention as an exotic hack: one configuration mistake can turn a protected database into an accessible one.</p>
+      </div>
+
+      <div class="breach_case">
+        <span class="breach_year">2023 · STATE</span>
+        <h3>Maine: a file-transfer vulnerability exposed data belonging to more than 1.3 million people.</h3>
+        <p>The State of Maine reported that the MOVEit vulnerability allowed cybercriminals to access and download state data.<Citation n={6} title="State of Maine — MOVEit incident" /> Its breach filing lists <strong>1,324,118 people affected</strong> and specifically identifies driver's-license or non-driver identification-card numbers among the compromised information.<Citation n={7} title="Maine Attorney General — State of Maine breach filing" /></p>
+        <p>The State offered identity-protection services to people whose Social Security or taxpayer-identification numbers were involved.<Citation n={7} title="Maine Attorney General — State of Maine breach filing" /> That response is useful, but it also demonstrates the consequence: once identity data leaves government custody, the burden of watching for misuse shifts partly to the people whose information was exposed.</p>
+      </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">DATA HAS A SECOND LIFE</p>
+      <h2>A breach does not end when the vulnerable server is fixed.</h2>
+      <p>Stolen PII can be copied indefinitely, combined with other breaches, traded, resold, or used years later. In one federal criminal case, two defendants admitted obtaining access to a database containing identities and selling PII on the dark web for approximately <strong>$160,000 in digital currency</strong>.<Citation n={8} title="U.S. Department of Justice — PII sold on the dark web" /> That case did not involve a government-owned database, but it demonstrates the market that sensitive identity records can enter after unauthorized access.</p>
+      <p>Government itself recognizes the aggregation problem. In 2025, GAO warned that publicly accessible and commercially obtainable information can be combined into digital profiles that create privacy and safety risks for Defense Department personnel and their families.<Citation n={9} title="GAO-26-107492 — publicly accessible digital information" /></p>
+      <p>This is why “the government already has it” is not a privacy answer. Every additional repository, export, integration, contractor, retention period, and searchable copy creates another place where information can escape its original context.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">THE SECURITY PARADOX</p>
+      <h2>The most sensitive databases are often the ones society cannot simply opt out of.</h2>
+      <p>You can decide not to create an account with a social network. It is much harder to opt out of the records necessary to obtain an identification card, pay taxes, receive public benefits, hold a security clearance, register a vehicle, interact with a court, or comply with another legal requirement.</p>
+      <p>That changes the bargain. When government requires or strongly conditions participation on surrendering identifying information, the person providing it cannot meaningfully solve the security problem by choosing another provider.</p>
+      <p>NoRec's position is not that every government database will be breached, nor that every security statement is dishonest. It is that <strong>“we secure the data” cannot substitute for asking whether the data needs to be collected, centralized, retained, shared, or made searchable in the first place.</strong></p>
+    </section>
+
+    <section class="sources_section">
+      <p class="eyebrow">PRIMARY / GOVERNMENT SOURCES</p>
+      <h2>Read the record.</h2>
+      <ol class="source_list">
+        <li id="source-1"><span class="source_id">[1] · US-OPM-OIG-001</span><div><strong>Federal Information Security Modernization Act Audit FY 2015</strong><br />OPM Inspector General — breach scale and longstanding security weaknesses<br /><a href="https://piv.opm.gov/our-inspector-general/publications/reports/2015/federal-information-security-modernization-act-audit-fy-2015-final-audit-report-4a-ci-00-15-011.pdf">Office of Personnel Management OIG</a></div></li>
+        <li id="source-2"><span class="source_id">[2] · US-DON-001</span><div><strong>OPM Data Breach FAQ</strong><br />Department of the Navy — affected records, Social Security numbers, and approximately 5.6 million fingerprints<br /><a href="https://www.secnav.navy.mil/OPMBreachDON/Pages/faqs.aspx">Department of the Navy</a></div></li>
+        <li id="source-3"><span class="source_id">[3] · DC-HBX-001</span><div><strong>Privacy and Security</strong><br />DC Health Link — public description of safeguards and secure transmissions<br /><a href="https://www.dchealthlink.com/privacy">DC Health Link</a></div></li>
+        <li id="source-4"><span class="source_id">[4] · US-HOUSE-001</span><div><strong>Data Breach at the D.C. Health Exchange</strong><br />House Oversight hearing record — misconfigured server, lack of proper authentication, affected population, and exposed PII<br /><a href="https://oversight.house.gov/release/hearing-wrap-up-d-c-health-exchange-head-struggles-to-explain-huge-data-breach/">U.S. House Committee on Oversight</a></div></li>
+        <li id="source-5"><span class="source_id">[5] · US-HOUSE-002</span><div><strong>D.C. Health Data Breach Resulted in Sale of Thousands of Individuals' Information on the Dark Web</strong><br />House Oversight — stolen spreadsheets and categories of exposed PII<br /><a href="https://oversight.house.gov/release/mace-d-c-health-data-breach-resulted-in-sale-of-thousands-of-individuals-information-on-the-dark-web/">U.S. House Committee on Oversight</a></div></li>
+        <li id="source-6"><span class="source_id">[6] · ME-GOV-001</span><div><strong>State of Maine Impacted by Global MOVEit Security Incident</strong><br />State of Maine — exploitation of MOVEit and unauthorized data downloads<br /><a href="https://www.maine.gov/dafs/news/state-maine-impacted-global-moveit-security-incident">State of Maine</a></div></li>
+        <li id="source-7"><span class="source_id">[7] · ME-AG-001</span><div><strong>State of Maine Data Breach Filing</strong><br />Maine Attorney General — 1,324,118 affected people, driver's-license/non-driver ID numbers, and identity-protection response<br /><a href="https://www.maine.gov/agviewer/content/ag/985235c7-cb95-4be2-8792-a1252b4f8318/28acf6fd-b31d-427f-9988-1edb8ee5fda2.shtml">Maine Attorney General</a></div></li>
+        <li id="source-8"><span class="source_id">[8] · US-DOJ-PII-001</span><div><strong>Fresno County Couple Pleads Guilty to Hacking Database and Selling Identities</strong><br />Department of Justice — PII sold on the dark web for approximately $160,000 in digital currency<br /><a href="https://www.justice.gov/usao-edca/pr/fresno-county-couple-pleads-guilty-hacking-database-containing-peoples-identities-and">U.S. Department of Justice</a></div></li>
+        <li id="source-9"><span class="source_id">[9] · US-GAO-PRIV-001</span><div><strong>GAO-26-107492 — Information Environment</strong><br />GAO — risks created by aggregating publicly accessible and commercially obtainable digital information<br /><a href="https://www.gao.gov/products/gao-26-107492">U.S. Government Accountability Office</a></div></li>
+      </ol>
     </section>
 
     <section id="privacy-fap" class="fap_section">

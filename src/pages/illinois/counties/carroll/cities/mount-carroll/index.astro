@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
+import { mountCarrollFindings } from '../../../../../../data/illinois/counties/carroll';
+import { mountCarrollRecords } from '../../../../../../data/illinois/counties/carroll-records';
+---
+<BaseLayout title="Mount Carroll Surveillance | NoRec.US" description="Publicly documented surveillance technology and records for Mount Carroll, Illinois." active="surveillance">
+<main class="page_shell">
+<nav class="jurisdiction_breadcrumbs" aria-label="Breadcrumb"><a href="/illinois/">Illinois</a><span>→</span><a href="/illinois/counties/carroll/">Carroll County</a><span>→</span><strong>Mount Carroll</strong></nav>
+
+<header class="article_header">
+  <p class="eyebrow">LOCAL SURVEILLANCE · MOUNT CARROLL, ILLINOIS</p>
+  <h1>Mount Carroll</h1>
+  <p class="article_deck">Illinois’ 2018 state body-camera report documents department-wide body-worn-camera use at Mount Carroll Police. Because the available inventory is historical, the page keeps current 2026 vendor, count, storage, and retention questions unresolved.</p>
+</header>
+
+<section>
+  <p class="eyebrow">MOUNT CARROLL POLICE</p>
+  <h2>Documented body-camera history.</h2>
+  <div class="finding_grid">
+    {mountCarrollFindings.map(f => (
+      <article>
+        <span class="status_label">{f.status.toUpperCase()}</span>
+        <p class="eyebrow finding_technology">{f.technology}</p>
+        <h3>{f.title}</h3>
+        <p>{f.summary}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<PublicRecords records={mountCarrollRecords} />
+
+<section>
+  <p class="eyebrow">UNRESOLVED</p>
+  <h2>What still needs primary records.</h2>
+  <ul class="about_questions">
+    <li>Current BWC vendor, model, camera count, evidence platform, retention, activation rules, supervisor review, and audit policy.</li>
+    <li>Any current in-car/dash cameras, ALPR, drone/UAS, fixed public-space cameras, facial-recognition, or investigative-software use.</li>
+  </ul>
+</section>
+</main>
+</BaseLayout>

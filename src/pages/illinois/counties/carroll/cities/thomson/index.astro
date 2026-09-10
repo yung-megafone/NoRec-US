@@ -1,0 +1,5 @@
+---
+import MunicipalityStub from '../../../../../../components/jurisdictions/MunicipalityStub.astro';
+import { carrollMunicipalityFoiaLinks } from '../../../../../../data/illinois/counties/carroll-records';
+---
+<MunicipalityStub name='Thomson' form='village' county="Carroll" counties={['Carroll']} records={carrollMunicipalityFoiaLinks['thomson'] ?? []} />

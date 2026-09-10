@@ -333,3 +333,8 @@ Stephenson County is scaffolded with all 11 incorporated municipalities identifi
 ### Jo Daviess County batch
 
 Jo Daviess County is scaffolded with all 10 incorporated municipalities identified by the Illinois State Archives. County-level primary records document a historical 25-camera Sheriff body-worn-camera deployment in the 2020 state report and one Sheriff drone in the SFY2024 state drone report; both are date-scoped rather than treated as current 2026 inventories. Galena has a current August 2026 City record documenting Axon body-worn cameras and Axon interview rooms. Stockton and East Dubuque have official records/FOIA entry points linked for follow-up research.
+
+
+### Carroll County batch
+
+Carroll County is scaffolded with all seven incorporated municipalities identified by the Illinois State Archives. County-level primary records document a June 2024 Sheriff body-camera deployment milestone. Mount Carroll has a historical 2018 state BWC record showing department-wide use, while a 2026 Illinois Appellate Court order documents operational Savanna Police body-worn-camera use during a March 2025 traffic stop. Historical and event-specific evidence is date-scoped rather than treated as a complete current 2026 inventory.

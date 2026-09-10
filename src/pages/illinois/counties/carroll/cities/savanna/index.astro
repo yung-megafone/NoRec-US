@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
+import { savannaFindings } from '../../../../../../data/illinois/counties/carroll';
+import { savannaRecords } from '../../../../../../data/illinois/counties/carroll-records';
+---
+<BaseLayout title="Savanna Surveillance | NoRec.US" description="Publicly documented surveillance technology and records for Savanna, Illinois." active="surveillance">
+<main class="page_shell">
+<nav class="jurisdiction_breadcrumbs" aria-label="Breadcrumb"><a href="/illinois/">Illinois</a><span>→</span><a href="/illinois/counties/carroll/">Carroll County</a><span>→</span><strong>Savanna</strong></nav>
+
+<header class="article_header">
+  <p class="eyebrow">LOCAL SURVEILLANCE · SAVANNA, ILLINOIS</p>
+  <h1>Savanna</h1>
+  <p class="article_deck">A 2026 Illinois Appellate Court order provides recent primary evidence that Savanna Police was using body-worn cameras during a March 2025 traffic stop. The record does not establish the current vendor, fleet size, retention, or full camera inventory.</p>
+</header>
+
+<section>
+  <p class="eyebrow">SAVANNA POLICE</p>
+  <h2>Recent documented body-camera use.</h2>
+  <div class="finding_grid">
+    {savannaFindings.map(f => (
+      <article>
+        <span class="status_label">{f.status.toUpperCase()}</span>
+        <p class="eyebrow finding_technology">{f.technology}</p>
+        <h3>{f.title}</h3>
+        <p>{f.summary}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<PublicRecords records={savannaRecords} />
+
+<section>
+  <p class="eyebrow">UNRESOLVED</p>
+  <h2>What still needs primary records.</h2>
+  <ul class="about_questions">
+    <li>Current body-camera and dash/in-car-camera vendors, models, inventory, retention, evidence storage, activation, and audit policy.</li>
+    <li>Any ALPR, drone/UAS, fixed public-space cameras, facial-recognition, social-media analytics, or other investigative-software use.</li>
+  </ul>
+</section>
+</main>
+</BaseLayout>

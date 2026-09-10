@@ -1,12 +1,11 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
-import { cameraRegistry } from '../../../../data/deflock';
+import { booneCameraInventorySummary, booneCameraInventoryTotals } from '../../../../data/deflock';
 import CountyMunicipalityMap from '../../../../components/jurisdictions/CountyMunicipalityMap.astro';
 import PublicRecords from '../../../../components/jurisdictions/PublicRecords.astro';
 import { booneMunicipalities, booneMunicipalitySource } from '../../../../data/illinois/counties/boone';
 import { booneCountyRecords } from '../../../../data/illinois/counties/boone-records';
 
-const physical = cameraRegistry.filter(c => c.verification === 'confirmed');
 ---
 <BaseLayout
   title="Boone County Surveillance | NoRec.US"
@@ -49,9 +48,30 @@ const physical = cameraRegistry.filter(c => c.verification === 'confirmed');
   </section>
 
   <section class="evidence_box">
-    <span class="status_label">COUNTY INVENTORY</span>
-    <p>Boone County Sheriff's Office records document <strong>seven county ALPR units/entries, with one returned</strong>. That leaves six retained/current county units in the working inventory. Belvidere separately documents six installed municipal entries plus one planned entry; those city figures are not included in Boone County's county-owned total.</p>
-    <p>The 13-coordinate working registry remains useful for mapping the combined local landscape. Ownership is no longer treated as unresolved at the agency-inventory level; what remains pending is exact installation-to-coordinate matching for every device. Current reported coordinates are retained as canonical working coordinates until field verification or newer primary records establish a correction.</p>
+    <span class="status_label">ALPR INVENTORY</span>
+    <h2>{booneCameraInventoryTotals.active} installed · {booneCameraInventoryTotals.planned} planned</h2>
+
+    <div class="table_wrap">
+      <table class="deflock_table compact">
+        <thead>
+          <tr><th>Jurisdiction</th><th>Installed</th><th>Planned</th></tr>
+        </thead>
+        <tbody>
+          {booneCameraInventorySummary.map(row => (
+            <tr>
+              <td>{row.agency}</td>
+              <td><strong>{row.active}</strong></td>
+              <td>{row.planned}</td>
+            </tr>
+          ))}
+          <tr>
+            <td><strong>Total</strong></td>
+            <td><strong>{booneCameraInventoryTotals.active}</strong></td>
+            <td><strong>{booneCameraInventoryTotals.planned}</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <section>
@@ -67,32 +87,6 @@ const physical = cameraRegistry.filter(c => c.verification === 'confirmed');
       <article><strong>Auditable access</strong><p>The policy describes individual credentials and system use capable of being fully audited.</p></article>
       <article><strong>Immigration restriction</strong><p>The policy states data will not be shared by the county or its contractors/subcontractors for federal immigration-enforcement purposes involving specified federal immigration agencies.</p></article>
     </div>
-  </section>
-
-  <section>
-    <p class="eyebrow">WORKING LOCATION REGISTRY</p>
-    <h2>{cameraRegistry.length} mapped records; installation matching is still being verified.</h2>
-    <p>This registry preserves the current working coordinates used by NoRec. It is a geographic research layer, not a substitute for the agency inventory established by the releases. Until every installation is matched in the field, the coordinates remain canonical working locations but should not be read as independently verified one-to-one agency assignments.</p>
-
-    <div class="table_wrap">
-      <table class="deflock_table compact">
-        <thead><tr><th>ID</th><th>Vendor</th><th>Installation verification</th><th>Coordinates</th><th>Source</th></tr></thead>
-        <tbody>
-          {cameraRegistry.map(c => (
-            <tr>
-              <td><code>{c.id}</code></td>
-              <td>{c.vendor}</td>
-              <td>{c.verification === 'confirmed' ? 'Physically confirmed' : 'Pending field verification'}</td>
-              <td>{c.latitude.toFixed(5)}, {c.longitude.toFixed(5)}</td>
-              <td>{c.source}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-
-    <p><strong>{physical.length} mapped records</strong> have already been physically confirmed at their recorded locations. The remaining entries are retained as the current canonical working coordinates pending verification.</p>
-    <a class="button button_light" href="/archive/deflock/Camera_Registry.md">Camera registry archive</a>
   </section>
 
   <PublicRecords records={booneCountyRecords} />

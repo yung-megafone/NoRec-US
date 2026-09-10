@@ -37,3 +37,44 @@ export const belvidereFoiaLocations = [
   { name:'F#005 Newburg Rd @ Shaw Rd (EB)', status:'Installed', type:'Bundle: (1) LPR Camera' },
   { name:'F#008 Irene Road and Hawkey Road', status:'Planning', type:'Bundle: (1) LPR Camera' },
 ];
+
+
+export type CameraJurisdictionLevel = 'federal' | 'state' | 'county' | 'municipal';
+export type CameraInventoryStatus = 'active' | 'planned' | 'returned';
+
+export type CameraInventorySummary = {
+  level: CameraJurisdictionLevel;
+  agency: string;
+  active: number;
+  planned: number;
+  returned: number;
+  note?: string;
+};
+
+export const booneCameraInventorySummary: CameraInventorySummary[] = [
+  {
+    level: 'county',
+    agency: 'Boone County Sheriff’s Office',
+    active: 6,
+    planned: 0,
+    returned: 1,
+    note: 'Seven county units/entries are documented in the procurement/release trail; one Flex unit was returned/credited, leaving six retained/current county units.',
+  },
+  {
+    level: 'municipal',
+    agency: 'Belvidere Police Department',
+    active: 6,
+    planned: 1,
+    returned: 0,
+    note: 'The City FOIA location response lists seven municipal entries: six Installed and one Planning.',
+  },
+];
+
+export const booneCameraInventoryTotals = booneCameraInventorySummary.reduce(
+  (totals, row) => ({
+    active: totals.active + row.active,
+    planned: totals.planned + row.planned,
+    returned: totals.returned + row.returned,
+  }),
+  { active: 0, planned: 0, returned: 0 },
+);

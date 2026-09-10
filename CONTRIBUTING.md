@@ -12,7 +12,7 @@ Research contributions include FOIA/public-records responses, policies, contract
 
 NoRec.US covers surveillance broadly: cameras, ALPR, facial recognition, drones/UAS, biometrics, body/in-car video, real-time intelligence systems, gunshot detection, analytics, traffic enforcement, evidence platforms, and related infrastructure.
 
-Technical contributions are welcome too: Astro/web development, accessibility, responsive design, performance, GIS/data tooling, importers, documentation, and research workflows.
+Technical contributions are welcome too: Astro/web development, accessibility, responsive design, performance, jurisdiction GIS/data tooling, importers, documentation, and research workflows.
 
 Small contributions matter. Fix one typo. Verify one citation. Research one municipality. Submit one FOIA response. Improve one component.
 
@@ -76,17 +76,6 @@ Important archived records may receive SHA-256 hashes so later copies can be com
 
 Third-party and government records remain attributable to their original creators. Committing a copy under `public/archive/` does not make it MIT-licensed NoRec.US material.
 
-## Map contributions
-
-The `/map/` project covers **surveillance generally**, not just ALPR.
-
-Relevant observations can include cameras, automated plate readers, gunshot detectors, traffic-enforcement systems, staffed surveillance, sensors, and other surveillance infrastructure.
-
-Provenance must remain visible. NoRec.US should distinguish among primary-record/NoRec-verified locations, OpenStreetMap observations, credible secondary information, community reports awaiting verification, and historical/removed assets.
-
-Do not silently convert an OSM observation or community submission into an official agency inventory.
-
-For precise locations, provide the strongest evidence available for both the location and operator.
 
 ## Corrections
 

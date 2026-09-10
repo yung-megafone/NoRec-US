@@ -7,147 +7,112 @@
 </p>
 
 <p align="center">
-  <a href="https://norec.us">norec.us</a> ·
+  <a href="https://norec.us">Website</a> ·
   <a href="https://t.me/NoRec_US">Telegram</a> ·
-  <a href="#contributing">Contributing</a> ·
+  <a href="./CONTRIBUTING.md">Contributing</a> ·
   <a href="./LICENSE">License</a>
 </p>
 
 # NoRec.US
 
-**NoRec.US** is an open-source research and public-information project documenting government surveillance systems with statutes, contracts, policies, procurement records, public reports, FOIA responses, and other verifiable evidence.
+**NoRec.US** is an open-source research and public-information project documenting government surveillance systems using statutes, contracts, policies, procurement records, public reports, public-records responses, and other verifiable evidence.
 
-The project began with automated license-plate reader research in northern Illinois and has expanded into facial recognition, vehicle/property fingerprinting, drones, body and in-car video, biometric systems, real-time intelligence platforms, evidence systems, and related surveillance infrastructure.
+The project began with automated license-plate reader research in northern Illinois and has expanded to cover facial recognition, drones, body-worn and in-car video, biometric systems, real-time intelligence platforms, evidence systems, vehicle/property fingerprinting, and related surveillance infrastructure.
 
-NoRec.US is explicitly privacy-focused, but the research standard is evidence first. A useful surveillance system can still deserve scrutiny. A privacy concern does not become a fact merely because it is plausible. When the record stops, the claim stops with it.
+NoRec.US is privacy-focused, but its research standard is evidence first. A system can have legitimate uses and still deserve scrutiny. A privacy concern does not become a fact merely because it is plausible. **When the record stops, the claim stops with it.**
+
+## What NoRec.US does
+
+NoRec.US connects three kinds of research:
+
+- **Technologies** — what surveillance systems can do and the legal or operational framework around them.
+- **Providers** — vendor relationships and published product capabilities, kept separate from verified local deployment.
+- **Jurisdictions** — what the available record establishes about counties, municipalities, agencies, and statewide systems.
+
+Research currently includes automatic license-plate readers (ALPRs), facial recognition and Illinois credential photographs, drones/UAS, fingerprints and biometric identification, body-worn and in-car video, evidence-management systems, and related surveillance infrastructure.
 
 ## Evidence standard
 
 NoRec.US separates established facts from unanswered questions.
 
-| State | Meaning |
+| Status | Meaning |
 | --- | --- |
-| **DOCUMENTED** | Directly supported by a primary source such as a statute, contract, agency record, policy, procurement record, audit, or FOIA response. |
+| **DOCUMENTED** | Directly supported by a primary source such as a statute, contract, agency record, policy, procurement record, audit, or public-records response. |
 | **SECONDARY-SOURCE CONFIRMED** | Supported by reputable records-based reporting or a secondary database, but the underlying primary record is not yet part of the published source set. |
 | **UNKNOWN** | The available evidence does not establish an answer. |
 | **UNDER INVESTIGATION** | A specific unresolved question is being researched through identifiable records, agencies, or public-records requests. |
 | **HISTORICALLY DOCUMENTED** | Supported for a past deployment or relationship but not represented as current. |
 
-Vendor documentation is used to describe **product capability**, not to prove that a particular agency purchased, enabled, or used every available feature.
+Vendor documentation describes **product capability**. It does not prove that a particular agency purchased, enabled, or used every available feature.
 
-## What is documented
+## Illinois coverage
 
-The site currently organizes research around three connected views:
-
-**Technologies** explain what a system does and the legal or operational framework around it.
-
-**Providers** document vendor relationships and published product capabilities while keeping vendor claims separate from verified local deployment.
-
-**Jurisdictions** show what can actually be established about a county, municipality, agency, or statewide system from the available record.
-
-Current provider dossiers include Flock Safety, Motorola Solutions, Axon, Axon Fusus, IDEMIA, and SoundThinking.
-
-Current technology coverage includes automated license-plate readers, facial recognition and Illinois credential photographs, drones/UAS, vehicle/property fingerprinting, human fingerprints/ABIS, body and in-car video, evidence-management systems, and related surveillance infrastructure.
-
-## Geographic coverage
-
-NoRec.US is currently **Illinois-focused**. The public information architecture follows a state → county → municipality hierarchy and uses full state names in routes so additional states can be added later without restructuring the project.
+NoRec.US is currently focused on Illinois. Research is organized geographically as:
 
 ```text
-/illinois/
-/illinois/counties/boone/
-/illinois/counties/boone/cities/belvidere/
+Illinois → County → Municipality
 ```
 
-The Illinois browser contains all 102 counties. A county or municipality may have a page before surveillance research has been contributed. **UNRESEARCHED means unknown / not yet reviewed; it does not mean surveillance-free.**
+The Illinois browser contains all 102 counties, with researched counties and municipalities progressively receiving source-backed dossiers. A jurisdiction may exist in the directory before anyone has completed research on it.
 
-Current researched county coverage includes Boone, Winnebago, Ogle, Lee, Kendall, DeKalb, Kane, and McHenry, with municipal dossiers separated from county-level findings where the evidence belongs to a city or village. Municipality scaffolding is being expanded county by county. Boone, Winnebago, Ogle, Lee, and Kendall now have county-level municipality directories; later batches continue through Illinois.
+**UNRESEARCHED means not yet reviewed. It does not mean surveillance-free.**
 
-ZIP codes are **not** jurisdiction identifiers in the current data model. Earlier NoRec builds used county-seat ZIP codes in routes such as `/county/61008/`; those routes are legacy aliases/redirects only and must not be used for new content.
+Municipalities that cross county lines are represented without intentionally maintaining conflicting copies of the same factual dossier. County-owned, municipal, state, and federal systems should likewise remain distinguishable even when equipment is physically located in the same county.
 
-### Counties and municipalities
+Maps use government boundary data and are rendered as privacy-friendly vector geography without commercial map tiles or third-party tracking scripts.
 
-Municipal records are organized beneath counties for contributor-friendly navigation:
+## Public records and source preservation
 
-```text
-src/
-├── data/
-│   └── illinois/
-│       └── counties/
-└── pages/
-    └── illinois/
-        └── counties/
-            └── boone/
-                ├── index.astro
-                └── cities/
-                    ├── belvidere/
-                    ├── caledonia/
-                    ├── capron/
-                    ├── cherry-valley/
-                    ├── loves-park/
-                    ├── poplar-grove/
-                    └── timberlane/
-```
+Primary sources are central to the project. Jurisdiction pages can link directly to agency records, FOIA/public-records portals, policies, contracts, meeting materials, audits, and other supporting evidence.
 
-Some Illinois municipalities cross county lines. Those relationships must be represented explicitly rather than treating a county boundary as a city boundary or maintaining conflicting copies of the same research. County maps may show the portion of a cross-county municipality that intersects the selected county.
+Where practical, important public records are also preserved under [`public/archive/`](./public/archive/). Archived copies may include SHA-256 hashes so the copy used for research can later be compared with another version.
 
-### County maps
+A locally archived government record remains attributable to the issuing agency. Archiving it does not make it NoRec.US intellectual property.
 
-County pages are being upgraded with privacy-friendly vector jurisdiction maps using government boundary data. Municipal polygons should be clickable and lead to the appropriate municipality dossier. The maps do not require commercial map tiles or third-party tracking scripts.
+An empty public-records section means NoRec.US has not archived a relevant release there yet. It does **not** establish that responsive records do not exist.
 
-Structured jurisdiction metadata lives under `src/data/illinois/`. Shared types in `jurisdiction.ts` distinguish research status, government form, and surveillance-finding status; county-specific data files enumerate municipalities and reusable findings rather than forcing factual content to live only inside Astro templates.
+## Research principles
 
-### Coverage states
-
-Geographic coverage and surveillance findings are separate concepts. A jurisdiction's research state describes **how much NoRec has reviewed**, while technology findings describe **what the evidence establishes**. In particular, lack of contributed records must never be rendered as evidence that a jurisdiction does not use surveillance technology.
-
-## Source library and archive
-
-The source library assigns durable IDs to important records so claims can point back to the same evidence across pages.
-
-Where practical, NoRec.US also preserves local copies of public records in `public/archive/`. Archived records may include SHA-256 hashes so a later copy can be compared against the version used for the research.
-
-Primary-source material remains attributable to its issuing agency or original publisher. Archiving a government record does not make it NoRec.US intellectual property.
-
-### Jurisdiction public records / FOIA releases
-
-County and municipality dossiers should include a **Public Records / FOIA Releases** section when relevant records are available. Prefer the issuing agency's official URL and, where practical, preserve a NoRec-hosted archival copy in `public/archive/`. Local copies should retain attribution to the issuing agency and may include a hash for integrity checking.
-
-An empty records section means NoRec has not archived a responsive release for that jurisdiction yet. It does **not** establish that responsive records do not exist.
-
-For mapped systems such as ALPRs, distinguish different kinds of verification. An agency release may establish **ownership, inventory, or planned deployment** even when NoRec has not physically verified every installation against the released coordinates. County inventories must not be silently rolled into municipal statistics, and vice versa.
+1. **Primary sources first.** Prefer statutes, contracts, policies, audits, public reports, procurement records, meeting packets, and public-records responses.
+2. **Do not turn capability into deployment.** A vendor product page proves what a product can do, not what an agency actually enabled.
+3. **Attribute the correct agency.** A camera physically located in a county is not automatically county-owned.
+4. **Separate installed, planned, returned, and historical equipment.** These are not interchangeable inventory counts.
+5. **Preserve uncertainty.** “Unknown” is a legitimate research result.
+6. **Distinguish current from historical.** Old records are date-scoped rather than silently presented as current.
+7. **Correct the record.** Better evidence should change the page.
+8. **Acknowledge legitimate uses.** Public-safety value and privacy risk can both be real.
+9. **Publish the receipts.** Readers should be able to inspect the evidence behind consequential claims.
 
 ## Privacy by design
 
-The public site is intentionally simple.
+The public site is deliberately simple:
 
-- Static Astro output
-- No advertising
-- No invasive analytics
-- No tracking pixels
-- No social-media embeds
-- No third-party fonts
-- No unnecessary external JavaScript
-- Minimal client-side scripting
-- Same-origin Content Security Policy
-- Mobile-first, accessible layouts
-- Human-readable citations and source links
+- static Astro output;
+- no advertising;
+- no intentional behavioral analytics or tracking pixels;
+- no social-media embeds;
+- no third-party fonts;
+- minimal client-side JavaScript;
+- locally bundled site assets where practical;
+- human-readable citations and direct source links.
 
-GitHub and Telegram icons used on the site are bundled locally rather than loaded from third-party CDNs.
+Ordinary hosting, DNS, CDN, and security infrastructure may still process connection metadata necessary to deliver and protect the site. See the site's Privacy Notice for the fuller explanation.
 
-## Tech stack
+## Contributing
 
-- [Astro 5](https://astro.build/)
-- TypeScript
-- Plain CSS
-- Static HTML output
-- Apache/cPanel-compatible deployment
+NoRec.US is a community research project. You do not need to be a professional developer, journalist, or surveillance researcher to contribute.
 
-No database or application server is required for the current site.
+Useful contributions include public records and FOIA responses, stronger sourcing, corrections, local research, records preservation, accessibility improvements, responsive/web development, documentation, and investigation of agencies, policies, contracts, technologies, and vendors.
 
-## Local development
+For factual additions, provide the strongest source available and clearly distinguish **what the record shows** from **what you infer from it**.
 
-Requires Node.js and npm.
+See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for the full contribution guide.
+
+Pull requests, issues, forks, mirrors, and independent verification are welcome.
+
+## Running the site locally
+
+NoRec.US is built with **Astro 5, TypeScript, and plain CSS** and outputs a static site. Node.js and npm are required for local development.
 
 ```bash
 git clone https://github.com/yung-megafone/NoRec-US.git
@@ -156,39 +121,21 @@ npm install
 npm run dev
 ```
 
-Astro will print the local development URL in the terminal.
-
 Create a production build with:
 
 ```bash
 npm run build
 ```
 
-The deployable site is written to:
+The generated static site is written to `dist/`.
 
-```text
-dist/
-```
-
-To preview the production build locally:
+To preview that build locally:
 
 ```bash
 npm run preview
 ```
 
-## Deployment
-
-NoRec.US builds as a static site. For a normal cPanel/Apache host, upload the **contents of `dist/`** to the site's document root.
-
-`public/.htaccess` is copied into the build and provides the production Apache configuration used by NoRec.US, including canonical HTTPS redirects, custom error pages, security/privacy headers, a same-origin CSP, compression, cache rules, and protection against directory indexing.
-
-A hidden `/tests/` route is included for deployment smoke tests and is intentionally excluded from navigation and the sitemap.
-
-If a release has been copied over an older checkout rather than extracted into a clean directory, Windows users can remove obsolete project files with:
-
-```powershell
-.\tools\clean-stale.ps1
-```
+No database or application server is required.
 
 ## Repository structure
 
@@ -196,155 +143,44 @@ If a release has been copied over an older checkout rather than extracted into a
 .
 ├── public/
 │   ├── archive/          Preserved public records
-│   ├── brand/            NoRec.US and locally bundled social assets
-│   ├── documents/        Static public documents
-│   ├── images/           Site graphics
-│   ├── js/               Small same-origin client scripts
-│   ├── .htaccess         Apache production configuration
-│   ├── robots.txt
-│   └── sitemap.xml
+│   ├── brand/            Locally bundled branding assets
+│   ├── documents/        Public documents
+│   └── images/           Site graphics
 ├── src/
-│   ├── components/       Reusable evidence and interface components
-│   ├── data/             Structured sources, investigations, jurisdictions, and surveillance data
+│   ├── components/       Reusable site and evidence components
+│   ├── data/             Sources, jurisdictions, and research data
 │   ├── layouts/          Shared Astro layouts
-│   ├── pages/            File-based public routes
+│   ├── pages/            Public routes
 │   └── styles/           Global styles
-├── tools/                Maintenance helpers
 ├── astro.config.mjs
 ├── package.json
 └── tsconfig.json
 ```
 
-## Research principles
-
-NoRec.US aims to be useful to privacy advocates, journalists, researchers, residents, public officials, and anyone else trying to understand a surveillance system without having to start from a press release or a rumor.
-
-A few rules guide the project:
-
-1. **Primary sources first.** Prefer statutes, contracts, policies, audits, public reports, procurement records, meeting packets, and FOIA responses.
-2. **Do not turn capability into deployment.** A vendor product page proves what a product can do, not what an Illinois agency has enabled.
-3. **Attribute the correct agency.** A camera physically located in a county is not automatically owned by the county sheriff.
-4. **Preserve uncertainty.** “Unknown” is a legitimate research result.
-5. **Distinguish current from historical.** Past deployments are not silently presented as active systems.
-6. **Correct the record.** If better evidence contradicts a page, the page should change.
-7. **Acknowledge legitimate uses.** Public-safety value and privacy risk can both be real.
-8. **Publish the receipts.** Readers should be able to inspect the evidence behind consequential claims.
-
-## Contributing
-
-NoRec.US is intentionally open to outside help. You do not need to be a professional developer or surveillance researcher.
-
-Useful contributions include:
-
-- primary-source records and FOIA responses;
-- corrections or stronger sourcing for existing claims;
-- local knowledge that can be turned into a records-based investigation;
-- research into Illinois agencies, contracts, policies, and vendors;
-- accessibility, responsive-design, and web-development improvements;
-- preservation and organization of public records;
-- documentation and source normalization.
-
-For factual additions, include the strongest source you have and clearly distinguish what the record **shows** from what you **infer** from it.
-
-GitHub: **https://github.com/yung-megafone/NoRec-US**
-
-Telegram: **https://t.me/NoRec_US**
-
-Pull requests, issues, forks, mirrors, and independent verification are welcome.
-
 ## Corrections
 
 If NoRec.US overstates a record, attributes a system to the wrong agency, relies on an obsolete source, or misses relevant context, please open an issue or provide the corrective record.
 
-The goal is not to win an argument by preserving a stronger claim. The goal is to leave the public record clearer than we found it.
+The goal is not to preserve the strongest claim. **The goal is to leave the public record clearer than we found it.**
 
 ## Reuse and mirroring
 
-Forking, mirroring, republishing, and adapting NoRec.US original material is encouraged. A static architecture is intentional: the project should remain easy to preserve and difficult to make dependent on a single platform.
+Forking, mirroring, republishing, and adapting NoRec.US original material is encouraged. The static architecture is intentional: the project should remain easy to preserve and difficult to make dependent on a single platform.
 
-Please preserve source attribution and distinguish NoRec.US original material from third-party documents and design assets.
+Please preserve source attribution and distinguish NoRec.US original material from third-party records and assets.
 
 ## License
 
 NoRec.US original code and original project content are released under the [MIT License](./LICENSE), unless otherwise noted.
 
-Third-party material is **not** relicensed merely because it appears in this repository. This includes archived government/vendor documents, trademarks, brand marks, and the site's original template lineage. See [`THIRD_PARTY_NOTICES.md`](./THIRD_PARTY_NOTICES.md) for attribution and licensing notes.
+Third-party material is not relicensed merely because it appears in this repository. This includes archived government/vendor records, trademarks, brand marks, and design assets. See [`THIRD_PARTY_NOTICES.md`](./THIRD_PARTY_NOTICES.md) for attribution and licensing notes.
 
 ## Design attribution
 
-The site design is adapted from the **black_white** template by [HTML5webtemplates.co.uk](https://www.html5webtemplates.co.uk/). Its attribution is preserved in the public site footer.
-
-The template has been substantially adapted for Astro, evidence-oriented content, responsive layouts, accessibility, strict content-security policy, county/jurisdiction browsing, and NoRec.US branding.
+NoRec.US began with design inspiration from the **black_white** template by HTML5webtemplates.co.uk. The site has since developed into its own Astro-based interface, but the original inspiration remains credited.
 
 ---
 
 <p align="center">
   <strong>NoRec.US · Surveillance, documented.</strong>
 </p>
-
-
-### County batch status
-
-The Illinois rollout is being expanded county-by-county. Boone, Winnebago, Ogle, Lee, and Kendall now contain municipality scaffolding and GIS-ready county drill-downs. Published surveillance findings remain evidence-driven: some county or municipal pages contain documented systems, while other municipality pages remain explicit research placeholders.
-
-Winnebago primary-source mirrors supplied to NoRec are stored under `public/archive/winnebago/` with a `MANIFEST.sha256`. Public-record cards should link both the authoritative government URL and the local `/archive/...` copy when both are available. Local mirrors are archival copies, not substitutes for checking the current official source.
-
-
-### Lee County batch
-
-Lee County now includes a complete municipal scaffold, GIS-ready county map, official FOIA/public-record links, documented Sheriff Flock LPR procurement/use, and the Sheriff UAS policy. Dixon has a separate municipal dossier so county-owned systems are not counted as city-owned equipment. Cross-county entries (Rochelle and the Village of Lee) are linked without duplicating canonical municipal research.
-
-
-### Kendall County batch
-
-Kendall County includes a 15-municipality/municipal-portion directory, a GIS-driven county map, regional KenCom/Flock research, Sheriff UAS-policy references, and structured municipal dossiers for Oswego, Plano, and Yorkville. Cross-county municipalities remain explicitly marked so geographic presence is not confused with county ownership.
-
-
-### DuPage County batch
-
-DuPage is scaffolded with 39 municipal portions. Primary-record dossiers currently include Wheaton, Naperville, and Elmhurst; remaining municipalities are explicitly unresearched stubs pending records. County-campus license-plate readers are kept separate from municipal and Sheriff inventories.
-
-
-### McHenry County audit/infill
-
-McHenry County is scaffolded from the current county yearbook with 30 municipal entries/portions. Huntley, Crystal Lake, and Woodstock currently have documented municipal surveillance findings. Huntley historical inventory figures are explicitly date-scoped rather than presented as verified 2026 counts. County Sheriff findings remain separate from municipal statistics.
-
-
-### Lake County batch
-
-Lake County is scaffolded from the County's current Cities, Townships & Villages directory with all 52 incorporated cities/villages represented. Primary-record dossiers currently include Antioch, Gurnee, Lake Zurich, Libertyville, Mundelein, Vernon Hills, and Waukegan. County Sheriff drone policy is kept at the county level. Historical contract/install counts are date-scoped rather than silently treated as current inventory.
-
-
-### Kane County batch
-
-Kane County is scaffolded from the County's current communities directory with all 30 municipalities/municipal portions represented. County Sheriff findings include a documented 23-camera Flock grant deployment baseline and Getac body-worn/in-car video records. St. Charles and Elgin have primary-record municipal findings. Huntley redirects to the existing McHenry-canonical dossier to avoid maintaining two factual copies of the same cross-county municipality.
-
-
-### Will County batch
-
-Will County is scaffolded with 36 incorporated municipal entries/portions. Initial primary-record research is organized for Joliet, Plainfield, and Romeoville, with county Sheriff findings kept separate. Aurora and Naperville use cross-county canonical redirects rather than duplicated municipal datasets. Unresearched municipalities explicitly remain unknown rather than being labeled surveillance-free.
-
-
-### Stephenson County batch
-
-Stephenson County is scaffolded with all 11 incorporated municipalities identified by Illinois State Archives and county planning records. County-level findings currently document Sheriff body/squad video and the jail’s nearly 100-camera corrections system. Freeport has a separate municipal dossier covering documented ALPR, ShotSpotter, body-worn cameras, tip411, a residential doorbell-camera pilot, and two downtown fixed cameras approved in 2025. Historical records are date-scoped when current 2026 deployment status is unresolved.
-
-
-### Jo Daviess County batch
-
-Jo Daviess County is scaffolded with all 10 incorporated municipalities identified by the Illinois State Archives. County-level primary records document a historical 25-camera Sheriff body-worn-camera deployment in the 2020 state report and one Sheriff drone in the SFY2024 state drone report; both are date-scoped rather than treated as current 2026 inventories. Galena has a current August 2026 City record documenting Axon body-worn cameras and Axon interview rooms. Stockton and East Dubuque have official records/FOIA entry points linked for follow-up research.
-
-
-### Carroll County batch
-
-Carroll County is scaffolded with all seven incorporated municipalities identified by the Illinois State Archives. County-level primary records document a June 2024 Sheriff body-camera deployment milestone. Mount Carroll has a historical 2018 state BWC record showing department-wide use, while a 2026 Illinois Appellate Court order documents operational Savanna Police body-worn-camera use during a March 2025 traffic stop. Historical and event-specific evidence is date-scoped rather than treated as a complete current 2026 inventory.
-
-
-### Whiteside County batch
-
-Whiteside County is scaffolded with all 11 incorporated municipalities identified by the Illinois State Archives and current County yearbook. County-level primary records document a 2023 Sheriff BWC inventory, an active Sheriff sUAS unit with expanded equipment in 2024, and RapidSOS emergency-location infrastructure. Sterling has a current Flock transparency portal plus Axon BWC/evidence and Avigilon camera/intercom records. Rock Falls has historical BWC records and a documented Flock LPR pilot with operational evidence by 2026. Fulton has a partial Flock finding pending direct Fulton-origin primary records.
-
-
-### Cook County batch
-
-Cook County is scaffolded with all 134 municipalities recognized by Cook County government, with municipal names/forms cross-checked against the Illinois State Archives. County-level research documents the Cook County Sheriff’s Aerial Support Response Team/UAS program and GPS electronic monitoring. Chicago receives an initial CPD dossier covering current BWC, ALPR, POD, in-car-video and helicopter-video policy evidence; Skokie receives detailed current ALPR and Axon BWC findings; Evanston receives a Flock contract finding; and Oak Park records its eight-camera Flock deployment as formerly used after the Village terminated it in August 2025. The remaining suburban municipality routes are explicit research queues.

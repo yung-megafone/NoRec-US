@@ -1,4 +1,7 @@
 ---
+import fs from 'node:fs';
+import path from 'node:path';
+
 const {
   name,
   county,
@@ -11,10 +14,48 @@ const countyName = String(county);
 const slug = municipalityName.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 const mapId = `municipality-boundary-${slug}`;
 
-const municipalityService =
-  'https://maps.dnr.illinois.gov/geoservices/rest/services/BaseLayers/MapServer/23/query';
+const localBoundaryPath = path.resolve(
+  process.cwd(),
+  'public/archive/illinois/reference/municipal-boundaries-current.geojson',
+);
 
-const escapeSql = (value: string) => String(value).replaceAll("'", "''");
+// Illinois' source data uses a number of abbreviated or legacy labels. Keep
+// these source-name differences here instead of weakening factual dossier names.
+const sourceNameAliases: Record<string, string> = {
+  'Caledonia': 'NORTH CALEDONIA',
+  'Mount Carroll': 'MT CARROLL',
+  'Arlington Heights': 'ARLINGTON HTS',
+  'Chicago Heights': 'CHICAGO HTS',
+  'East Hazel Crest': 'EAST HAZELCREST',
+  'Elk Grove Village': 'ELK GROVE',
+  'Forest View': 'FORESTVIEW',
+  'Harwood Heights': 'HARWOOD HTS',
+  'Hazel Crest': 'HAZELCREST',
+  'Indian Head Park': 'INDIAN HEAD',
+  'La Grange Park': 'LAGRANGE PARK',
+  'La Grange': 'LAGRANGE',
+  'Mount Prospect': 'MT PROSPECT',
+  'Northlake': 'NORTH LAKE',
+  'Palos Heights': 'PALOS HTS',
+  'Prospect Heights': 'PROSPECT HTS',
+  'South Chicago Heights': 'SOUTH CHICAGO HTS',
+  'Glendale Heights': 'GLENDALE HTS',
+  'St. Charles': 'ST CHARLES',
+  'North Aurora': 'NO AURORA',
+  'South Elgin': 'SO ELGIN',
+  'North Barrington': 'N BARRINGTON',
+  'Round Lake Beach': 'ROUND LAKE BCH',
+  'Round Lake Heights': 'ROUND LAKE HTS',
+  'Mount Morris': 'MT MORRIS',
+  'New Milford': 'MILFORD',
+};
+
+const normalizeSourceName = (value: string) =>
+  String(value)
+    .normalize('NFKD')
+    .replace(/[’']/g, '')
+    .replace(/[^A-Za-z0-9]+/g, '')
+    .toUpperCase();
 
 const ringsFromGeometry = (geometry: any): number[][][] => {
   if (!geometry) return [];
@@ -24,27 +65,6 @@ const ringsFromGeometry = (geometry: any): number[][][] => {
 };
 
 const allPoints = (geometry: any): number[][] => ringsFromGeometry(geometry).flat();
-
-const postArcGis = async (url: string, params: Record<string, string>) => {
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/geo+json,application/json',
-      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-    },
-    body: new URLSearchParams(params),
-  });
-
-  if (!response.ok) {
-    throw new Error(`ArcGIS request failed: ${response.status} ${response.statusText}`);
-  }
-
-  const data = await response.json();
-  if (data?.error) {
-    throw new Error(data.error?.message ?? 'ArcGIS returned an error');
-  }
-  return data;
-};
 
 let mapError = '';
 let municipalityPath = '';
@@ -56,20 +76,28 @@ let projectedAssets: Array<{
 }> = [];
 
 try {
-  const data = await postArcGis(municipalityService, {
-    where: [
-      `DISTRICTNA='${escapeSql(municipalityName)}'`,
-      `DISTRICTNA='${escapeSql(municipalityName.toUpperCase())}'`,
-    ].join(' OR '),
-    outFields: 'DISTRICTNA,MUNID',
-    returnGeometry: 'true',
-    outSR: '4326',
-    f: 'geojson',
+  if (!fs.existsSync(localBoundaryPath)) {
+    throw new Error('Local municipal boundary dataset is missing');
+  }
+
+  const dataset = JSON.parse(fs.readFileSync(localBoundaryPath, 'utf8'));
+  if (dataset?.type !== 'FeatureCollection' || !Array.isArray(dataset?.features)) {
+    throw new Error('Local municipal boundary dataset is not a valid GeoJSON FeatureCollection');
+  }
+
+  const requestedSourceName = sourceNameAliases[municipalityName] ?? municipalityName;
+  const requestedNormalized = normalizeSourceName(requestedSourceName);
+
+  // Keep every matching feature. Some Illinois municipalities are represented
+  // by multiple polygons/features in the source dataset.
+  const features = dataset.features.filter((feature: any) => {
+    if (!feature?.geometry) return false;
+    const sourceName = feature?.properties?.DISTRICTNA;
+    return sourceName && normalizeSourceName(sourceName) === requestedNormalized;
   });
 
-  const features = (data.features ?? []).filter((feature: any) => feature?.geometry);
   if (!features.length) {
-    throw new Error('Municipal boundary was not returned by the Illinois DNR service');
+    throw new Error(`Municipal boundary not found in local Illinois dataset (source label: ${requestedSourceName})`);
   }
 
   const points = features.flatMap((feature: any) => allPoints(feature.geometry));
@@ -133,7 +161,7 @@ try {
   mapError =
     error instanceof Error
       ? error.message
-      : 'The Illinois DNR boundary service could not be reached during the site build.';
+      : 'The local Illinois municipal boundary dataset could not be read during the site build.';
   console.warn(`[NoRec municipality map] ${municipalityName}, ${countyName} County: ${mapError}`);
 }
 ---

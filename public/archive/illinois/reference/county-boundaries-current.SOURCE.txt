@@ -1,0 +1,8 @@
+Dataset: Illinois DNR County Boundaries
+Layer: BaseLayers / MapServer / 10
+Source: https://maps.dnr.illinois.gov/geoservices/rest/services/BaseLayers/MapServer/10
+Query: where=1=1; outFields=*; returnGeometry=true; outSR=4326; f=geojson
+Retrieved: 2026-09-10
+Format: GeoJSON
+Output CRS: EPSG:4326
+Purpose: Local build-time boundary geometry mirror for NoRec.US county and statewide Illinois maps.

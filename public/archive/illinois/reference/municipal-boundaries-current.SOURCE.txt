@@ -1,0 +1,9 @@
+Dataset: Illinois DNR Municipal Boundaries
+Layer: BaseLayers / MapServer / 23
+Source service: https://maps.dnr.illinois.gov/geoservices/rest/services/BaseLayers/MapServer/23
+Query endpoint: https://maps.dnr.illinois.gov/geoservices/rest/services/BaseLayers/MapServer/23/query
+Retrieved: 2026-09-10
+Format: GeoJSON
+Output CRS: EPSG:4326
+Query: where=1=1; outFields=*; returnGeometry=true; outSR=4326; f=geojson
+Purpose: Local, release-pinned build input for NoRec.US municipality boundary SVGs.

@@ -5,12 +5,10 @@ import path from 'node:path';
 const { researchedCounties = new Set<string>(), countySlug, countyRows = [] } = Astro.props;
 
 const localCandidates = [
+  path.join(process.cwd(), 'public', 'archive', 'illinois', 'reference', 'county-boundaries-current.geojson'),
   path.join(process.cwd(), 'public', 'archive', 'illinois', 'reference', 'IL_BNDY_County.geojson'),
   path.join(process.cwd(), 'public', 'data', 'illinois', 'county-boundaries.geojson'),
 ];
-
-const remoteGeoJson =
-  'https://data.isgs.illinois.edu/arcgis/rest/services/Reference/County_Boundaries/MapServer/0/query?where=1%3D1&outFields=COUNTY_NAME%2CCO_FIPS&returnGeometry=true&outSR=4326&f=geojson';
 
 type Feature = {
   type: 'Feature';
@@ -47,7 +45,7 @@ const ringsFromGeometry = (geometry: Feature['geometry']): number[][][] => {
 };
 
 let data: FeatureCollection | null = null;
-let source: 'local' | 'remote' | 'fallback' = 'fallback';
+let source: 'local' | 'fallback' = 'fallback';
 
 for (const file of localCandidates) {
   if (!fs.existsSync(file)) continue;
@@ -63,20 +61,7 @@ for (const file of localCandidates) {
 }
 
 if (!data) {
-  try {
-    const response = await fetch(remoteGeoJson, {
-      headers: { Accept: 'application/geo+json,application/json' },
-    });
-    if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-    const candidate = (await response.json()) as FeatureCollection;
-    if (!Array.isArray(candidate?.features) || !candidate.features.length) {
-      throw new Error('Boundary service returned no county features');
-    }
-    data = candidate;
-    source = 'remote';
-  } catch (error) {
-    console.warn('[NoRec state map] ISGS county geometry unavailable; using centered cartogram.', error);
-  }
+  console.warn('[NoRec state map] Local county geometry unavailable; using centered cartogram.');
 }
 
 const features = (data?.features ?? []).filter((f) => ringsFromGeometry(f.geometry).length);
@@ -108,12 +93,21 @@ const labelTweaks: Record<string, { x?: number; y?: number }> = {
 };
 
 if (allPoints.length) {
-  const xs = allPoints.map((p) => p[0]);
-  const ys = allPoints.map((p) => p[1]);
-  const minX = Math.min(...xs);
-  const maxX = Math.max(...xs);
-  const minY = Math.min(...ys);
-  const maxY = Math.max(...ys);
+  // Do not spread the statewide coordinate arrays into Math.min/Math.max.
+  // The current county GeoJSON contains enough vertices to exceed V8's
+  // function-argument/call-stack limit on some platforms (notably Windows).
+  let minX = Infinity;
+  let maxX = -Infinity;
+  let minY = Infinity;
+  let maxY = -Infinity;
+  for (const point of allPoints) {
+    const x = point[0];
+    const y = point[1];
+    if (x < minX) minX = x;
+    if (x > maxX) maxX = x;
+    if (y < minY) minY = y;
+    if (y > maxY) maxY = y;
+  }
 
   const width = 760;
   const height = 1120;
@@ -146,17 +140,25 @@ if (allPoints.length) {
       const name = normalizeCountyName(feature);
       const pts = ringsFromGeometry(feature.geometry).flat();
       if (!name || !pts.length) return null;
-      const px = pts.map(project);
-      const bx = px.map((p) => p[0]);
-      const by = px.map((p) => p[1]);
+      let countyMinX = Infinity;
+      let countyMaxX = -Infinity;
+      let countyMinY = Infinity;
+      let countyMaxY = -Infinity;
+      for (const point of pts) {
+        const [x, y] = project(point);
+        if (x < countyMinX) countyMinX = x;
+        if (x > countyMaxX) countyMaxX = x;
+        if (y < countyMinY) countyMinY = y;
+        if (y > countyMaxY) countyMaxY = y;
+      }
       const tweak = labelTweaks[name] ?? {};
       return {
         name,
         href: `/illinois/counties/${countySlug(name)}/`,
         covered: researchedCounties.has(name),
         path: pathFor(feature.geometry),
-        labelX: (Math.min(...bx) + Math.max(...bx)) / 2 + (tweak.x ?? 0),
-        labelY: (Math.min(...by) + Math.max(...by)) / 2 + (tweak.y ?? 0),
+        labelX: (countyMinX + countyMaxX) / 2 + (tweak.x ?? 0),
+        labelY: (countyMinY + countyMaxY) / 2 + (tweak.y ?? 0),
       };
     })
     .filter(Boolean) as typeof shapes;

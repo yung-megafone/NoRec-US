@@ -1,4 +1,7 @@
 ---
+import fs from 'node:fs';
+import path from 'node:path';
+
 const {
   county,
   municipalities,
@@ -6,7 +9,6 @@ const {
 } = Astro.props;
 
 const countyName = String(county);
-const countyUpper = countyName.toUpperCase();
 const countySlug = countyName.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 const mapId = `municipality-map-${countySlug}`;
 const clipId = `${mapId}-county-clip`;
@@ -19,12 +21,53 @@ const clientMunicipalities = municipalities.map((m: any) => ({
   href: `/illinois/counties/${countySlug}/cities/${m.slug}/`,
 }));
 
-const countyService =
-  'https://maps.dnr.illinois.gov/geoservices/rest/services/BaseLayers/MapServer/10/query';
-const municipalityService =
-  'https://maps.dnr.illinois.gov/geoservices/rest/services/BaseLayers/MapServer/23/query';
+const countyBoundaryPath = path.resolve(
+  process.cwd(),
+  'public/archive/illinois/reference/county-boundaries-current.geojson',
+);
+const municipalBoundaryPath = path.resolve(
+  process.cwd(),
+  'public/archive/illinois/reference/municipal-boundaries-current.geojson',
+);
 
-const escapeSql = (value: string) => String(value).replaceAll("'", "''");
+// Illinois' municipal source data uses a number of abbreviated or legacy
+// labels. Keep source-name differences isolated here so public jurisdiction
+// names remain correct.
+const sourceNameAliases: Record<string, string> = {
+  'Caledonia': 'NORTH CALEDONIA',
+  'Mount Carroll': 'MT CARROLL',
+  'Arlington Heights': 'ARLINGTON HTS',
+  'Chicago Heights': 'CHICAGO HTS',
+  'East Hazel Crest': 'EAST HAZELCREST',
+  'Elk Grove Village': 'ELK GROVE',
+  'Forest View': 'FORESTVIEW',
+  'Harwood Heights': 'HARWOOD HTS',
+  'Hazel Crest': 'HAZELCREST',
+  'Indian Head Park': 'INDIAN HEAD',
+  'La Grange Park': 'LAGRANGE PARK',
+  'La Grange': 'LAGRANGE',
+  'Mount Prospect': 'MT PROSPECT',
+  'Northlake': 'NORTH LAKE',
+  'Palos Heights': 'PALOS HTS',
+  'Prospect Heights': 'PROSPECT HTS',
+  'South Chicago Heights': 'SOUTH CHICAGO HTS',
+  'Glendale Heights': 'GLENDALE HTS',
+  'St. Charles': 'ST CHARLES',
+  'North Aurora': 'NO AURORA',
+  'South Elgin': 'SO ELGIN',
+  'North Barrington': 'N BARRINGTON',
+  'Round Lake Beach': 'ROUND LAKE BCH',
+  'Round Lake Heights': 'ROUND LAKE HTS',
+  'Mount Morris': 'MT MORRIS',
+  'New Milford': 'MILFORD',
+};
+
+const normalizeSourceName = (value: string) =>
+  String(value)
+    .normalize('NFKD')
+    .replace(/[’']/g, '')
+    .replace(/[^A-Za-z0-9]+/g, '')
+    .toUpperCase();
 
 const ringsFromGeometry = (geometry: any): number[][][] => {
   if (!geometry) return [];
@@ -34,27 +77,6 @@ const ringsFromGeometry = (geometry: any): number[][][] => {
 };
 
 const allPoints = (geometry: any): number[][] => ringsFromGeometry(geometry).flat();
-
-const postArcGis = async (url: string, params: Record<string, string>) => {
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/geo+json,application/json',
-      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-    },
-    body: new URLSearchParams(params),
-  });
-
-  if (!response.ok) {
-    throw new Error(`ArcGIS request failed: ${response.status} ${response.statusText}`);
-  }
-
-  const data = await response.json();
-  if (data?.error) {
-    throw new Error(data.error?.message ?? 'ArcGIS returned an error');
-  }
-  return data;
-};
 
 let mapError = '';
 let countyPath = '';
@@ -67,35 +89,31 @@ let municipalityShapes: Array<{
 }> = [];
 
 try {
-  const municipalityWhere = clientMunicipalities
-    .flatMap((item: any) => [
-      `DISTRICTNA='${escapeSql(item.name)}'`,
-      `DISTRICTNA='${escapeSql(item.name.toUpperCase())}'`,
-    ])
-    .join(' OR ');
+  if (!fs.existsSync(countyBoundaryPath)) {
+    throw new Error('Local county boundary dataset is missing');
+  }
+  if (!fs.existsSync(municipalBoundaryPath)) {
+    throw new Error('Local municipal boundary dataset is missing');
+  }
 
-  const [countyData, municipalityData] = await Promise.all([
-    postArcGis(countyService, {
-      where: `COUNTY_NAM='${escapeSql(countyUpper)}' OR COUNTY_NAM='${escapeSql(
-        countyUpper[0] + countyUpper.slice(1).toLowerCase(),
-      )}'`,
-      outFields: 'COUNTY_NAM',
-      returnGeometry: 'true',
-      outSR: '4326',
-      f: 'geojson',
-    }),
-    postArcGis(municipalityService, {
-      where: municipalityWhere,
-      outFields: 'DISTRICTNA,MUNID',
-      returnGeometry: 'true',
-      outSR: '4326',
-      f: 'geojson',
-    }),
-  ]);
+  const countyData = JSON.parse(fs.readFileSync(countyBoundaryPath, 'utf8'));
+  const municipalityData = JSON.parse(fs.readFileSync(municipalBoundaryPath, 'utf8'));
 
-  const countyFeature = countyData.features?.[0];
+  if (countyData?.type !== 'FeatureCollection' || !Array.isArray(countyData?.features)) {
+    throw new Error('Local county boundary dataset is not a valid GeoJSON FeatureCollection');
+  }
+  if (municipalityData?.type !== 'FeatureCollection' || !Array.isArray(municipalityData?.features)) {
+    throw new Error('Local municipal boundary dataset is not a valid GeoJSON FeatureCollection');
+  }
+
+  const countyNormalized = normalizeSourceName(countyName);
+  const countyFeature = countyData.features.find((feature: any) => {
+    if (!feature?.geometry) return false;
+    return normalizeSourceName(feature?.properties?.COUNTY_NAM ?? '') === countyNormalized;
+  });
+
   if (!countyFeature?.geometry) {
-    throw new Error('County boundary was not returned by the Illinois DNR service');
+    throw new Error('County boundary was not found in the local Illinois dataset');
   }
 
   const points = allPoints(countyFeature.geometry);
@@ -113,11 +131,13 @@ try {
   const width = 1000;
   const svgHeight = 700;
   const pad = 32;
-  const sx = (width - pad * 2) / (maxX - minX);
-  const sy = (svgHeight - pad * 2) / (maxY - minY);
+  const spanX = Math.max(maxX - minX, 0.00001);
+  const spanY = Math.max(maxY - minY, 0.00001);
+  const sx = (width - pad * 2) / spanX;
+  const sy = (svgHeight - pad * 2) / spanY;
   const scale = Math.min(sx, sy);
-  const offsetX = (width - (maxX - minX) * scale) / 2;
-  const offsetY = (svgHeight - (maxY - minY) * scale) / 2;
+  const offsetX = (width - spanX * scale) / 2;
+  const offsetY = (svgHeight - spanY * scale) / 2;
 
   const project = ([x, y]: number[]) => [
     offsetX + (x - minX) * scale,
@@ -139,15 +159,22 @@ try {
 
   countyPath = pathFor(countyFeature.geometry);
 
-  const byName = new Map(
-    clientMunicipalities.map((item: any) => [item.name.toLowerCase(), item]),
-  );
+  const municipalFeaturesByName = new Map<string, any[]>();
+  for (const feature of municipalityData.features) {
+    if (!feature?.geometry) continue;
+    const sourceName = feature?.properties?.DISTRICTNA;
+    if (!sourceName) continue;
+    const key = normalizeSourceName(sourceName);
+    const existing = municipalFeaturesByName.get(key) ?? [];
+    existing.push(feature);
+    municipalFeaturesByName.set(key, existing);
+  }
 
-  municipalityShapes = (municipalityData.features ?? [])
-    .map((feature: any) => {
-      const featureName = String(feature.properties?.DISTRICTNA ?? '').trim();
-      const item: any = byName.get(featureName.toLowerCase());
-      if (!item || !feature.geometry) return null;
+  municipalityShapes = clientMunicipalities
+    .map((item: any) => {
+      const requestedSourceName = sourceNameAliases[item.name] ?? item.name;
+      const features = municipalFeaturesByName.get(normalizeSourceName(requestedSourceName)) ?? [];
+      if (!features.length) return null;
 
       return {
         name: item.name,
@@ -160,7 +187,7 @@ try {
             ? 'research available'
             : 'research needed'
         }`,
-        path: pathFor(feature.geometry),
+        path: features.map((feature: any) => pathFor(feature.geometry)).join(' '),
       };
     })
     .filter(Boolean);
@@ -168,7 +195,7 @@ try {
   mapError =
     error instanceof Error
       ? error.message
-      : 'The Illinois DNR boundary service could not be reached during the site build.';
+      : 'The local Illinois boundary datasets could not be read during the site build.';
   console.warn(`[NoRec map] ${countyName} County: ${mapError}`);
 }
 ---

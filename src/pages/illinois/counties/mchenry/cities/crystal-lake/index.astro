@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import MunicipalityBoundaryMap from '../../../../../../components/jurisdictions/MunicipalityBoundaryMap.astro';
 import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
 import { crystalLakeFindings } from '../../../../../../data/illinois/counties/mchenry';
 import { crystalLakeRecords } from '../../../../../../data/illinois/counties/mchenry-records';
@@ -8,6 +9,7 @@ import { crystalLakeRecords } from '../../../../../../data/illinois/counties/mch
 <main class="page_shell">
 <nav class="jurisdiction_breadcrumbs" aria-label="Breadcrumb"><a href="/illinois/">Illinois</a><span>→</span><a href="/illinois/counties/mchenry/">McHenry County</a><span>→</span><strong>Crystal Lake</strong></nav>
 <header class="article_header"><p class="eyebrow">LOCAL SURVEILLANCE · CRYSTAL LAKE, ILLINOIS</p><h1>Crystal Lake</h1><p class="article_deck">Municipal findings are attributed to Crystal Lake or its police department only when the source supports that attribution. McHenry County systems are not automatically counted as municipal equipment.</p></header>
+<MunicipalityBoundaryMap name="Crystal Lake" county="McHenry" />
 
 <section><p class="eyebrow">CRYSTAL LAKE</p><h2>Documented surveillance systems.</h2><div class="finding_grid">{crystalLakeFindings.map(f => (<article><span class="status_label">{f.status.toUpperCase()}</span><p class="eyebrow finding_technology">{f.technology}</p><h3>{f.title}</h3><p>{f.summary}</p></article>))}</div></section>
 <PublicRecords records={crystalLakeRecords} />

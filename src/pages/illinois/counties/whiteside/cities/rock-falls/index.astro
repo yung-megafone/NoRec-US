@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import MunicipalityBoundaryMap from '../../../../../../components/jurisdictions/MunicipalityBoundaryMap.astro';
 import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
 import { rockFallsFindings } from '../../../../../../data/illinois/counties/whiteside';
 import { rockFallsRecords } from '../../../../../../data/illinois/counties/whiteside-records';
@@ -12,6 +13,7 @@ import { rockFallsRecords } from '../../../../../../data/illinois/counties/white
   <h1>Rock Falls</h1>
   <p class="article_deck">Primary records document Rock Falls Police body-worn cameras and a Flock Safety license-plate-reader pilot that had operational evidence by early 2026. Current inventory and contract details remain incomplete.</p>
 </header>
+<MunicipalityBoundaryMap name="Rock Falls" county="Whiteside" />
 <section>
   <p class="eyebrow">ROCK FALLS</p>
   <h2>Documented surveillance systems.</h2>

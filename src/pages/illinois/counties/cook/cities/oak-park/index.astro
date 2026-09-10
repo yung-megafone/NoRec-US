@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import MunicipalityBoundaryMap from '../../../../../../components/jurisdictions/MunicipalityBoundaryMap.astro';
 import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
 import { oakParkFindings } from '../../../../../../data/illinois/counties/cook';
 import { oakParkRecords } from '../../../../../../data/illinois/counties/cook-records';
@@ -12,6 +13,7 @@ import { oakParkRecords } from '../../../../../../data/illinois/counties/cook-re
   <h1>Oak Park</h1>
   <p class="article_deck">Oak Park is notable for a documented surveillance rollback: its eight-camera Flock ALPR deployment operated from 2022 until the Village terminated the contract in August 2025.</p>
 </header>
+<MunicipalityBoundaryMap name="Oak Park" county="Cook" />
 <section>
   <p class="eyebrow">DOCUMENTED SYSTEMS</p>
   <h2>Current and historical surveillance findings.</h2>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import MunicipalityBoundaryMap from '../../../../../../components/jurisdictions/MunicipalityBoundaryMap.astro';
 import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
 import { evanstonFindings } from '../../../../../../data/illinois/counties/cook';
 import { evanstonRecords } from '../../../../../../data/illinois/counties/cook-records';
@@ -12,6 +13,7 @@ import { evanstonRecords } from '../../../../../../data/illinois/counties/cook-r
   <h1>Evanston</h1>
   <p class="article_deck">Evanston has a documented Flock Safety ALPR/camera relationship dating to 2022 and a five-year contract proposal approved through the 2024 municipal process. Current device-level configuration remains a records target.</p>
 </header>
+<MunicipalityBoundaryMap name="Evanston" county="Cook" />
 <section>
   <p class="eyebrow">DOCUMENTED SYSTEMS</p>
   <h2>Current and historical surveillance findings.</h2>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PublicRecords from './PublicRecords.astro';
+import MunicipalityBoundaryMap from './MunicipalityBoundaryMap.astro';
 
 const {
   name,
@@ -42,6 +43,8 @@ const formLabel = `${form.charAt(0).toUpperCase()}${form.slice(1)}`;
       <h1>{name}</h1>
       <p class="article_deck">{formLabel} surveillance research. Unknown or undocumented categories should not be interpreted as evidence that surveillance technology is absent.</p>
     </header>
+
+    <MunicipalityBoundaryMap name={name} county={county} />
 
     {crossCounty && (
       <section class="evidence_box evidence_unknown">

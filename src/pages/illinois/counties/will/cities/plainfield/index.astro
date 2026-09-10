@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import MunicipalityBoundaryMap from '../../../../../../components/jurisdictions/MunicipalityBoundaryMap.astro';
 import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
 import { plainfieldFindings } from '../../../../../../data/illinois/counties/will';
 import { plainfieldRecords } from '../../../../../../data/illinois/counties/will-records';
@@ -7,6 +8,7 @@ import { plainfieldRecords } from '../../../../../../data/illinois/counties/will
 <BaseLayout title="Plainfield Surveillance | NoRec.US" description="Publicly documented surveillance-related technology and records for Plainfield, Illinois." active="surveillance">
 <main class="page_shell"><nav class="jurisdiction_breadcrumbs"><a href="/illinois/">Illinois</a><span>→</span><a href="/illinois/counties/will/">Will County</a><span>→</span><strong>Plainfield</strong></nav>
 <header class="article_header"><p class="eyebrow">LOCAL SURVEILLANCE · PLAINFIELD, ILLINOIS</p><h1>Plainfield</h1><p class="article_deck">Municipal findings are attributed only where primary municipal records support the attribution. Will County Sheriff systems are not counted as Plainfield equipment.</p></header>
+<MunicipalityBoundaryMap name="Plainfield" county="Will" />
 <section><p class="eyebrow">PLAINFIELD</p><h2>Documented surveillance systems.</h2><div class="finding_grid">{plainfieldFindings.map(f => (<article><span class="status_label">{f.status.toUpperCase()}</span><p class="eyebrow finding_technology">{f.technology}</p><h3>{f.title}</h3><p>{f.summary}</p></article>))}</div></section>
 <PublicRecords records={plainfieldRecords} />
 <section><p class="eyebrow">UNRESOLVED</p><h2>What still needs primary records.</h2><ul class="about_questions"><li>Current installed inventory, exact locations, vendors, contracts, retention, sharing, audits, and authorized users.</li><li>Other surveillance technologies not yet established in the primary-source set.</li></ul></section></main></BaseLayout>

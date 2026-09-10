@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import MunicipalityBoundaryMap from '../../../../../../components/jurisdictions/MunicipalityBoundaryMap.astro';
 import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
 import { fultonFindings } from '../../../../../../data/illinois/counties/whiteside';
 import { fultonRecords } from '../../../../../../data/illinois/counties/whiteside-records';
@@ -12,6 +13,7 @@ import { fultonRecords } from '../../../../../../data/illinois/counties/whitesid
   <h1>Fulton</h1>
   <p class="article_deck">A public-record index identifies a Fulton Police Flock Safety deployment in 2025. Because NoRec has not yet located the direct Fulton-origin contract or policy, the deployment remains partial pending primary records.</p>
 </header>
+<MunicipalityBoundaryMap name="Fulton" county="Whiteside" />
 <section>
   <p class="eyebrow">FULTON</p>
   <h2>Documented surveillance systems.</h2>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import MunicipalityBoundaryMap from '../../../../../../components/jurisdictions/MunicipalityBoundaryMap.astro';
 import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
 import { stCharlesFindings } from '../../../../../../data/illinois/counties/kane';
 import { stCharlesRecords } from '../../../../../../data/illinois/counties/kane-records';
@@ -8,6 +9,7 @@ import { stCharlesRecords } from '../../../../../../data/illinois/counties/kane-
 <main class="page_shell">
 <nav class="jurisdiction_breadcrumbs"><a href="/illinois/">Illinois</a><span>→</span><a href="/illinois/counties/kane/">Kane County</a><span>→</span><strong>St. Charles</strong></nav>
 <header class="article_header"><p class="eyebrow">LOCAL SURVEILLANCE · ST. CHARLES, ILLINOIS</p><h1>St. Charles</h1><p class="article_deck">Municipal findings are attributed only where a City or Police Department record supports the attribution. County Sheriff systems are not counted as St. Charles equipment.</p></header>
+<MunicipalityBoundaryMap name="St. Charles" county="Kane" />
 <section><p class="eyebrow">ST. CHARLES</p><h2>Documented surveillance systems.</h2><div class="finding_grid">{stCharlesFindings.map(f => (<article><span class="status_label">{f.status.toUpperCase()}</span><p class="eyebrow finding_technology">{f.technology}</p><h3>{f.title}</h3><p>{f.summary}</p></article>))}</div></section>
 <PublicRecords records={stCharlesRecords} />
 <section><p class="eyebrow">UNRESOLVED</p><h2>What still needs primary records.</h2><ul class="about_questions"><li>Current installed inventory, locations, vendors, retention, sharing, audit configuration, and authorized users.</li><li>Other surveillance technologies not yet established by the primary-source set.</li></ul></section>

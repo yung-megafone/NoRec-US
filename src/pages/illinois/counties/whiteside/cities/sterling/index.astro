@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import MunicipalityBoundaryMap from '../../../../../../components/jurisdictions/MunicipalityBoundaryMap.astro';
 import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
 import { sterlingFindings } from '../../../../../../data/illinois/counties/whiteside';
 import { sterlingRecords } from '../../../../../../data/illinois/counties/whiteside-records';
@@ -12,6 +13,7 @@ import { sterlingRecords } from '../../../../../../data/illinois/counties/whites
   <h1>Sterling</h1>
   <p class="article_deck">A current Flock transparency portal documents Sterling Police’s ALPR network, while City financial records document an Axon body-camera/evidence relationship and Council minutes document an Avigilon camera/intercom system.</p>
 </header>
+<MunicipalityBoundaryMap name="Sterling" county="Whiteside" />
 <section>
   <p class="eyebrow">STERLING</p>
   <h2>Documented surveillance systems.</h2>

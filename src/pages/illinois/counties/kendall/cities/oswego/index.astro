@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import MunicipalityBoundaryMap from '../../../../../../components/jurisdictions/MunicipalityBoundaryMap.astro';
 import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
 import { oswegoFindings } from '../../../../../../data/illinois/counties/kendall';
 import { oswegoRecords } from '../../../../../../data/illinois/counties/kendall-records';
@@ -15,6 +16,7 @@ import { oswegoRecords } from '../../../../../../data/illinois/counties/kendall-
     <h1>Oswego</h1>
     <p class="article_deck">Municipal findings for the Village of Oswego and Oswego Police Department. Kendall County and KenCom regional systems are documented separately unless a source specifically attributes them to Oswego.</p>
   </header>
+<MunicipalityBoundaryMap name="Oswego" county="Kendall" />
 
   <section>
     <p class="eyebrow">OSWEGO POLICE DEPARTMENT</p>

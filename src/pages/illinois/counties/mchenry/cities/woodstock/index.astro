@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import MunicipalityBoundaryMap from '../../../../../../components/jurisdictions/MunicipalityBoundaryMap.astro';
 import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
 import { woodstockFindings } from '../../../../../../data/illinois/counties/mchenry';
 import { woodstockRecords } from '../../../../../../data/illinois/counties/mchenry-records';
@@ -8,6 +9,7 @@ import { woodstockRecords } from '../../../../../../data/illinois/counties/mchen
 <main class="page_shell">
 <nav class="jurisdiction_breadcrumbs" aria-label="Breadcrumb"><a href="/illinois/">Illinois</a><span>→</span><a href="/illinois/counties/mchenry/">McHenry County</a><span>→</span><strong>Woodstock</strong></nav>
 <header class="article_header"><p class="eyebrow">LOCAL SURVEILLANCE · WOODSTOCK, ILLINOIS</p><h1>Woodstock</h1><p class="article_deck">Municipal findings are attributed to Woodstock or its police department only when the source supports that attribution. McHenry County systems are not automatically counted as municipal equipment.</p></header>
+<MunicipalityBoundaryMap name="Woodstock" county="McHenry" />
 
 <section><p class="eyebrow">WOODSTOCK</p><h2>Documented surveillance systems.</h2><div class="finding_grid">{woodstockFindings.map(f => (<article><span class="status_label">{f.status.toUpperCase()}</span><p class="eyebrow finding_technology">{f.technology}</p><h3>{f.title}</h3><p>{f.summary}</p></article>))}</div></section>
 <PublicRecords records={woodstockRecords} />

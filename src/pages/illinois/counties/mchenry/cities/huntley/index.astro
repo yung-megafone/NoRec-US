@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import MunicipalityBoundaryMap from '../../../../../../components/jurisdictions/MunicipalityBoundaryMap.astro';
 import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
 import { huntleyFindings } from '../../../../../../data/illinois/counties/mchenry';
 import { huntleyRecords } from '../../../../../../data/illinois/counties/mchenry-records';
@@ -8,6 +9,7 @@ import { huntleyRecords } from '../../../../../../data/illinois/counties/mchenry
 <main class="page_shell">
 <nav class="jurisdiction_breadcrumbs" aria-label="Breadcrumb"><a href="/illinois/">Illinois</a><span>→</span><a href="/illinois/counties/mchenry/">McHenry County</a><span>→</span><strong>Huntley</strong></nav>
 <header class="article_header"><p class="eyebrow">LOCAL SURVEILLANCE · HUNTLEY, ILLINOIS</p><h1>Huntley</h1><p class="article_deck">Municipal findings are attributed to Huntley or its police department only when the source supports that attribution. McHenry County systems are not automatically counted as municipal equipment.</p></header>
+<MunicipalityBoundaryMap name="Huntley" county="McHenry" />
 <section class="evidence_box evidence_unknown"><span class="status_label">2026 AUDIT NOTE</span><h2>Historical counts are not being presented as current inventory.</h2><p>The 17-reader Flock figure is the documented 2023 deployment baseline. The two-drone / 38-flight figure is the State Fiscal Year 2024 report snapshot. Current 2026 installed counts, exact ALPR locations, retention settings, sharing configuration, and current UAS fleet should be verified through newer Village records or FOIA before those historical numbers are relabeled as current.</p></section>
 <section><p class="eyebrow">HUNTLEY</p><h2>Documented surveillance systems.</h2><div class="finding_grid">{huntleyFindings.map(f => (<article><span class="status_label">{f.status.toUpperCase()}</span><p class="eyebrow finding_technology">{f.technology}</p><h3>{f.title}</h3><p>{f.summary}</p></article>))}</div></section>
 <PublicRecords records={huntleyRecords} />

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import MunicipalityBoundaryMap from '../../../../../../components/jurisdictions/MunicipalityBoundaryMap.astro';
 import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
 import { yorkvilleFindings } from '../../../../../../data/illinois/counties/kendall';
 import { yorkvilleRecords } from '../../../../../../data/illinois/counties/kendall-records';
@@ -15,6 +16,7 @@ import { yorkvilleRecords } from '../../../../../../data/illinois/counties/kenda
     <h1>Yorkville</h1>
     <p class="article_deck">Municipal findings for the United City of Yorkville and Yorkville Police Department. County and KenCom systems remain separate unless a record attributes ownership or operation to Yorkville.</p>
   </header>
+<MunicipalityBoundaryMap name="Yorkville" county="Kendall" />
 
   <section>
     <p class="eyebrow">YORKVILLE POLICE DEPARTMENT</p>

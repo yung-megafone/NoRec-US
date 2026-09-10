@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import MunicipalityBoundaryMap from '../../../../../../components/jurisdictions/MunicipalityBoundaryMap.astro';
 import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
 import { chicagoFindings } from '../../../../../../data/illinois/counties/cook';
 import { chicagoRecords } from '../../../../../../data/illinois/counties/cook-records';
@@ -12,6 +13,7 @@ import { chicagoRecords } from '../../../../../../data/illinois/counties/cook-re
   <h1>Chicago</h1>
   <p class="article_deck">Current CPD directives document body-worn cameras, automated license-plate readers, in-car video and helicopter video systems; current oversight records also document continued Police Observation Device camera deployments.</p>
 </header>
+<MunicipalityBoundaryMap name="Chicago" county="Cook" />
 <section>
   <p class="eyebrow">DOCUMENTED SYSTEMS</p>
   <h2>Current and historical surveillance findings.</h2>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import MunicipalityBoundaryMap from '../../../../../../components/jurisdictions/MunicipalityBoundaryMap.astro';
 import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
 import { mountCarrollFindings } from '../../../../../../data/illinois/counties/carroll';
 import { mountCarrollRecords } from '../../../../../../data/illinois/counties/carroll-records';
@@ -13,6 +14,7 @@ import { mountCarrollRecords } from '../../../../../../data/illinois/counties/ca
   <h1>Mount Carroll</h1>
   <p class="article_deck">Illinois’ 2018 state body-camera report documents department-wide body-worn-camera use at Mount Carroll Police. Because the available inventory is historical, the page keeps current 2026 vendor, count, storage, and retention questions unresolved.</p>
 </header>
+<MunicipalityBoundaryMap name="Mount Carroll" county="Carroll" />
 
 <section>
   <p class="eyebrow">MOUNT CARROLL POLICE</p>

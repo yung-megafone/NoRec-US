@@ -1,0 +1,238 @@
+---
+const {
+  name,
+  county,
+  height = 460,
+  assets = [],
+} = Astro.props;
+
+const municipalityName = String(name);
+const countyName = String(county);
+const slug = municipalityName.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+const mapId = `municipality-boundary-${slug}`;
+
+const municipalityService =
+  'https://maps.dnr.illinois.gov/geoservices/rest/services/BaseLayers/MapServer/23/query';
+
+const escapeSql = (value: string) => String(value).replaceAll("'", "''");
+
+const ringsFromGeometry = (geometry: any): number[][][] => {
+  if (!geometry) return [];
+  if (geometry.type === 'Polygon') return geometry.coordinates ?? [];
+  if (geometry.type === 'MultiPolygon') return (geometry.coordinates ?? []).flat();
+  return [];
+};
+
+const allPoints = (geometry: any): number[][] => ringsFromGeometry(geometry).flat();
+
+const postArcGis = async (url: string, params: Record<string, string>) => {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/geo+json,application/json',
+      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+    },
+    body: new URLSearchParams(params),
+  });
+
+  if (!response.ok) {
+    throw new Error(`ArcGIS request failed: ${response.status} ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  if (data?.error) {
+    throw new Error(data.error?.message ?? 'ArcGIS returned an error');
+  }
+  return data;
+};
+
+let mapError = '';
+let municipalityPath = '';
+let projectedAssets: Array<{
+  x: number;
+  y: number;
+  title: string;
+  href?: string;
+}> = [];
+
+try {
+  const data = await postArcGis(municipalityService, {
+    where: [
+      `DISTRICTNA='${escapeSql(municipalityName)}'`,
+      `DISTRICTNA='${escapeSql(municipalityName.toUpperCase())}'`,
+    ].join(' OR '),
+    outFields: 'DISTRICTNA,MUNID',
+    returnGeometry: 'true',
+    outSR: '4326',
+    f: 'geojson',
+  });
+
+  const features = (data.features ?? []).filter((feature: any) => feature?.geometry);
+  if (!features.length) {
+    throw new Error('Municipal boundary was not returned by the Illinois DNR service');
+  }
+
+  const points = features.flatMap((feature: any) => allPoints(feature.geometry));
+  if (!points.length) {
+    throw new Error('Municipal boundary contains no drawable points');
+  }
+
+  const xs = points.map((p: number[]) => p[0]);
+  const ys = points.map((p: number[]) => p[1]);
+  const minX = Math.min(...xs);
+  const maxX = Math.max(...xs);
+  const minY = Math.min(...ys);
+  const maxY = Math.max(...ys);
+
+  const width = 1000;
+  const svgHeight = 700;
+  const pad = 58;
+  const spanX = Math.max(maxX - minX, 0.00001);
+  const spanY = Math.max(maxY - minY, 0.00001);
+  const sx = (width - pad * 2) / spanX;
+  const sy = (svgHeight - pad * 2) / spanY;
+  const scale = Math.min(sx, sy);
+  const offsetX = (width - spanX * scale) / 2;
+  const offsetY = (svgHeight - spanY * scale) / 2;
+
+  const project = ([x, y]: number[]) => [
+    offsetX + (x - minX) * scale,
+    svgHeight - (offsetY + (y - minY) * scale),
+  ];
+
+  const pathFor = (geometry: any) =>
+    ringsFromGeometry(geometry)
+      .map(
+        (ring) =>
+          ring
+            .map((point, index) => {
+              const [x, y] = project(point);
+              return `${index === 0 ? 'M' : 'L'}${x.toFixed(2)},${y.toFixed(2)}`;
+            })
+            .join(' ') + ' Z',
+      )
+      .join(' ');
+
+  municipalityPath = features.map((feature: any) => pathFor(feature.geometry)).join(' ');
+
+  projectedAssets = (Array.isArray(assets) ? assets : [])
+    .map((asset: any) => {
+      const lat = Number(asset?.lat);
+      const lon = Number(asset?.lon ?? asset?.lng);
+      if (!Number.isFinite(lat) || !Number.isFinite(lon)) return null;
+      const [x, y] = project([lon, lat]);
+      return {
+        x,
+        y,
+        title: String(asset?.title ?? asset?.name ?? 'Surveillance asset'),
+        href: asset?.href ? String(asset.href) : undefined,
+      };
+    })
+    .filter(Boolean);
+} catch (error) {
+  mapError =
+    error instanceof Error
+      ? error.message
+      : 'The Illinois DNR boundary service could not be reached during the site build.';
+  console.warn(`[NoRec municipality map] ${municipalityName}, ${countyName} County: ${mapError}`);
+}
+---
+
+<section class="municipality_boundary_section">
+  <div class="municipality_boundary_heading">
+    <div>
+      <p class="eyebrow">MUNICIPAL BOUNDARY</p>
+      <h2>{municipalityName}</h2>
+    </div>
+    <span class="municipality_boundary_meta">{countyName} County · Illinois</span>
+  </div>
+
+  {
+    municipalityPath ? (
+      <div
+        class="jurisdiction_map municipality_boundary_map jurisdiction_map_loaded"
+        id={mapId}
+        style={`--jurisdiction-map-height:${height}px`}
+      >
+        <div class="polygon_loader" aria-hidden="true">
+          <span class="polygon_loader_spinner"></span>
+          <span>Preparing municipal polygon</span>
+        </div>
+
+        <div class="jurisdiction_map_status">
+          Incorporated boundary · asset layer ready
+        </div>
+
+        <svg
+          class="jurisdiction_map_svg municipality_boundary_svg"
+          viewBox="0 0 1000 700"
+          role="img"
+          aria-label={`${municipalityName}, Illinois incorporated municipal boundary`}
+        >
+          <path
+            d={municipalityPath}
+            class="municipality_boundary_shadow"
+            fill-rule="evenodd"
+          />
+          <path
+            d={municipalityPath}
+            class="municipality_boundary_fill"
+            fill-rule="evenodd"
+          />
+
+          <g
+            class="municipality_asset_layer"
+            data-layer="surveillance-assets"
+            aria-label="Mapped surveillance assets"
+          >
+            {
+              projectedAssets.map((asset) =>
+                asset.href ? (
+                  <a href={asset.href} aria-label={asset.title}>
+                    <circle cx={asset.x} cy={asset.y} r="9" class="municipality_asset_marker">
+                      <title>{asset.title}</title>
+                    </circle>
+                  </a>
+                ) : (
+                  <circle cx={asset.x} cy={asset.y} r="9" class="municipality_asset_marker">
+                    <title>{asset.title}</title>
+                  </circle>
+                ),
+              )
+            }
+          </g>
+
+          <path
+            d={municipalityPath}
+            class="municipality_boundary_outline"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </div>
+    ) : (
+      <div class="jurisdiction_map jurisdiction_map_error municipality_boundary_error" id={mapId}>
+        <div class="jurisdiction_map_status jurisdiction_map_status_error">
+          Municipal boundary unavailable for this build.
+        </div>
+      </div>
+    )
+  }
+
+  <p class="map_note">
+    Illinois DNR incorporated-place boundary geometry. Future mapped surveillance assets can be layered onto this municipal view.
+  </p>
+</section>
+
+<script>
+  const revealMunicipalityBoundaryMaps = () => {
+    document.querySelectorAll('.municipality_boundary_map.jurisdiction_map_loaded').forEach((map) => {
+      requestAnimationFrame(() => map.classList.add('polygon_ready'));
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', revealMunicipalityBoundaryMaps, { once: true });
+  } else {
+    revealMunicipalityBoundaryMaps();
+  }
+</script>

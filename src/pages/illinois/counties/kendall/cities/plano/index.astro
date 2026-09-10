@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import MunicipalityBoundaryMap from '../../../../../../components/jurisdictions/MunicipalityBoundaryMap.astro';
 import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
 import { planoFindings } from '../../../../../../data/illinois/counties/kendall';
 import { planoRecords } from '../../../../../../data/illinois/counties/kendall-records';
@@ -15,6 +16,7 @@ import { planoRecords } from '../../../../../../data/illinois/counties/kendall-r
     <h1>Plano</h1>
     <p class="article_deck">Municipal findings for the City of Plano and Plano Police Department. The 2025 primary records establish a four-camera Flock expansion and prior access to a KenCom-linked stationary reader.</p>
   </header>
+<MunicipalityBoundaryMap name="Plano" county="Kendall" />
 
   <section>
     <p class="eyebrow">PLANO POLICE DEPARTMENT</p>

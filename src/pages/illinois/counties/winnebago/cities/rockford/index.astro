@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import MunicipalityBoundaryMap from '../../../../../../components/jurisdictions/MunicipalityBoundaryMap.astro';
 import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
 import { rockfordFindings } from '../../../../../../data/illinois/counties/winnebago';
 import { rockfordRecords } from '../../../../../../data/illinois/counties/winnebago-records';
@@ -15,6 +16,7 @@ import { rockfordRecords } from '../../../../../../data/illinois/counties/winneb
     <h1>Rockford</h1>
     <p class="article_deck">Municipal findings for the City of Rockford and Rockford Police Department. County-owned systems are documented separately on the Winnebago County page.</p>
   </header>
+<MunicipalityBoundaryMap name="Rockford" county="Winnebago" />
 
   <section>
     <p class="eyebrow">ROCKFORD POLICE DEPARTMENT</p>

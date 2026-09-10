@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import MunicipalityBoundaryMap from '../../../../../../components/jurisdictions/MunicipalityBoundaryMap.astro';
 import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
 import { savannaFindings } from '../../../../../../data/illinois/counties/carroll';
 import { savannaRecords } from '../../../../../../data/illinois/counties/carroll-records';
@@ -13,6 +14,7 @@ import { savannaRecords } from '../../../../../../data/illinois/counties/carroll
   <h1>Savanna</h1>
   <p class="article_deck">A 2026 Illinois Appellate Court order provides recent primary evidence that Savanna Police was using body-worn cameras during a March 2025 traffic stop. The record does not establish the current vendor, fleet size, retention, or full camera inventory.</p>
 </header>
+<MunicipalityBoundaryMap name="Savanna" county="Carroll" />
 
 <section>
   <p class="eyebrow">SAVANNA POLICE</p>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import MunicipalityBoundaryMap from '../../../../../../components/jurisdictions/MunicipalityBoundaryMap.astro';
 import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
 import { galenaFindings } from '../../../../../../data/illinois/counties/jo-daviess';
 import { galenaRecords } from '../../../../../../data/illinois/counties/jo-daviess-records';
@@ -12,6 +13,7 @@ import { galenaRecords } from '../../../../../../data/illinois/counties/jo-davie
   <h1>Galena</h1>
   <p class="article_deck">A current August 2026 City record documents Axon body-worn cameras and Axon interview rooms in the Galena Police Department. Device counts, retention, storage configuration, and additional surveillance systems remain open research questions.</p>
 </header>
+<MunicipalityBoundaryMap name="Galena" county="Jo Daviess" />
 <section>
   <p class="eyebrow">GALENA POLICE</p>
   <h2>Current documented systems.</h2>

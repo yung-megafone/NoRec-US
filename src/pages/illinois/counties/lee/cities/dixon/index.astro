@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import MunicipalityBoundaryMap from '../../../../../../components/jurisdictions/MunicipalityBoundaryMap.astro';
 import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
 import { dixonFindings } from '../../../../../../data/illinois/counties/lee';
 import { dixonRecords } from '../../../../../../data/illinois/counties/lee-records';
@@ -15,6 +16,7 @@ import { dixonRecords } from '../../../../../../data/illinois/counties/lee-recor
     <h1>Dixon</h1>
     <p class="article_deck">Municipal findings for the City of Dixon. Lee County Sheriff systems are documented separately on the county page even when county-owned equipment is physically located inside Dixon.</p>
   </header>
+<MunicipalityBoundaryMap name="Dixon" county="Lee" />
 
   <section>
     <p class="eyebrow">CITY OF DIXON</p>

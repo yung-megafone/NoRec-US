@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import MunicipalityBoundaryMap from '../../../../../../components/jurisdictions/MunicipalityBoundaryMap.astro';
 import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
 import { freeportFindings } from '../../../../../../data/illinois/counties/stephenson';
 import { freeportRecords } from '../../../../../../data/illinois/counties/stephenson-records';
@@ -12,6 +13,7 @@ import { freeportRecords } from '../../../../../../data/illinois/counties/stephe
   <h1>Freeport</h1>
   <p class="article_deck">Primary records document Freeport Police use of license-plate readers, ShotSpotter, body-worn cameras, tip411, a residential doorbell-camera pilot, and later downtown fixed cameras. Historical deployments are date-scoped where current 2026 status is not yet established.</p>
 </header>
+<MunicipalityBoundaryMap name="Freeport" county="Stephenson" />
 
 <section>
   <p class="eyebrow">FREEPORT POLICE</p>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import MunicipalityBoundaryMap from '../../../../../../components/jurisdictions/MunicipalityBoundaryMap.astro';
 import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
 import { skokieFindings } from '../../../../../../data/illinois/counties/cook';
 import { skokieRecords } from '../../../../../../data/illinois/counties/cook-records';
@@ -12,6 +13,7 @@ import { skokieRecords } from '../../../../../../data/illinois/counties/cook-rec
   <h1>Skokie</h1>
   <p class="article_deck">Skokie publishes unusually detailed current ALPR information, including a September 2026 inventory spanning Flock, Axon Fleet, Vigilant and Alltech systems, plus state documentation of its Axon body-camera deployment.</p>
 </header>
+<MunicipalityBoundaryMap name="Skokie" county="Cook" />
 <section>
   <p class="eyebrow">DOCUMENTED SYSTEMS</p>
   <h2>Current and historical surveillance findings.</h2>

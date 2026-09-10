@@ -1260,3 +1260,80 @@ ul#menu li.selected a::after{
     transition:none;
   }
 }
+
+
+/* Focused municipality/city boundary view */
+.municipality_boundary_section{
+  margin:2rem 0 2.4rem;
+}
+.municipality_boundary_heading{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:1rem;
+  margin-bottom:.7rem;
+}
+.municipality_boundary_heading h2{
+  margin:.08rem 0 0;
+}
+.municipality_boundary_meta{
+  color:var(--muted);
+  font:700 .66rem/1.35 ui-monospace,SFMono-Regular,Consolas,monospace;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  white-space:nowrap;
+}
+.municipality_boundary_map{
+  background:
+    linear-gradient(rgba(0,0,0,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,0,0,.035) 1px,transparent 1px),
+    var(--white);
+  background-size:28px 28px;
+}
+.municipality_boundary_shadow{
+  fill:#bfc3c0;
+  stroke:none;
+  transform:translate(8px,8px);
+  opacity:.42;
+}
+.municipality_boundary_fill{
+  fill:#171919;
+  stroke:none;
+}
+.municipality_boundary_outline{
+  fill:none;
+  stroke:#050606;
+  stroke-width:3;
+  vector-effect:non-scaling-stroke;
+  pointer-events:none;
+}
+.municipality_asset_layer{
+  pointer-events:auto;
+}
+.municipality_asset_marker{
+  fill:#fff;
+  stroke:#050606;
+  stroke-width:3;
+  vector-effect:non-scaling-stroke;
+  cursor:pointer;
+}
+.municipality_asset_layer a:hover .municipality_asset_marker,
+.municipality_asset_layer a:focus-visible .municipality_asset_marker{
+  r:12;
+}
+.municipality_boundary_error{
+  margin-top:1rem;
+}
+@media(max-width:700px){
+  .municipality_boundary_heading{
+    align-items:flex-start;
+    flex-direction:column;
+    gap:.35rem;
+  }
+  .municipality_boundary_meta{
+    white-space:normal;
+  }
+  .municipality_boundary_map{
+    --jurisdiction-map-height:360px !important;
+  }
+}

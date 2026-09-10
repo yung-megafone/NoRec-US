@@ -20,7 +20,7 @@ const countyRows = [["Jo Daviess", "Stephenson", "Winnebago", "Boone", "McHenry"
  ["Jackson", "Williamson", "Saline", "Gallatin"],
  ["Union", "Johnson", "Pope", "Hardin"],
  ["Alexander", "Pulaski", "Massac"]];
-const researchedCounties = new Set(['Stephenson', 'Winnebago', 'Boone', 'Ogle', 'Lee', 'Kendall', 'DuPage', 'DeKalb', 'Kane', 'McHenry', 'Lake', 'Will']);
+const researchedCounties = new Set(['Jo Daviess', 'Stephenson', 'Winnebago', 'Boone', 'Ogle', 'Lee', 'Kendall', 'DuPage', 'DeKalb', 'Kane', 'McHenry', 'Lake', 'Will']);
 const countySlug = (name: string) => name.toLowerCase().replace(/\./g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const counties = countyRows.flat().sort((a, b) => a.localeCompare(b));
 ---
@@ -62,6 +62,7 @@ const counties = countyRows.flat().sort((a, b) => a.localeCompare(b));
     <p class="eyebrow">CURRENT COVERAGE</p>
     <h2>Published county dossiers</h2>
     <div class="jurisdiction_cards">
+      <a href="/illinois/counties/jo-daviess/"><strong>Jo Daviess County</strong><span>10 municipalities · Sheriff BWC · UAS · Galena Axon BWC + interview rooms</span></a>
       <a href="/illinois/counties/stephenson/"><strong>Stephenson County</strong><span>11 municipalities · Sheriff body/squad video · jail cameras · Freeport ALPR · ShotSpotter · BWC · fixed cameras</span></a>\n      <a href="/illinois/counties/winnebago/"><strong>Winnebago County</strong><span>Winnebago County Sheriff · Rockford Police · Flock · Axon · drones · cameras · analytics</span></a>
       <a href="/illinois/counties/boone/"><strong>Boone County</strong><span>Boone County Sheriff's Office · Belvidere Police · Flock ALPR · Policy 450 · retention · audits · locations</span></a>
       <a href="/illinois/counties/ogle/"><strong>Ogle County</strong><span>Municipality directory · GIS boundaries · Sheriff FOIA portal · primary-record research queue</span></a>

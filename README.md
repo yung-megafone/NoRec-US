@@ -328,3 +328,8 @@ Will County is scaffolded with 36 incorporated municipal entries/portions. Initi
 ### Stephenson County batch
 
 Stephenson County is scaffolded with all 11 incorporated municipalities identified by Illinois State Archives and county planning records. County-level findings currently document Sheriff body/squad video and the jail’s nearly 100-camera corrections system. Freeport has a separate municipal dossier covering documented ALPR, ShotSpotter, body-worn cameras, tip411, a residential doorbell-camera pilot, and two downtown fixed cameras approved in 2025. Historical records are date-scoped when current 2026 deployment status is unresolved.
+
+
+### Jo Daviess County batch
+
+Jo Daviess County is scaffolded with all 10 incorporated municipalities identified by the Illinois State Archives. County-level primary records document a historical 25-camera Sheriff body-worn-camera deployment in the 2020 state report and one Sheriff drone in the SFY2024 state drone report; both are date-scoped rather than treated as current 2026 inventories. Galena has a current August 2026 City record documenting Axon body-worn cameras and Axon interview rooms. Stockton and East Dubuque have official records/FOIA entry points linked for follow-up research.

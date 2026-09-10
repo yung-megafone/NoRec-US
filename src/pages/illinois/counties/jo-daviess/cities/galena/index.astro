@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
+import { galenaFindings } from '../../../../../../data/illinois/counties/jo-daviess';
+import { galenaRecords } from '../../../../../../data/illinois/counties/jo-daviess-records';
+---
+<BaseLayout title="Galena Surveillance | NoRec.US" description="Publicly documented surveillance technology and records for Galena, Illinois." active="surveillance">
+<main class="page_shell">
+<nav class="jurisdiction_breadcrumbs" aria-label="Breadcrumb"><a href="/illinois/">Illinois</a><span>→</span><a href="/illinois/counties/jo-daviess/">Jo Daviess County</a><span>→</span><strong>Galena</strong></nav>
+<header class="article_header">
+  <p class="eyebrow">LOCAL SURVEILLANCE · GALENA, ILLINOIS</p>
+  <h1>Galena</h1>
+  <p class="article_deck">A current August 2026 City record documents Axon body-worn cameras and Axon interview rooms in the Galena Police Department. Device counts, retention, storage configuration, and additional surveillance systems remain open research questions.</p>
+</header>
+<section>
+  <p class="eyebrow">GALENA POLICE</p>
+  <h2>Current documented systems.</h2>
+  <div class="finding_grid">
+    {galenaFindings.map(f => (
+      <article>
+        <span class="status_label">{f.status.toUpperCase()}</span>
+        <p class="eyebrow finding_technology">{f.technology}</p>
+        <h3>{f.title}</h3>
+        <p>{f.summary}</p>
+      </article>
+    ))}
+  </div>
+</section>
+<PublicRecords records={galenaRecords} />
+<section>
+  <p class="eyebrow">UNRESOLVED</p>
+  <h2>What still needs primary records.</h2>
+  <ul class="about_questions">
+    <li>Axon body-camera model, device count, Evidence.com or other storage configuration, retention, activation policy, audit rules, and sharing.</li>
+    <li>Axon interview-room count, hardware, storage, retention, access, and export procedures.</li>
+    <li>Any ALPR, drone/UAS, fixed public-space camera, facial-recognition, social-media analytics, or other investigative-software use.</li>
+  </ul>
+</section>
+</main>
+</BaseLayout>

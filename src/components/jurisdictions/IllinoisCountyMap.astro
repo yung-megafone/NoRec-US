@@ -30,6 +30,8 @@ const normalizeCountyName = (feature: Feature) => {
     .replace(/\b\w/g, (c) => c.toUpperCase())
     .replace('Mcdonough', 'McDonough')
     .replace('Mchenry', 'McHenry')
+    .replace('Dekalb', 'DeKalb')
+    .replace('Dupage', 'DuPage')
     .replace('Mclean', 'McLean')
     .replace('Dewitt', 'DeWitt')
     .replace('Lasalle', 'LaSalle')

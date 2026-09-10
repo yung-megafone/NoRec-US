@@ -1,9 +1,6 @@
 # NoRec.US — Apache/cPanel launch hardening
 # This file is copied to the static build root by Astro.
-
-Options -Indexes
-
-DirectoryIndex index.html
+# Avoid Options/DirectoryIndex directives here: some cPanel shared hosts reject them in .htaccess and return HTTP 500.
 
 <IfModule mod_rewrite.c>
   RewriteEngine On

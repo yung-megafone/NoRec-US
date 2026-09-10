@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
+import { dixonFindings } from '../../../../../../data/illinois/counties/lee';
+import { dixonRecords } from '../../../../../../data/illinois/counties/lee-records';
+---
+<BaseLayout title="Dixon Surveillance | NoRec.US" description="Publicly documented surveillance-related technology and primary records for Dixon, Illinois." active="surveillance">
+<main class="page_shell">
+  <nav class="jurisdiction_breadcrumbs" aria-label="Breadcrumb">
+    <a href="/illinois/">Illinois</a><span>→</span><a href="/illinois/counties/lee/">Lee County</a><span>→</span><strong>Dixon</strong>
+  </nav>
+
+  <header class="article_header">
+    <p class="eyebrow">LOCAL SURVEILLANCE · DIXON, ILLINOIS</p>
+    <h1>Dixon</h1>
+    <p class="article_deck">Municipal findings for the City of Dixon. Lee County Sheriff systems are documented separately on the county page even when county-owned equipment is physically located inside Dixon.</p>
+  </header>
+
+  <section>
+    <p class="eyebrow">CITY OF DIXON</p>
+    <h2>Documented surveillance-related systems.</h2>
+    <div class="finding_grid">
+      {dixonFindings.map(finding => (
+        <article>
+          <span class="status_label">{finding.status.toUpperCase()}</span>
+          <p class="eyebrow finding_technology">{finding.technology}</p>
+          <h3>{finding.title}</h3>
+          <p>{finding.summary}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="evidence_box evidence_unknown">
+    <span class="status_label">OWNERSHIP MATTERS</span>
+    <h2>County Flock readers are not Dixon Police readers by default.</h2>
+    <p>Lee County Sheriff Flock use is documented at the county level. A camera physically located within Dixon does not become a Dixon Police Department asset without a primary record identifying Dixon as owner/operator. NoRec therefore does not copy the county's camera count into this city dossier.</p>
+  </section>
+
+  <PublicRecords records={dixonRecords} />
+
+  <section>
+    <p class="eyebrow">UNRESOLVED</p>
+    <h2>What still needs primary records.</h2>
+    <ul class="about_questions">
+      <li>Whether Dixon Police owns or subscribes to any ALPR system independently of Lee County.</li>
+      <li>Current police/fire drone inventory, ownership, payloads, flight logs, and policies.</li>
+      <li>Body-worn and in-car camera systems, retention, and evidence-storage contracts.</li>
+      <li>Fixed-camera networks, social-media analytics, facial recognition, and investigative software.</li>
+    </ul>
+  </section>
+</main>
+</BaseLayout>

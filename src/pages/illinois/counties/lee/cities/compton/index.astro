@@ -1,0 +1,5 @@
+---
+import MunicipalityStub from '../../../../../../components/jurisdictions/MunicipalityStub.astro';
+import { leeMunicipalityFoiaLinks } from '../../../../../../data/illinois/counties/lee-records';
+---
+<MunicipalityStub name='Compton' form='village' county="Lee" counties=['Lee'] records={leeMunicipalityFoiaLinks['compton'] ?? []} />

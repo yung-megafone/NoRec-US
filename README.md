@@ -281,3 +281,15 @@ The template has been substantially adapted for Astro, evidence-oriented content
 <p align="center">
   <strong>NoRec.US · Surveillance, documented.</strong>
 </p>
+
+
+### County batch status
+
+The Illinois rollout is being expanded county-by-county. Boone and Winnebago contain municipal scaffolding and published research; Ogle now contains its complete incorporated-municipality research scaffold, GIS-ready county drill-down, official FOIA entry points, and an open surveillance research queue.
+
+Winnebago primary-source mirrors supplied to NoRec are stored under `public/archive/winnebago/` with a `MANIFEST.sha256`. Public-record cards should link both the authoritative government URL and the local `/archive/...` copy when both are available. Local mirrors are archival copies, not substitutes for checking the current official source.
+
+
+### Lee County batch
+
+Lee County now includes a complete municipal scaffold, GIS-ready county map, official FOIA/public-record links, documented Sheriff Flock LPR procurement/use, and the Sheriff UAS policy. Dixon has a separate municipal dossier so county-owned systems are not counted as city-owned equipment. Cross-county entries (Rochelle and the Village of Lee) are linked without duplicating canonical municipal research.

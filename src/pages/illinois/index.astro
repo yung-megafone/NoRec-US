@@ -19,7 +19,7 @@ const countyRows = [["Jo Daviess", "Stephenson", "Winnebago", "Boone", "McHenry"
  ["Jackson", "Williamson", "Saline", "Gallatin"],
  ["Union", "Johnson", "Pope", "Hardin"],
  ["Alexander", "Pulaski", "Massac"]];
-const researchedCounties = new Set(['Winnebago', 'Boone', 'DeKalb', 'Kane', 'McHenry']);
+const researchedCounties = new Set(['Winnebago', 'Boone', 'Ogle', 'Lee', 'DeKalb', 'Kane', 'McHenry']);
 const countySlug = (name: string) => name.toLowerCase().replace(/\./g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const counties = countyRows.flat().sort((a, b) => a.localeCompare(b));
 ---
@@ -80,6 +80,8 @@ const counties = countyRows.flat().sort((a, b) => a.localeCompare(b));
     <div class="jurisdiction_cards">
       <a href="/illinois/counties/winnebago/"><strong>Winnebago County</strong><span>Winnebago County Sheriff · Rockford Police · Flock · Axon · drones · cameras · analytics</span></a>
       <a href="/illinois/counties/boone/"><strong>Boone County</strong><span>Boone County Sheriff's Office · Belvidere Police · Flock ALPR · Policy 450 · retention · audits · locations</span></a>
+      <a href="/illinois/counties/ogle/"><strong>Ogle County</strong><span>Municipality directory · GIS boundaries · Sheriff FOIA portal · primary-record research queue</span></a>
+      <a href="/illinois/counties/lee/"><strong>Lee County</strong><span>Lee County Sheriff · Flock LPR · UAS policy · Dixon · municipality directory · FOIA sources</span></a>
       <a href="/illinois/counties/dekalb/"><strong>DeKalb County</strong><span>DeKalb Police · County Sheriff · Genetec · Flock · Axon · Fusus · Fleet 3 · drones</span></a>
       <a href="/illinois/counties/kane/"><strong>Kane County</strong><span>Kane County Sheriff · Flock · Getac · Evidence.com · municipal drones</span></a>
       <a href="/illinois/counties/mchenry/"><strong>McHenry County</strong><span>McHenry County Sheriff's Office · Huntley Police · ALPR · drones · body/in-car video · Evidence.com</span></a>

@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
+import { rockFallsFindings } from '../../../../../../data/illinois/counties/whiteside';
+import { rockFallsRecords } from '../../../../../../data/illinois/counties/whiteside-records';
+---
+<BaseLayout title="Rock Falls Surveillance | NoRec.US" description="Publicly documented surveillance technology and records for Rock Falls, Illinois." active="surveillance">
+<main class="page_shell">
+<nav class="jurisdiction_breadcrumbs" aria-label="Breadcrumb"><a href="/illinois/">Illinois</a><span>→</span><a href="/illinois/counties/whiteside/">Whiteside County</a><span>→</span><strong>Rock Falls</strong></nav>
+<header class="article_header">
+  <p class="eyebrow">LOCAL SURVEILLANCE · ROCK FALLS, ILLINOIS</p>
+  <h1>Rock Falls</h1>
+  <p class="article_deck">Primary records document Rock Falls Police body-worn cameras and a Flock Safety license-plate-reader pilot that had operational evidence by early 2026. Current inventory and contract details remain incomplete.</p>
+</header>
+<section>
+  <p class="eyebrow">ROCK FALLS</p>
+  <h2>Documented surveillance systems.</h2>
+  <div class="finding_grid">
+    {rockFallsFindings.map(f => (
+      <article>
+        <span class="status_label">{f.status.toUpperCase()}</span>
+        <p class="eyebrow finding_technology">{f.technology}</p>
+        <h3>{f.title}</h3>
+        <p>{f.summary}</p>
+      </article>
+    ))}
+  </div>
+</section>
+<PublicRecords records={rockFallsRecords} />
+<section>
+  <p class="eyebrow">UNRESOLVED</p>
+  <h2>What still needs primary records.</h2>
+  <ul class="about_questions">
+    <li>Current device counts, contracts, policies, retention, access controls, sharing, and audit logs for documented systems.</li>
+    <li>Any additional ALPR, drone/UAS, fixed-camera, facial-recognition, social-media analytics, in-car video, or investigative-software use not yet represented here.</li>
+  </ul>
+</section>
+</main>
+</BaseLayout>

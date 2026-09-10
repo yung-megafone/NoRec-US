@@ -338,3 +338,8 @@ Jo Daviess County is scaffolded with all 10 incorporated municipalities identifi
 ### Carroll County batch
 
 Carroll County is scaffolded with all seven incorporated municipalities identified by the Illinois State Archives. County-level primary records document a June 2024 Sheriff body-camera deployment milestone. Mount Carroll has a historical 2018 state BWC record showing department-wide use, while a 2026 Illinois Appellate Court order documents operational Savanna Police body-worn-camera use during a March 2025 traffic stop. Historical and event-specific evidence is date-scoped rather than treated as a complete current 2026 inventory.
+
+
+### Whiteside County batch
+
+Whiteside County is scaffolded with all 11 incorporated municipalities identified by the Illinois State Archives and current County yearbook. County-level primary records document a 2023 Sheriff BWC inventory, an active Sheriff sUAS unit with expanded equipment in 2024, and RapidSOS emergency-location infrastructure. Sterling has a current Flock transparency portal plus Axon BWC/evidence and Avigilon camera/intercom records. Rock Falls has historical BWC records and a documented Flock LPR pilot with operational evidence by 2026. Fulton has a partial Flock finding pending direct Fulton-origin primary records.

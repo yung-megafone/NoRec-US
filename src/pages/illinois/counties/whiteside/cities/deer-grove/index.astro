@@ -1,0 +1,5 @@
+---
+import MunicipalityStub from '../../../../../../components/jurisdictions/MunicipalityStub.astro';
+import { whitesideMunicipalityFoiaLinks } from '../../../../../../data/illinois/counties/whiteside-records';
+---
+<MunicipalityStub name='Deer Grove' form='village' county="Whiteside" counties={['Whiteside']} records={whitesideMunicipalityFoiaLinks['deer-grove'] ?? []} />

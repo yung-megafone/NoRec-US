@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
+import { sterlingFindings } from '../../../../../../data/illinois/counties/whiteside';
+import { sterlingRecords } from '../../../../../../data/illinois/counties/whiteside-records';
+---
+<BaseLayout title="Sterling Surveillance | NoRec.US" description="Publicly documented surveillance technology and records for Sterling, Illinois." active="surveillance">
+<main class="page_shell">
+<nav class="jurisdiction_breadcrumbs" aria-label="Breadcrumb"><a href="/illinois/">Illinois</a><span>→</span><a href="/illinois/counties/whiteside/">Whiteside County</a><span>→</span><strong>Sterling</strong></nav>
+<header class="article_header">
+  <p class="eyebrow">LOCAL SURVEILLANCE · STERLING, ILLINOIS</p>
+  <h1>Sterling</h1>
+  <p class="article_deck">A current Flock transparency portal documents Sterling Police’s ALPR network, while City financial records document an Axon body-camera/evidence relationship and Council minutes document an Avigilon camera/intercom system.</p>
+</header>
+<section>
+  <p class="eyebrow">STERLING</p>
+  <h2>Documented surveillance systems.</h2>
+  <div class="finding_grid">
+    {sterlingFindings.map(f => (
+      <article>
+        <span class="status_label">{f.status.toUpperCase()}</span>
+        <p class="eyebrow finding_technology">{f.technology}</p>
+        <h3>{f.title}</h3>
+        <p>{f.summary}</p>
+      </article>
+    ))}
+  </div>
+</section>
+<PublicRecords records={sterlingRecords} />
+<section>
+  <p class="eyebrow">UNRESOLVED</p>
+  <h2>What still needs primary records.</h2>
+  <ul class="about_questions">
+    <li>Current device counts, contracts, policies, retention, access controls, sharing, and audit logs for documented systems.</li>
+    <li>Any additional ALPR, drone/UAS, fixed-camera, facial-recognition, social-media analytics, in-car video, or investigative-software use not yet represented here.</li>
+  </ul>
+</section>
+</main>
+</BaseLayout>

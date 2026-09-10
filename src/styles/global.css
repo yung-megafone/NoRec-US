@@ -748,10 +748,25 @@ a:focus-visible > .jurisdiction_municipality{
   filter:contrast(1.25);
   outline:none;
 }
-.jurisdiction_map_error .jurisdiction_map_svg{opacity:.18}
+.jurisdiction_map_error{
+  min-height:0;
+  height:auto;
+  padding:3.35rem .8rem .9rem;
+}
+.jurisdiction_map_error .jurisdiction_map_status{
+  position:absolute;
+}
+.jurisdiction_map_error_detail{
+  margin:0;
+  color:var(--muted);
+  font-size:.86rem;
+}
+.jurisdiction_map_status_error{
+  max-width:calc(100% - 1.3rem);
+}
 .municipality_directory{margin-top:1.1rem}
 @media(max-width:700px){
-  .jurisdiction_map{min-height:420px}
+  .jurisdiction_map:not(.jurisdiction_map_error){min-height:420px}
   .jurisdiction_map_svg{height:420px}
 }
 

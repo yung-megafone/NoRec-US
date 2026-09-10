@@ -5,153 +5,233 @@ const {
   height = 560,
 } = Astro.props;
 
-const countyUpper = String(county).toUpperCase();
+const countyName = String(county);
+const countyUpper = countyName.toUpperCase();
+const countySlug = countyName.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+const mapId = `municipality-map-${countySlug}`;
+const clipId = `${mapId}-county-clip`;
+
 const clientMunicipalities = municipalities.map((m: any) => ({
-  name: m.name,
-  slug: m.slug,
-  status: m.status,
+  name: String(m.name),
+  slug: String(m.slug),
+  status: String(m.status),
   crossCounty: Boolean(m.crossCounty),
-  href: `/illinois/counties/${String(county).toLowerCase().replace(/[^a-z0-9]+/g, '-')}/cities/${m.slug}/`,
+  href: `/illinois/counties/${countySlug}/cities/${m.slug}/`,
 }));
-const mapId = `municipality-map-${String(county).toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
----
-<div class="jurisdiction_map" id={mapId} style={`--jurisdiction-map-height:${height}px`}>
-  <div class="jurisdiction_map_status" data-map-status>Loading official jurisdiction boundaries…</div>
-  <svg class="jurisdiction_map_svg" data-map-svg viewBox="0 0 1000 700" role="img" aria-label={`${county} County municipal boundary map`}></svg>
-</div>
 
-<script define:vars={{ mapId, countyUpper, clientMunicipalities }}>
-  const root = document.getElementById(mapId);
-  const svg = root?.querySelector('[data-map-svg]');
-  const status = root?.querySelector('[data-map-status]');
+const countyService =
+  'https://maps.dnr.illinois.gov/geoservices/rest/services/BaseLayers/MapServer/10/query';
+const municipalityService =
+  'https://maps.dnr.illinois.gov/geoservices/rest/services/BaseLayers/MapServer/23/query';
 
-  const countyService = 'https://maps.dnr.illinois.gov/geoservices/rest/services/BaseLayers/MapServer/10/query';
-  const municipalityService = 'https://maps.dnr.illinois.gov/geoservices/rest/services/BaseLayers/MapServer/23/query';
-  const ns = 'http://www.w3.org/2000/svg';
+const escapeSql = (value: string) => String(value).replaceAll("'", "''");
 
-  const escapeSql = (value) => String(value).replaceAll("'", "''");
-  const municipalityNames = clientMunicipalities.map((m) => m.name);
-  const municipalityWhere = municipalityNames
-    .flatMap((name) => [`DISTRICTNA='${escapeSql(name)}'`, `DISTRICTNA='${escapeSql(name.toUpperCase())}'`])
+const ringsFromGeometry = (geometry: any): number[][][] => {
+  if (!geometry) return [];
+  if (geometry.type === 'Polygon') return geometry.coordinates ?? [];
+  if (geometry.type === 'MultiPolygon') return (geometry.coordinates ?? []).flat();
+  return [];
+};
+
+const allPoints = (geometry: any): number[][] => ringsFromGeometry(geometry).flat();
+
+const postArcGis = async (url: string, params: Record<string, string>) => {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/geo+json,application/json',
+      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+    },
+    body: new URLSearchParams(params),
+  });
+
+  if (!response.ok) {
+    throw new Error(`ArcGIS request failed: ${response.status} ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  if (data?.error) {
+    throw new Error(data.error?.message ?? 'ArcGIS returned an error');
+  }
+  return data;
+};
+
+let mapError = '';
+let countyPath = '';
+let municipalityShapes: Array<{
+  name: string;
+  href: string;
+  className: string;
+  title: string;
+  path: string;
+}> = [];
+
+try {
+  const municipalityWhere = clientMunicipalities
+    .flatMap((item: any) => [
+      `DISTRICTNA='${escapeSql(item.name)}'`,
+      `DISTRICTNA='${escapeSql(item.name.toUpperCase())}'`,
+    ])
     .join(' OR ');
 
-  const queryUrl = (base, params) => `${base}?${new URLSearchParams(params).toString()}`;
-  const countyUrl = queryUrl(countyService, {
-    where: `COUNTY_NAM='${escapeSql(countyUpper)}' OR COUNTY_NAM='${escapeSql(countyUpper[0] + countyUpper.slice(1).toLowerCase())}'`,
-    outFields: 'COUNTY_NAM',
-    returnGeometry: 'true',
-    outSR: '4326',
-    f: 'geojson',
-  });
-  const municipalityUrl = queryUrl(municipalityService, {
-    where: municipalityWhere,
-    outFields: 'DISTRICTNA,MUNID',
-    returnGeometry: 'true',
-    outSR: '4326',
-    f: 'geojson',
-  });
+  const [countyData, municipalityData] = await Promise.all([
+    postArcGis(countyService, {
+      where: `COUNTY_NAM='${escapeSql(countyUpper)}' OR COUNTY_NAM='${escapeSql(
+        countyUpper[0] + countyUpper.slice(1).toLowerCase(),
+      )}'`,
+      outFields: 'COUNTY_NAM',
+      returnGeometry: 'true',
+      outSR: '4326',
+      f: 'geojson',
+    }),
+    postArcGis(municipalityService, {
+      where: municipalityWhere,
+      outFields: 'DISTRICTNA,MUNID',
+      returnGeometry: 'true',
+      outSR: '4326',
+      f: 'geojson',
+    }),
+  ]);
 
-  const ringsFromGeometry = (geometry) => {
-    if (!geometry) return [];
-    if (geometry.type === 'Polygon') return geometry.coordinates;
-    if (geometry.type === 'MultiPolygon') return geometry.coordinates.flat();
-    return [];
-  };
+  const countyFeature = countyData.features?.[0];
+  if (!countyFeature?.geometry) {
+    throw new Error('County boundary was not returned by the Illinois DNR service');
+  }
 
-  const allPoints = (geometry) => ringsFromGeometry(geometry).flat();
+  const points = allPoints(countyFeature.geometry);
+  if (!points.length) {
+    throw new Error('County boundary contains no drawable points');
+  }
 
-  const run = async () => {
-    if (!root || !svg || !status) return;
-    try {
-      const [countyResponse, municipalityResponse] = await Promise.all([
-        fetch(countyUrl, { headers: { Accept: 'application/geo+json,application/json' } }),
-        fetch(municipalityUrl, { headers: { Accept: 'application/geo+json,application/json' } }),
-      ]);
-      if (!countyResponse.ok || !municipalityResponse.ok) throw new Error('Boundary service unavailable');
+  const xs = points.map((p) => p[0]);
+  const ys = points.map((p) => p[1]);
+  const minX = Math.min(...xs);
+  const maxX = Math.max(...xs);
+  const minY = Math.min(...ys);
+  const maxY = Math.max(...ys);
 
-      const countyData = await countyResponse.json();
-      const municipalityData = await municipalityResponse.json();
-      const countyFeature = countyData.features?.[0];
-      if (!countyFeature?.geometry) throw new Error('County boundary not returned');
+  const width = 1000;
+  const svgHeight = 700;
+  const pad = 32;
+  const sx = (width - pad * 2) / (maxX - minX);
+  const sy = (svgHeight - pad * 2) / (maxY - minY);
+  const scale = Math.min(sx, sy);
+  const offsetX = (width - (maxX - minX) * scale) / 2;
+  const offsetY = (svgHeight - (maxY - minY) * scale) / 2;
 
-      const points = allPoints(countyFeature.geometry);
-      const xs = points.map((p) => p[0]);
-      const ys = points.map((p) => p[1]);
-      const minX = Math.min(...xs);
-      const maxX = Math.max(...xs);
-      const minY = Math.min(...ys);
-      const maxY = Math.max(...ys);
-      const pad = 32;
-      const width = 1000;
-      const height = 700;
-      const sx = (width - pad * 2) / (maxX - minX);
-      const sy = (height - pad * 2) / (maxY - minY);
-      const scale = Math.min(sx, sy);
-      const offsetX = (width - (maxX - minX) * scale) / 2;
-      const offsetY = (height - (maxY - minY) * scale) / 2;
-      const project = ([x, y]) => [offsetX + (x - minX) * scale, height - (offsetY + (y - minY) * scale)];
+  const project = ([x, y]: number[]) => [
+    offsetX + (x - minX) * scale,
+    svgHeight - (offsetY + (y - minY) * scale),
+  ];
 
-      const pathFor = (geometry) => ringsFromGeometry(geometry)
-        .map((ring) => ring.map((point, index) => {
-          const [x, y] = project(point);
-          return `${index === 0 ? 'M' : 'L'}${x.toFixed(2)},${y.toFixed(2)}`;
-        }).join(' ') + ' Z')
-        .join(' ');
+  const pathFor = (geometry: any) =>
+    ringsFromGeometry(geometry)
+      .map(
+        (ring) =>
+          ring
+            .map((point, index) => {
+              const [x, y] = project(point);
+              return `${index === 0 ? 'M' : 'L'}${x.toFixed(2)},${y.toFixed(2)}`;
+            })
+            .join(' ') + ' Z',
+      )
+      .join(' ');
 
-      svg.replaceChildren();
-      const defs = document.createElementNS(ns, 'defs');
-      const clip = document.createElementNS(ns, 'clipPath');
-      const clipId = `${mapId}-county-clip`;
-      clip.setAttribute('id', clipId);
-      const clipPath = document.createElementNS(ns, 'path');
-      clipPath.setAttribute('d', pathFor(countyFeature.geometry));
-      clipPath.setAttribute('fill-rule', 'evenodd');
-      clip.appendChild(clipPath);
-      defs.appendChild(clip);
-      svg.appendChild(defs);
+  countyPath = pathFor(countyFeature.geometry);
 
-      const countyFill = document.createElementNS(ns, 'path');
-      countyFill.setAttribute('d', pathFor(countyFeature.geometry));
-      countyFill.setAttribute('class', 'jurisdiction_county_fill');
-      countyFill.setAttribute('fill-rule', 'evenodd');
-      svg.appendChild(countyFill);
+  const byName = new Map(
+    clientMunicipalities.map((item: any) => [item.name.toLowerCase(), item]),
+  );
 
-      const byName = new Map(clientMunicipalities.map((m) => [m.name.toLowerCase(), m]));
-      for (const feature of municipalityData.features ?? []) {
-        const featureName = String(feature.properties?.DISTRICTNA ?? '').trim();
-        const item = byName.get(featureName.toLowerCase());
-        if (!item || !feature.geometry) continue;
+  municipalityShapes = (municipalityData.features ?? [])
+    .map((feature: any) => {
+      const featureName = String(feature.properties?.DISTRICTNA ?? '').trim();
+      const item: any = byName.get(featureName.toLowerCase());
+      if (!item || !feature.geometry) return null;
 
-        const link = document.createElementNS(ns, 'a');
-        link.setAttribute('href', item.href);
-        link.setAttribute('aria-label', `${item.name} — ${item.status === 'documented' ? 'research available' : 'research needed'}`);
+      return {
+        name: item.name,
+        href: item.href,
+        className: `jurisdiction_municipality jurisdiction_municipality_${item.status}${
+          item.crossCounty ? ' jurisdiction_municipality_cross_county' : ''
+        }`,
+        title: `${item.name}${item.crossCounty ? ' · crosses county line' : ''} · ${
+          item.status === 'documented' || item.status === 'partial'
+            ? 'research available'
+            : 'research needed'
+        }`,
+        path: pathFor(feature.geometry),
+      };
+    })
+    .filter(Boolean);
+} catch (error) {
+  mapError =
+    error instanceof Error
+      ? error.message
+      : 'The Illinois DNR boundary service could not be reached during the site build.';
+  console.warn(`[NoRec map] ${countyName} County: ${mapError}`);
+}
+---
 
-        const path = document.createElementNS(ns, 'path');
-        path.setAttribute('d', pathFor(feature.geometry));
-        path.setAttribute('clip-path', `url(#${clipId})`);
-        path.setAttribute('fill-rule', 'evenodd');
-        path.setAttribute('class', `jurisdiction_municipality jurisdiction_municipality_${item.status}${item.crossCounty ? ' jurisdiction_municipality_cross_county' : ''}`);
-        const title = document.createElementNS(ns, 'title');
-        title.textContent = `${item.name}${item.crossCounty ? ' · crosses county line' : ''} · ${item.status === 'documented' ? 'research available' : 'research needed'}`;
-        path.appendChild(title);
-        link.appendChild(path);
-        svg.appendChild(link);
-      }
+{
+  countyPath ? (
+    <div
+      class="jurisdiction_map jurisdiction_map_loaded"
+      id={mapId}
+      style={`--jurisdiction-map-height:${height}px`}
+    >
+      <div class="jurisdiction_map_status">
+        {countyName} County · click a municipal boundary to open its dossier
+      </div>
 
-      const outline = document.createElementNS(ns, 'path');
-      outline.setAttribute('d', pathFor(countyFeature.geometry));
-      outline.setAttribute('class', 'jurisdiction_county_outline');
-      outline.setAttribute('fill-rule', 'evenodd');
-      svg.appendChild(outline);
+      <svg
+        class="jurisdiction_map_svg"
+        viewBox="0 0 1000 700"
+        role="img"
+        aria-label={`${countyName} County municipal boundary map`}
+      >
+        <defs>
+          <clipPath id={clipId}>
+            <path d={countyPath} fill-rule="evenodd" />
+          </clipPath>
+        </defs>
 
-      status.textContent = `${countyUpper[0] + countyUpper.slice(1).toLowerCase()} County · click a municipal boundary to open its dossier`;
-      root.classList.add('jurisdiction_map_loaded');
-    } catch (error) {
-      console.error(error);
-      status.textContent = 'Live boundary map could not be loaded. Use the municipality directory below.';
-      root.classList.add('jurisdiction_map_error');
-    }
-  };
+        <path
+          d={countyPath}
+          class="jurisdiction_county_fill"
+          fill-rule="evenodd"
+        />
 
-  run();
-</script>
+        {
+          municipalityShapes.map((shape) => (
+            <a href={shape.href} aria-label={shape.title}>
+              <path
+                d={shape.path}
+                clip-path={`url(#${clipId})`}
+                fill-rule="evenodd"
+                class={shape.className}
+              >
+                <title>{shape.title}</title>
+              </path>
+            </a>
+          ))
+        }
+
+        <path
+          d={countyPath}
+          class="jurisdiction_county_outline"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </div>
+  ) : (
+    <div class="jurisdiction_map jurisdiction_map_error" id={mapId}>
+      <div class="jurisdiction_map_status jurisdiction_map_status_error">
+        Boundary map unavailable for this build. Use the municipality directory below.
+      </div>
+      <p class="jurisdiction_map_error_detail">
+        The static site remains usable; no visitor-side request to the Illinois GIS service is required.
+      </p>
+    </div>
+  )
+}

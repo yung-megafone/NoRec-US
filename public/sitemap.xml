@@ -17,17 +17,12 @@
   <url><loc>https://norec.us/surveillance/drones/</loc></url>
   <url><loc>https://norec.us/surveillance/human-fingerprints/</loc></url>
   <url><loc>https://norec.us/surveillance/jurisdictions/</loc></url>
-  
   <url><loc>https://norec.us/illinois/counties/winnebago/</loc></url>
   <url><loc>https://norec.us/illinois/counties/dekalb/</loc></url>
   <url><loc>https://norec.us/providers/fusus/</loc></url>
-
   <url><loc>https://norec.us/illinois/</loc></url>
-  <url><loc>https://norec.us/illinois/counties/boone/</loc></url>
   <url><loc>https://norec.us/illinois/counties/boone/cities/belvidere/</loc></url>
-  <url><loc>https://norec.us/illinois/counties/winnebago/</loc></url>
   <url><loc>https://norec.us/illinois/counties/winnebago/cities/rockford/</loc></url>
-  <url><loc>https://norec.us/illinois/counties/dekalb/</loc></url>
   <url><loc>https://norec.us/illinois/counties/dekalb/cities/dekalb/</loc></url>
   <url><loc>https://norec.us/illinois/counties/boone/cities/caledonia/</loc></url>
   <url><loc>https://norec.us/illinois/counties/boone/cities/capron/</loc></url>
@@ -35,7 +30,6 @@
   <url><loc>https://norec.us/illinois/counties/boone/cities/loves-park/</loc></url>
   <url><loc>https://norec.us/illinois/counties/boone/cities/poplar-grove/</loc></url>
   <url><loc>https://norec.us/illinois/counties/boone/cities/timberlane/</loc></url>
-
   <url><loc>https://norec.us/illinois/counties/winnebago/cities/cherry-valley/</loc></url>
   <url><loc>https://norec.us/illinois/counties/winnebago/cities/durand/</loc></url>
   <url><loc>https://norec.us/illinois/counties/winnebago/cities/loves-park/</loc></url>
@@ -46,7 +40,6 @@
   <url><loc>https://norec.us/illinois/counties/winnebago/cities/roscoe/</loc></url>
   <url><loc>https://norec.us/illinois/counties/winnebago/cities/south-beloit/</loc></url>
   <url><loc>https://norec.us/illinois/counties/winnebago/cities/winnebago/</loc></url>
-
   <url><loc>https://norec.us/illinois/counties/ogle/</loc></url>
   <url><loc>https://norec.us/illinois/counties/ogle/cities/adeline/</loc></url>
   <url><loc>https://norec.us/illinois/counties/ogle/cities/byron/</loc></url>
@@ -464,4 +457,26 @@
   <url><loc>https://norec.us/illinois/counties/cook/cities/worth/</loc></url>
   <url><loc>https://norec.us/privacy/</loc></url>
   <url><loc>https://norec.us/qr/</loc></url>
+  <url><loc>https://norec.us/surveillance/map/</loc></url>
+  <url><loc>https://norec.us/surveillance/government/</loc></url>
+  <url><loc>https://norec.us/surveillance/workplace/</loc></url>
+  <url><loc>https://norec.us/surveillance/consumer/</loc></url>
+  <url><loc>https://norec.us/surveillance/private/</loc></url>
+  <url><loc>https://norec.us/surveillance/infrastructure/</loc></url>
+  <url><loc>https://norec.us/surveillance/systems/cbp-ohare-biometric-processing/</loc></url>
+  <url><loc>https://norec.us/surveillance/systems/user-activity-monitoring/</loc></url>
+  <url><loc>https://norec.us/surveillance/systems/surveillance-pricing/</loc></url>
+  <url><loc>https://norec.us/surveillance/systems/ring-community-requests/</loc></url>
+  <url><loc>https://norec.us/surveillance/systems/babel-street-locate-x/</loc></url>
+  <url><loc>https://norec.us/surveillance/systems/adams/</loc></url>
+  <url><loc>https://norec.us/surveillance/entities/cbp/</loc></url>
+  <url><loc>https://norec.us/surveillance/entities/uam-ueba/</loc></url>
+  <url><loc>https://norec.us/surveillance/entities/surveillance-pricing-intermediaries/</loc></url>
+  <url><loc>https://norec.us/surveillance/entities/ring/</loc></url>
+  <url><loc>https://norec.us/surveillance/entities/axon-evidence/</loc></url>
+  <url><loc>https://norec.us/surveillance/entities/babel-street/</loc></url>
+  <url><loc>https://norec.us/surveillance/entities/locate-x/</loc></url>
+  <url><loc>https://norec.us/surveillance/entities/ice/</loc></url>
+  <url><loc>https://norec.us/surveillance/entities/darpa/</loc></url>
+  <url><loc>https://norec.us/surveillance/entities/adams/</loc></url>
 </urlset>

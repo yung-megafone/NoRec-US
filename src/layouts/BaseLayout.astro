@@ -159,7 +159,7 @@ const robots = noindex
           NoRec.US original material · MIT License · <a href="/privacy/">Privacy Notice</a> ·
           Design inspiration: black_white by HTML5webtemplates.co.uk
         </p>
-</footer>
+      </footer>
     </div>
 
     <script is:inline>
@@ -168,6 +168,7 @@ const robots = noindex
         const loader = document.getElementById('site_loader');
         const toggle = document.getElementById('nav_toggle');
         const menu = document.getElementById('menu');
+        const menubar = document.getElementById('menubar');
 
         const hideLoader = () => {
           root.classList.add('site_ready');
@@ -188,31 +189,82 @@ const robots = noindex
         window.addEventListener('pageshow', hideLoader);
 
         document.addEventListener('click', (event) => {
-          const link = event.target.closest('a[href]');
+          const target = event.target;
+          if (!(target instanceof Element)) return;
+
+          const link = target.closest('a[href]');
           if (!link) return;
-          if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+          if (
+            event.defaultPrevented ||
+            event.metaKey ||
+            event.ctrlKey ||
+            event.shiftKey ||
+            event.altKey
+          ) return;
+          if (event instanceof MouseEvent && event.button !== 0) return;
           if (link.target === '_blank' || link.hasAttribute('download')) return;
 
           const url = new URL(link.href, window.location.href);
           if (url.origin !== window.location.origin) return;
-          if (url.pathname === window.location.pathname && url.search === window.location.search && url.hash) return;
+          if (
+            url.pathname === window.location.pathname &&
+            url.search === window.location.search &&
+            url.hash
+          ) return;
 
           showLoader();
         });
 
-        const closeMenu = () => {
-          toggle?.setAttribute('aria-expanded', 'false');
-          menu?.classList.remove('menu_open');
+        if (!toggle || !menu) return;
+
+        const setMenuState = (open) => {
+          toggle.setAttribute('aria-expanded', String(open));
+          menu.classList.toggle('menu_open', open);
         };
 
-        toggle?.addEventListener('click', () => {
-          const open = toggle.getAttribute('aria-expanded') === 'true';
-          toggle.setAttribute('aria-expanded', String(!open));
-          menu?.classList.toggle('menu_open', !open);
+        const closeMenu = () => setMenuState(false);
+        const toggleMenu = () =>
+          setMenuState(toggle.getAttribute('aria-expanded') !== 'true');
+
+        let ignoreSyntheticClickUntil = 0;
+
+        if ('PointerEvent' in window) {
+          toggle.addEventListener('pointerup', (event) => {
+            if (event.pointerType === 'mouse' && event.button !== 0) return;
+
+            event.preventDefault();
+            ignoreSyntheticClickUntil = performance.now() + 600;
+            toggleMenu();
+          });
+        }
+
+        toggle.addEventListener('click', (event) => {
+          if (performance.now() < ignoreSyntheticClickUntil) {
+            event.preventDefault();
+            return;
+          }
+          toggleMenu();
         });
 
-        menu?.addEventListener('click', (event) => {
-          if (event.target.closest('a')) closeMenu();
+        menu.addEventListener('click', (event) => {
+          const target = event.target;
+          if (target instanceof Element && target.closest('a')) closeMenu();
+        });
+
+        document.addEventListener('pointerdown', (event) => {
+          const target = event.target;
+          if (!(target instanceof Node)) return;
+          if (toggle.getAttribute('aria-expanded') !== 'true') return;
+          if (menubar?.contains(target)) return;
+          closeMenu();
+        });
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key !== 'Escape') return;
+          if (toggle.getAttribute('aria-expanded') !== 'true') return;
+
+          closeMenu();
+          toggle.focus();
         });
 
         window.addEventListener('resize', () => {

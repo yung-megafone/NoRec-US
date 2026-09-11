@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import '../../../../styles/surveillance-rungs.css';
+import { addedCatalogEntries } from '../../../../data/surveillanceCatalog';
+
+export function getStaticPaths() {
+  return addedCatalogEntries.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+}
+const { entry } = Astro.props;
+---
+<BaseLayout title={`${entry.name} | NoRec.US`} description={entry.summary}>
+  <main class="page_shell system_dossier">
+    <header class="article_header">
+      <p class="eyebrow">SURVEILLANCE SYSTEM / CAPABILITY</p>
+      <h1>{entry.name}</h1>
+      <p class="article_deck">{entry.summary}</p>
+      <div class="applicability_tags">{entry.applicability.map((tag) => <span>{tag}</span>)}</div>
+    </header>
+
+    <section class="system_facts">
+      <dl class="encounter_grid">
+        <div><dt>RUNG</dt><dd>{entry.rung}</dd></div>
+        {entry.governmentLevel && <div><dt>GOVERNMENT LEVEL</dt><dd>{entry.governmentLevel}</dd></div>}
+        <div><dt>STATUS</dt><dd>{entry.status}</dd></div>
+        {entry.operator && <div><dt>OPERATOR</dt><dd>{entry.operator}</dd></div>}
+      </dl>
+    </section>
+
+    <section>
+      <p class="eyebrow">HOW YOU ENCOUNTER IT</p>
+      <h2>Where the surveillance relationship begins</h2>
+      <p>{entry.encounter}</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">DATA</p>
+      <h2>What it can collect or process</h2>
+      <ul>{entry.dataCollected.map((item) => <li>{item}</li>)}</ul>
+    </section>
+
+    <section>
+      <p class="eyebrow">DATA FLOW</p>
+      <h2>What happens to the information</h2>
+      <ol class="data_flow">{entry.dataFlow.map((step, index) => <li><span>{index + 1}</span>{step}</li>)}</ol>
+    </section>
+
+    {entry.entities?.length && <section><p class="eyebrow">RELATED ENTITIES</p><h2>Operators, vendors, programs, and platforms</h2><div class="entity_links">{entry.entities.map((entity) => <a href={`/surveillance/entities/${entity.slug}/`}><strong>{entity.name}</strong><span>{entity.type}</span></a>)}</div></section>}
+
+    {entry.caveat && <aside class="surveillance_caveat"><strong>Evidence boundary:</strong> {entry.caveat}</aside>}
+
+    <section>
+      <p class="eyebrow">SOURCES</p>
+      <h2>Receipts</h2>
+      <ul class="source_list">{entry.sources.map((source) => <li><span class="source_id">{source.grade}</span><a href={source.href}>{source.label}</a></li>)}</ul>
+    </section>
+  </main>
+</BaseLayout>

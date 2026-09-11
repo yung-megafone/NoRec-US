@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import '../../../../styles/surveillance-rungs.css';
+import { catalogEntities, entriesForEntity } from '../../../../data/surveillanceCatalog';
+
+export function getStaticPaths() {
+  return catalogEntities.map((entity) => ({ params: { slug: entity.slug }, props: { entity } }));
+}
+const { entity } = Astro.props;
+const entries = entriesForEntity(entity.slug);
+---
+<BaseLayout title={`${entity.name} | NoRec.US`} description={`NoRec.US entity file for ${entity.name}: related surveillance systems, evidence, and Illinois applicability.`}>
+  <main class="page_shell entity_dossier">
+    <header class="article_header">
+      <p class="eyebrow">{entity.type.toUpperCase()}</p>
+      <h1>{entity.name}</h1>
+      <p class="article_deck">This entity page groups systems connected to {entity.name}. A relationship to a technology does not by itself establish deployment of every capability.</p>
+    </header>
+    <section>
+      <p class="eyebrow">RELATED SURVEILLANCE</p>
+      <h2>{entries.length} linked entr{entries.length === 1 ? 'y' : 'ies'}</h2>
+      <div class="rung_entries rung_entries_full">
+        {entries.map((entry) => (
+          <article class="rung_entry">
+            <span class="surveillance_category">{entry.category}</span>
+            <h3>{entry.name}</h3>
+            <p>{entry.summary}</p>
+            <div class="applicability_tags">{entry.applicability.map((tag) => <span>{tag}</span>)}</div>
+            <a href={entry.detailHref ?? `/surveillance/systems/${entry.slug}/`}>Open entry →</a>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>

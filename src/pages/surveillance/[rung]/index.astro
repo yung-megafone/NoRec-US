@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import '../../../styles/surveillance-rungs.css';
+import { entriesByRung, rungMeta, type SurveillanceRung } from '../../../data/surveillanceCatalog';
+
+const rungs: SurveillanceRung[] = ['government', 'workplace', 'consumer', 'private', 'infrastructure'];
+export function getStaticPaths() {
+  return rungs.map((rung) => ({ params: { rung }, props: { rung } }));
+}
+const { rung } = Astro.props as { rung: SurveillanceRung };
+const meta = rungMeta[rung];
+const entries = entriesByRung(rung);
+---
+<BaseLayout title={`${meta.label} | NoRec.US`} description={meta.description}>
+  <main class="page_shell surveillance_hub">
+    <header class="article_header">
+      <p class="eyebrow">SURVEILLANCE RUNG</p>
+      <h1>{meta.label}</h1>
+      <p class="article_deck">{meta.question} {meta.description}</p>
+    </header>
+    <div class="rung_entries rung_entries_full">
+      {entries.map((entry) => (
+        <article class="rung_entry">
+          <div class="rung_entry_top"><div><span class="surveillance_category">{entry.category}</span><h2>{entry.name}</h2></div><span class="surveillance_state">{entry.status}</span></div>
+          <p>{entry.summary}</p>
+          <div class="applicability_tags">{entry.applicability.map((tag) => <span>{tag}</span>)}</div>
+          <dl class="encounter_grid">
+            <div><dt>HOW YOU ENCOUNTER IT</dt><dd>{entry.encounter}</dd></div>
+            <div><dt>DATA</dt><dd>{entry.dataCollected.join(' · ')}</dd></div>
+          </dl>
+          <a class="button button_dark" href={entry.detailHref ?? `/surveillance/systems/${entry.slug}/`}>Open entry →</a>
+        </article>
+      ))}
+    </div>
+  </main>
+</BaseLayout>

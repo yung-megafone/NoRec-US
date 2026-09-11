@@ -1057,6 +1057,14 @@ ul#menu > li.selected > a {
 /* --------------------------------------------------------------------------
    Navigation + loading QoL
    -------------------------------------------------------------------------- */
+.nav_toggle_state{
+  position:absolute;
+  inline-size:1px;
+  block-size:1px;
+  opacity:0;
+  pointer-events:none;
+}
+
 .nav_toggle{
   display:none;
   width:100%;
@@ -1082,9 +1090,9 @@ ul#menu > li.selected > a {
   background:currentColor;
   transition:transform .16s ease,opacity .16s ease;
 }
-.nav_toggle[aria-expanded="true"] .nav_toggle_icon i:nth-child(1){transform:translateY(6px) rotate(45deg)}
-.nav_toggle[aria-expanded="true"] .nav_toggle_icon i:nth-child(2){opacity:0}
-.nav_toggle[aria-expanded="true"] .nav_toggle_icon i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+#nav_toggle_state:checked + .nav_toggle .nav_toggle_icon i:nth-child(1){transform:translateY(6px) rotate(45deg)}
+#nav_toggle_state:checked + .nav_toggle .nav_toggle_icon i:nth-child(2){opacity:0}
+#nav_toggle_state:checked + .nav_toggle .nav_toggle_icon i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 
 ul#menu > li.selected > a{
   position:relative;
@@ -1217,6 +1225,7 @@ ul#menu > li.selected > a::after{
     border-bottom:1px solid #303535;
     box-shadow:0 12px 22px rgba(0,0,0,.42);
   }
+  #nav_toggle_state:checked ~ ul#menu,
   ul#menu.menu_open{
     display:grid;
     grid-template-columns:1fr;
@@ -1620,6 +1629,22 @@ ul#menu > li.selected > a::after{
 }
 
 /* Surveillance primary-navigation dropdown */
+.nav_submenu_details{
+  position:relative;
+}
+.nav_submenu_toggle{
+  list-style:none;
+}
+.nav_submenu_toggle::-webkit-details-marker{
+  display:none;
+}
+.nav_submenu_toggle::marker{
+  content:"";
+}
+.nav_submenu_details[open] > .nav_submenu_toggle .nav_submenu_caret{
+  transform:rotate(180deg);
+}
+
 ul#menu > li.nav_has_submenu{
   position:relative;
 }
@@ -1649,23 +1674,23 @@ ul#menu > li.nav_has_submenu{
   opacity:.8;
   transition:transform .14s ease;
 }
-.nav_has_submenu.submenu_open > .nav_submenu_toggle .nav_submenu_caret,
-.nav_has_submenu:focus-within > .nav_submenu_toggle .nav_submenu_caret{
+.nav_submenu_details[open] > .nav_submenu_toggle .nav_submenu_caret,
+.nav_has_submenu:focus-within .nav_submenu_toggle .nav_submenu_caret{
   transform:rotate(180deg);
 }
-ul#menu > li.nav_has_submenu.selected > .nav_submenu_toggle,
-ul#menu > li.nav_has_submenu:hover > .nav_submenu_toggle,
-ul#menu > li.nav_has_submenu:focus-within > .nav_submenu_toggle,
-ul#menu > li.nav_has_submenu.submenu_open > .nav_submenu_toggle{
+ul#menu > li.nav_has_submenu.selected .nav_submenu_toggle,
+ul#menu > li.nav_has_submenu:hover .nav_submenu_toggle,
+ul#menu > li.nav_has_submenu:focus-within .nav_submenu_toggle,
+.nav_submenu_details[open] > .nav_submenu_toggle{
   color:#f2f3f1;
   background:#252929;
 }
-ul#menu > li.nav_has_submenu.selected > .nav_submenu_toggle{
+ul#menu > li.nav_has_submenu.selected .nav_submenu_toggle{
   position:relative;
   background:#2b3030;
   color:#fff;
 }
-ul#menu > li.nav_has_submenu.selected > .nav_submenu_toggle::after{
+ul#menu > li.nav_has_submenu.selected .nav_submenu_toggle::after{
   content:"";
   position:absolute;
   left:12px;
@@ -1688,9 +1713,9 @@ ul#menu > li.nav_has_submenu.selected > .nav_submenu_toggle::after{
   border:1px solid #303535;
   box-shadow:0 14px 28px rgba(0,0,0,.48);
 }
-.nav_has_submenu:hover > .nav_submenu,
-.nav_has_submenu:focus-within > .nav_submenu,
-.nav_has_submenu.submenu_open > .nav_submenu{
+.nav_has_submenu:hover .nav_submenu,
+.nav_has_submenu:focus-within .nav_submenu,
+.nav_submenu_details[open] > .nav_submenu{
   display:grid;
 }
 ul#menu .nav_submenu li{
@@ -1730,14 +1755,14 @@ ul#menu .nav_submenu_divider span{
     text-align:left;
     font-size:.72rem;
   }
-  ul#menu > li.nav_has_submenu.selected > .nav_submenu_toggle{
+  ul#menu > li.nav_has_submenu.selected .nav_submenu_toggle{
     background:#2b3030;
   }
-  .nav_has_submenu:hover > .nav_submenu,
-  .nav_has_submenu:focus-within > .nav_submenu{
+  .nav_has_submenu:hover .nav_submenu,
+  .nav_has_submenu:focus-within .nav_submenu{
     display:none;
   }
-  .nav_has_submenu.submenu_open > .nav_submenu{
+  .nav_submenu_details[open] > .nav_submenu{
     display:grid;
   }
   .nav_submenu{

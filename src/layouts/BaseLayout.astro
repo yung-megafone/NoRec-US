@@ -110,31 +110,27 @@ const robots = noindex
         </div>
 
         <nav id="menubar" aria-label="Primary navigation">
-          <button
-            class="nav_toggle"
-            id="nav_toggle"
-            type="button"
-            aria-expanded="false"
-            aria-controls="menu"
-          >
+          <input
+            class="nav_toggle_state"
+            id="nav_toggle_state"
+            type="checkbox"
+            aria-label="Toggle primary navigation"
+          />
+          <label class="nav_toggle" for="nav_toggle_state">
             <span>Menu</span>
             <span class="nav_toggle_icon" aria-hidden="true"><i></i><i></i><i></i></span>
-          </button>
+          </label>
 
           <ul id="menu">
             {nav.map(([key, href, label]) => (
               key === 'surveillance' ? (
                 <li class:list={[currentNav === key && 'selected', 'nav_has_submenu']}>
-                  <button
-                    class="nav_submenu_toggle"
-                    type="button"
-                    aria-expanded="false"
-                    aria-controls="surveillance_submenu"
-                  >
-                    <span>{label}</span>
-                    <span class="nav_submenu_caret" aria-hidden="true">▾</span>
-                  </button>
-                  <ul class="nav_submenu" id="surveillance_submenu">
+                  <details class="nav_submenu_details">
+                    <summary class="nav_submenu_toggle">
+                      <span>{label}</span>
+                      <span class="nav_submenu_caret" aria-hidden="true">▾</span>
+                    </summary>
+                    <ul class="nav_submenu" id="surveillance_submenu">
                     <li><a href="/surveillance/">Surveillance overview</a></li>
                     <li><a href="/surveillance/evidence/">Evidence library</a></li>
                     <li><a href="/illinois/">Illinois jurisdictions + map</a></li>
@@ -149,7 +145,8 @@ const robots = noindex
                     <li><a href="/surveillance/evidence/biometrics/">Biometrics</a></li>
                     <li><a href="/surveillance/evidence/aerial/">Aerial / drones</a></li>
                     <li><a href="/surveillance/evidence/infrastructure/">Data brokers / infrastructure</a></li>
-                  </ul>
+                    </ul>
+                  </details>
                 </li>
               ) : (
                 <li class={currentNav === key ? 'selected' : ''}>
@@ -198,11 +195,9 @@ const robots = noindex
       (() => {
         const root = document.documentElement;
         const loader = document.getElementById('site_loader');
-        const toggle = document.getElementById('nav_toggle');
+        const navState = document.getElementById('nav_toggle_state');
         const menu = document.getElementById('menu');
-        const surveillanceItem = menu?.querySelector('.nav_has_submenu');
-        const surveillanceToggle = surveillanceItem?.querySelector('.nav_submenu_toggle');
-        const surveillanceSubmenu = surveillanceItem?.querySelector('.nav_submenu');
+        const surveillanceDetails = menu?.querySelector('.nav_submenu_details');
 
         const hideLoader = () => {
           root.classList.add('site_ready');
@@ -223,9 +218,19 @@ const robots = noindex
         window.addEventListener('pageshow', hideLoader);
 
         document.addEventListener('click', (event) => {
-          const link = event.target.closest('a[href]');
+          const target = event.target;
+          if (!(target instanceof Element)) return;
+
+          const link = target.closest('a[href]');
           if (!link) return;
-          if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+          if (
+            event.defaultPrevented ||
+            (event instanceof MouseEvent && event.button !== 0) ||
+            event.metaKey ||
+            event.ctrlKey ||
+            event.shiftKey ||
+            event.altKey
+          ) return;
           if (link.target === '_blank' || link.hasAttribute('download')) return;
 
           const url = new URL(link.href, window.location.href);
@@ -235,50 +240,26 @@ const robots = noindex
           showLoader();
         });
 
-        const closeSurveillanceSubmenu = () => {
-          surveillanceToggle?.setAttribute('aria-expanded', 'false');
-          surveillanceItem?.classList.remove('submenu_open');
+        const closeNavigation = () => {
+          if (navState instanceof HTMLInputElement) navState.checked = false;
+          if (surveillanceDetails instanceof HTMLDetailsElement) surveillanceDetails.open = false;
         };
 
-        const closeMenu = () => {
-          toggle?.setAttribute('aria-expanded', 'false');
-          menu?.classList.remove('menu_open');
-          closeSurveillanceSubmenu();
-        };
-
-        toggle?.addEventListener('click', () => {
-          const open = toggle.getAttribute('aria-expanded') === 'true';
-          toggle.setAttribute('aria-expanded', String(!open));
-          menu?.classList.toggle('menu_open', !open);
-        });
-
-        surveillanceToggle?.addEventListener('click', (event) => {
-          event.stopPropagation();
-          const open = surveillanceToggle.getAttribute('aria-expanded') === 'true';
-          surveillanceToggle.setAttribute('aria-expanded', String(!open));
-          surveillanceItem?.classList.toggle('submenu_open', !open);
-        });
-
-        document.addEventListener('click', (event) => {
-          if (!surveillanceItem?.contains(event.target)) closeSurveillanceSubmenu();
+        menu?.addEventListener('click', (event) => {
+          const target = event.target;
+          if (!(target instanceof Element)) return;
+          if (target.closest('a[href]')) closeNavigation();
         });
 
         document.addEventListener('keydown', (event) => {
           if (event.key !== 'Escape') return;
-          if (surveillanceToggle?.getAttribute('aria-expanded') === 'true') {
-            closeSurveillanceSubmenu();
-            surveillanceToggle.focus();
-          } else {
-            closeMenu();
-          }
-        });
-
-        menu?.addEventListener('click', (event) => {
-          if (event.target.closest('a')) closeMenu();
+          closeNavigation();
+          const label = document.querySelector('label[for="nav_toggle_state"]');
+          if (label instanceof HTMLElement) label.focus();
         });
 
         window.addEventListener('resize', () => {
-          if (window.innerWidth > 760) closeMenu();
+          if (window.innerWidth > 760) closeNavigation();
         });
       })();
     </script>

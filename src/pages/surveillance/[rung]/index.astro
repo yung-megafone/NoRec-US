@@ -3,8 +3,8 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import '../../../styles/surveillance-rungs.css';
 import { entriesByRung, rungMeta, type SurveillanceRung } from '../../../data/surveillanceCatalog';
 
-const rungs: SurveillanceRung[] = ['government', 'workplace', 'consumer', 'private', 'infrastructure'];
 export function getStaticPaths() {
+  const rungs: SurveillanceRung[] = ['government', 'workplace', 'consumer', 'private', 'infrastructure'];
   return rungs.map((rung) => ({ params: { rung }, props: { rung } }));
 }
 const { rung } = Astro.props as { rung: SurveillanceRung };

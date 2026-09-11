@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { evidenceCases, evidenceCategoryMeta } from '../../../../data/evidence';
+
+export function getStaticPaths() {
+  return evidenceCases.map((item) => ({ params: { slug: item.slug }, props: { item } }));
+}
+const { item } = Astro.props;
+const meta = evidenceCategoryMeta[item.category];
+const place = item.geography
+  ? [item.geography.municipality, item.geography.county ? `${item.geography.county} County` : undefined, item.geography.state].filter(Boolean).join(' · ')
+  : undefined;
+---
+<BaseLayout title={`${item.title} | NoRec.US Evidence`} description={item.result} active="surveillance">
+  <main class="page_shell evidence_detail">
+    <nav class="jurisdiction_breadcrumbs" aria-label="Breadcrumb"><a href="/surveillance/">Surveillance</a><span>→</span><a href="/surveillance/evidence/">Evidence</a><span>→</span><a href={`/surveillance/evidence/${item.category}/`}>{meta.label}</a></nav>
+    <header class="article_header">
+      <p class="eyebrow">{item.kicker}</p>
+      <h1>{item.title}</h1>
+      <p class="article_deck">{item.result}</p>
+    </header>
+
+    {place && (
+      <section class="evidence_box">
+        <span class="status_label">WHERE</span>
+        <p><strong>{place}</strong></p>
+        {item.mapHref && <p><a href={item.mapHref}>View this place in the Illinois surveillance directory →</a></p>}
+      </section>
+    )}
+
+    <section class="evidence_detail_body" set:html={item.bodyHtml}></section>
+
+    <section class="evidence_box">
+      <span class="status_label">WHY THIS LIBRARY EXISTS</span>
+      <p>This page preserves the anecdote and its caveats separately from the shorter <a href="/why-privacy-matters/">Why Privacy Matters</a> explainer. The goal is to keep the argument readable without hiding the receipts.</p>
+    </section>
+  </main>
+</BaseLayout>

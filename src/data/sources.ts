@@ -7,7 +7,7 @@ export type SourceRecord = {
   jurisdiction: string;
   agency: string;
   type: string;
-  status: 'Primary' | 'Secondary';
+  status: 'Primary' | 'Secondary' | 'Vendor';
   reviewed: string;
   originalUrl: string;
   archivedFiles?: { label: string; url: string; sha256: string }[];

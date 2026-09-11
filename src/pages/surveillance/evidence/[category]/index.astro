@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import EvidenceCard from '../../../../components/evidence/EvidenceCard.astro';
+import { evidenceCases, evidenceCategories, evidenceCategoryMeta } from '../../../../data/evidence';
+
+export function getStaticPaths() {
+  return evidenceCategories.map((category) => ({ params: { category } }));
+}
+const category = Astro.params.category;
+const meta = evidenceCategoryMeta[category];
+const items = evidenceCases.filter((item) => item.category === category);
+---
+<BaseLayout title={`${meta.label} Surveillance Evidence | NoRec.US`} description={meta.description} active="surveillance">
+  <main class="page_shell evidence_library">
+    <nav class="jurisdiction_breadcrumbs" aria-label="Breadcrumb"><a href="/surveillance/">Surveillance</a><span>→</span><a href="/surveillance/evidence/">Evidence</a><span>→</span><strong>{meta.label}</strong></nav>
+    <header class="article_header">
+      <p class="eyebrow">EVIDENCE LIBRARY · {meta.label.toUpperCase()}</p>
+      <h1>{meta.question}</h1>
+      <p class="article_deck">{meta.description}</p>
+    </header>
+    <div class="evidence_library_grid">{items.map((item) => <EvidenceCard item={item} />)}</div>
+  </main>
+</BaseLayout>

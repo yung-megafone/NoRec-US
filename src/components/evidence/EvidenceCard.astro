@@ -1,0 +1,18 @@
+---
+const { item } = Astro.props;
+const place = item.geography
+  ? [item.geography.municipality, item.geography.county ? `${item.geography.county} County` : undefined, item.geography.state].filter(Boolean).join(' · ')
+  : undefined;
+---
+<article class="evidence_library_card">
+  <div class="evidence_library_meta">
+    <span>{item.kicker}</span>
+    {place && <span>{place}</span>}
+  </div>
+  <h3><a href={`/surveillance/evidence/${item.slug}/`}>{item.title}</a></h3>
+  <p>{item.result}</p>
+  <div class="evidence_library_actions">
+    <a href={`/surveillance/evidence/${item.slug}/`}>Read evidence →</a>
+    {item.mapHref && <a href={item.mapHref}>View Illinois place →</a>}
+  </div>
+</article>

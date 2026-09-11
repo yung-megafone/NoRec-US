@@ -1,0 +1,29 @@
+---
+import { evidenceForPlace } from '../../data/evidence';
+import EvidenceCard from './EvidenceCard.astro';
+
+const { pathname } = Astro.props;
+const match = pathname.match(/^\/illinois\/counties\/([^/]+)(?:\/cities\/([^/]+))?\/?$/);
+const unslug = (value) => value
+  .split('-')
+  .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+  .join(' ');
+
+let county;
+let municipality;
+if (match) {
+  county = unslug(match[1]);
+  municipality = match[2] ? unslug(match[2]) : undefined;
+}
+const related = match ? evidenceForPlace(county, municipality) : [];
+---
+{related.length > 0 && (
+  <section class="page_shell jurisdiction_related_evidence" aria-labelledby="related-evidence-heading">
+    <p class="eyebrow">RELATED EVIDENCE</p>
+    <h2 id="related-evidence-heading">Documented cases connected to this place.</h2>
+    <p>These records come from the NoRec evidence library. Geography links a case to this jurisdiction; it does not imply every agency or resident here participated in the event.</p>
+    <div class="evidence_library_grid">
+      {related.map((item) => <EvidenceCard item={item} />)}
+    </div>
+  </section>
+)}

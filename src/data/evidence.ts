@@ -1,0 +1,988 @@
+export type EvidenceCategory = 'government' | 'workplace' | 'consumer' | 'private' | 'infrastructure' | 'students' | 'health' | 'biometrics' | 'aerial';
+
+export interface EvidenceGeography {
+  state: string;
+  county?: string;
+  municipality?: string;
+}
+
+export interface EvidenceCase {
+  slug: string;
+  category: EvidenceCategory;
+  kicker: string;
+  title: string;
+  result: string;
+  summary: string;
+  bodyHtml: string;
+  geography?: EvidenceGeography;
+  mapHref?: string;
+}
+
+export const evidenceCategoryMeta: Record<EvidenceCategory, { label: string; question: string; description: string }> = {
+  government: {
+    label: 'Government',
+    question: 'What happens when public systems generate a lead or profile?',
+    description: 'Documented cases involving police, public agencies, courts, public databases, and government-accessible surveillance.'
+  },
+  workplace: {
+    label: 'Workplace',
+    question: 'What happens when measurement becomes management?',
+    description: 'Timekeeping, productivity, camera, biometric, and algorithmic-management evidence.'
+  },
+  consumer: {
+    label: 'Consumer',
+    question: 'What happens after you buy the product?',
+    description: 'Connected products, retail profiling, insurance, television, and commercial secondary-use evidence.'
+  },
+  private: {
+    label: 'Private / Residential',
+    question: 'What if you never bought the surveillance system?',
+    description: 'Landlords, neighbors, HOAs, private cameras, and residential surveillance where the subject may not be the customer.'
+  },
+  students: {
+    label: 'Students / Schools',
+    question: 'What happens when surveillance becomes part of the learning environment?',
+    description: 'School-device monitoring, AI threat detection, facial recognition, social-media monitoring, residency investigations, and the records those systems create.'
+  },
+  health: {
+    label: 'Health / Reproductive',
+    question: 'What happens when ordinary digital data becomes health information?',
+    description: 'Fertility apps, telehealth, prescription data, mental-health services, reproductive investigations, and the commercial or legal pathways that can expose sensitive health information.'
+  },
+  biometrics: {
+    label: 'Biometrics',
+    question: 'What happens when the identifier is part of your body?',
+    description: 'Fingerprint, iris, voice and other biometric evidence, including false identification, consent disputes, workplace use and the consequences of treating biometric matches as uniquely authoritative.'
+  },
+  aerial: {
+    label: 'Aerial / Drones',
+    question: 'What changes when observation can be rewound?',
+    description: 'Persistent aerial surveillance, police drones, wide-area imagery, incidental collection, retention and the legal consequences of turning public movement into searchable history.'
+  },
+  infrastructure: {
+    label: 'Data Brokers / Infrastructure',
+    question: 'How does information move between systems?',
+    description: 'Commercial location data, brokers, SDKs, and intermediary systems that connect collection to downstream users.'
+  }
+};
+
+export const evidenceCases: EvidenceCase[] = [
+
+  {
+    slug: "xfinity-wifi-motion-shared-walls",
+    category: "private",
+    kicker: "RESIDENTIAL · WI-FI SENSING · SHARED-WALL BOUNDARIES",
+    title: "Xfinity warns that WiFi Motion can report activity from neighboring units or shared walls.",
+    result: "Wi-Fi signal disruption → motion event → neighboring-unit activity can cross the sensing boundary → cloud history",
+    summary: "Xfinity WiFi Motion detects movement from changes in wireless signals between compatible Xfinity equipment and selected stationary Wi-Fi devices. Comcast's own support guidance warns that shared-wall homes may receive irrelevant detections from neighboring units and recommends lower sensitivity for apartments and other shared-wall housing.",
+    bodyHtml: "<p>Xfinity WiFi Motion is an opt-in feature that uses compatible Xfinity gateways, extenders and selected stationary Wi-Fi devices as a motion-sensing network. Comcast says movement is detected when it disrupts the wireless signals traveling between the Xfinity equipment and selected connected devices. It does not use a camera, capture images or video, record audio, or identify an individual.</p><p>The physical sensing boundary does not necessarily stop at the property line or apartment wall. Comcast recommends Medium sensitivity for duplexes and townhomes that share a wall and Low sensitivity for apartments or homes sharing multiple walls. Its troubleshooting documentation specifically lists frequent alerts from neighboring units or shared walls as a symptom of excessive detection.</p><p>Comcast says motion-event history is stored in its cloud systems for seven days so the customer can review activity in the Xfinity app. Its support documentation also states that information generated by WiFi Motion may be disclosed in response to valid legal process such as a subpoena, court order or search warrant.</p><div class='idc_takeaway'><strong>Why it matters:</strong> The person whose movement affects a sensing system does not necessarily have to own the sensor, connect to the network or know that the feature exists. In shared-wall housing, movement outside one household can potentially create a motion event inside another household's Wi-Fi sensing system.</div><p class='idc_sources'><strong>Primary sources:</strong> <a href='https://www.xfinity.com/support/articles/wifi-motion'>Xfinity Support — Using WiFi Motion</a> · <a href='https://www.xfinity.com/support/articles/wifi-motion-faqs'>Xfinity — WiFi Motion FAQs</a> · <a href='https://www.xfinity.com/hub/smart-home/wifi-motion'>Xfinity — WiFi Motion overview and retention</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+
+  {
+    slug: "albany-flock-ex-girlfriend",
+    category: "government",
+    kicker: "NEW YORK · FLOCK · ALLEGED INSIDER ABUSE",
+    title: "A sheriff's investigator was accused of running roughly 3,000 Flock searches on his ex-girlfriend's vehicle.",
+    result: "Authorized law-enforcement account → thousands of alleged personal searches → criminal investigation and arrest",
+    summary: "In September 2026, authorities accused an Albany County Sheriff's Office investigator of making more than 4,000 unauthorized Flock Safety searches, including roughly 3,000 searches concerning an ex-girlfriend's vehicle. The allegations are pending and should not be treated as an adjudicated finding.",
+    bodyHtml: "<p>In September 2026, an Albany County Sheriff's Office investigator was arrested after authorities alleged that he repeatedly used Flock Safety's license-plate-reader network for unauthorized personal searches.</p><p>According to reporting on the criminal allegations, investigators identified more than 4,000 unauthorized searches, roughly 3,000 of them concerning the vehicle of the investigator's former girlfriend. The case is pending; these are allegations, not a final adjudication.</p><div class='idc_takeaway'><strong>Why it matters:</strong> The surveillance network did not have to malfunction or be hacked. An authorized user allegedly used legitimate access for an illegitimate purpose. Authentication can establish who queried a system; it cannot by itself establish that the query was proper.</div><p class='idc_sources'><strong>Source:</strong> <a href='https://people.com/sheriff-s-investigator-accused-of-tracking-ex-with-flock-cameras-12114686'>People — September 2026 reporting</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "illinois-flock-officer-misuse",
+    category: "government",
+    kicker: "ILLINOIS · ALPR · OFFICER MISUSE INVESTIGATIONS",
+    title: "Chicago-area departments investigated officers for allegedly using Flock searches for personal purposes.",
+    result: "Police ALPR access → alleged searches involving former partners / employer → internal investigations",
+    summary: "ABC7 Chicago reported in 2026 that records obtained from Chicago-area police agencies documented multiple investigations into officers' alleged personal use of Flock Safety searches, including searches connected to former romantic partners and a former employer.",
+    bodyHtml: "<p>In 2026, ABC7 Chicago's I-Team reported results from public-records requests sent to approximately 130 law-enforcement agencies concerning misuse of Flock Safety license-plate-reader searches. Records documented multiple Chicago-area investigations involving officers accused of searches for personal rather than legitimate law-enforcement purposes.</p><p>Reported allegations included searches connected to former romantic partners and a former employer. West Chicago separately announced an investigation after an audit indicated an officer had used the Flock system for an unauthorized purpose between late 2024 and early 2025.</p><div class='idc_takeaway'><strong>Why it matters:</strong> An audit trail can expose misuse after it happens. It cannot make the surveillance unhappen. Insider abuse is a different failure mode from hacking: the person may have valid credentials and still lack a valid reason for the search.</div><p class='idc_sources'><strong>Sources:</strong> <a href='https://abc7chicago.com/post/flock-controversy-chicago-area-police-officers-investigated-misusing-surveillance-camera-searches-personal-use/19747522/'>ABC7 Chicago I-Team</a> · <a href='https://www.cbsnews.com/chicago/news/west-chicago-police-officer-accused-of-misusing-flock-cameras/'>CBS Chicago — West Chicago</a></p>",
+    geography: { state: "IL" },
+    mapHref: "/illinois/"
+  },
+  {
+    slug: "ring-employee-video-abuse",
+    category: "private",
+    kicker: "RING · INSIDER ACCESS · FTC",
+    title: "The FTC alleged a Ring employee viewed thousands of customers' intimate camera recordings.",
+    result: "Broad employee access → thousands of customer videos viewed → coworker discovers conduct → FTC enforcement",
+    summary: "The FTC alleged that a Ring employee used broad access to customer videos to view thousands of recordings belonging to at least 81 female users, including recordings from cameras with intimate location labels. The conduct allegedly continued for months before another employee noticed it.",
+    bodyHtml: "<p>In its 2023 complaint against Ring, the FTC alleged that Ring historically gave employees and contractors unnecessarily broad access to customer video. The complaint describes one employee who allegedly used that access over several months to view thousands of video recordings belonging to at least 81 female customers.</p><p>According to the FTC, the employee specifically searched for cameras associated with intimate spaces. Ring terminated the employee after another employee discovered the conduct. The FTC alleged that Ring's access controls and monitoring were inadequate to prevent or promptly detect the abuse.</p><div class='idc_takeaway'><strong>Why it matters:</strong> The camera can work perfectly and still create a privacy disaster. The relevant failure may be the person or organization entrusted with access to the resulting footage.</div><p class='idc_sources'><strong>Primary source:</strong> <a href='https://www.ftc.gov/system/files/ftc_gov/pdf/complaint_ring.pdf'>FTC complaint against Ring</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "ring-account-takeovers",
+    category: "private",
+    kicker: "RING · ACCOUNT SECURITY · CAMERA TAKEOVERS",
+    title: "The FTC said hackers exploited Ring account-security weaknesses to access cameras and harass customers.",
+    result: "Compromised credentials + weak protections → camera access → viewing / two-way audio abuse",
+    summary: "The FTC alleged that Ring's security failures enabled attackers to compromise tens of thousands of U.S. customer accounts. Attackers viewed camera feeds and, in documented incidents, used two-way audio to harass or threaten people inside their homes.",
+    bodyHtml: "<p>The FTC's Ring complaint also described a separate failure mode: outside attackers compromising customer accounts. The agency alleged that Ring failed for years to adequately protect accounts against credential-stuffing and brute-force attacks and did not initially require basic safeguards such as multi-factor authentication.</p><p>The FTC said attackers compromised approximately 55,000 U.S. customer accounts during relevant attack periods. In some incidents, intruders viewed cameras and used Ring's two-way communication features to harass, threaten or otherwise terrorize people in their homes, including children.</p><div class='idc_takeaway'><strong>Why it matters:</strong> A residential security camera reverses direction when its account is compromised. The device installed to let you watch your property can become a device through which a stranger watches or speaks to you.</div><p class='idc_sources'><strong>Primary source:</strong> <a href='https://www.ftc.gov/system/files/ftc_gov/pdf/complaint_ring.pdf'>FTC complaint against Ring</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "opm-fingerprint-breach",
+    category: "biometrics",
+    kicker: "FEDERAL · OPM · BIOMETRIC BREACH",
+    title: "The OPM breach exposed fingerprint records for about 5.6 million people.",
+    result: "Federal background-investigation records compromised → fingerprint records exposed → permanent biometric identifiers outside custodian control",
+    summary: "After initially reporting a smaller number, the U.S. government said the 2015 Office of Personnel Management breach affected fingerprint records of approximately 5.6 million people. Unlike a password, a compromised fingerprint cannot simply be replaced.",
+    bodyHtml: "<p>The 2015 compromise of U.S. Office of Personnel Management systems exposed extraordinarily sensitive federal personnel and background-investigation information. After further analysis, the government revised its estimate of affected fingerprint records upward to approximately 5.6 million people.</p><p>The incident is particularly relevant to biometric privacy because fingerprints are durable identifiers. A person can change a password, cancel a credit card or rotate an access token. A person cannot realistically replace the fingerprints attached to their hands.</p><div class='idc_takeaway'><strong>Why it matters:</strong> Biometric compromise changes the normal cybersecurity equation. The identifier may remain useful for decades after the database that exposed it has been repaired.</div><p class='idc_sources'><strong>Government sources:</strong> <a href='https://www.opm.gov/cybersecurity/cybersecurity-incidents/'>U.S. Office of Personnel Management — cybersecurity incidents</a> · <a href='https://www.gao.gov/products/gao-17-614'>U.S. Government Accountability Office — OPM breach review</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "vitagene-genetic-data-breach",
+    category: "health",
+    kicker: "GENETIC DATA · HEALTH BREACH · FTC RECORD",
+    title: "A health-data breach exposed genetic and wellness information, including raw genotype data.",
+    result: "Consumer genetic/health service → unauthorized access → raw genotype and health information exposed",
+    summary: "FTC health-breach records describe a Vitagene incident involving unauthorized access to sensitive consumer information including raw genotype data, partial genetic-trait information and health/wellness information.",
+    bodyHtml: "<p>Federal health-breach records include an incident involving Vitagene, a consumer health and genetics service. The exposed information included raw genotype data, partial information concerning genetic traits and health and wellness information.</p><p>Genetic information has an unusual persistence problem similar to fingerprints. It cannot be rotated after a breach, and it can reveal information not only about the individual whose sample was analyzed but potentially about biological relatives.</p><div class='idc_takeaway'><strong>Why it matters:</strong> Some breached information expires. Genetic information does not. Collection creates a long-lived custody obligation because the underlying biological identifier remains tied to the person.</div><p class='idc_sources'><strong>Primary source:</strong> <a href='https://www.ftc.gov/system/files/ftc_gov/pdf/Health%20Breach%20Notices%20Received%20by%20the%20FTC.pdf'>FTC — Health Breach Notices</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+
+  {
+    slug: "baltimore-secret-aerial-surveillance",
+    category: "aerial",
+    kicker: "BALTIMORE · PERSISTENT SURVEILLANCE SYSTEMS · SECRET PILOT",
+    title: "Baltimore police tested a city-scale aerial surveillance system for months before the public—and even key city officials—were told.",
+    result: "Privately funded pilot → 32-square-mile imagery → months of use → disclosure only after investigative reporting",
+    summary: "In 2016, Baltimore police acknowledged that aircraft operated by Persistent Surveillance Systems had been continuously photographing large portions of the city during a privately funded pilot. The program had not been publicly disclosed; contemporary reporting said the mayor, city council and spending board had not been told before the program became public.",
+    bodyHtml: "<p>In 2016, investigative reporting revealed that the Baltimore Police Department had been working with Persistent Surveillance Systems to fly camera-equipped aircraft over the city. The wide-area system could photograph roughly 32 square miles at once and allow analysts to move backward and forward through archived imagery to trace vehicles or pedestrians across the city.</p><p>The pilot had begun months earlier and was financed through private donations rather than the ordinary city contracting process. Contemporary reporting said Baltimore's mayor, city council and Board of Estimates had not been informed before the program became public.</p><p>Baltimore police defended the program as a trial intended to help investigate violent crime. The dispute was not merely about whether an airplane could see a person standing outside; it was about building an archive that could later reconstruct where people had traveled.</p><div class='idc_takeaway'><strong>Why it matters:</strong> Oversight cannot meaningfully constrain a surveillance system that the public and ordinary oversight bodies do not know exists.</div><p class='idc_sources'><strong>Sources:</strong> <a href='https://www.bloomberg.com/news/articles/2016-08-24/baltimore-police-admit-to-surveilling-the-city-by-air-with-the-baltimore-community-support-program-or-persistent-surveillance-systems'>Bloomberg — 2016 disclosure</a> · <a href='https://www.theguardian.com/us-news/2016/aug/24/baltimore-police-aerial-surveillance-cameras'>The Guardian — Baltimore acknowledgement</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "baltimore-aerial-retention",
+    category: "aerial",
+    kicker: "BALTIMORE · AERIAL IMAGERY · RETENTION / DEFENSE ACCESS",
+    title: "The surveillance plane created evidence defendants could not request because they did not know it existed—and the imagery was retained longer than the public-facing policy suggested.",
+    result: "Citywide imagery archive → undisclosed evidence source → public defenders raise exculpatory-access concerns",
+    summary: "After Baltimore's 2016 aerial surveillance pilot became public, public defenders warned that defendants had lost opportunities to seek potentially exculpatory imagery because the system was secret. Police later told defenders that all pilot images had been saved and archived, despite a public-facing 45-day retention description associated with the program.",
+    bodyHtml: "<p>The secrecy of Baltimore's original aerial-surveillance pilot created a downstream criminal-procedure problem: defense attorneys did not know the imagery existed while representing clients whose movements, police encounters or alleged offenses may have been captured from the air.</p><p>The Baltimore Office of the Public Defender asked police about retention and preservation after the program became public. Police Commissioner Kevin Davis responded that Persistent Surveillance Systems had verified that <strong>all images captured during the pilot had been saved and archived</strong>, regardless of whether the images had been provided to police for an investigation. That conflicted with a public-facing description that imagery would ordinarily be erased after 45 days.</p><p>Public defenders argued that secrecy had deprived innocent clients of opportunities to subpoena potentially exonerating footage and had prevented defendants who disputed officers' accounts from attempting to corroborate their version with the aerial record.</p><div class='idc_takeaway'><strong>Why it matters:</strong> Surveillance evidence can affect fairness even when police never use it against a defendant. An undisclosed archive may contain information useful to the defense too.</div><p class='idc_sources'><strong>Sources:</strong> <a href='https://www.aclu.org/news/privacy-technology/baltimore-aerial-surveillance-program-retained'>ACLU — retention documents and public-defender correspondence</a> · <a href='https://www.bloomberg.com/features/2016-baltimore-surveillance-project/'>Bloomberg — oversight and defense-access reporting</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "leaders-beautiful-struggle-baltimore-air",
+    category: "aerial",
+    kicker: "BALTIMORE · AIR PROGRAM · FOURTH AMENDMENT",
+    title: "A federal appeals court held Baltimore's renewed persistent aerial surveillance program unconstitutional.",
+    result: "Citywide daytime movement record → six-month pilot → en banc Fourth Circuit blocks access to collected data",
+    summary: "Baltimore revived wide-area aerial surveillance in 2020 through the Aerial Investigation Research program. In 2021, the en banc Fourth Circuit held in Leaders of a Beautiful Struggle v. Baltimore Police Department that the program's persistent tracking invaded reasonable expectations of privacy and violated the Fourth Amendment.",
+    bodyHtml: "<p>Baltimore revived its aerial-surveillance partnership in 2020 as the Aerial Investigation Research program. Camera-equipped aircraft were designed to fly over the city during daylight hours and build a slow-frame-rate record that investigators could use to reconstruct movements after a crime occurred.</p><p>In <em>Leaders of a Beautiful Struggle v. Baltimore Police Department</em>, the U.S. Court of Appeals for the Fourth Circuit, sitting en banc, held in 2021 that the program violated the Fourth Amendment. The court focused on the ability to aggregate movements across time rather than treating each individual moment outdoors as isolated public observation.</p><p>The pilot had already ended by the time of the en banc ruling, but Baltimore still possessed collected data. The court's decision prevented police from continuing to access the unlawfully acquired archive.</p><div class='idc_takeaway'><strong>Why it matters:</strong> Being visible at one moment is not the same as giving the government a rewindable history of your movements. Persistence changes the constitutional and practical character of observation.</div><p class='idc_sources'><strong>Court / primary sources:</strong> <a href='https://law.justia.com/cases/federal/appellate-courts/ca4/20-1495/20-1495-2021-06-24.html'>Fourth Circuit — Leaders of a Beautiful Struggle v. BPD</a> · <a href='https://www.aclu.org/press-releases/federal-appeals-court-rules-baltimore-aerial-surveillance-program-unconstitutional'>ACLU case summary</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "chula-vista-drone-footage-custody",
+    category: "aerial",
+    kicker: "CALIFORNIA · CHULA VISTA · DRONE AS FIRST RESPONDER",
+    title: "One month of police-drone operations produced 537 videos—and a major privacy problem over what the cameras captured on the way to calls.",
+    result: "Drone response flights → 91+ hours of video in one month → incidental private-space footage → years of public-records litigation",
+    summary: "A California appellate opinion says a request for Chula Vista police drone footage from March 2021 covered 537 videos totaling 91 hours, 39 minutes and 52 seconds. The city argued that footage could include faces, license plates and private backyards and estimated review/redaction would take about 229 workdays.",
+    bodyHtml: "<p>Chula Vista Police Department pioneered the 'Drone as First Responder' model, dispatching drones to selected 911 calls so remote pilots can stream video to officers before ground units arrive. Journalist Arturo Castañares sought all drone footage from March 2021 under the California Public Records Act.</p><p>The resulting litigation produced an unusually concrete picture of incidental collection. A city declaration stated that the request encompassed <strong>537 videos totaling 91 hours, 39 minutes and 52 seconds</strong>. The city estimated that reviewing and redacting the material would require roughly 1,833 hours—or about 229 workdays—before legal review and quality control.</p><p>The California Court of Appeal agreed that the footage implicated serious privacy concerns. Because a drone records while traveling to a call, it may pass over and film private backyards and capture bystanders, faces, license plates or activities unrelated to the event that caused the drone to launch. The court nevertheless rejected the argument that every drone video was automatically exempt from disclosure merely because it came from the police drone program.</p><div class='idc_takeaway'><strong>Why it matters:</strong> A camera sent to one incident can collect information about hundreds of uninvolved people along the route. The useful evidence and the incidental surveillance become part of the same data-custody problem.</div><p class='idc_sources'><strong>Court / official sources:</strong> <a href='https://law.justia.com/cases/california/court-of-appeal/2023/d082048.html'>California Court of Appeal — Castañares v. Superior Court</a> · <a href='https://www.chulavistaca.gov/Home/Components/News/News/3729/'>City of Chula Vista — privacy/redaction explanation</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+
+  {
+    slug: "brandon-mayfield-fingerprint",
+    category: "biometrics",
+    kicker: "FEDERAL · FBI · FINGERPRINT MISIDENTIFICATION",
+    title: "The FBI called a fingerprint match '100%'—and arrested the wrong man.",
+    result: "AFIS candidate → examiner confirmation → investigation and detention → Spanish police identify the true source",
+    summary: "After the 2004 Madrid train bombings, FBI examiners erroneously identified Portland attorney Brandon Mayfield's fingerprint as a match to a latent print found on a bag connected to the attack. Mayfield was arrested as a material witness and detained for about two weeks before Spanish police identified another man as the source.",
+    bodyHtml: "<p>After the March 2004 Madrid train bombings, the FBI entered a latent fingerprint from a bag associated with the attack into its Automated Fingerprint Identification System. Brandon Mayfield, an attorney in Portland, Oregon, emerged as a candidate. FBI examiners then concluded that Mayfield's print matched the latent print and treated the identification as certain.</p><p>The FBI opened an investigation, obtained warrants and arrested Mayfield as a material witness. He was detained for approximately two weeks. Spanish National Police had already reached a negative conclusion on the Mayfield comparison; they later identified Algerian national Ouhnane Daoud as the actual source of the latent print, and the FBI withdrew its identification.</p><p>The Justice Department Inspector General concluded that unusual similarity between the prints contributed to the error, but also found examiner mistakes, circular reasoning, excessive reliance on tiny details, overlooked discrepancies and overconfidence that prevented the FBI from adequately reconsidering the match after Spanish police disagreed.</p><div class='idc_takeaway'><strong>Why it matters:</strong> A biometric system can produce a candidate; human experts can then turn that candidate into institutional certainty. The danger is not only an algorithmic false positive—it is what happens when people begin reasoning from the assumption that the biometric must be right.</div><p class='idc_sources'><strong>Primary sources:</strong> <a href='https://oig.justice.gov/reports/review-fbis-handling-brandon-mayfield-case-unclassified-and-redacted'>DOJ OIG — Brandon Mayfield review</a> · <a href='https://oig.justice.gov/archives/semiannual/0605/fbi.htm'>DOJ OIG summary</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "stephan-cowans-fingerprint",
+    category: "biometrics",
+    kicker: "MASSACHUSETTS · FINGERPRINT ERROR · WRONGFUL CONVICTION",
+    title: "A mistaken fingerprint identification helped send Stephan Cowans to prison for nearly six years.",
+    result: "Latent print testimony + eyewitness identification → conviction → DNA exclusion → fingerprint error exposed",
+    summary: "Stephan Cowans was convicted in Boston in 1998 of shooting a police officer. Fingerprint analysts testified that a latent print from a mug belonged to Cowans. DNA testing years later excluded him from multiple crime-scene items; the fingerprint was reexamined and found not to be his. His convictions were vacated and charges dismissed in 2004.",
+    bodyHtml: "<p>Stephan Cowans was convicted in 1998 of offenses arising from the shooting of a Boston police officer. At trial, Boston Police fingerprint analysts testified that a latent thumbprint recovered from a water mug at the crime scene belonged to Cowans. Eyewitness identifications also implicated him.</p><p>Post-conviction DNA testing later excluded Cowans from the hat, sweatshirt and mug associated with the perpetrator. The fingerprint evidence was reexamined as well, and officials concluded that the latent print had been wrongly individualized to Cowans. Prosecutors dismissed the charges in 2004. Cowans had spent about five and a half years in prison.</p><p>The Boston Police Department subsequently shut down its latent fingerprint unit temporarily and investigated the analysts involved.</p><div class='idc_takeaway'><strong>Why it matters:</strong> Biometrics are often treated as stronger than eyewitness testimony. Cowans shows that a mistaken biometric identification can reinforce other weak evidence and make a wrongful case look more certain than it is.</div><p class='idc_sources'><strong>Sources:</strong> <a href='https://innocenceproject.org/cases/stephan-cowans/'>Innocence Project case record</a> · <a href='https://law.justia.com/cases/massachusetts/supreme-court/volumes/478/478mass608.html'>Massachusetts Supreme Judicial Court discussion</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "shirley-mckie-fingerprint",
+    category: "biometrics",
+    kicker: "SCOTLAND · FINGERPRINT MISIDENTIFICATION · PERJURY PROSECUTION",
+    title: "Fingerprint experts said a crime-scene print belonged to police officer Shirley McKie. Independent review found it did not.",
+    result: "Fingerprint identification → officer disputes match → perjury charge → acquittal → independent experts reject identification",
+    summary: "Scottish police officer Shirley McKie denied entering a murder victim's home after fingerprint experts said a print there was hers. She was later prosecuted for perjury and acquitted. Independent experts concluded the mark was not her fingerprint, and the case led to major scrutiny and reform of Scotland's fingerprint service.",
+    bodyHtml: "<p>During the investigation of the 1997 murder of Marion Ross in Scotland, Scottish Criminal Record Office fingerprint examiners identified a crime-scene mark as the left thumbprint of police officer Shirley McKie. McKie consistently said she had never entered the house and therefore could not have left the print.</p><p>After she testified to that effect, McKie was prosecuted for perjury and was acquitted in 1999. Subsequent independent examination found that the disputed mark had not been made by McKie. Scottish authorities later acknowledged the misidentification; inspections and reviews produced changes to fingerprint procedures, quality assurance and independent scrutiny.</p><div class='idc_takeaway'><strong>Why it matters:</strong> When biometric evidence is treated as effectively infallible, a person disputing the biometric can themselves become the suspect. The question shifts from 'could the fingerprint be wrong?' to 'why is this person lying?'</div><p class='idc_sources'><strong>Primary sources:</strong> <a href='https://www.parliament.scot/chamber-and-committees/official-report/search-what-was-said-in-parliament/cppp-23-05-2006?iob=10166&amp;meeting=2164'>Scottish Parliament testimony</a> · <a href='https://www.parliament.scot/api/sitecore/CustomMedia/OfficialReport?meetingId=4635'>Scottish Parliament record</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "rosenbach-six-flags-bipa",
+    category: "biometrics",
+    kicker: "ILLINOIS · GURNEE · FINGERPRINT COLLECTION · BIPA",
+    title: "A 14-year-old was fingerprinted at Six Flags; his mother said she learned about it only after the school trip.",
+    result: "Season-pass enrollment → thumb scan and storage → no alleged written consent → landmark Illinois Supreme Court ruling",
+    summary: "In Rosenbach v. Six Flags, the Illinois Supreme Court described allegations that 14-year-old Alexander Rosenbach had his thumb scanned and stored for a Six Flags Great America season pass during a school field trip. His mother alleged that neither she nor her son received the disclosures or gave the written consent required by BIPA.",
+    bodyHtml: "<p>In 2014, 14-year-old Alexander Rosenbach visited Six Flags Great America in Gurnee on a school field trip after his mother purchased him a season pass. According to the complaint described by the Illinois Supreme Court, Alexander was directed to scan his thumb into Six Flags' biometric system before receiving his pass.</p><p>His mother, Stacy Rosenbach, alleged that she learned about the fingerprinting only after he returned home and said the park did 'it all by fingerprint now.' The complaint alleged that neither mother nor son had received the required written disclosure explaining the purpose and retention period, and neither had provided the written release required by Illinois' Biometric Information Privacy Act.</p><p>In 2019, the Illinois Supreme Court held that a person does not need to allege some additional injury beyond violation of BIPA's statutory biometric-privacy rights to qualify as an aggrieved person entitled to seek relief.</p><div class='idc_takeaway'><strong>Why it matters:</strong> Illinois law treats notice and consent as part of the privacy right itself. The harm BIPA addresses is not limited to identity theft after the fact; it includes losing control over whether a company gets the biometric identifier in the first place.</div><p class='idc_sources'><strong>Primary source:</strong> <a href='https://www.illinoiscourts.gov/files/123186.pdf/opinion'>Illinois Supreme Court — Rosenbach v. Six Flags, 2019 IL 123186</a></p>",
+    geography: { state: "IL", county: "Lake", municipality: "Gurnee" },
+    mapHref: "/illinois/counties/lake/cities/gurnee/"
+  },
+  {
+    slug: "cothron-white-castle-bipa",
+    category: "biometrics",
+    kicker: "ILLINOIS · WORKPLACE BIOMETRICS · WHITE CASTLE",
+    title: "White Castle employees repeatedly scanned fingerprints to access computers and pay records.",
+    result: "Fingerprint authentication → repeated scans and third-party verification → Illinois Supreme Court says each unlawful scan/transmission can accrue separately",
+    summary: "Latrina Cothron alleged that White Castle required employees to scan fingerprints to access computers and pay stubs and sent each scan to a third-party authenticator without BIPA-compliant consent for years. The Illinois Supreme Court held that a separate BIPA claim accrues each time a private entity unlawfully scans or transmits biometric information.",
+    bodyHtml: "<p>Latrina Cothron worked for White Castle in Illinois beginning in 2004. According to her complaint, White Castle introduced a system requiring employees to scan fingerprints to access computers and pay stubs. A third-party vendor verified the scans and authorized access.</p><p>Cothron alleged that White Castle did not obtain BIPA-compliant consent for the collection and transmission of her biometric data until 2018. The central legal question became whether a violation happened only on the first scan or could recur each time the fingerprint was captured and transmitted.</p><p>In 2023, the Illinois Supreme Court held that a separate claim accrues under BIPA each time a private entity unlawfully scans a biometric identifier and each time it unlawfully transmits the resulting biometric information.</p><div class='idc_takeaway'><strong>Why it matters:</strong> Biometric surveillance is often repetitive by design. A fingerprint time clock or access system does not merely enroll a worker once; it can create a new biometric transaction every time the worker performs an ordinary job function.</div><p class='idc_sources'><strong>Court source:</strong> <a href='https://law.justia.com/cases/illinois/supreme-court/2023/128004.html'>Illinois Supreme Court — Cothron v. White Castle, 2023 IL 128004</a></p>",
+    geography: { state: "IL", county: "Cook" },
+    mapHref: "/illinois/counties/cook/"
+  },
+
+  {
+    slug: "flo-health-ftc",
+    category: "health",
+    kicker: "FLO · FERTILITY APP · FTC",
+    title: "Flo promised privacy, then the FTC alleged it shared sensitive fertility and pregnancy data with analytics companies.",
+    result: "Period / fertility data → marketing and analytics providers → FTC privacy enforcement",
+    summary: "The FTC alleged that Flo Health shared sensitive health information from millions of users with Facebook, Google and other analytics firms after promising users that their health data would be kept private. The FTC said disclosures included app events revealing pregnancy.",
+    bodyHtml: "<p>The FTC alleged that Flo Health, developer of the Flo Period & Ovulation Tracker, promised users that their health information would be kept private and used only to provide app services. According to the FTC, Flo nevertheless disclosed sensitive health data from millions of users to marketing and analytics providers including Facebook, Google, AppsFlyer and Flurry.</p>\n            <p>The complaint said some disclosures included app events revealing a user's pregnancy. The FTC finalized a settlement in 2021 requiring affirmative consent before future sharing, notice to affected users and an independent review of Flo's privacy practices.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Health information can escape a health app without ever entering a hospital record. A pregnancy status inferred or recorded in a consumer app can still become valuable advertising and analytics data.</div>\n            <p class=\"idc_sources\"><strong>Primary sources:</strong> <a href=\"https://www.ftc.gov/news-events/news/press-releases/2021/01/developer-popular-womens-fertility-tracking-app-settles-ftc-allegations-it-misled-consumers-about\">FTC — complaint announcement</a> · <a href=\"https://search.ftc.gov/news-events/news/press-releases/2021/06/ftc-finalizes-order-flo-health-fertility-tracking-app-shared-sensitive-health-data-facebook-google\">FTC — final order</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "premom-ftc",
+    category: "health",
+    kicker: "PREMOM · OVULATION TRACKING · FTC",
+    title: "The FTC charged that Premom shared fertility, health, location and device data with third parties without adequate disclosure.",
+    result: "Fertility tracking + location/device identifiers → analytics / marketing firms → federal enforcement",
+    summary: "The FTC said Premom users could log periods, upload ovulation-test images and import health data from other apps and devices. The agency charged that the developer shared sensitive health and personal information with Google, AppsFlyer and two China-based firms without adequate notice or consent.",
+    bodyHtml: "<p>Premom marketed itself as an ovulation and fertility tracker. Users could log menstrual information, upload images of ovulation test strips and import health information from other devices or apps. In 2023, the FTC charged developer Easy Healthcare with deceiving users about disclosures of sensitive information.</p>\n            <p>The FTC alleged that Premom shared health information, location data and device identifiers with Google, AppsFlyer and two China-based analytics and marketing firms without properly notifying users or obtaining appropriate permission. The proposed settlement barred health-data sharing for advertising and imposed Health Breach Notification Rule obligations.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> A fertility app can generate sensitive reproductive information while simultaneously participating in a much broader mobile-advertising ecosystem.</div>\n            <p class=\"idc_sources\"><strong>Primary sources:</strong> <a href=\"https://www.ftc.gov/news-events/news/press-releases/2023/05/ovulation-tracking-app-premom-will-be-barred-sharing-health-data-advertising-under-proposed-ftc\">FTC — Premom action</a> · <a href=\"https://www.ftc.gov/legal-library/browse/cases-proceedings/202-3186-easy-healthcare-corporation-us-v\">FTC case record</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "goodrx-ftc",
+    category: "health",
+    kicker: "GOODRX · PRESCRIPTION DATA · FTC",
+    title: "The FTC alleged GoodRx shared prescription and health-condition information with advertising companies despite privacy promises.",
+    result: "Prescription searches and purchases → Facebook / Google / ad-tech → targeted health advertising",
+    summary: "The FTC alleged that GoodRx shared users' prescription medications and health conditions with Facebook, Google, Criteo and others after promising not to share personal health information with advertisers. The company agreed to a $1.5 million civil penalty and restrictions on future sharing.",
+    bodyHtml: "<p>GoodRx collects health information through prescription searches, coupons, telehealth services and confirmations from pharmacy-benefit managers when users purchase medication with a GoodRx coupon. In 2023, the FTC brought its first enforcement action under the Health Breach Notification Rule against the company.</p>\n            <p>The FTC alleged that GoodRx had shared sensitive personal health information—including prescription medications and health conditions—with Facebook, Google, Criteo and other third parties. The agency also alleged that GoodRx used some of that information to create health- and medication-specific advertising audiences. GoodRx agreed to a $1.5 million civil penalty and an order limiting future health-data sharing.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Prescription information is health information even when it is generated through a coupon or retail service rather than a doctor's chart.</div>\n            <p class=\"idc_sources\"><strong>Primary sources:</strong> <a href=\"https://www.ftc.gov/news-events/news/press-releases/2023/02/ftc-enforcement-action-bar-goodrx-sharing-consumers-sensitive-health-info-advertising\">FTC — GoodRx enforcement action</a> · <a href=\"https://www.ftc.gov/legal-library/browse/cases-proceedings/2023090-goodrx-holdings-inc\">FTC case record</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "betterhelp-ftc",
+    category: "health",
+    kicker: "BETTERHELP · MENTAL HEALTH · FTC",
+    title: "BetterHelp promised privacy while the FTC alleged it disclosed sensitive mental-health information for advertising.",
+    result: "Counseling intake data → Facebook / Snapchat / ad-tech → targeted advertising → $7.8 million settlement",
+    summary: "The FTC alleged that BetterHelp disclosed email addresses, IP addresses and answers to personal health questions to Facebook, Snapchat, Criteo and Pinterest for advertising despite privacy promises. The final order required a $7.8 million payment and prohibited sharing health data for advertising.",
+    bodyHtml: "<p>BetterHelp marketed online counseling through services including BetterHelp, Teen Counseling, Pride Counseling, Faithful Counseling and others. The FTC alleged that consumers were promised limited use of their personal health information but that BetterHelp disclosed email addresses, IP addresses and answers to personal health questions to Facebook, Snapchat, Criteo and Pinterest for advertising.</p>\n            <p>The FTC finalized an order in 2023 requiring BetterHelp to pay $7.8 million, prohibiting disclosure of health data for advertising and requiring affirmative consent for certain future disclosures. Refund notices ultimately went to hundreds of thousands of consumers.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Seeking mental-health help is itself sensitive information. The intake process can expose exactly the information a person may have sought counseling to discuss privately.</div>\n            <p class=\"idc_sources\"><strong>Primary source:</strong> <a href=\"https://www.ftc.gov/news-events/news/press-releases/2023/07/ftc-gives-final-approval-order-banning-betterhelp-sharing-sensitive-health-data-advertising\">FTC — BetterHelp final order</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "cerebral-ftc",
+    category: "health",
+    kicker: "CEREBRAL · TELEHEALTH · FTC",
+    title: "The FTC alleged that a mental-health telehealth company disclosed sensitive health data to third parties for advertising.",
+    result: "Telehealth relationship → sensitive data → advertising disclosure allegations → federal settlement",
+    summary: "The FTC charged Cerebral with disclosing sensitive personal health information and other sensitive data to third parties for advertising and with failing to adequately secure consumer data. The company agreed to an order restricting those practices and monetary relief.",
+    bodyHtml: "<p>In 2024, the FTC and Department of Justice announced a proposed settlement with online mental-health provider Cerebral. The government alleged that Cerebral disclosed sensitive personal health information and other sensitive consumer data to third parties for advertising purposes and failed to adequately secure consumer information.</p>\n            <p>The settlement restricted Cerebral's use and disclosure of sensitive data, imposed privacy and security requirements and required monetary relief. The FTC later distributed more than $5 million in refunds connected to the broader settlement.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Telehealth can collapse the boundary between clinical care and ordinary consumer software unless strong rules and technical controls separate health information from advertising infrastructure.</div>\n            <p class=\"idc_sources\"><strong>Primary sources:</strong> <a href=\"https://www.ftc.gov/news-events/news/press-releases/2024/04/proposed-ftc-order-will-prohibit-telehealth-firm-cerebral-using-or-disclosing-sensitive-data\">FTC — Cerebral settlement announcement</a> · <a href=\"https://www.ftc.gov/legal-library/browse/cases-proceedings/222-3067-cerebral-inc-kyle-robertson-us-v\">FTC case record</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "burgess-facebook-abortion-case",
+    category: "health",
+    kicker: "NEBRASKA · FACEBOOK MESSAGES · ABORTION PROSECUTION",
+    title: "Private Facebook messages became evidence in a Nebraska abortion-related prosecution after police obtained them with a search warrant.",
+    result: "Private messages → warrant → platform disclosure → abortion-related criminal charges and prosecution",
+    summary: "Norfolk, Nebraska investigators obtained private Facebook Messenger communications between Celeste Burgess and her mother, Jessica Burgess, through a search warrant. Court records and later reporting showed the messages were used as evidence in charges involving an abortion beyond Nebraska's then-20-week limit and concealment/disposal of fetal remains.",
+    bodyHtml: "<p>In 2022, Norfolk, Nebraska police investigated then-17-year-old Celeste Burgess and her mother, Jessica Burgess, after receiving information about the death and burial of a fetus. Investigators obtained a search warrant for private Facebook Messenger communications between the two.</p>\n            <p>According to court records and subsequent reporting, the messages discussed abortion medication and disposal of the remains. The messages became evidence in the prosecution. Jessica Burgess later pleaded guilty to charges including providing an abortion beyond Nebraska's then-20-week limit, false reporting and tampering with human remains; Celeste Burgess later pleaded guilty to removing, concealing or abandoning a dead human body and received a jail sentence and probation.</p>\n            <p>This case should not be described as Facebook voluntarily deciding to report an abortion. The company produced records in response to legal process. The underlying investigation also began before investigators obtained the private messages.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Private communications can become health and reproductive evidence once legal process reaches the service holding them. The privacy question is partly about what records exist and who can compel their production.</div>\n            <p class=\"idc_sources\"><strong>Sources:</strong> <a href=\"https://abcnews.com/US/nebraska-mother-daughter-charged-illegal-abortion-police-obtain/story?id=88191900\">ABC News — court-record reporting</a> · <a href=\"https://apnews.com/article/36b3dcaadd6b705ca2315bc95b99bdc1\">Associated Press — sentencing and case outcome</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+
+  {
+    slug: "taki-allen-doritos",
+    category: "students",
+    kicker: "MARYLAND · SCHOOL AI GUN DETECTION · FALSE ALERT",
+    title: "A bag of Doritos was flagged as a possible gun; Taki Allen ended up handcuffed at gunpoint.",
+    result: "AI weapon flag → alert reviewed and canceled → communication failure → armed police response",
+    summary: "At Kenwood High School in Baltimore County, an AI gun-detection system flagged student Taki Allen while he was holding a bag of Doritos. School safety personnel reportedly reviewed and canceled the alert, but a communication breakdown still led to police being called. Allen said officers approached with guns drawn, ordered him down, handcuffed and searched him. No weapon was found.",
+    bodyHtml: "<p>In October 2025, Taki Allen was outside Kenwood High School after football practice when Baltimore County Public Schools' Omnilert gun-detection system flagged an image of him holding a bag of Doritos as a possible firearm. Allen told reporters that multiple officers arrived, pointed guns at him, ordered him to the ground, handcuffed him and searched him. No weapon was found.</p>\n            <p>The case is especially instructive because school security personnel reportedly reviewed and <strong>canceled</strong> the alert. According to reporting on the district's account, the principal did not initially realize the alert had been canceled and contacted the school resource officer, who contacted police. Omnilert said the process had functioned as intended.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> A human-in-the-loop safeguard is only as good as the institutional process around it. A false machine alert can survive even after somebody recognizes the error.</div>\n            <p class=\"idc_sources\"><strong>Sources:</strong> <a href=\"https://www.thebanner.com/education/k-12-schools/kenwood-high-school-omnilert-gun-chips-false-alarm-YJEL25XTVRBUDFDIJ7TEOBEKCY/\">The Baltimore Banner</a> · <a href=\"https://techcrunch.com/2025/10/25/high-schools-ai-security-system-confuses-doritos-bag-for-a-possible-firearm/\">TechCrunch</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "clarinet-zeroeyes",
+    category: "students",
+    kicker: "FLORIDA · ZEROEYES · FALSE WEAPON ALERT",
+    title: "A middle school locked down after a student holding a clarinet was escalated as a suspected rifle.",
+    result: "AI detection + human review → suspected rifle alert → police response and Code Red lockdown",
+    summary: "At Lawton Chiles Middle School in Florida, ZeroEyes software flagged a student carrying a clarinet as a suspected rifle. Human review did not prevent escalation. Police responded and the school entered a Code Red lockdown before officials determined the suspected weapon was a band instrument.",
+    bodyHtml: "<p>In December 2025, Lawton Chiles Middle School in Seminole County, Florida entered a Code Red lockdown after ZeroEyes gun-detection software flagged an image of a student holding a clarinet. Reporting based on police records said the alert described a person in camouflage holding a suspected rifle in a shouldered position.</p>\n            <p>ZeroEyes uses human reviewers before sending alerts, but the review did not prevent this escalation. Police searched the school and later confirmed the object was a musical instrument. A ZeroEyes executive defended the alert under a precautionary, better-safe-than-sorry rationale.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> If an unnecessary emergency response is defined as successful operation, ordinary false-positive metrics may not capture the real cost of the system.</div>\n            <p class=\"idc_sources\"><strong>Sources:</strong> <a href=\"https://www.washingtonpost.com/nation/2025/12/17/ai-gun-school-detection/\">Washington Post</a> · <a href=\"https://arstechnica.com/tech-policy/2025/12/florida-schools-plan-to-vastly-expand-use-of-ai-that-mistook-clarinet-for-gun/\">Ars Technica</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "zoe-reiland-gaggle",
+    category: "students",
+    kicker: "OKLAHOMA · GAGGLE · CHILLING EFFECT",
+    title: "A student described changing what she searched because she knew the school device was being monitored.",
+    result: "School-device monitoring → self-censorship → reduced willingness to ask private questions",
+    summary: "In an AP/Seattle Times investigation of student-monitoring software, Zoe Reiland described avoiding personal searches on her school Chromebook after learning that Gaggle monitored student activity. She summarized the effect as being 'too scared to be curious.'",
+    bodyHtml: "<p>A joint Associated Press and Seattle Times investigation examined school monitoring products including Gaggle, which scans activity on school accounts and devices for content associated with self-harm, violence, bullying and other risks. Oklahoma student Zoe Reiland said that after learning about the monitoring, she stopped using her school Chromebook for private questions, including questions about menstruation.</p>\n            <p>Her father told reporters he had not realized the district was monitoring his children and said the district would not let his daughter substitute a personal laptop for the school device.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Surveillance can alter behavior even when it never produces a disciplinary action. A learning environment changes when a student has to decide whether an embarrassing or sensitive question is worth being observed.</div>\n            <p class=\"idc_sources\"><strong>Source:</strong> <a href=\"https://apnews.com/article/25a3946727397951fd42324139aaf70f\">Associated Press / Seattle Times investigation</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "vancouver-gaggle-records",
+    category: "students",
+    kicker: "WASHINGTON · GAGGLE · DATA CUSTODY",
+    title: "A public-records response exposed nearly 3,500 unredacted student documents containing sensitive material.",
+    result: "Monitoring creates sensitive records → records request mishandled → student material exposed",
+    summary: "The AP/Seattle Times investigation found that Vancouver Public Schools inadvertently provided reporters access to nearly 3,500 unredacted student documents generated in the context of school monitoring. The material contained highly sensitive information and was accessible through unprotected links.",
+    bodyHtml: "<p>Vancouver Public Schools in Washington used Gaggle to monitor activity on school accounts and devices. During an Associated Press / Seattle Times investigation, the district inadvertently provided access to nearly 3,500 unredacted student documents containing sensitive information, including material related to mental health, bullying, sexuality and family problems.</p>\n            <p>The incident demonstrates a separate privacy risk from whether the monitoring system correctly identifies a safety concern. Once a school creates a repository of students' intimate writing and searches, that repository itself becomes sensitive infrastructure that must be governed, retained, disclosed and secured correctly.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Collection creates custody. A system designed to identify vulnerable students can also create a concentrated archive of exactly what makes those students vulnerable.</div>\n            <p class=\"idc_sources\"><strong>Source:</strong> <a href=\"https://apnews.com/article/25a3946727397951fd42324139aaf70f\">Associated Press / Seattle Times investigation</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "alsip-school-residency-surveillance",
+    category: "students",
+    kicker: "ILLINOIS · ALSIP · SCHOOL RESIDENCY SURVEILLANCE",
+    title: "A school district used license-plate data and private investigation in a residency dispute; children were disenrolled.",
+    result: "Vehicle-location evidence + private surveillance → residency inference → children removed from school",
+    summary: "NBC Chicago documented how Alsip Hazelgreen Oak Lawn School District 126 used license-plate data and private-investigator surveillance as part of residency investigations. Tatiana Philips said her cars were photographed at work, a mall, her mother's house and her apartment. The district concluded her family did not reside in the district and her 6- and 11-year-old children were disenrolled. NBC later interviewed Philips inside the Alsip apartment where she said she had lived for nearly two years.",
+    bodyHtml: "<p>In 2026, NBC 5 Chicago documented Illinois school districts using license-plate-recognition data, commercial investigative databases and private investigators for student-residency verification. In one District 126 case, Tatiana Philips said she had been followed for months without knowing it. Records included photographs of her vehicles at work, at a mall, at her mother's home and behind her apartment.</p>\n            <p>The district concluded that the family did not reside within district boundaries and Philips' 6- and 11-year-old children were disenrolled. NBC subsequently interviewed Philips inside an apartment in Alsip, within District 126, where she said she had lived for nearly two years. The district declined to discuss the individual family because of student-confidentiality rules while defending its residency-verification process generally.</p>\n            <p>NBC surveyed 32 Chicago-area districts and reported that nine used license-plate readers; at least nine also acknowledged using private-investigation firms for residency verification or surveillance.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> The plate reader can correctly record where a car appears and the institutional inference can still be wrong. Vehicle location is evidence about a vehicle—not a complete account of where a family lives.</div>\n            <p class=\"idc_sources\"><strong>Sources:</strong> <a href=\"https://www.nbcchicago.com/consumer/followed-for-school-districts-using-surveillance-tech-to-decide-which-kids-belong/3935154/\">NBC Chicago — May 2026 investigation</a> · <a href=\"https://www.nbcchicago.com/consumer/big-brother-on-steroids-lawmaker-question-school-surveillance-of-families/3974543/\">NBC Chicago — August 2026 follow-up</a></p>",
+    geography: { state: "IL", county: "Cook", municipality: "Alsip" },
+    mapHref: "/illinois/counties/cook/cities/alsip/"
+  },
+  {
+    slug: "cps-student-social-media-monitoring",
+    category: "students",
+    kicker: "CHICAGO · CPS · STUDENT SOCIAL-MEDIA MONITORING",
+    title: "Chicago Public Schools quietly monitored public student social media for signs of gang involvement and violence.",
+    result: "25,000 students across 24 schools → 700+ interventions → police involved in some cases",
+    summary: "A ProPublica Illinois/WBEZ investigation found that CPS analysts monitored public-facing social media at 24 schools covering roughly 25,000 students. More than 700 students were called into interventions over four years; police were brought in or informed in at least 87 of more than 400 incident reports reviewed by reporters. Many students and parents did not know the program existed.",
+    bodyHtml: "<p>Beginning in 2015, Chicago Public Schools operated a program called Connect and Redirect to Respect that monitored students' public-facing social media for indications of gang involvement or violence. The program began at 16 schools and expanded to 24, covering roughly 25,000 students. It was supported by a $2.2 million U.S. Department of Justice grant.</p>\n            <p>ProPublica Illinois and WBEZ reported that more than 700 CPS students were called into interventions over four years because of social-media activity. In a review of more than 400 incident reports from the 2016–17 and 2017–18 school years, reporters found that police were brought in or informed at least 87 times. One Roosevelt High School student was questioned after an analyst reviewed his Facebook profile and suspected gang involvement even though there was no imminent threat of violence.</p>\n            <p>Many students and parents at participating schools told reporters they did not know the monitoring program existed. Of the 24 schools in the program, 16 were majority Black and five were majority Hispanic.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Publicly visible speech is not the same thing as expecting a school district to systematically analyze it, infer gang affiliation and route the inference into an intervention involving administrators or police.</div>\n            <p class=\"idc_sources\"><strong>Sources:</strong> <a href=\"https://www.propublica.org/article/chicago-public-schools-social-media-monitoring-violence-gangs\">ProPublica Illinois / WBEZ</a> · <a href=\"https://www.wbez.org/morning-shift/2019/02/12/cps-looks-for-gang-activity-in-students-facebook-posts\">WBEZ summary</a></p>",
+    geography: { state: "IL", county: "Cook", municipality: "Chicago" },
+    mapHref: "/illinois/counties/cook/cities/chicago/"
+  },
+  {
+    slug: "lockport-school-facial-recognition",
+    category: "students",
+    kicker: "NEW YORK · SCHOOL FACIAL RECOGNITION · POLICY REVERSAL",
+    title: "Lockport activated facial recognition in schools; organizing and litigation were followed by a statewide biometric-surveillance moratorium.",
+    result: "Facial recognition deployed → parent/student opposition and litigation → statewide moratorium halted use",
+    summary: "Lockport City School District activated a facial-recognition system in January 2020. Parents, students and civil-liberties groups challenged the program. New York enacted a statewide moratorium on biometric surveillance in schools in December 2020, halting Lockport's system while the state studied the technology.",
+    bodyHtml: "<p>Lockport City School District in New York activated a facial-recognition system in January 2020 after years of controversy over the project. Parents and students organized against the system, and the New York Civil Liberties Union sued state education officials over approval of the deployment.</p>\n            <p>In December 2020, New York enacted a statewide moratorium on biometric surveillance in schools. The law halted Lockport's facial-recognition system while requiring the state education department to study privacy, civil-rights and accuracy implications before further recommendations.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> School surveillance is not technologically inevitable. Students, families, legislators and courts can change whether a capability is permitted at all.</div>\n            <p class=\"idc_sources\"><strong>Sources:</strong> <a href=\"https://www.aclu.org/press-releases/nyclu-sues-new-york-state-education-department-over-approval-facial-recognition\">NYCLU — Lockport litigation</a> · <a href=\"https://www.aclu.org/press-releases/new-york-creates-first-nation-moratorium-facial-recognition-schools\">ACLU/NYCLU — statewide moratorium</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "buckeye-verkada-facial-recognition-disabled",
+    category: "students",
+    kicker: "ARIZONA · VERKADA · FACIAL-RECOGNITION CAPABILITY",
+    title: "A district installed AI-capable cameras but said facial recognition remained disabled after community backlash.",
+    result: "Facial-recognition capability present → district says feature off → board approval and family opt-in required before activation",
+    summary: "Buckeye Union High School District installed Verkada cameras with AI capabilities across its campuses. After backlash over the system and surveillance-themed signage, the district said facial recognition had not been enabled and would require governing-board approval plus an opt-in process for families before use.",
+    bodyHtml: "<p>In 2026, Buckeye Union High School District in Arizona drew criticism after installing Verkada cameras with AI capabilities across its campuses. Students and community members objected not only to the technology but also to hallway signs telling students they were being watched.</p>\n            <p>The district told FOX 10 Phoenix that facial recognition was <strong>not enabled</strong>. Superintendent Steve Bebee said activating the feature would first require governing-board approval and an opportunity for families to opt in. The district said ordinary video was deleted after 30 days and that police could be granted camera access during a real emergency.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Capability is not deployment. NoRec records the distinction explicitly: hardware may support facial recognition even when the organization says that feature is disabled.</div>\n            <p class=\"idc_sources\"><strong>Source:</strong> <a href=\"https://www.fox10phoenix.com/news/ai-cameras-spark-privacy-concerns-high-school-goodyear.amp\">FOX 10 Phoenix</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "catalan",
+    category: "government",
+    kicker: "CHICAGO · GANG INTELLIGENCE",
+    title: "Wilmer Catalan-Ramirez: an unverified gang designation reached immigration enforcement.",
+    result: "Designation challenged → CPD said it could not verify it",
+    summary: "Chicago's Inspector General documented litigation brought by Wilmer Catalan-Ramirez after CPD gang information was shared beyond the department. Catalan-Ramirez alleged that the designation affected immigration relief and left him vulnerable to deportation. The City settled the case in 2017, and CPD acknowledged that it could not verify that he was a gang me…",
+    bodyHtml: "<p>Chicago's Inspector General documented litigation brought by Wilmer Catalan-Ramirez after CPD gang information was shared beyond the department. Catalan-Ramirez alleged that the designation affected immigration relief and left him vulnerable to deportation. The City settled the case in 2017, and CPD acknowledged that it could not verify that he was a gang member.</p>\n            <p>The broader OIG review found that Chicago did not operate one clean, unified “gang database.” Gang-related information existed across multiple databases, forms, tools, and repositories, while outside agencies could also receive or contribute information.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> A bad flag does not have to remain inside the system that created it. Once shared, the person may have to fight consequences in a completely different process.</div>\n            <p class=\"idc_sources\"><strong>Sources:</strong> <a href=\"https://igchicago.org/publications/review-of-cpds-gang-database/\">Chicago Office of Inspector General</a> · <a href=\"https://igchicago.org/wp-content/uploads/2019/04/OIG-CPD-Gang-Database-Review.pdf\">OIG full report</a></p>",
+    geography: { state: "IL", county: "Cook", municipality: "Chicago" },
+    mapHref: "/illinois/counties/cook/cities/chicago/"
+  },
+  {
+    slug: "shotspotter",
+    category: "government",
+    kicker: "CHICAGO · SHOTSPOTTER",
+    title: "50,176 dispatched alerts; documented gun-crime evidence appeared in a small minority of responses.",
+    result: "9.1% of dispositions documented gun-related criminal evidence",
+    summary: "Chicago OIG analyzed ShotSpotter alerts from January 2020 through May 2021. It identified 50,176 alerts confirmed by ShotSpotter as probable gunfire and dispatched to CPD. Of the 41,830 responses with a recorded disposition, 4,556—9.1%—documented evidence of a gun-related criminal offense. Only 1,056 of all 50,176 dispatched alerts, or 2.1%, shared an event …",
+    bodyHtml: "<p>Chicago OIG analyzed ShotSpotter alerts from January 2020 through May 2021. It identified 50,176 alerts confirmed by ShotSpotter as probable gunfire and dispatched to CPD. Of the 41,830 responses with a recorded disposition, 4,556—9.1%—documented evidence of a gun-related criminal offense. Only 1,056 of all 50,176 dispatched alerts, or 2.1%, shared an event number with a documented investigatory stop.</p>\n            <p>OIG also found evidence that the volume of ShotSpotter alerts in an area could affect how some officers perceived and interacted with people there. In other words, an alert system could influence policing even when a particular alert did not produce a gun case.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> A system can create consequences without falsely naming a specific person. Repeated machine-generated suspicion can redirect police attention toward a place and the people in it.</div>\n            <p class=\"idc_sources\"><strong>Source:</strong> <a href=\"https://igchicago.org/wp-content/uploads/2022/06/OIG-Public-Safety-Section-Annual-Report-2021.pdf\">Chicago OIG Public Safety Annual Report 2021</a></p>",
+    geography: { state: "IL", county: "Cook", municipality: "Chicago" },
+    mapHref: "/illinois/counties/cook/cities/chicago/"
+  },
+  {
+    slug: "ssl",
+    category: "government",
+    kicker: "CHICAGO · PREDICTIVE POLICING",
+    title: "The Strategic Subject List assigned people risk scores for becoming a victim or offender in a shooting.",
+    result: "OIG: unreliable scores and tiers among major concerns",
+    summary: "CPD spent years developing the Strategic Subject List and its successor, the Crime and Victimization Risk Model, with $3.8 million in federal grants. The models attempted to predict whether a person would become a “party to violence”—either a victim or an offender in a shooting. Chicago OIG identified concerns including unreliable risk scores and tiers, inad…",
+    bodyHtml: "<p>CPD spent years developing the Strategic Subject List and its successor, the Crime and Victimization Risk Model, with $3.8 million in federal grants. The models attempted to predict whether a person would become a “party to violence”—either a victim or an offender in a shooting.</p>\n            <p>Chicago OIG identified concerns including unreliable risk scores and tiers, inadequate training, weak controls over internal and external access, and interventions that could attach negative consequences to arrests that never resulted in convictions. CPD decommissioned the program in 2019.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> A numerical score can look objective even when the underlying model, data, or meaning of the score is much less certain.</div>\n            <p class=\"idc_sources\"><strong>Sources:</strong> <a href=\"https://igchicago.org/2020/01/23/oig-releases-advisory-on-the-chicago-police-departments-predictive-risk-models/\">Chicago OIG summary</a> · <a href=\"https://igchicago.org/publications/advisory-concerning-the-chicago-police-departments-predictive-risk-models/\">OIG advisory</a></p>",
+    geography: { state: "IL", county: "Cook", municipality: "Chicago" },
+    mapHref: "/illinois/counties/cook/cities/chicago/"
+  },
+  {
+    slug: "robert-williams",
+    category: "government",
+    kicker: "MICHIGAN · FACIAL RECOGNITION",
+    title: "Robert Williams: a false facial-recognition lead became a wrongful arrest.",
+    result: "Wrongfully arrested → case settled → Detroit policy changed",
+    summary: "Detroit police investigated a watch theft using a low-quality still from surveillance video. A facial-recognition search returned Robert Williams as a possible match. Police then placed his photograph into a lineup and ultimately obtained an arrest warrant. Williams was arrested in front of his family and detained for roughly 30 hours even though he was not …",
+    bodyHtml: "<p>Detroit police investigated a watch theft using a low-quality still from surveillance video. A facial-recognition search returned Robert Williams as a possible match. Police then placed his photograph into a lineup and ultimately obtained an arrest warrant. Williams was arrested in front of his family and detained for roughly 30 hours even though he was not the man in the surveillance image.</p>\n            <p>Williams sued. A 2024 settlement imposed new Detroit Police Department restrictions intended to prevent arrests based on uncorroborated facial-recognition leads.</p>\n            <div class=\"idc_takeaway\"><strong>Illinois relevance:</strong> Illinois law expressly provides law-enforcement access to state driver's-license, permit, and ID photographs for facial-recognition searches. This Michigan case does not establish an Illinois wrongful arrest; it demonstrates what can happen when an investigative facial-recognition lead becomes the anchor for the rest of an investigation.</div>\n            <p class=\"idc_sources\"><strong>Sources:</strong> <a href=\"https://www.aclu.org/cases/williams-v-city-of-detroit-face-recognition-false-arrest\">Williams v. City of Detroit — ACLU case record</a> · <a href=\"https://assets.aclu.org/live/uploads/2024/06/williams_settlement_one-pager_june_24-1.pdf\">Settlement summary</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "woodruff",
+    category: "government",
+    kicker: "MICHIGAN · FACIAL RECOGNITION",
+    title: "Porcha Woodruff: Detroit faced another wrongful-arrest allegation after a facial-recognition match.",
+    result: "Eight months pregnant when arrested · civil litigation followed",
+    summary: "Porcha Woodruff alleged that Detroit police wrongfully arrested her in 2023 after an investigation involving a facial-recognition match. She was eight months pregnant at the time. The ACLU described her case as the third known allegation in three years of a Detroit wrongful arrest based on reliance on a false facial-recognition match. Because litigation invo…",
+    bodyHtml: "<p>Porcha Woodruff alleged that Detroit police wrongfully arrested her in 2023 after an investigation involving a facial-recognition match. She was eight months pregnant at the time. The ACLU described her case as the third known allegation in three years of a Detroit wrongful arrest based on reliance on a false facial-recognition match.</p>\n            <p>Because litigation involves allegations and contested facts, NoRec does not treat every allegation in a complaint as an adjudicated finding. The case is included because the underlying facial-recognition failure mode and subsequent legal challenge are documented.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Repetition matters. Once a failure mode has produced multiple serious disputes, “a human is in the loop” is not by itself an answer; the quality of that human review matters.</div>\n            <p class=\"idc_sources\"><strong>Sources:</strong> <a href=\"https://www.aclu.org/press-releases/after-third-wrongful-arrest-aclu-slams-detroit-police-department-for-continuing-to-use-faulty-facial-recognition-technology\">ACLU of Michigan / ACLU</a> · <a href=\"https://www.aclu.org/court-cases?issue=face-recognition-technology\">ACLU facial-recognition case index</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "flock-arkansas",
+    category: "government",
+    kicker: "ARKANSAS · FLOCK / ALPR",
+    title: "A plate-reader misread reportedly put an innocent couple at gunpoint with their infant in the vehicle.",
+    result: "Wrong plate read → high-risk stop → error discovered",
+    summary: "In February 2026, according to reporting compiled by the Institute for Justice, a Flock camera in Sherwood, Arkansas misread an SUV's license plate. Officers detained an innocent couple at gunpoint while their six-week-old baby remained in the vehicle. Officers released them after determining that the alert did not identify their vehicle correctly. An ALPR a…",
+    bodyHtml: "<p>In February 2026, according to reporting compiled by the Institute for Justice, a Flock camera in Sherwood, Arkansas misread an SUV's license plate. Officers detained an innocent couple at gunpoint while their six-week-old baby remained in the vehicle. Officers released them after determining that the alert did not identify their vehicle correctly.</p>\n            <p>An ALPR alert is not a conviction and should not be treated as one. But the operational response to a stolen-vehicle or felony alert can be immediate and high-risk, meaning a one-character recognition error can have consequences long before anyone has time to audit the database.</p>\n            <div class=\"idc_takeaway\"><strong>Illinois relevance:</strong> Flock ALPR systems are deployed by Illinois agencies. This incident occurred in Arkansas; it demonstrates the error pathway created when automated plate recognition feeds a police hotlist response.</div>\n            <p class=\"idc_sources\"><strong>Source:</strong> <a href=\"https://ij.org/dozens-of-innocent-motorists-have-been-pulled-over-detained-at-gunpoint-or-jailed-due-to-ai-license-plate-camera-errors/\">Institute for Justice review of documented ALPR errors</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "michael-williams",
+    category: "government",
+    kicker: "CHICAGO · SHOTSPOTTER · CRIMINAL CASE",
+    title: "Michael Williams spent 11 months in jail while ShotSpotter evidence helped support a murder case that prosecutors ultimately dropped.",
+    result: "11 months jailed → case dismissed for insufficient evidence",
+    summary: "Michael Williams, a 65-year-old Chicago man, was charged with murder after Safarian Herring was fatally shot while riding in Williams' vehicle. An Associated Press investigation found that ShotSpotter evidence became an important part of the prosecution's theory about where the shot originated. Williams maintained that another vehicle pulled alongside his ca…",
+    bodyHtml: "<p>Michael Williams, a 65-year-old Chicago man, was charged with murder after Safarian Herring was fatally shot while riding in Williams' vehicle. An Associated Press investigation found that ShotSpotter evidence became an important part of the prosecution's theory about where the shot originated. Williams maintained that another vehicle pulled alongside his car and someone inside it fired the shot.</p>\n            <p>Williams spent 11 months in Cook County Jail. Prosecutors later asked the court to dismiss the case for insufficient evidence. Reporting on the case also highlighted an important limitation: ShotSpotter said its system was not intended to reliably determine gunshots fired inside enclosed spaces such as vehicles, even though a forensic report concerning the incident had been prepared.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> There is a major difference between a sensor generating an investigative lead and that output acquiring evidentiary weight in a criminal case. The consequences arrive long before a defendant gets a final trial verdict.</div>\n            <p class=\"idc_sources\"><strong>Sources:</strong> <a href=\"https://www.ap.org/news-highlights/best-of-the-week/2021/jailed-by-ai-gunshot-detection-system/\">Associated Press investigation</a> · <a href=\"https://www.wbez.org/criminal-justice/2021/08/20/shotspotter-landed-chicago-man-in-jail-with-scant-evidence\">WBEZ / AP reporting</a> · <a href=\"https://news.wttw.com/2022/07/21/lawsuit-alleges-chicago-police-made-false-arrests-based-faulty-shotspotter-alerts\">WTTW on subsequent litigation</a></p>",
+    geography: { state: "IL", county: "Cook", municipality: "Chicago" },
+    mapHref: "/illinois/counties/cook/cities/chicago/"
+  },
+  {
+    slug: "gang-data-quality",
+    category: "government",
+    kicker: "CHICAGO · GANG INTELLIGENCE · DATA QUALITY",
+    title: "Chicago's gang data included contradictory, incomplete and implausible records—with no ordinary way for a person to know or challenge a designation.",
+    result: "Bad data + broad access + weak correction process",
+    summary: "Chicago OIG's review found systemic weaknesses in CPD's gang information practices: gang data existed in multiple repositories, lacked consistent controls, could contain contradictory information, and was shared with outside agencies. The review also found that people were not notified when they were designated and that CPD lacked a clear process for a perso…",
+    bodyHtml: "<p>Chicago OIG's review found systemic weaknesses in CPD's gang information practices: gang data existed in multiple repositories, lacked consistent controls, could contain contradictory information, and was shared with outside agencies. The review also found that people were not notified when they were designated and that CPD lacked a clear process for a person to challenge or correct a designation.</p>\n            <p>Contemporaneous reporting on records obtained from CPD found plainly implausible ages in the data, including purported gang members listed as 118 and 132 years old. The absurd records are useful not because anyone believed a 132-year-old was on the street, but because they demonstrate how basic data-quality failures can survive inside systems used for consequential decisions.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> “It's in the database” is not the same thing as “it's true.” Scale can make bad information easier to distribute while making responsibility for correcting it harder to locate.</div>\n            <p class=\"idc_sources\"><strong>Sources:</strong> <a href=\"https://igchicago.org/publications/review-of-cpds-gang-database/\">Chicago OIG review</a> · <a href=\"https://www.propublica.org/article/politic-il-insider-chicago-gang-database\">ProPublica Illinois reporting</a></p>",
+    geography: { state: "IL", county: "Cook", municipality: "Chicago" },
+    mapHref: "/illinois/counties/cook/cities/chicago/"
+  },
+  {
+    slug: "michael-oliver",
+    category: "government",
+    kicker: "MICHIGAN · FACIAL RECOGNITION",
+    title: "Michael Oliver became another early Detroit wrongful-arrest case after a false facial-recognition match.",
+    result: "False match → wrongful arrest",
+    summary: "Michael Oliver was publicly identified in 2020 as the second known person in the United States wrongfully arrested following a false facial-recognition match. His case followed Robert Williams' and helped establish that the Williams arrest was not merely a one-off anomaly. Illinois relevance: The lesson is not that Illinois uses Detroit's exact workflow. It …",
+    bodyHtml: "<p>Michael Oliver was publicly identified in 2020 as the second known person in the United States wrongfully arrested following a false facial-recognition match. His case followed Robert Williams' and helped establish that the Williams arrest was not merely a one-off anomaly.</p>\n            <div class=\"idc_takeaway\"><strong>Illinois relevance:</strong> The lesson is not that Illinois uses Detroit's exact workflow. It is that a face-search candidate can contaminate the human investigation that follows if investigators treat similarity as identity.</div>\n            <p class=\"idc_sources\"><strong>Sources:</strong> <a href=\"https://www.aclumich.org/press-releases/aclu-statement-second-wrongful-arrest-due-face-recognition-technology/\">ACLU of Michigan</a> · <a href=\"https://www.aclumich.org/cases/facial-recognition/\">ACLU of Michigan facial-recognition case record</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "nijeer-parks",
+    category: "government",
+    kicker: "NEW JERSEY · FACIAL RECOGNITION",
+    title: "Nijeer Parks spent ten days in jail while physical evidence that could have excluded him remained available to investigators.",
+    result: "False face match → 10 days jailed → civil challenge",
+    summary: "Woodbridge police investigating a shoplifting case had fingerprints, DNA and other physical evidence connected to the actual suspect. Police nevertheless relied on a false facial-recognition result identifying Nijeer Parks. Parks was arrested in 2019 and spent ten days in jail. The case is especially useful for understanding automation bias: surveillance did…",
+    bodyHtml: "<p>Woodbridge police investigating a shoplifting case had fingerprints, DNA and other physical evidence connected to the actual suspect. Police nevertheless relied on a false facial-recognition result identifying Nijeer Parks. Parks was arrested in 2019 and spent ten days in jail.</p>\n            <p>The case is especially useful for understanding automation bias: surveillance did not eliminate other evidence. Instead, the machine-generated candidate allegedly became persuasive enough that investigators failed to wait for or adequately use evidence that could point elsewhere.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Human review does not automatically cure algorithmic error. A human can become anchored to the machine's answer and interpret the rest of the investigation around it.</div>\n            <p class=\"idc_sources\"><strong>Sources:</strong> <a href=\"https://www.aclu-nj.org/news/how-face-recognition-technology-landed-one-innocent-man-new-jersey-jail-ten-days/\">ACLU of New Jersey case account</a> · <a href=\"https://www.aclu-nj.org/press-releases/aclu-nj-and-aclu-national-file-amicus-challenge-wrongful-arrest-due-face-recognition/\">ACLU-NJ litigation record</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "fr-national-pattern",
+    category: "government",
+    kicker: "UNITED STATES · FACIAL RECOGNITION",
+    title: "By 2026, the known wrongful-arrest problem had grown beyond a handful of Detroit cases.",
+    result: "14 known wrongful arrests catalogued by ACLU in May 2026",
+    summary: "In May 2026, the ACLU catalogued fourteen known wrongful arrests in which police reliance on facial-recognition technology played a role. The cases spanned multiple states and investigative workflows. Some involved suggestive photo lineups built around a face-search candidate; others involved officers visually “confirming” a bad algorithmic result. The numbe…",
+    bodyHtml: "<p>In May 2026, the ACLU catalogued fourteen known wrongful arrests in which police reliance on facial-recognition technology played a role. The cases spanned multiple states and investigative workflows. Some involved suggestive photo lineups built around a face-search candidate; others involved officers visually “confirming” a bad algorithmic result.</p>\n            <p>The number should be read as a documented floor, not a population-wide error rate. NoRec does not infer how many unidentified cases exist from this list alone.</p>\n            <div class=\"idc_takeaway\"><strong>Illinois relevance:</strong> Illinois maintains credential photographs and state law expressly contemplates facial-recognition search services for law enforcement. National cases demonstrate a real operational failure mode that Illinois policy and investigators need to guard against.</div>\n            <p class=\"idc_sources\"><strong>Source:</strong> <a href=\"https://www.aclu-or.org/news/more-than-a-dozen-wrongful-arrests-due-to-police-reliance-on-facial-recognition-technology/\">ACLU national case roundup, May 2026</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "alpr-error-pattern",
+    category: "government",
+    kicker: "UNITED STATES · AUTOMATED LICENSE PLATE READERS",
+    title: "Wrong reads, wrong hotlist entries and stale records have repeatedly sent police toward innocent motorists.",
+    result: "Different failure source → same roadside consequence",
+    summary: "A 2026 Institute for Justice review collected numerous incidents in which ALPR-driven alerts contributed to innocent motorists being pulled over, detained at gunpoint or jailed. The underlying error was not always the camera itself: cases involved optical misreads, incorrect human data entry, stale or incorrect hotlist information, and failures to verify an …",
+    bodyHtml: "<p>A 2026 Institute for Justice review collected numerous incidents in which ALPR-driven alerts contributed to innocent motorists being pulled over, detained at gunpoint or jailed. The underlying error was not always the camera itself: cases involved optical misreads, incorrect human data entry, stale or incorrect hotlist information, and failures to verify an alert before escalating a stop.</p>\n            <p>That distinction matters. An ALPR system is an ecosystem: camera recognition, vehicle databases, hotlists, sharing networks, dispatch and officer response. A vendor can accurately describe one component while the overall process still produces a bad stop.</p>\n            <div class=\"idc_takeaway\"><strong>Illinois relevance:</strong> Illinois agencies use networked ALPR systems, including Flock. Evaluating them requires asking not only “How accurate is the camera?” but “What verifies a hit before somebody is ordered out of a car at gunpoint?”</div>\n            <p class=\"idc_sources\"><strong>Source:</strong> <a href=\"https://ij.org/dozens-of-innocent-motorists-have-been-pulled-over-detained-at-gunpoint-or-jailed-due-to-ai-license-plate-camera-errors/\">Institute for Justice incident review, July 2026</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "surveillance-pricing",
+    category: "consumer",
+    kicker: "CONSUMER SURVEILLANCE · PRICING",
+    title: "The FTC found that location, browser history, shopping behavior and even mouse movements can feed systems used to tailor prices and promotions.",
+    result: "Observe → profile → change the offer",
+    summary: "The FTC's surveillance-pricing study examined documents from intermediary firms that help businesses algorithmically tailor prices and promotions. Its initial findings said inputs can include precise location, demographics, browsing patterns, shopping history, mouse movements and products left unpurchased in a cart. This is different from ordinary dynamic pr…",
+    bodyHtml: "<p>The FTC's surveillance-pricing study examined documents from intermediary firms that help businesses algorithmically tailor prices and promotions. Its initial findings said inputs can include precise location, demographics, browsing patterns, shopping history, mouse movements and products left unpurchased in a cart.</p>\n            <p>This is different from ordinary dynamic pricing based only on time, inventory or market demand. The privacy concern arises when information about the person—or their behavior—is part of the mechanism deciding what offer they see.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> You do not need to be accused of a crime for surveillance to disadvantage you. Information changes bargaining power. Data collected because it appears harmless can become an input into deciding what somebody thinks you will tolerate paying.</div>\n            <p class=\"idc_sources\"><strong>Sources:</strong> <a href=\"https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-surveillance-pricing-study-indicates-wide-range-personal-data-used-set-individualized-consumer\">Federal Trade Commission, Jan. 2025</a> · <a href=\"https://www.ftc.gov/policy/advocacy-research/tech-at-ftc/2025/01/surveillance-pricing-update-work-ahead\">FTC Office of Technology</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "flock-cbp",
+    category: "government",
+    kicker: "ILLINOIS · FLOCK · CBP · DATA SHARING",
+    title: "Illinois restricted how ALPR data could be used. A state audit later found that CBP had nevertheless gained access to Illinois Flock data.",
+    result: "State restriction → prohibited access found → access ordered terminated",
+    summary: "In August 2025, Illinois Secretary of State Alexi Giannoulias announced that an audit had found Flock Safety in violation of state law after U.S. Customs and Border Protection was given access to Illinois license-plate-reader data. The Secretary of State ordered Flock to terminate CBP's access to Illinois data. This case is fundamentally different from a fal…",
+    bodyHtml: "<p>In August 2025, Illinois Secretary of State Alexi Giannoulias announced that an audit had found Flock Safety in violation of state law after U.S. Customs and Border Protection was given access to Illinois license-plate-reader data. The Secretary of State ordered Flock to terminate CBP's access to Illinois data.</p>\n            <p>This case is fundamentally different from a false plate read. The surveillance system did not need to misidentify anyone for the safeguard to fail. Illinois had already imposed restrictions on the use and sharing of ALPR information, yet the state discovered prohibited access after the fact.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> A legal prohibition and a technical prohibition are not the same thing. A law can prohibit access. It cannot un-share data that has already been shared.</div>\n            <p class=\"idc_sources\"><strong>Source:</strong> <a href=\"https://www.ilsos.gov/news/2025/august-25-2025-giannoulias-audit-finds-license-plate-reader-company-in-violation-of-state-law.html\">Illinois Secretary of State — Aug. 25, 2025</a></p>",
+    geography: { state: "IL" },
+    mapHref: "/illinois/"
+  },
+  {
+    slug: "mount-prospect-alpr",
+    category: "government",
+    kicker: "ILLINOIS · ALPR · INTERSTATE SEARCHES",
+    title: "Illinois ALPR access became entangled with out-of-state abortion and immigration investigations.",
+    result: "Interstate network access → Illinois legal safeguards tested",
+    summary: "A June 2025 Village of Oak Park memorandum discussing automatic license-plate readers described concerns arising from nationwide Flock searches by Illinois law-enforcement agencies. The memo identified Mount Prospect Police Department as having assisted a Texas sheriff's department in locating a missing person reportedly connected to a self-administered abor…",
+    bodyHtml: "<p>A June 2025 Village of Oak Park memorandum discussing automatic license-plate readers described concerns arising from nationwide Flock searches by Illinois law-enforcement agencies. The memo identified Mount Prospect Police Department as having assisted a Texas sheriff's department in locating a missing person reportedly connected to a self-administered abortion investigation. It also described hundreds of immigration-related nationwide searches associated with Mount Prospect's system.</p>\n            <p>The episode illustrates why a networked ALPR system is different from a camera that merely records cars passing one intersection. Search permissions and cross-jurisdictional sharing can allow data collected under one state's rules to become useful to investigators operating under another state's priorities.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Geography does not necessarily contain networked surveillance. The meaningful boundary is often who can query the system—not where the camera is bolted to the ground.</div>\n            <p class=\"idc_sources\"><strong>Source:</strong> <a href=\"https://www.oak-park.us/files/assets/oakpark/v/1/village-manager/memos-to-the-village-president/2025/2025-06-27-automatic-license-plate-readers-io.pdf\">Village of Oak Park memorandum — June 27, 2025</a></p>",
+    geography: { state: "IL", county: "Cook", municipality: "Mount Prospect" },
+    mapHref: "/illinois/counties/cook/cities/mount-prospect/"
+  },
+  {
+    slug: "oak-park-flock-errors",
+    category: "government",
+    kicker: "OAK PARK · FLOCK · OVERSIGHT DATA",
+    title: "Oak Park's own published oversight data exposed erroneous Flock-prompted stops.",
+    result: "Local oversight made the error rate visible",
+    summary: "Oak Park is unusually useful as an Illinois case because the village published information about traffic stops prompted by its ALPR system. Independent analysis of those records identified erroneous stops attributed to data problems or officer error, rather than relying only on a vendor's advertised recognition accuracy. Oak Park later ended its Flock progra…",
+    bodyHtml: "<p>Oak Park is unusually useful as an Illinois case because the village published information about traffic stops prompted by its ALPR system. Independent analysis of those records identified erroneous stops attributed to data problems or officer error, rather than relying only on a vendor's advertised recognition accuracy.</p>\n            <p>Oak Park later ended its Flock program in 2025. The case demonstrates the value of publishing what happens <em>after</em> an automated alert: how many alerts become stops, how many stops are mistaken, what caused the mistake, and what officers did before escalating the encounter.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Camera accuracy is not the same thing as operational accuracy. The meaningful unit is the entire chain from image to roadside encounter.</div>\n            <p class=\"idc_sources\"><strong>Sources:</strong> <a href=\"https://www.freedomtothriveop.com/blog/erroenous-flock-stops-in-oak-park\">Freedom to Thrive Oak Park analysis of village data</a> · <a href=\"https://ij.org/dozens-of-innocent-motorists-have-been-pulled-over-detained-at-gunpoint-or-jailed-due-to-ai-license-plate-camera-errors/\">Institute for Justice national review</a></p>",
+    geography: { state: "IL", county: "Cook", municipality: "Oak Park" },
+    mapHref: "/illinois/counties/cook/cities/oak-park/"
+  },
+  {
+    slug: "alpr-morristown",
+    category: "government",
+    kicker: "TENNESSEE · FLOCK · OCR ERROR",
+    title: "A character-recognition error reportedly turned a family trip into a guns-out police stop.",
+    result: "O / 0 confusion → wrong vehicle alert → high-risk stop",
+    summary: "In Morristown, Tennessee, a Flock ALPR reportedly confused the letter O with the number zero. Police detained two grandparents at gunpoint while their three-year-old granddaughter was in the vehicle before the mistake was resolved. Failure mode: Optical character recognition. A tiny transcription difference can radically change the threat officers believe th…",
+    bodyHtml: "<p>In Morristown, Tennessee, a Flock ALPR reportedly confused the letter O with the number zero. Police detained two grandparents at gunpoint while their three-year-old granddaughter was in the vehicle before the mistake was resolved.</p>\n            <div class=\"idc_takeaway\"><strong>Failure mode:</strong> Optical character recognition. A tiny transcription difference can radically change the threat officers believe they are approaching.</div>\n            <p class=\"idc_sources\"><strong>Source:</strong> <a href=\"https://ij.org/dozens-of-innocent-motorists-have-been-pulled-over-detained-at-gunpoint-or-jailed-due-to-ai-license-plate-camera-errors/\">Institute for Justice incident review</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "alpr-toledo",
+    category: "government",
+    kicker: "OHIO · FLOCK · OCR ERROR",
+    title: "A reported 7-versus-2 plate error escalated beyond a routine traffic stop.",
+    result: "Wrong character → detention at gunpoint → police dog deployed",
+    summary: "In Toledo, Ohio, a Flock camera reportedly interpreted a 7 as a 2. The resulting alert led officers to detain an innocent driver at gunpoint; reporting collected by the Institute for Justice says a police dog was deployed against him and he was held for hours before the mistake was resolved. Why it matters: “They'll just check the plate and let you go” under…",
+    bodyHtml: "<p>In Toledo, Ohio, a Flock camera reportedly interpreted a 7 as a 2. The resulting alert led officers to detain an innocent driver at gunpoint; reporting collected by the Institute for Justice says a police dog was deployed against him and he was held for hours before the mistake was resolved.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> “They'll just check the plate and let you go” understates the consequence. The alert can determine how officers approach the encounter before verification occurs.</div>\n            <p class=\"idc_sources\"><strong>Source:</strong> <a href=\"https://ij.org/dozens-of-innocent-motorists-have-been-pulled-over-detained-at-gunpoint-or-jailed-due-to-ai-license-plate-camera-errors/\">Institute for Justice incident review</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "alpr-volusia",
+    category: "government",
+    kicker: "FLORIDA · ALPR · WRONG INFERENCE",
+    title: "An ALPR investigation reportedly contributed to an innocent driver spending 13 days in jail.",
+    result: "Vehicle association → arrest → 13 days jailed → error discovered",
+    summary: "In Volusia County, Florida, investigators reportedly associated an innocent person's vehicle with a fatal crash using ALPR imagery. The person spent 13 days in jail before authorities discovered the mistake. Failure mode: Human inference. The camera does not have to misread a character if investigators draw the wrong conclusion from otherwise accurate survei…",
+    bodyHtml: "<p>In Volusia County, Florida, investigators reportedly associated an innocent person's vehicle with a fatal crash using ALPR imagery. The person spent 13 days in jail before authorities discovered the mistake.</p>\n            <div class=\"idc_takeaway\"><strong>Failure mode:</strong> Human inference. The camera does not have to misread a character if investigators draw the wrong conclusion from otherwise accurate surveillance data.</div>\n            <p class=\"idc_sources\"><strong>Source:</strong> <a href=\"https://ij.org/dozens-of-innocent-motorists-have-been-pulled-over-detained-at-gunpoint-or-jailed-due-to-ai-license-plate-camera-errors/\">Institute for Justice incident review</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "denise-green",
+    category: "government",
+    kicker: "CALIFORNIA · ALPR · PRE-FLOCK",
+    title: "Denise Green shows that the high-risk false-hit problem predates Flock.",
+    result: "False stolen-car alert → guns drawn → handcuffed and detained",
+    summary: "San Francisco police stopped Denise Green after an automated license-plate reader incorrectly associated her Lexus with a stolen vehicle. The resulting encounter involved multiple officers, drawn firearms, handcuffing and detention before police determined that her vehicle was not the stolen car. The case later produced federal appellate litigation, making i…",
+    bodyHtml: "<p>San Francisco police stopped Denise Green after an automated license-plate reader incorrectly associated her Lexus with a stolen vehicle. The resulting encounter involved multiple officers, drawn firearms, handcuffing and detention before police determined that her vehicle was not the stolen car.</p>\n            <p>The case later produced federal appellate litigation, making it useful as a vendor-neutral example: false or insufficiently verified ALPR alerts were producing high-risk stops before today's Flock network existed.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> This is not solely a “Flock problem.” It is an operational risk inherent in connecting automated vehicle identification to consequential police action without sufficient verification.</div>\n            <p class=\"idc_sources\"><strong>Source:</strong> <a href=\"https://law.justia.com/cases/federal/appellate-courts/ca9/11-17892/11-17892-2014-02-18.html\">Green v. City and County of San Francisco — Ninth Circuit</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "alpr-stalking",
+    category: "government",
+    kicker: "PENNSYLVANIA · ALPR · OFFICIAL MISUSE",
+    title: "An officer used law-enforcement plate-reader access to track his estranged wife.",
+    result: "Authorized access → personal surveillance → criminal consequences",
+    summary: "A Pennsylvania police officer was accused of using law-enforcement license-plate-reader systems to monitor his estranged wife's vehicle for personal purposes. Reporting described hundreds of queries. He later pleaded guilty to stalking and official oppression. Nothing about this failure requires an inaccurate camera. The danger comes from a legitimate survei…",
+    bodyHtml: "<p>A Pennsylvania police officer was accused of using law-enforcement license-plate-reader systems to monitor his estranged wife's vehicle for personal purposes. Reporting described hundreds of queries. He later pleaded guilty to stalking and official oppression.</p>\n            <p>Nothing about this failure requires an inaccurate camera. The danger comes from a legitimate surveillance capability being available to a person willing to misuse legitimate credentials.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Accuracy cannot solve insider abuse. Access controls, query justification, audit logs, supervisory review and meaningful penalties address a different threat than better OCR does.</div>\n            <p class=\"idc_sources\"><strong>Source:</strong> <a href=\"https://people.com/penn-woman-says-estranged-cop-husband-used-auto-license-plate-readers-to-stalk-12115144\">People — reported case and court outcome</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "chicago-stingray-records",
+    category: "government",
+    kicker: "CHICAGO · CELL-SITE SIMULATOR · RECORDKEEPING",
+    title: "Illinois required warrants. CPD's Stingray unit nevertheless kept no deployment log—and a city-retained attorney advised against creating one.",
+    result: "Legal safeguard → no usable audit trail → compliance difficult to verify",
+    summary: "Illinois' Citizen Privacy Protection Act restricts law-enforcement use of cell-site simulators and generally requires a warrant. But the ACLU of Illinois reported that Chicago Police Department Tech Lab personnel testified that they kept no log or electronic record of Stingray deployments and had no written regulations limiting use. According to the ACLU's r…",
+    bodyHtml: "<p>Illinois' Citizen Privacy Protection Act restricts law-enforcement use of cell-site simulators and generally requires a warrant. But the ACLU of Illinois reported that Chicago Police Department Tech Lab personnel testified that they kept no log or electronic record of Stingray deployments and had no written regulations limiting use.</p>\n            <p>According to the ACLU's review of testimony and records, when a sergeant asked about keeping such records, an attorney retained by the City advised him not to. Hard-copy court orders were instead stored together with thousands of pen-register orders. When records were requested, the City argued that identifying the responsive material among more than 6,000 pages was unduly burdensome.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> A warrant requirement answers who must approve surveillance. Recordkeeping answers whether anybody can later determine whether that requirement was actually followed.</div>\n            <p class=\"idc_sources\"><strong>Source:</strong> <a href=\"https://www.aclu-il.org/publications/stingrays-and-chicago-police-department/\">ACLU of Illinois — Stingrays and the Chicago Police Department</a></p>",
+    geography: { state: "IL", county: "Cook", municipality: "Chicago" },
+    mapHref: "/illinois/counties/cook/cities/chicago/"
+  },
+  {
+    slug: "andrews-stingray",
+    category: "government",
+    kicker: "MARYLAND · HAILSTORM / STINGRAY · DISCOVERY",
+    title: "Police used a cell-site simulator to find Kerron Andrews inside a home. His defense initially wasn't told how police had located him.",
+    result: "Secret location technique → discovery fight → evidence suppressed",
+    summary: "In State v. Andrews , Baltimore police used a Hailstorm cell-site simulator to precisely locate Andrews' phone inside a residence. Court records show that initial prosecution disclosures failed to reveal the method used to find him. When defense counsel specifically requested that information, the State responded that it did not possess information about the…",
+    bodyHtml: "<p>In <em>State v. Andrews</em>, Baltimore police used a Hailstorm cell-site simulator to precisely locate Andrews' phone inside a residence. Court records show that initial prosecution disclosures failed to reveal the method used to find him. When defense counsel specifically requested that information, the State responded that it did not possess information about the method. Months later, the prosecutor told the defense that she understood a Stingray had been used and was waiting for the paperwork.</p>\n            <p>Maryland's appellate court ultimately held that using the cell-site simulator under the authorization obtained in that case violated Andrews' Fourth Amendment rights and upheld suppression of resulting evidence.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> A defendant cannot meaningfully challenge surveillance that the defense does not know occurred. Due process depends on disclosure as well as rules.</div>\n            <p class=\"idc_sources\"><strong>Primary source:</strong> <a href=\"https://www.courts.state.md.us/data/opinions/cosa/2016/1496s15.pdf\">Maryland Court of Special Appeals — State v. Andrews</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "tallahassee-stingray",
+    category: "government",
+    kicker: "FLORIDA · STINGRAY · JUDICIAL OVERSIGHT",
+    title: "Tallahassee police used Stingrays roughly 200 times before 2010 without disclosing Stingray use to a judge to obtain a warrant.",
+    result: "~200 deployments → warrantless / undisclosed technique → secrecy challenged",
+    summary: "Records and testimony later made public showed Tallahassee Police had used Stingray technology approximately 200 or more times between 2007 and August 2010. The ACLU reported that appellate judges revealed those uses had occurred without police disclosing Stingray use to a judge in order to obtain a warrant. In one case, a detective described driving a vehic…",
+    bodyHtml: "<p>Records and testimony later made public showed Tallahassee Police had used Stingray technology approximately 200 or more times between 2007 and August 2010. The ACLU reported that appellate judges revealed those uses had occurred without police disclosing Stingray use to a judge in order to obtain a warrant.</p>\n            <p>In one case, a detective described driving a vehicle-mounted simulator through an area and then using a handheld unit around an apartment complex—standing at doors and windows—to determine which residence contained the target phone. The hearing discussing the technology was initially closed and its transcript sealed before a judge later ordered information released.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Judicial oversight only works when the judge understands what investigative technique is being authorized.</div>\n            <p class=\"idc_sources\"><strong>Sources:</strong> <a href=\"https://www.aclu.org/news/national-security/police-hide-use-cell-phone-tracker-courts-because\">ACLU — court secrecy and approximately 200 uses</a> · <a href=\"https://www.aclu.org/news/civil-liberties/victory-judge-releases-information-about-police-use-stingray-cell-phone-trackers\">ACLU — released Tallahassee testimony</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "sarasota-stingray-records",
+    category: "government",
+    kicker: "FLORIDA · STINGRAY · PUBLIC RECORDS",
+    title: "Sarasota acknowledged Stingray records existed. Before they could be inspected, the U.S. Marshals Service took possession of them.",
+    result: "Records requested → inspection arranged → federal agents take records → litigation follows",
+    summary: "In 2014, the ACLU of Florida sought applications and judicial orders connected to Sarasota Police Department cell-site-simulator use. The city initially identified responsive records. According to court filings, rather than providing them, a Sarasota detective alerted the U.S. Marshals Service, which took possession of the documents and asserted that they we…",
+    bodyHtml: "<p>In 2014, the ACLU of Florida sought applications and judicial orders connected to Sarasota Police Department cell-site-simulator use. The city initially identified responsive records. According to court filings, rather than providing them, a Sarasota detective alerted the U.S. Marshals Service, which took possession of the documents and asserted that they were federal records because the detective had acted as a federally deputized officer.</p>\n            <p>The ACLU then sued. Its filings described another remarkable recordkeeping issue: Stingray applications had been submitted to a state judge without copies being provided to the clerk or otherwise retained by the judiciary. The dispute moved through state and federal proceedings as the government contested whether Florida's public-records law reached the documents.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Public-records law cannot provide meaningful oversight if records can disappear across jurisdictional boundaries—or were never retained by the institution supposedly providing judicial oversight in the first place.</div>\n            <p class=\"idc_sources\"><strong>Primary records:</strong> <a href=\"https://www.aclu.org/sites/default/files/assets/aclu_motion.pdf\">ACLU emergency filing describing the transfer and court-record problem</a> · <a href=\"https://www.aclu.org/sites/default/files/assets/aclu_motion_to_unseal_stingray_orders.pdf\">ACLU motion to unseal Stingray orders</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "florida-stingray-scale",
+    category: "government",
+    kicker: "FLORIDA · CELL-SITE SIMULATORS · SCALE",
+    title: "Records later identified 1,835 Florida state cell-site-simulator uses and hundreds of Tallahassee investigations.",
+    result: "Secretive technology ≠ rare technology",
+    summary: "Documents obtained by the ACLU included a 2014 Florida Department of Law Enforcement email identifying 1,835 uses of cell-site-simulator equipment, apparently spanning state and local investigations. Tallahassee records separately listed more than 250 investigations from 2007 through early 2014, including ordinary robbery, burglary, theft and wanted-person i…",
+    bodyHtml: "<p>Documents obtained by the ACLU included a 2014 Florida Department of Law Enforcement email identifying 1,835 uses of cell-site-simulator equipment, apparently spanning state and local investigations. Tallahassee records separately listed more than 250 investigations from 2007 through early 2014, including ordinary robbery, burglary, theft and wanted-person investigations.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Public obscurity should never be mistaken for operational rarity. A surveillance technique can remain unfamiliar to the people being surveilled while becoming routine inside government.</div>\n            <p class=\"idc_sources\"><strong>Source:</strong> <a href=\"https://www.aclu.org/news/free-future/aclu-obtained-documents-reveal-breadth-secretive-stingray-use-florida\">ACLU — Florida cell-site-simulator records</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "cpd-geofeedia",
+    category: "government",
+    kicker: "CHICAGO · SOCIAL MEDIA · GEOFEDIA / DUNAMI",
+    title: "CPD bought tools for large-scale social-media monitoring and used social media to monitor political protests and gatherings.",
+    result: "Public posts → automated monitoring → political activity enters police intelligence workflow",
+    summary: "Records obtained through Illinois FOIA litigation showed that Chicago Police contracted with Geofeedia from 2014 to 2016 and later used Dunami for social-media analysis. ACLU of Illinois records also documented CPD monitoring social media around protests and gatherings associated with the January 2017 presidential inauguration. The concern is not that lookin…",
+    bodyHtml: "<p>Records obtained through Illinois FOIA litigation showed that Chicago Police contracted with Geofeedia from 2014 to 2016 and later used Dunami for social-media analysis. ACLU of Illinois records also documented CPD monitoring social media around protests and gatherings associated with the January 2017 presidential inauguration.</p>\n            <p>The concern is not that looking at a public post is itself secret. Software changes the scale: hashtags, locations, relationships and large volumes of posts can be searched, collected and analyzed together rather than encountered one at a time.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> “I posted it publicly” answers who could theoretically see a post. It does not answer whether government should continuously aggregate political speech, associations and location signals into an intelligence workflow.</div>\n            <p class=\"idc_sources\"><strong>Sources:</strong> <a href=\"https://www.aclu-il.org/cases/aclu-illinois-v-city-chicago/\">ACLU of Illinois FOIA litigation</a> · <a href=\"https://www.aclu-il.org/news/what-we-know-about-cpd-social-media-technology-and-monitoring/\">ACLU of Illinois — CPD social-media monitoring records</a></p>",
+    geography: { state: "IL", county: "Cook", municipality: "Chicago" },
+    mapHref: "/illinois/counties/cook/cities/chicago/"
+  },
+  {
+    slug: "cpd-confidential-analytics",
+    category: "government",
+    kicker: "CHICAGO · CONFIDENTIAL ANALYTICS SECTION",
+    title: "After 2020 protests, Chicago created a 20-person unit for round-the-clock social-media monitoring—and disclosure of how it worked required another lawsuit.",
+    result: "Program publicly announced → records withheld → litigation and contempt order → policy disclosed",
+    summary: "In August 2020, Chicago announced an expanded 20-person social-media monitoring effort following months of protests. CPD subsequently created its Confidential Analytics Section within the Bureau of Counterterrorism. According to records later obtained by the ACLU of Illinois, its mandate extended beyond looting or spontaneous gatherings to social-media use f…",
+    bodyHtml: "<p>In August 2020, Chicago announced an expanded 20-person social-media monitoring effort following months of protests. CPD subsequently created its Confidential Analytics Section within the Bureau of Counterterrorism. According to records later obtained by the ACLU of Illinois, its mandate extended beyond looting or spontaneous gatherings to social-media use for any “valid law enforcement purpose.”</p>\n            <p>The ACLU sought records explaining the program. CPD resisted disclosure, at one point arguing that releasing information would create a clear and present danger. The litigation continued until CPD produced the previously secret policy and related materials after court orders; the ACLU reports CPD was found in contempt for failing to comply with earlier disclosure orders.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Surveillance of public speech can itself be difficult for the public to observe. Without reporting requirements, residents may know a monitoring unit exists while having no practical way to know whom it searches, how often, or what happens to collected information.</div>\n            <p class=\"idc_sources\"><strong>Source:</strong> <a href=\"https://www.aclu-il.org/news/what-we-know-about-cpd-social-media-technology-and-monitoring/\">ACLU of Illinois — records obtained from CPD</a></p>",
+    geography: { state: "IL", county: "Cook", municipality: "Chicago" },
+    mapHref: "/illinois/counties/cook/cities/chicago/"
+  },
+  {
+    slug: "locate-x-abortion-clinic",
+    category: "infrastructure",
+    kicker: "UNITED STATES · BABEL STREET LOCATE X · LOCATION DATA",
+    title: "Investigators demonstrated a government-purchased tool tracing a phone from a home, to a church, across state lines and into an abortion clinic.",
+    result: "App-derived location data → commercial broker → government-accessible movement history",
+    summary: "In 2024, journalists and privacy researchers demonstrated Babel Street's Locate X, a commercial location-intelligence product purchased by U.S. government agencies. Starting with devices observed at an abortion clinic, the tool could follow an individual device's movements backward and forward in time. One demonstration traced a device to a probable home in …",
+    bodyHtml: "<p>In 2024, journalists and privacy researchers demonstrated Babel Street's Locate X, a commercial location-intelligence product purchased by U.S. government agencies. Starting with devices observed at an abortion clinic, the tool could follow an individual device's movements backward and forward in time. One demonstration traced a device to a probable home in Alabama, a church and other stops before showing it crossing into Florida and spending roughly two hours at the clinic.</p>\n            <p>The person carrying the phone had not voluntarily published that itinerary for law enforcement. The surveillance capability emerged from commercially collected mobile-location information.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> The Fourth Amendment question becomes strange when government does not install the tracker itself. A weather, navigation or other ordinary app can participate in an advertising-data ecosystem whose output later becomes a government intelligence product.</div>\n            <p class=\"idc_sources\"><strong>Source:</strong> <a href=\"https://www.404media.co/inside-the-u-s-government-bought-tool-that-can-track-phones-at-abortion-clinics/\">404 Media / Atlas Privacy demonstration of Locate X</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "secret-service-consent",
+    category: "infrastructure",
+    kicker: "FEDERAL · COMMERCIAL LOCATION DATA · CONSENT",
+    title: "The Secret Service relied on claims that consumers consented to location-data collection. Asked what it did to verify that consent, the agency answered: none.",
+    result: "“Consumer consent” justification → verification requested → no independent verification",
+    summary: "Emails obtained by Senator Ron Wyden's office and reported by 404 Media examined the Secret Service's use of commercially sourced location information through Babel Street. Asked what steps it had taken to verify that consumers actually consented to onward sale and sharing of their location information, the agency's response was “None.” The Federal Trade Com…",
+    bodyHtml: "<p>Emails obtained by Senator Ron Wyden's office and reported by 404 Media examined the Secret Service's use of commercially sourced location information through Babel Street. Asked what steps it had taken to verify that consumers actually consented to onward sale and sharing of their location information, the agency's response was “None.”</p>\n            <p>The Federal Trade Commission later took enforcement action against Venntel, a supplier in the location-data ecosystem, alleging failures involving consumer consent and sensitive location data.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Clicking through an app's terms can become the claimed legal foundation for a surveillance transaction several companies downstream—without the government independently establishing that the person understood or agreed to that eventual use.</div>\n            <p class=\"idc_sources\"><strong>Sources:</strong> <a href=\"https://www.404media.co/secret-service-admits-it-didnt-check-if-people-really-consented-to-being-tracked/\">404 Media — Secret Service correspondence</a> · <a href=\"https://www.ftc.gov/news-events/news/press-releases/2024/12/ftc-takes-action-against-gravy-analytics-venntel-unlawfully-selling-location-data-tracking-consumers\">Federal Trade Commission — Gravy Analytics / Venntel action</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "rite-aid-blonde",
+    category: "consumer",
+    kicker: "RITE AID · FACIAL RECOGNITION · FTC ENFORCEMENT",
+    title: "The system matched a Black woman to an image employees described as “a white lady with blonde hair.” Employees called police anyway.",
+    result: "False biometric match → police called → customer expelled before error recognized",
+    summary: "From 2012 through 2020, Rite Aid used facial-recognition technology in hundreds of stores to identify alleged shoplifters and other “persons of interest.” In a federal complaint, the FTC alleged that the program produced thousands of false-positive matches and that Rite Aid failed to take reasonable precautions before attaching real-world consequences to tho…",
+    bodyHtml: "<p>From 2012 through 2020, Rite Aid used facial-recognition technology in hundreds of stores to identify alleged shoplifters and other “persons of interest.” In a federal complaint, the FTC alleged that the program produced thousands of false-positive matches and that Rite Aid failed to take reasonable precautions before attaching real-world consequences to those alerts.</p>\n            <p>Paragraph 48 of the FTC complaint describes an especially stark incident: the technology identified a Black woman as matching an enrollment image that Rite Aid employees themselves described as depicting “a white lady with blonde hair.” Employees called police and asked the customer to leave before realizing the alert was false.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Automation can create authority of its own. The absurdity of a result does not protect someone if the humans receiving it have been trained to treat the computer's alert as actionable.</div>\n            <p class=\"idc_sources\"><strong>Primary source:</strong> <a href=\"https://www.ftc.gov/system/files/ftc_gov/pdf/2023190_riteaid_complaint_filed.pdf\">FTC v. Rite Aid — Complaint, ¶¶ 31, 48–51</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "rite-aid-child",
+    category: "consumer",
+    kicker: "RITE AID · FACIAL RECOGNITION · CHILD",
+    title: "An 11-year-old girl was stopped and searched after a false facial-recognition match.",
+    result: "False alert → child searched → documented emotional harm",
+    summary: "The FTC's complaint also alleges that a Rite Aid employee stopped and searched an 11-year-old girl because of a false match. Her mother reported missing work because her daughter was so distressed afterward. The FTC said consumers were not adequately informed about the facial-recognition program and that employees had been instructed not to disclose the tech…",
+    bodyHtml: "<p>The FTC's complaint also alleges that a Rite Aid employee stopped and searched an 11-year-old girl because of a false match. Her mother reported missing work because her daughter was so distressed afterward.</p>\n            <p>The FTC said consumers were not adequately informed about the facial-recognition program and that employees had been instructed not to disclose the technology to consumers or the media.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> This was not government surveillance. A retailer created the watchlist, ran the biometric search and attached consequences to the result while ordinary customers entered to buy food, medicine and other necessities.</div>\n            <p class=\"idc_sources\"><strong>Sources:</strong> <a href=\"https://www.ftc.gov/system/files/ftc_gov/pdf/2023190_riteaid_complaint_filed.pdf\">FTC complaint</a> · <a href=\"https://www.ftc.gov/system/files/ftc_gov/pdf/2023190_commissioner_bedoya_riteaid_statement.pdf\">FTC Commissioner Bedoya statement</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "rite-aid-scale",
+    category: "consumer",
+    kicker: "RITE AID · AUTOMATION BIAS · SCALE",
+    title: "One enrolled person generated more than 900 alerts at more than 130 stores in five days.",
+    result: "Physically implausible pattern → automated alerts continued",
+    summary: "The FTC described a five-day period in which Rite Aid's system generated more than 900 alerts at more than 130 stores across the country, all supposedly involving one enrolled person. The geographic pattern itself made the result implausible, yet the system continued producing alerts. Why it matters: Scale can make an obviously bad system look authoritative.…",
+    bodyHtml: "<p>The FTC described a five-day period in which Rite Aid's system generated more than 900 alerts at more than 130 stores across the country, all supposedly involving one enrolled person. The geographic pattern itself made the result implausible, yet the system continued producing alerts.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Scale can make an obviously bad system look authoritative. Producing more alerts does not produce more truth.</div>\n            <p class=\"idc_sources\"><strong>Source:</strong> <a href=\"https://www.ftc.gov/business-guidance/blog/2023/12/coming-face-face-rite-aids-allegedly-unfair-use-facial-recognition-technology\">Federal Trade Commission — Rite Aid facial-recognition enforcement analysis</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "caldwell-amazon",
+    category: "workplace",
+    kicker: "AMAZON · TIMEKEEPING SOFTWARE · COURT RECORD",
+    title: "Amazon fired Rahim Caldwell after its timekeeping software incorrectly classified paid time off as unexcused breaks. Amazon later discovered the error and reinstated him.",
+    result: "Software classification error → termination → error discovered → reinstatement and back pay",
+    summary: "A 2026 Third Circuit opinion describes Amazon terminating Rahim Caldwell in September 2022 after its timekeeping software incorrectly recorded paid time off as unexcused shift breaks. Amazon later identified what the court called a systemic error in the software, reinstated Caldwell and agreed to provide back pay. Caldwell was later terminated again after a …",
+    bodyHtml: "<p>A 2026 Third Circuit opinion describes Amazon terminating Rahim Caldwell in September 2022 after its timekeeping software incorrectly recorded paid time off as unexcused shift breaks. Amazon later identified what the court called a systemic error in the software, reinstated Caldwell and agreed to provide back pay.</p>\n            <p>Caldwell was later terminated again after a separate workplace incident. That later termination should not be conflated with the earlier software-driven termination and reinstatement.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Employment systems do not merely collect information. Their classifications can become inputs to decisions about someone's livelihood. An erroneous record can become an employment consequence before the error is discovered.</div>\n            <p class=\"idc_sources\"><strong>Primary source:</strong> <a href=\"https://law.justia.com/cases/federal/appellate-courts/ca3/25-2522/25-2522-2026-05-29.html\">Caldwell v. Amazon.com Services LLC — U.S. Court of Appeals for the Third Circuit, 2026</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "amazon-flex-normandin",
+    category: "workplace",
+    kicker: "AMAZON FLEX · ALGORITHMIC MANAGEMENT · INVESTIGATIVE REPORTING",
+    title: "A four-year delivery driver received an automated termination after Amazon's performance systems decided his work no longer met expectations.",
+    result: "App-generated performance record → automated management → termination email",
+    summary: "Bloomberg reported on Stephen Normandin, a 63-year-old Army veteran who had delivered Amazon packages around Phoenix for nearly four years. Amazon Flex's automated performance-management system ultimately sent him a termination notice. Bloomberg documented other drivers who said automated evaluations failed to account for circumstances outside their control.…",
+    bodyHtml: "<p>Bloomberg reported on Stephen Normandin, a 63-year-old Army veteran who had delivered Amazon packages around Phoenix for nearly four years. Amazon Flex's automated performance-management system ultimately sent him a termination notice. Bloomberg documented other drivers who said automated evaluations failed to account for circumstances outside their control.</p>\n            <p>This example is investigative reporting rather than a judicial finding, and disputes about individual delivery events should be understood in that evidentiary context.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> A worker can find themselves appealing not merely a supervisor's judgment but a chain of app data, ratings and automated rules whose interpretation may be difficult to inspect or challenge.</div>\n            <p class=\"idc_sources\"><strong>Source:</strong> <a href=\"https://www.bloomberg.com/news/features/2021-06-28/fired-by-bot-amazon-turns-to-machine-managers-and-workers-are-losing-out\">Bloomberg — Fired by Bot: Amazon Turns to Machine Managers</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "amazon-netradyne",
+    category: "workplace",
+    kicker: "DELIVERY DRIVERS · AI CAMERA · WORKER TESTIMONY",
+    title: "Drivers reported being flagged for “distracted driving” while checking mirrors and for traffic violations they said never occurred.",
+    result: "Camera observation → automated interpretation → safety event attached to worker",
+    summary: "In interviews published by Motherboard/Vice, Amazon delivery drivers described Netradyne camera events they believed were erroneous. One driver said turning to check a side mirror before changing lanes could trigger a distracted-driving event. Drivers also described alleged false following-distance and stop-sign events, including reports involving yield sign…",
+    bodyHtml: "<p>In interviews published by Motherboard/Vice, Amazon delivery drivers described Netradyne camera events they believed were erroneous. One driver said turning to check a side mirror before changing lanes could trigger a distracted-driving event. Drivers also described alleged false following-distance and stop-sign events, including reports involving yield signs or locations where they said no stop sign existed.</p>\n            <p>These are worker accounts reported by journalists, not independently adjudicated findings about each event.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> A camera can accurately observe where a driver's head moved while still misunderstanding why. Turning an observation into a performance judgment requires interpretation.</div>\n            <p class=\"idc_sources\"><strong>Source:</strong> <a href=\"https://www.vice.com/en/article/amazons-ai-cameras-are-punishing-drivers-for-mistakes-they-didnt-make/\">Motherboard/Vice — Amazon drivers on AI-camera events</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "amazon-moses-tot",
+    category: "workplace",
+    kicker: "AMAZON · TIME OFF TASK · CONTEXT",
+    title: "A system recorded 205 minutes of Time Off Task. The worker later testified that an abnormal pod workflow explained much of the scanner inactivity.",
+    result: "Scanner inactivity → productivity inference → worker explanation existed outside the metric",
+    summary: "In federal employment litigation, an Amazon worker challenged a termination associated with approximately 205 minutes of Time Off Task. He later testified that a repeating-pod problem required him to interact with the computer and repeatedly use a skip function rather than perform the scanner activity normally expected by the system. The court record also sa…",
+    bodyHtml: "<p>In federal employment litigation, an Amazon worker challenged a termination associated with approximately 205 minutes of Time Off Task. He later testified that a repeating-pod problem required him to interact with the computer and repeatedly use a skip function rather than perform the scanner activity normally expected by the system.</p>\n            <p>The court record also says he did not provide that explanation during the relevant employment meeting. This is therefore not presented as a finding that Amazon knowingly ignored a proven equipment problem. It illustrates something narrower: scanner inactivity and worker inactivity are not necessarily identical facts.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> The measurement may accurately say “nothing was scanned.” It cannot, by itself, establish why nothing was scanned.</div>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "harri-jersey-mikes",
+    category: "workplace",
+    kicker: "JERSEY MIKE'S · HARRI · FACIAL RECOGNITION TIMECLOCK",
+    title: "Harri's own Jersey Mike's materials describe employees clocking in and out by facial recognition to prevent “buddy punching” and time theft.",
+    result: "Employee face → biometric identity check → attendance record → payroll/compliance workflow",
+    summary: "Harri markets a biometric timeclock to hospitality employers. In a Jersey Mike's playbook published by Harri, the company says Jersey Mike's team members can clock in and out using facial-recognition technology. Harri says the system is intended to ensure the correct employee is present, reduce buddy punching and time theft, manage breaks and deductions, and…",
+    bodyHtml: "<p>Harri markets a biometric timeclock to hospitality employers. In a Jersey Mike's playbook published by Harri, the company says Jersey Mike's team members can clock in and out using facial-recognition technology. Harri says the system is intended to ensure the correct employee is present, reduce buddy punching and time theft, manage breaks and deductions, and give operators labor and compliance reporting.</p>\n            <p>Harri's current service agreement lists biometric data among the employee personal data it may process when a client selects biometric clock-in. Its product materials also describe real-time notifications and rules around early, late and unscheduled punches.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Facial recognition is not limited to airports, police investigations or futuristic retail. For some hourly workers, presenting their face to an employer's workforce-management system can be part of the ordinary act of starting and ending a shift.</div>\n            <p class=\"idc_sources\"><strong>Primary/vendor sources:</strong> <a href=\"https://go.harri.com/hubfs/Jersey-Mikes_Playbook.pdf\">Harri — Jersey Mike's Playbook</a> · <a href=\"https://harri.com/post-hire\">Harri — Workforce Management / biometric time clock</a> · <a href=\"https://harri.com/msa\">Harri — 2026 service agreement and data-processing description</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "atlantic-plaza-facial-recognition",
+    category: "private",
+    kicker: "BROOKLYN · LANDLORD · FACIAL RECOGNITION",
+    title: "Tenants fought a proposal to make facial recognition part of access to their own apartment complex.",
+    result: "Home access → biometric identification → tenant challenge → proposal abandoned",
+    summary: "At Atlantic Plaza Towers, a rent-stabilized apartment complex in Brooklyn, management sought approval to install a facial-recognition entry system. More than 130 tenants formally opposed the proposal, raising concerns about biometric surveillance, discrimination, data security and what meaningful consent means when the system controls access to a person's ho…",
+    bodyHtml: "<p>At Atlantic Plaza Towers, a rent-stabilized apartment complex in Brooklyn, management sought approval to install a facial-recognition entry system. More than 130 tenants formally opposed the proposal, raising concerns about biometric surveillance, discrimination, data security and what meaningful consent means when the system controls access to a person's home.</p>\n            <p>Management ultimately withdrew the facial-recognition proposal in 2019. The episode is useful precisely because the technology did <em>not</em> have to fail to create the dispute: residents objected to being required to submit to biometric identification as part of ordinary residential access.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Consent means something different when refusing surveillance could mean refusing the system used to enter your home.</div>\n            <p class=\"idc_sources\"><strong>Sources:</strong> <a href=\"https://www.legalservicesnyc.org/news/brooklyn-tenants-file-legal-opposition-to-landlords-application-to-install-facial-recognition-entry-system-in-building/\">Legal Services NYC — tenant opposition</a> · <a href=\"https://www.fastcompany.com/90431686/our-landlord-wants-to-install-facial-recognition-in-our-homes-but-were-fighting-back\">Fast Company — proposal withdrawn</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "ring-emergency-disclosures",
+    category: "private",
+    kicker: "RING · HISTORICAL PRACTICE · EMERGENCY DISCLOSURE",
+    title: "Ring disclosed customer video to law enforcement without the device owner's consent in 11 emergency requests during the first half of 2022.",
+    result: "Private camera → vendor custody → emergency request → disclosure without owner consent",
+    summary: "In a July 2022 response to Senator Edward Markey, Amazon said Ring had provided videos to law enforcement without the device owner's consent 11 times during that year. Ring said each disclosure followed a good-faith determination that there was an imminent danger of death or serious physical injury requiring disclosure without delay. This is a historical pol…",
+    bodyHtml: "<p>In a July 2022 response to Senator Edward Markey, Amazon said Ring had provided videos to law enforcement without the device owner's consent 11 times during that year. Ring said each disclosure followed a good-faith determination that there was an imminent danger of death or serious physical injury requiring disclosure without delay.</p>\n            <p>This is a <strong>historical policy/practice example</strong>. Ring's law-enforcement request mechanisms have changed since 2022, so this case should not be read as a description of every current police request or as evidence that every Ring camera automatically feeds police.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Purchasing and installing a camera does not necessarily mean the purchaser has exclusive control over every circumstance in which the vendor may disclose stored recordings.</div>\n            <p class=\"idc_sources\"><strong>Primary source:</strong> <a href=\"https://www.markey.senate.gov/imo/media/doc/amazon_response_to_senator_markey-july_13_2022.pdf\">Amazon response to Sen. Markey, July 13, 2022</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "hoa-flock",
+    category: "private",
+    kicker: "HOMEOWNERS ASSOCIATIONS · PRIVATE ALPR",
+    title: "Private neighborhood associations can purchase license-plate readers that record residents, visitors and workers who never bought the system.",
+    result: "HOA purchases camera → every passing vehicle becomes potential subject",
+    summary: "Flock Safety has marketed automatic license-plate recognition systems to homeowners associations and neighborhood organizations as private security infrastructure. Reporting from California documented HOA-operated Flock cameras positioned to record vehicles entering or moving through residential neighborhoods. The important distinction is relational. The cus…",
+    bodyHtml: "<p>Flock Safety has marketed automatic license-plate recognition systems to homeowners associations and neighborhood organizations as private security infrastructure. Reporting from California documented HOA-operated Flock cameras positioned to record vehicles entering or moving through residential neighborhoods.</p>\n            <p>The important distinction is relational. The customer may be an HOA, while the observed population includes residents, guests, delivery drivers, contractors, caregivers and other people who have no contractual relationship with the camera vendor—and may not belong to the association at all.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> The customer and the surveillance subject can be completely different people.</div>\n            <p class=\"idc_sources\"><strong>Evidence:</strong> <a href=\"https://www.flocksafety.com/industries/hoa\">Flock Safety — HOA product documentation</a> · <a href=\"https://www.sfchronicle.com/crime/article/Snap-The-local-HOA-just-captured-your-license-13450561.php\">San Francisco Chronicle — HOA ALPR reporting</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "brentwood-hoa-alpr",
+    category: "private",
+    kicker: "BRENTWOOD, CALIFORNIA · HOA ALPR · 2026",
+    title: "A city approved roadside HOA plate readers after officials mistakenly believed they were part of the police department's ALPR system.",
+    result: "Private infrastructure → governmental appearance → mistaken permitting → removal ordered",
+    summary: "In 2026, Brentwood, California moved to revoke permits for HOA-operated Flock license-plate readers after city officials said the permits had been issued under the mistaken belief that the cameras were associated with the police department's ALPR program. The episode illustrates how private and governmental surveillance infrastructure can become difficult to…",
+    bodyHtml: "<p>In 2026, Brentwood, California moved to revoke permits for HOA-operated Flock license-plate readers after city officials said the permits had been issued under the mistaken belief that the cameras were associated with the police department's ALPR program. The episode illustrates how private and governmental surveillance infrastructure can become difficult to distinguish simply by looking at a camera beside a road.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Before asking what rules govern a surveillance camera, a person may first have to determine who actually owns and operates it.</div>\n            <p class=\"idc_sources\"><strong>Reporting:</strong> <a href=\"https://www.nbcbayarea.com/news/local/brentwood-license-plate-readers-approved-by-mistake/4129369/\">NBC Bay Area — Brentwood HOA license-plate readers</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "gm-lexisnexis",
+    category: "consumer",
+    kicker: "GM / ONSTAR · LEXISNEXIS / VERISK · INSURANCE",
+    title: "Driving telemetry left the vehicle ecosystem and reached consumer-reporting companies used by insurers.",
+    result: "Vehicle telemetry → data broker / consumer report → insurer → price or coverage consequence",
+    summary: "The FTC alleged that General Motors and OnStar collected precise geolocation and driving-behavior information from millions of vehicles and provided driving information to consumer-reporting companies, including LexisNexis and Verisk. The data could include hard braking, speeding and late-night driving. Insurers used resulting reports in decisions that could…",
+    bodyHtml: "<p>The FTC alleged that General Motors and OnStar collected precise geolocation and driving-behavior information from millions of vehicles and provided driving information to consumer-reporting companies, including LexisNexis and Verisk. The data could include hard braking, speeding and late-night driving. Insurers used resulting reports in decisions that could include increased premiums, cancellation or denial of coverage.</p>\n            <p>The FTC said some consumers learned this information existed only after receiving an adverse insurance decision. In January 2026 the FTC finalized an order resolving its allegations against GM and OnStar.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> A vehicle feature can begin as a service relationship with the manufacturer and end as an input to a completely different institution's decision about what you should pay.</div>\n            <p class=\"idc_sources\"><strong>Primary sources:</strong> <a href=\"https://www.ftc.gov/news-events/news/press-releases/2025/01/ftc-takes-action-against-general-motors-sharing-drivers-precise-location-driving-behavior-data\">FTC — GM/OnStar action</a> · <a href=\"https://www.ftc.gov/news-events/news/press-releases/2026/01/ftc-finalizes-order-settling-allegations-gm-onstar-collected-sold-geolocation-data-without-consumers\">FTC — final order, 2026</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "kenn-dahl",
+    category: "consumer",
+    kicker: "CHEVROLET BOLT · 258-PAGE CONSUMER REPORT",
+    title: "Kenn Dahl requested his LexisNexis file after an insurance increase. The report was 258 pages and documented hundreds of trips.",
+    result: "Connected-car behavior → 640-trip record → insurer queries → reported 21% premium increase",
+    summary: "The New York Times reported that 65-year-old Chevrolet Bolt owner Kenn Dahl saw his automobile-insurance cost rise by 21 percent. After being told his LexisNexis report was a factor, he requested it. The resulting 258-page consumer disclosure included more than 130 pages describing six months of Bolt driving, including 640 trips and events characterized as h…",
+    bodyHtml: "<p>The New York Times reported that 65-year-old Chevrolet Bolt owner Kenn Dahl saw his automobile-insurance cost rise by 21 percent. After being told his LexisNexis report was a factor, he requested it. The resulting 258-page consumer disclosure included more than 130 pages describing six months of Bolt driving, including 640 trips and events characterized as hard braking, rapid acceleration and speeding.</p>\n            <p>The individual premium increase and the insurer's reasoning are reported evidence rather than an FTC adjudication. The broader GM-to-consumer-reporting-company data flow is independently documented by federal regulators.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> The consequence did not require the car to misread him. Accurate telemetry can still create a privacy problem when information gathered in one relationship becomes bargaining information in another.</div>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "vizio-acr",
+    category: "consumer",
+    kicker: "VIZIO · AUTOMATIC CONTENT RECOGNITION · FTC",
+    title: "The FTC said 11 million Vizio televisions collected second-by-second viewing information, including content from external devices.",
+    result: "Screen content → viewing history → IP address / aggregation → advertising and cross-device targeting",
+    summary: "In 2017, the FTC and New Jersey alleged that Vizio televisions captured second-by-second information about what consumers watched. The system did not only observe Vizio apps: the FTC said it could recognize content from cable and over-the-air broadcasts as well as set-top boxes, streaming devices and DVD players. The FTC said viewing data was associated with…",
+    bodyHtml: "<p>In 2017, the FTC and New Jersey alleged that Vizio televisions captured second-by-second information about what consumers watched. The system did not only observe Vizio apps: the FTC said it could recognize content from cable and over-the-air broadcasts as well as set-top boxes, streaming devices and DVD players.</p>\n            <p>The FTC said viewing data was associated with IP addresses and supplied to data aggregators. Those datasets could be supplemented with demographic information such as age, sex, income, marital status, household size, education and home ownership and used for advertising and cross-device targeting. Vizio agreed to pay $2.2 million and obtain affirmative consent for collection and sharing.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Ownership of the screen did not necessarily mean ownership of the information the screen generated about its owner.</div>\n            <p class=\"idc_sources\"><strong>Primary source:</strong> <a href=\"https://www.ftc.gov/news-events/news/press-releases/2017/02/vizio-pay-22-million-ftc-state-new-jersey-settle-charges-it-collected-viewing-histories-11-million\">FTC — Vizio smart-TV settlement</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "gravy-venntel",
+    category: "infrastructure",
+    kicker: "GRAVY ANALYTICS / VENNTEL · PRECISE LOCATION · FTC",
+    title: "The FTC alleged a commercial location-data ecosystem could expose visits to sensitive places and characteristics.",
+    result: "Mobile location signal → supplier / broker → audience or movement intelligence → downstream customer",
+    summary: "The FTC alleged that Gravy Analytics and Venntel unlawfully sold sensitive location data capable of tracking consumers to sensitive locations. The companies' commercial ecosystem processed enormous volumes of mobile-device signals and could be used to construct audiences associated with characteristics or visits involving healthcare, religion and political a…",
+    bodyHtml: "<p>The FTC alleged that Gravy Analytics and Venntel unlawfully sold sensitive location data capable of tracking consumers to sensitive locations. The companies' commercial ecosystem processed enormous volumes of mobile-device signals and could be used to construct audiences associated with characteristics or visits involving healthcare, religion and political activity.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> The consumer may interact with an ordinary app while the economically valuable product several steps downstream is a history of where the device has been.</div>\n            <p class=\"idc_sources\"><strong>Primary source:</strong> <a href=\"https://www.ftc.gov/news-events/news/press-releases/2024/12/ftc-takes-action-against-gravy-analytics-venntel-unlawfully-selling-location-data-tracking-consumers\">FTC — Gravy Analytics / Venntel action</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "inmarket-sdk",
+    category: "infrastructure",
+    kicker: "INMARKET · THIRD-PARTY APP SDKs · FTC",
+    title: "Precise location collection can begin inside someone else's app.",
+    result: "Third-party app → embedded SDK → precise location → commercial profile",
+    summary: "In its InMarket case, the FTC described precise location information collected through InMarket's own apps and through third-party apps containing its software development kit. The FTC's order prohibited InMarket from selling or licensing precise location data and imposed restrictions on products derived from it. Why it matters: A consumer does not need a di…",
+    bodyHtml: "<p>In its InMarket case, the FTC described precise location information collected through InMarket's own apps and through third-party apps containing its software development kit. The FTC's order prohibited InMarket from selling or licensing precise location data and imposed restrictions on products derived from it.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> A consumer does not need a direct relationship with every company that ultimately receives or processes information generated by the software on their phone.</div>\n            <p class=\"idc_sources\"><strong>Primary source:</strong> <a href=\"https://www.ftc.gov/news-events/news/press-releases/2024/01/ftc-order-will-ban-inmarket-selling-precise-consumer-location-data\">FTC — InMarket location-data order</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "target-pregnancy",
+    category: "consumer",
+    kicker: "TARGET · PURCHASE HISTORY · PREDICTIVE PROFILING",
+    title: "Target's predictive marketing work became famous for inferring pregnancy from combinations of ordinary purchases.",
+    result: "Purchase history → statistical inference → sensitive marketing category",
+    summary: "Reporting on Target's analytics described a pregnancy-prediction model based on patterns across ordinary purchases. The widely repeated anecdote about pregnancy-related coupons reaching a teenage shopper before her father knew she was pregnant comes through secondary reporting and should not be treated as equivalent to a regulator's complaint or court findin…",
+    bodyHtml: "<p>Reporting on Target's analytics described a pregnancy-prediction model based on patterns across ordinary purchases. The widely repeated anecdote about pregnancy-related coupons reaching a teenage shopper before her father knew she was pregnant comes through secondary reporting and should not be treated as equivalent to a regulator's complaint or court finding.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Privacy is not limited to facts you explicitly disclose. An institution can possess a consequential inference about you without you ever having stated the underlying fact.</div>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "retail-equation",
+    category: "consumer",
+    kicker: "THE RETAIL EQUATION · CONSUMER REPORTING",
+    title: "There is a consumer-reporting ecosystem for retail returns.",
+    result: "Return behavior → consumer report / fraud-abuse analysis → merchant decision",
+    summary: "The Consumer Financial Protection Bureau lists The Retail Equation among specialty consumer-reporting companies. CFPB describes the company as monitoring and reporting retail product returns and suspected exchange fraud and abuse to merchants. Consumers can request their report and dispute inaccurate information. Why it matters: Most people expect credit bur…",
+    bodyHtml: "<p>The Consumer Financial Protection Bureau lists The Retail Equation among specialty consumer-reporting companies. CFPB describes the company as monitoring and reporting retail product returns and suspected exchange fraud and abuse to merchants. Consumers can request their report and dispute inaccurate information.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Most people expect credit bureaus to maintain credit files. Far fewer expect an analogous reporting infrastructure to influence whether ordinary retail behavior is treated as suspicious.</div>\n            <p class=\"idc_sources\"><strong>Primary source:</strong> <a href=\"https://www.consumerfinance.gov/consumer-tools/credit-reports-and-scores/consumer-reporting-companies/companies-list/retail-equation/\">Consumer Financial Protection Bureau — The Retail Equation</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "caesars-breach",
+    category: "consumer",
+    kicker: "CAESARS · LOYALTY DATABASE · DATA BREACH",
+    title: "Attackers obtained a copy of Caesars' loyalty-program database containing government-identification information for a significant number of members.",
+    result: "Customer identification retained → centralized database → attacker obtains copy",
+    summary: "In a 2023 SEC filing, Caesars disclosed that an attacker acquired a copy of its loyalty-program database. The company said the database included driver's-license numbers and/or Social Security numbers for a significant number of members. Why it matters: Casinos have unusually strong fraud and security reasons for identifying customers. That does not eliminat…",
+    bodyHtml: "<p>In a 2023 SEC filing, Caesars disclosed that an attacker acquired a copy of its loyalty-program database. The company said the database included driver's-license numbers and/or Social Security numbers for a significant number of members.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> Casinos have unusually strong fraud and security reasons for identifying customers. That does not eliminate the separate question created by retaining valuable identity information: who must secure it, and what happens when they fail?</div>\n            <p class=\"idc_sources\"><strong>Primary source:</strong> <a href=\"https://www.sec.gov/Archives/edgar/data/1590895/000119312523235015/d537840d8k.htm\">Caesars Entertainment — SEC Form 8-K, 2023</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "mgm-breach",
+    category: "consumer",
+    kicker: "MGM RESORTS · CUSTOMER DATA · DATA BREACH",
+    title: "MGM disclosed stolen customer identity information including driver's-license numbers and, for some customers, Social Security and passport numbers.",
+    result: "Customer records → breach → identity information outside custodian's control",
+    summary: "MGM Resorts disclosed that its 2023 cybersecurity incident involved customer information including names, contact information, gender, dates of birth and driver's-license numbers. For a limited number of customers, Social Security and passport numbers were also affected. Why it matters: A compelling reason to collect information is not the same thing as a gu…",
+    bodyHtml: "<p>MGM Resorts disclosed that its 2023 cybersecurity incident involved customer information including names, contact information, gender, dates of birth and driver's-license numbers. For a limited number of customers, Social Security and passport numbers were also affected.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> A compelling reason to collect information is not the same thing as a guarantee that the information will remain under the collector's control forever.</div>\n            <p class=\"idc_sources\"><strong>Company disclosure:</strong> <a href=\"https://investors.mgmresorts.com/2023-10-05-MGM-RESORTS-UPDATE-ON-RECENT-CYBERSECURITY-ISSUE\">MGM Resorts — cybersecurity incident update</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  },
+  {
+    slug: "ford-driver-monitoring-patents",
+    category: "consumer",
+    kicker: "FORD · PATENTS · DRIVER STATE / BEHAVIOR",
+    title: "Ford has patented systems for detecting drowsiness and monitoring driver behavior. A patent is not proof that a system was deployed.",
+    result: "RESEARCH / PATENT — CAPABILITY DOCUMENTATION, NOT DEPLOYMENT EVIDENCE",
+    summary: "Ford Global Technologies has filed and received patents describing systems that detect driver drowsiness or changes in driver behavior. Examples include a 2003 filing describing drowsiness detection connected to a remote service center, a 2014 filing for driver-drowsiness detection, and later patents describing driver activity or attentiveness monitoring. Th…",
+    bodyHtml: "<p>Ford Global Technologies has filed and received patents describing systems that detect driver drowsiness or changes in driver behavior. Examples include a 2003 filing describing drowsiness detection connected to a remote service center, a 2014 filing for driver-drowsiness detection, and later patents describing driver activity or attentiveness monitoring.</p>\n            <p>These records establish that Ford engineers explored and protected intellectual property around these capabilities. They do <strong>not</strong>, by themselves, establish that a particular patented implementation was placed into production vehicles, that resulting information was retained remotely, or that it was sold or shared with third parties.</p>\n            <div class=\"idc_takeaway\"><strong>Why it matters:</strong> NoRec distinguishes capability from deployment. Patents are useful evidence of what companies have contemplated; they are poor evidence that customers are actually being subjected to the patented system.</div>\n            <p class=\"idc_sources\"><strong>Patent records:</strong> <a href=\"https://patents.google.com/patent/US20040183685A1/en\">Ford — drowsy driver monitoring and prevention system</a> · <a href=\"https://patents.google.com/patent/US20150251663A1/en\">Ford — driver drowsiness detection</a></p>",
+    geography: undefined,
+    mapHref: undefined
+  }
+];
+
+export const evidenceCategories: EvidenceCategory[] = ['government', 'workplace', 'consumer', 'private', 'students', 'health', 'biometrics', 'aerial', 'infrastructure'];
+
+export const evidenceForPlace = (county?: string, municipality?: string) =>
+  evidenceCases.filter((item) => {
+    if (!item.geography || item.geography.state !== 'IL') return false;
+    if (county && item.geography.county?.toLowerCase() !== county.toLowerCase()) return false;
+    if (municipality && item.geography.municipality?.toLowerCase() !== municipality.toLowerCase()) return false;
+    return true;
+  });

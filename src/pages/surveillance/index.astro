@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/surveillance-rungs.css';
 import { rungMeta, surveillanceCatalog, type SurveillanceRung } from '../../data/surveillanceCatalog';
 
 const rungOrder: SurveillanceRung[] = ['government', 'workplace', 'consumer', 'private', 'infrastructure'];
@@ -100,6 +101,7 @@ const federal = surveillanceCatalog.filter((entry) => entry.governmentLevel === 
       <p class="eyebrow">RESEARCH PATHS</p>
       <h2>Follow the system, provider, operator, or place.</h2>
       <div class="provider_grid">
+        <a href="/surveillance/evidence/"><strong>Evidence library</strong><span>Documented anecdotes, consequences, court records, audits, and regulator actions.</span></a>
         <a href="/illinois/"><strong>Illinois map</strong><span>What is documented where.</span></a>
         <a href="/surveillance/jurisdictions/"><strong>Jurisdictions</strong><span>Local and state agency dossiers.</span></a>
         <a href="/providers/flock-safety/"><strong>Existing providers</strong><span>Vendor relationships and product capability.</span></a>

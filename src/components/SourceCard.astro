@@ -2,6 +2,12 @@
 import type { SourceRecord } from '../data/sources';
 interface Props { source: SourceRecord }
 const { source } = Astro.props;
+const sourceButtonLabel =
+  source.status === 'Vendor'
+    ? 'Vendor source'
+    : source.status === 'Secondary'
+      ? 'Open source'
+      : 'Official source';
 ---
 <article class="source_card" id={source.id.toLowerCase()}>
   <div class="source_card_top">
@@ -19,7 +25,7 @@ const { source } = Astro.props;
     {source.tags.map(tag => <span>{tag}</span>)}
   </div>
   <div class="source_actions">
-    <a class="button button_dark" href={source.originalUrl}>Official source</a>
+    <a class="button button_dark" href={source.originalUrl}>{sourceButtonLabel}</a>
     {source.archivedFiles?.map(file => <a class="button button_light" href={file.url}>{file.label}</a>)}
   </div>
   {source.archivedFiles?.length && (

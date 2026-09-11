@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import EvidenceCard from '../../../components/evidence/EvidenceCard.astro';
+import { evidenceCases, evidenceCategories, evidenceCategoryMeta } from '../../../data/evidence';
+---
+<BaseLayout title="Surveillance Evidence Library | NoRec.US" description="Documented surveillance anecdotes, failures, consequences, and case studies organized by who is doing the watching." active="surveillance">
+  <main class="page_shell evidence_library">
+    <header class="article_header">
+      <p class="eyebrow">SURVEILLANCE · EVIDENCE LIBRARY</p>
+      <h1>Show me where this actually happened.</h1>
+      <p class="article_deck">A navigable library of documented surveillance cases, consequences, audits, court records, regulator actions, and reported incidents. Illinois cases link back to the place where they occurred.</p>
+    </header>
+
+    <section class="evidence_box">
+      <span class="status_label">METHOD</span>
+      <p>Illinois is the subject; the rest of the country can be evidence. Out-of-state cases are included when they document the operation, capabilities, limitations, failures, or consequences of technology relevant to Illinois. Geography is identified explicitly.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">BROWSE BY RELATIONSHIP</p>
+      <h2>Who is doing the watching?</h2>
+      <div class="evidence_category_grid">
+        {evidenceCategories.map((category) => {
+          const meta = evidenceCategoryMeta[category];
+          const count = evidenceCases.filter((item) => item.category === category).length;
+          return <a href={`/surveillance/evidence/${category}/`}><strong>{meta.label}</strong><span>{meta.question}</span><small>{count} records</small></a>;
+        })}
+      </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">ALL EVIDENCE</p>
+      <h2>{evidenceCases.length} documented records and case studies.</h2>
+      <div class="evidence_library_grid">
+        {evidenceCases.map((item) => <EvidenceCard item={item} />)}
+      </div>
+    </section>
+  </main>
+</BaseLayout>

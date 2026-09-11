@@ -17,9 +17,11 @@
   <url><loc>https://norec.us/surveillance/drones/</loc></url>
   <url><loc>https://norec.us/surveillance/human-fingerprints/</loc></url>
   <url><loc>https://norec.us/surveillance/jurisdictions/</loc></url>
+  
   <url><loc>https://norec.us/illinois/counties/winnebago/</loc></url>
   <url><loc>https://norec.us/illinois/counties/dekalb/</loc></url>
   <url><loc>https://norec.us/providers/fusus/</loc></url>
+
   <url><loc>https://norec.us/illinois/</loc></url>
   <url><loc>https://norec.us/illinois/counties/boone/cities/belvidere/</loc></url>
   <url><loc>https://norec.us/illinois/counties/winnebago/cities/rockford/</loc></url>
@@ -30,6 +32,7 @@
   <url><loc>https://norec.us/illinois/counties/boone/cities/loves-park/</loc></url>
   <url><loc>https://norec.us/illinois/counties/boone/cities/poplar-grove/</loc></url>
   <url><loc>https://norec.us/illinois/counties/boone/cities/timberlane/</loc></url>
+
   <url><loc>https://norec.us/illinois/counties/winnebago/cities/cherry-valley/</loc></url>
   <url><loc>https://norec.us/illinois/counties/winnebago/cities/durand/</loc></url>
   <url><loc>https://norec.us/illinois/counties/winnebago/cities/loves-park/</loc></url>
@@ -40,6 +43,7 @@
   <url><loc>https://norec.us/illinois/counties/winnebago/cities/roscoe/</loc></url>
   <url><loc>https://norec.us/illinois/counties/winnebago/cities/south-beloit/</loc></url>
   <url><loc>https://norec.us/illinois/counties/winnebago/cities/winnebago/</loc></url>
+
   <url><loc>https://norec.us/illinois/counties/ogle/</loc></url>
   <url><loc>https://norec.us/illinois/counties/ogle/cities/adeline/</loc></url>
   <url><loc>https://norec.us/illinois/counties/ogle/cities/byron/</loc></url>
@@ -457,26 +461,96 @@
   <url><loc>https://norec.us/illinois/counties/cook/cities/worth/</loc></url>
   <url><loc>https://norec.us/privacy/</loc></url>
   <url><loc>https://norec.us/qr/</loc></url>
-  <url><loc>https://norec.us/surveillance/map/</loc></url>
-  <url><loc>https://norec.us/surveillance/government/</loc></url>
-  <url><loc>https://norec.us/surveillance/workplace/</loc></url>
-  <url><loc>https://norec.us/surveillance/consumer/</loc></url>
-  <url><loc>https://norec.us/surveillance/private/</loc></url>
-  <url><loc>https://norec.us/surveillance/infrastructure/</loc></url>
-  <url><loc>https://norec.us/surveillance/systems/cbp-ohare-biometric-processing/</loc></url>
-  <url><loc>https://norec.us/surveillance/systems/user-activity-monitoring/</loc></url>
-  <url><loc>https://norec.us/surveillance/systems/surveillance-pricing/</loc></url>
-  <url><loc>https://norec.us/surveillance/systems/ring-community-requests/</loc></url>
-  <url><loc>https://norec.us/surveillance/systems/babel-street-locate-x/</loc></url>
-  <url><loc>https://norec.us/surveillance/systems/adams/</loc></url>
-  <url><loc>https://norec.us/surveillance/entities/cbp/</loc></url>
-  <url><loc>https://norec.us/surveillance/entities/uam-ueba/</loc></url>
-  <url><loc>https://norec.us/surveillance/entities/surveillance-pricing-intermediaries/</loc></url>
-  <url><loc>https://norec.us/surveillance/entities/ring/</loc></url>
-  <url><loc>https://norec.us/surveillance/entities/axon-evidence/</loc></url>
-  <url><loc>https://norec.us/surveillance/entities/babel-street/</loc></url>
-  <url><loc>https://norec.us/surveillance/entities/locate-x/</loc></url>
-  <url><loc>https://norec.us/surveillance/entities/ice/</loc></url>
-  <url><loc>https://norec.us/surveillance/entities/darpa/</loc></url>
-  <url><loc>https://norec.us/surveillance/entities/adams/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/government/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/workplace/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/consumer/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/private/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/infrastructure/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/catalan/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/shotspotter/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/ssl/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/robert-williams/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/woodruff/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/flock-arkansas/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/michael-williams/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/gang-data-quality/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/michael-oliver/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/nijeer-parks/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/fr-national-pattern/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/alpr-error-pattern/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/surveillance-pricing/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/flock-cbp/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/mount-prospect-alpr/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/oak-park-flock-errors/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/alpr-morristown/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/alpr-toledo/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/alpr-volusia/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/denise-green/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/alpr-stalking/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/chicago-stingray-records/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/andrews-stingray/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/tallahassee-stingray/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/sarasota-stingray-records/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/florida-stingray-scale/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/cpd-geofeedia/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/cpd-confidential-analytics/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/locate-x-abortion-clinic/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/secret-service-consent/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/rite-aid-blonde/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/rite-aid-child/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/rite-aid-scale/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/caldwell-amazon/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/amazon-flex-normandin/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/amazon-netradyne/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/amazon-moses-tot/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/harri-jersey-mikes/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/atlantic-plaza-facial-recognition/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/ring-emergency-disclosures/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/hoa-flock/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/brentwood-hoa-alpr/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/gm-lexisnexis/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/kenn-dahl/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/vizio-acr/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/gravy-venntel/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/inmarket-sdk/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/target-pregnancy/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/retail-equation/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/caesars-breach/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/mgm-breach/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/ford-driver-monitoring-patents/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/students/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/taki-allen-doritos/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/clarinet-zeroeyes/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/zoe-reiland-gaggle/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/vancouver-gaggle-records/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/alsip-school-residency-surveillance/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/cps-student-social-media-monitoring/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/lockport-school-facial-recognition/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/buckeye-verkada-facial-recognition-disabled/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/health/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/flo-health-ftc/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/premom-ftc/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/goodrx-ftc/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/betterhelp-ftc/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/cerebral-ftc/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/burgess-facebook-abortion-case/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/biometrics/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/brandon-mayfield-fingerprint/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/stephan-cowans-fingerprint/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/shirley-mckie-fingerprint/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/rosenbach-six-flags-bipa/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/cothron-white-castle-bipa/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/aerial/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/baltimore-secret-aerial-surveillance/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/baltimore-aerial-retention/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/leaders-beautiful-struggle-baltimore-air/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/chula-vista-drone-footage-custody/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/albany-flock-ex-girlfriend/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/illinois-flock-officer-misuse/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/ring-employee-video-abuse/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/ring-account-takeovers/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/opm-fingerprint-breach/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/vitagene-genetic-data-breach/</loc></url>
+  <url><loc>https://norec.us/surveillance/evidence/xfinity-wifi-motion-shared-walls/</loc></url>
 </urlset>

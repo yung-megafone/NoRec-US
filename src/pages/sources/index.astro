@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SourceCard from '../../components/SourceCard.astro';
-import { sources } from '../../data/sources';
+import { allSources as sources, sourceLibraryStats } from '../../data/sourceLibrary';
 
 const jurisdictions = [...new Set(sources.map(s => s.jurisdiction))];
 ---
@@ -19,20 +19,20 @@ const jurisdictions = [...new Set(sources.map(s => s.jurisdiction))];
     <section class="source_intro">
       <div class="evidence_box">
         <span class="status_label">SOURCE POLICY</span>
-        <p>Primary sources are preferred. Secondary reporting can provide context and identify leads, but claims about laws, policies, contracts, or agency records should point to the underlying material whenever possible.</p>
+        <p>Primary sources are preferred. Secondary reporting can provide context and identify leads, but claims about laws, policies, contracts, or agency records should point to the underlying material whenever possible. The library automatically indexes citations used by the Evidence Library and Surveillance catalog; manually curated records retain richer metadata, archived copies, and hashes where available.</p>
       </div>
       <div class="source_stats">
         <div><strong>{sources.length}</strong><span>indexed sources</span></div>
         <div><strong>{sources.filter(s => s.status === 'Primary').length}</strong><span>primary sources</span></div>
-        <div><strong>{jurisdictions.length}</strong><span>jurisdictions</span></div>
+        <div><strong>{sourceLibraryStats.curated}</strong><span>curated / archived records</span></div>
       </div>
     </section>
 
     <section>
       <p class="eyebrow">HOW SOURCE IDS WORK</p>
       <h2>A citation number is page-local. The source ID is permanent.</h2>
-      <p>A page may cite a source as <sup>[1]</sup> because that is easy to read. The durable identifier is something like <code>IL-LAW-001</code>. That ID can stay attached to the record even when the same source appears as citation [4] somewhere else.</p>
-      <p>Archived entries include local copies and SHA-256 hashes so the cited material can be verified even if the original page changes. Related files are preserved together when they form one record set.</p>
+      <p>A page may cite a source as <sup>[1]</sup> because that is easy to read. Manually curated records use permanent IDs such as <code>IL-LAW-001</code>. Evidence-derived web citations receive deterministic <code>WEB-XXXXXXXX</code> IDs based on their normalized URL, so adding another citation does not renumber the existing library.</p>
+      <p>Archived entries include local copies and SHA-256 hashes so the cited material can be verified even if the original page changes. Evidence-derived citations are indexed automatically but are not represented as locally archived unless an archived copy has actually been preserved.</p>
     </section>
 
     <section class="source_controls" aria-label="Source library filters">

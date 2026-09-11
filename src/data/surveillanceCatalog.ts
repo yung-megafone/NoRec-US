@@ -186,6 +186,31 @@ export const addedCatalogEntries: CatalogEntry[] = [
     ],
     caveat: 'Community Requests are voluntary. This entry does not claim that Ring continuously feeds all customer video to police.'
   },
+
+  {
+    slug: 'xfinity-wifi-motion',
+    name: 'Xfinity WiFi Motion / residential Wi-Fi sensing',
+    shortName: 'Xfinity WiFi Motion',
+    category: 'Residential RF motion sensing',
+    rung: 'private',
+    status: 'ACTIVE / OPT-IN FEATURE',
+    applicability: ['NATIONWIDE / APPLIES IN IL'],
+    summary: 'Xfinity WiFi Motion uses disruptions in Wi-Fi signals traveling between compatible Xfinity equipment and selected stationary connected devices to detect movement. Comcast explicitly warns that neighboring units or shared walls can produce unwanted motion detections.',
+    encounter: 'Living, walking, or moving in or near a residence using WiFi Motion, including shared-wall housing where movement in a neighboring unit may affect the sensing environment.',
+    dataCollected: ['Motion events', 'Event start/end times', 'Sensing-zone context', 'Network/device context used by the feature'],
+    dataFlow: ['Compatible Xfinity equipment and stationary Wi-Fi devices establish sensing paths', 'Movement alters the Wi-Fi propagation environment', 'The system records a motion event when changes meet the detection threshold', 'Motion history is available through the Xfinity app and retained in Comcast cloud systems for up to seven days'],
+    operator: 'Xfinity customer / Comcast',
+    entities: [
+      { name: 'Comcast / Xfinity', slug: 'xfinity', type: 'vendor' }
+    ],
+    sources: [
+      { label: 'Xfinity Support — Using WiFi Motion', href: 'https://www.xfinity.com/support/articles/wifi-motion', grade: 'VENDOR DOCUMENTATION' },
+      { label: 'Xfinity — WiFi Motion FAQs', href: 'https://www.xfinity.com/support/articles/wifi-motion-faqs', grade: 'VENDOR DOCUMENTATION' },
+      { label: 'Xfinity — WiFi Motion overview', href: 'https://www.xfinity.com/hub/smart-home/wifi-motion', grade: 'VENDOR DOCUMENTATION' }
+    ],
+    detailHref: '/surveillance/evidence/xfinity-wifi-motion-shared-walls/',
+    caveat: 'WiFi Motion does not produce through-wall imagery, identify a person, or determine an exact location. Comcast nevertheless documents neighboring-unit/shared-wall activity as a possible source of motion detections.'
+  },
   {
     slug: 'babel-street-locate-x',
     name: 'Babel Street Locate X / commercial location intelligence',

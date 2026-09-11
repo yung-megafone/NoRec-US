@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import RelatedEvidenceForPath from '../components/evidence/RelatedEvidenceForPath.astro';
 
 const {
   title = 'NoRec.US',
@@ -122,9 +123,39 @@ const robots = noindex
 
           <ul id="menu">
             {nav.map(([key, href, label]) => (
-              <li class={currentNav === key ? 'selected' : ''}>
-                <a href={href} aria-current={currentNav === key ? 'page' : undefined}>{label}</a>
-              </li>
+              key === 'surveillance' ? (
+                <li class:list={[currentNav === key && 'selected', 'nav_has_submenu']}>
+                  <button
+                    class="nav_submenu_toggle"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="surveillance_submenu"
+                  >
+                    <span>{label}</span>
+                    <span class="nav_submenu_caret" aria-hidden="true">▾</span>
+                  </button>
+                  <ul class="nav_submenu" id="surveillance_submenu">
+                    <li><a href="/surveillance/">Surveillance overview</a></li>
+                    <li><a href="/surveillance/evidence/">Evidence library</a></li>
+                    <li><a href="/illinois/">Illinois jurisdictions + map</a></li>
+                    <li><a href="/sources/">Sources + receipts</a></li>
+                    <li class="nav_submenu_divider"><span>Evidence by category</span></li>
+                    <li><a href="/surveillance/evidence/government/">Government</a></li>
+                    <li><a href="/surveillance/evidence/workplace/">Workplace</a></li>
+                    <li><a href="/surveillance/evidence/consumer/">Consumer / retail</a></li>
+                    <li><a href="/surveillance/evidence/private/">Private / residential</a></li>
+                    <li><a href="/surveillance/evidence/students/">Students / schools</a></li>
+                    <li><a href="/surveillance/evidence/health/">Health / reproductive</a></li>
+                    <li><a href="/surveillance/evidence/biometrics/">Biometrics</a></li>
+                    <li><a href="/surveillance/evidence/aerial/">Aerial / drones</a></li>
+                    <li><a href="/surveillance/evidence/infrastructure/">Data brokers / infrastructure</a></li>
+                  </ul>
+                </li>
+              ) : (
+                <li class={currentNav === key ? 'selected' : ''}>
+                  <a href={href} aria-current={currentNav === key ? 'page' : undefined}>{label}</a>
+                </li>
+              )
             ))}
             <li class="nav_github">
               <a
@@ -148,6 +179,7 @@ const robots = noindex
 
       <main id="site_content" tabindex="-1">
         <slot />
+        <RelatedEvidenceForPath pathname={pathname} />
       </main>
 
       <footer id="footer">
@@ -157,9 +189,9 @@ const robots = noindex
         </p>
         <p>
           NoRec.US original material · MIT License · <a href="/privacy/">Privacy Notice</a> ·
-          Design inspiration: black_white by HTML5webtemplates.co.uk
+          Design inspiration: black_white · <a href="https://github.com/yung-megafone/NoRec-US">GitHub</a>
         </p>
-      </footer>
+</footer>
     </div>
 
     <script is:inline>
@@ -168,7 +200,9 @@ const robots = noindex
         const loader = document.getElementById('site_loader');
         const toggle = document.getElementById('nav_toggle');
         const menu = document.getElementById('menu');
-        const menubar = document.getElementById('menubar');
+        const surveillanceItem = menu?.querySelector('.nav_has_submenu');
+        const surveillanceToggle = surveillanceItem?.querySelector('.nav_submenu_toggle');
+        const surveillanceSubmenu = surveillanceItem?.querySelector('.nav_submenu');
 
         const hideLoader = () => {
           root.classList.add('site_ready');
@@ -189,82 +223,58 @@ const robots = noindex
         window.addEventListener('pageshow', hideLoader);
 
         document.addEventListener('click', (event) => {
-          const target = event.target;
-          if (!(target instanceof Element)) return;
-
-          const link = target.closest('a[href]');
+          const link = event.target.closest('a[href]');
           if (!link) return;
-          if (
-            event.defaultPrevented ||
-            event.metaKey ||
-            event.ctrlKey ||
-            event.shiftKey ||
-            event.altKey
-          ) return;
-          if (event instanceof MouseEvent && event.button !== 0) return;
+          if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
           if (link.target === '_blank' || link.hasAttribute('download')) return;
 
           const url = new URL(link.href, window.location.href);
           if (url.origin !== window.location.origin) return;
-          if (
-            url.pathname === window.location.pathname &&
-            url.search === window.location.search &&
-            url.hash
-          ) return;
+          if (url.pathname === window.location.pathname && url.search === window.location.search && url.hash) return;
 
           showLoader();
         });
 
-        if (!toggle || !menu) return;
-
-        const setMenuState = (open) => {
-          toggle.setAttribute('aria-expanded', String(open));
-          menu.classList.toggle('menu_open', open);
+        const closeSurveillanceSubmenu = () => {
+          surveillanceToggle?.setAttribute('aria-expanded', 'false');
+          surveillanceItem?.classList.remove('submenu_open');
         };
 
-        const closeMenu = () => setMenuState(false);
-        const toggleMenu = () =>
-          setMenuState(toggle.getAttribute('aria-expanded') !== 'true');
+        const closeMenu = () => {
+          toggle?.setAttribute('aria-expanded', 'false');
+          menu?.classList.remove('menu_open');
+          closeSurveillanceSubmenu();
+        };
 
-        let ignoreSyntheticClickUntil = 0;
-
-        if ('PointerEvent' in window) {
-          toggle.addEventListener('pointerup', (event) => {
-            if (event.pointerType === 'mouse' && event.button !== 0) return;
-
-            event.preventDefault();
-            ignoreSyntheticClickUntil = performance.now() + 600;
-            toggleMenu();
-          });
-        }
-
-        toggle.addEventListener('click', (event) => {
-          if (performance.now() < ignoreSyntheticClickUntil) {
-            event.preventDefault();
-            return;
-          }
-          toggleMenu();
+        toggle?.addEventListener('click', () => {
+          const open = toggle.getAttribute('aria-expanded') === 'true';
+          toggle.setAttribute('aria-expanded', String(!open));
+          menu?.classList.toggle('menu_open', !open);
         });
 
-        menu.addEventListener('click', (event) => {
-          const target = event.target;
-          if (target instanceof Element && target.closest('a')) closeMenu();
+        surveillanceToggle?.addEventListener('click', (event) => {
+          event.stopPropagation();
+          const open = surveillanceToggle.getAttribute('aria-expanded') === 'true';
+          surveillanceToggle.setAttribute('aria-expanded', String(!open));
+          surveillanceItem?.classList.toggle('submenu_open', !open);
         });
 
-        document.addEventListener('pointerdown', (event) => {
-          const target = event.target;
-          if (!(target instanceof Node)) return;
-          if (toggle.getAttribute('aria-expanded') !== 'true') return;
-          if (menubar?.contains(target)) return;
-          closeMenu();
+        document.addEventListener('click', (event) => {
+          if (!surveillanceItem?.contains(event.target)) closeSurveillanceSubmenu();
         });
 
         document.addEventListener('keydown', (event) => {
           if (event.key !== 'Escape') return;
-          if (toggle.getAttribute('aria-expanded') !== 'true') return;
+          if (surveillanceToggle?.getAttribute('aria-expanded') === 'true') {
+            closeSurveillanceSubmenu();
+            surveillanceToggle.focus();
+          } else {
+            closeMenu();
+          }
+        });
 
-          closeMenu();
-          toggle.focus();
+        menu?.addEventListener('click', (event) => {
+          if (event.target.closest('a')) closeMenu();
         });
 
         window.addEventListener('resize', () => {

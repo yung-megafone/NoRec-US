@@ -1,15 +1,24 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import QrLessonOverlay from '../../components/QrLessonOverlay.astro';
 ---
 
 <BaseLayout
   title="You scanned a QR code | NoRec.US"
   description="A quick reminder about unknown QR codes, followed by the Illinois ID-photo surveillance research this code was meant to show you."
 >
+  <QrLessonOverlay />
+
   <main class="qr_shell">
     <section class="qr_intro">
       <p class="eyebrow">YOU SCANNED A RANDOM QR CODE</p>
       <h1>Probably don't make a habit of that.</h1>
+
+      <figure class="qr_intro_rick">
+        <img src="/media/qr/rickroll-roll.gif" alt="Animated Rick Astley Never Gonna Give You Up clip used as a Rickroll joke." loading="eager" />
+        <figcaption>Threat model: catastrophic</figcaption>
+      </figure>
+
       <p class="qr_intro_lede">QR codes can hide phishing pages, malicious links, replacement-payment scams, and other attacks. Security researchers have even demonstrated QR-triggered exploit chains that reached remote code execution in vulnerable software.</p>
       <p>And, perhaps most dangerously, this could have been a Rickroll.</p>
     </section>
@@ -18,10 +27,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <figure>
         <img src="/media/qr/random-qr-superbowl-meme.png" alt="Meme joking about people scanning a random QR code and discovering it is a cyberattack." loading="eager" />
         <figcaption>Threat model: moderate</figcaption>
-      </figure>
-      <figure>
-        <img src="/media/qr/rickroll-roll.gif" alt="Animated Rick Astley Never Gonna Give You Up clip used as a Rickroll joke." loading="lazy" />
-        <figcaption>Threat model: catastrophic</figcaption>
       </figure>
     </section>
 

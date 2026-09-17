@@ -1,25 +1,12 @@
----
-/**
- * NoRec.US QR lesson overlay
- *
- * Drop this component onto the QR landing page only.
- * Put one or more audio files in public/audio/ and list them below.
- *
- * Behavior:
- *   - Page opens -> modal asks whether the visitor wants to hear more.
- *   - NO -> modal closes, page continues normally.
- *   - YES -> modal closes, local audio starts looping.
- *   - While audio plays, a small floating STOP button appears.
- *   - STOP -> playback stops, rewinds, and the button disappears.
- *
- * No cookies, localStorage, analytics, external requests, or third-party players.
- */
+<!--
+  NoRec.US QR lesson overlay
 
-const audioPlaylist = [
-  "/audio/nggyu-dnb.mp3",
-  "/audio/nggyu-pop.mp3",
-];
----
+  IMPORTANT: The production CSP is `script-src 'self'; style-src 'self'`.
+  Keep the behavior and styles in same-origin external files under public/.
+  Do not move these back into inline <script is:inline> or <style> blocks.
+-->
+
+<link rel="stylesheet" href="/styles/qr-lesson.css" />
 
 <div
   id="qr-lesson-modal"
@@ -33,7 +20,6 @@ const audioPlaylist = [
     <p class="qr-lesson-label">QR SAFETY</p>
 
     <h2 id="qr-lesson-title">Want to hear more?</h2>
-
     <p id="qr-lesson-description">
       Would you like to hear more about the dangers of scanning unknown QR codes
       and clicking unfamiliar links?
@@ -53,10 +39,6 @@ const audioPlaylist = [
 
 <audio id="qr-lesson-audio" preload="none" loop></audio>
 
-<script is:inline define:vars={{ audioPlaylist }}>
-  window.__NOREC_QR_AUDIO_PLAYLIST__ = audioPlaylist;
-</script>
-
 <button
   id="qr-lesson-stop"
   class="qr-lesson-stop"
@@ -69,243 +51,5 @@ const audioPlaylist = [
   <span class="qr-lesson-stop-label">STOP</span>
 </button>
 
-<script is:inline>
-  (() => {
-    const modal = document.getElementById("qr-lesson-modal");
-    const yes = document.getElementById("qr-lesson-yes");
-    const no = document.getElementById("qr-lesson-no");
-    const audio = document.getElementById("qr-lesson-audio");
-    const stop = document.getElementById("qr-lesson-stop");
-    const playlist = Array.isArray(window.__NOREC_QR_AUDIO_PLAYLIST__)
-      ? window.__NOREC_QR_AUDIO_PLAYLIST__.filter(Boolean)
-      : [];
-
-    if (!modal || !yes || !no || !(audio instanceof HTMLAudioElement) || !stop) {
-      return;
-    }
-
-    const previousOverflow = document.documentElement.style.overflow;
-    document.documentElement.style.overflow = "hidden";
-
-    const closeModal = () => {
-      modal.remove();
-      document.documentElement.style.overflow = previousOverflow;
-    };
-
-    const stopAudio = () => {
-      audio.pause();
-      audio.currentTime = 0;
-      stop.hidden = true;
-    };
-
-    const startAudio = async () => {
-      closeModal();
-
-      if (playlist.length === 0) {
-        console.warn("NoRec QR lesson playlist is empty.");
-        return;
-      }
-
-      try {
-        const selected = playlist[Math.floor(Math.random() * playlist.length)];
-        audio.src = selected;
-        audio.currentTime = 0;
-        await audio.play();
-        stop.hidden = false;
-      } catch (error) {
-        // The page remains usable even if playback is blocked or the file is missing.
-        stop.hidden = true;
-        console.warn("NoRec QR lesson audio could not start.", error);
-      }
-    };
-
-    yes.addEventListener("click", startAudio, { once: true });
-    no.addEventListener("click", closeModal, { once: true });
-    stop.addEventListener("click", stopAudio);
-
-    audio.addEventListener("pause", () => {
-      if (!audio.ended) stop.hidden = true;
-    });
-
-    audio.addEventListener("play", () => {
-      stop.hidden = false;
-    });
-
-    audio.addEventListener("error", () => {
-      stop.hidden = true;
-    });
-
-    // Escape is the accessibility equivalent of choosing NO.
-    document.addEventListener(
-      "keydown",
-      (event) => {
-        if (event.key === "Escape" && document.getElementById("qr-lesson-modal")) {
-          closeModal();
-        }
-      },
-      { once: true }
-    );
-
-    // Put keyboard focus on the tempting button immediately.
-    requestAnimationFrame(() => yes.focus());
-  })();
-</script>
-
-<style>
-  .qr-lesson-modal {
-    position: fixed;
-    inset: 0;
-    z-index: 10000;
-    display: grid;
-    place-items: center;
-    padding: 1.25rem;
-    background: rgb(0 0 0 / 0.76);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-  }
-
-  .qr-lesson-card {
-    width: min(100%, 34rem);
-    padding: clamp(1.5rem, 4vw, 2.25rem);
-    border: 1px solid rgb(255 255 255 / 0.14);
-    border-radius: 1rem;
-    background: #111;
-    color: #f5f5f5;
-    box-shadow: 0 1.5rem 5rem rgb(0 0 0 / 0.55);
-    text-align: center;
-  }
-
-  .qr-lesson-label {
-    margin: 0 0 0.75rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-    font-size: 0.76rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    opacity: 0.62;
-  }
-
-  .qr-lesson-card h2 {
-    margin: 0 0 0.65rem;
-    color: inherit;
-    font-size: clamp(1.45rem, 5vw, 2rem);
-    line-height: 1.15;
-  }
-
-  .qr-lesson-card p:not(.qr-lesson-label) {
-    margin: 0 auto 1.5rem;
-    max-width: 29rem;
-    color: rgb(255 255 255 / 0.78);
-    font-size: 1rem;
-    line-height: 1.55;
-  }
-
-  .qr-lesson-actions {
-    display: grid;
-    grid-template-columns: 1.35fr 0.85fr;
-    gap: 0.8rem;
-  }
-
-  .qr-lesson-button {
-    min-height: 3.5rem;
-    border: 0;
-    border-radius: 0.72rem;
-    font: inherit;
-    font-weight: 850;
-    letter-spacing: 0.035em;
-    cursor: pointer;
-    transition: transform 120ms ease, filter 120ms ease;
-  }
-
-  .qr-lesson-button:hover {
-    filter: brightness(1.08);
-  }
-
-  .qr-lesson-button:active {
-    transform: translateY(1px);
-  }
-
-  .qr-lesson-button:focus-visible,
-  .qr-lesson-stop:focus-visible {
-    outline: 3px solid #fff;
-    outline-offset: 3px;
-  }
-
-  .qr-lesson-yes {
-    background: #29c967;
-    color: #06150b;
-    font-size: 1.08rem;
-  }
-
-  .qr-lesson-no {
-    background: #c83f46;
-    color: #fff;
-  }
-
-  .qr-lesson-stop {
-    position: fixed;
-    right: max(1rem, env(safe-area-inset-right));
-    bottom: max(1rem, env(safe-area-inset-bottom));
-    z-index: 9999;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.45rem;
-    min-height: 3.25rem;
-    padding: 0.8rem 1rem;
-    border: 2px solid rgb(255 255 255 / 0.9);
-    border-radius: 999px;
-    background: #d63c45;
-    color: #fff;
-    box-shadow: 0 0.55rem 1.8rem rgb(0 0 0 / 0.45);
-    font: inherit;
-    font-size: 0.92rem;
-    font-weight: 850;
-    line-height: 1;
-    letter-spacing: 0.04em;
-    cursor: pointer;
-    transition: transform 120ms ease, filter 120ms ease;
-  }
-
-  .qr-lesson-stop-icon {
-    font-size: 0.9rem;
-    line-height: 1;
-  }
-
-  .qr-lesson-stop:hover {
-    filter: brightness(1.12);
-  }
-
-  .qr-lesson-stop:active {
-    transform: translateY(1px);
-  }
-
-  .qr-lesson-stop[hidden] {
-    display: none !important;
-  }
-
-  @media (max-width: 520px) {
-    .qr-lesson-modal {
-      padding: 1rem;
-    }
-
-    .qr-lesson-card {
-      border-radius: 0.9rem;
-    }
-
-    .qr-lesson-actions {
-      grid-template-columns: 1fr;
-    }
-
-    .qr-lesson-yes {
-      min-height: 4rem;
-      font-size: 1.15rem;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .qr-lesson-button,
-    .qr-lesson-stop {
-      transition: none;
-    }
-  }
-</style>
+<!-- Same-origin external script: allowed by the production CSP. -->
+<script is:inline src="/scripts/qr-lesson.js"></script>

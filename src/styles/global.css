@@ -53,7 +53,7 @@ ul#menu li a {
   letter-spacing: .1em;
   font: normal .78rem/1 Arial, sans-serif;
 }
-ul#menu li a:hover, ul#menu > li.selected > a { background: rgba(255,255,255,.15); }
+ul#menu li a:hover, ul#menu li.selected a { background: rgba(255,255,255,.15); }
 
 #site_content {
   width: min(calc(100% - 2rem), var(--max-width));
@@ -601,9 +601,8 @@ summary:focus-visible{
 
 .brand_asset_grid{
   display:grid;
-  grid-template-columns:minmax(0,1fr);
+  grid-template-columns:repeat(2,minmax(0,1fr));
   gap:1rem;
-  max-width:760px;
 }
 .brand_asset_grid figure{margin:0}
 .brand_asset_grid figcaption{font-size:.76rem;margin-top:.4rem}
@@ -878,7 +877,7 @@ ul#menu li a {
   color: #dfe2de;
 }
 ul#menu li a:hover,
-ul#menu > li.selected > a {
+ul#menu li.selected a {
   color: #f2f3f1;
   background: #252929;
 }
@@ -1058,14 +1057,6 @@ ul#menu > li.selected > a {
 /* --------------------------------------------------------------------------
    Navigation + loading QoL
    -------------------------------------------------------------------------- */
-.nav_toggle_state{
-  position:absolute;
-  inline-size:1px;
-  block-size:1px;
-  opacity:0;
-  pointer-events:none;
-}
-
 .nav_toggle{
   display:none;
   width:100%;
@@ -1091,16 +1082,16 @@ ul#menu > li.selected > a {
   background:currentColor;
   transition:transform .16s ease,opacity .16s ease;
 }
-#nav_toggle_state:checked + .nav_toggle .nav_toggle_icon i:nth-child(1){transform:translateY(6px) rotate(45deg)}
-#nav_toggle_state:checked + .nav_toggle .nav_toggle_icon i:nth-child(2){opacity:0}
-#nav_toggle_state:checked + .nav_toggle .nav_toggle_icon i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.nav_toggle[aria-expanded="true"] .nav_toggle_icon i:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.nav_toggle[aria-expanded="true"] .nav_toggle_icon i:nth-child(2){opacity:0}
+.nav_toggle[aria-expanded="true"] .nav_toggle_icon i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 
-ul#menu > li.selected > a{
+ul#menu li.selected a{
   position:relative;
   background:#2b3030;
   color:#fff;
 }
-ul#menu > li.selected > a::after{
+ul#menu li.selected a::after{
   content:"";
   position:absolute;
   left:12px;
@@ -1226,7 +1217,6 @@ ul#menu > li.selected > a::after{
     border-bottom:1px solid #303535;
     box-shadow:0 12px 22px rgba(0,0,0,.42);
   }
-  #nav_toggle_state:checked ~ ul#menu,
   ul#menu.menu_open{
     display:grid;
     grid-template-columns:1fr;
@@ -1372,25 +1362,6 @@ ul#menu > li.selected > a::after{
   font-size:clamp(1.15rem,2.2vw,1.45rem);
   line-height:1.55;
 }
-.qr_intro_rick{
-  width:min(100%,760px);
-  margin:1.25rem 0 1.5rem;
-  border:1px solid var(--border,#333);
-  background:#0d1010;
-  overflow:hidden;
-}
-.qr_intro_rick img{
-  display:block;
-  width:100%;
-  height:auto;
-}
-.qr_intro_rick figcaption{
-  padding:.65rem .8rem;
-  font-size:.78rem;
-  letter-spacing:.06em;
-  text-transform:uppercase;
-  opacity:.75;
-}
 .qr_warning,
 .qr_turn,
 .qr_rule{
@@ -1473,179 +1444,92 @@ ul#menu > li.selected > a::after{
   color:var(--muted);
 }
 
-
-/* IDC / Why Privacy Matters — documented case studies */
-.idc_cases{margin-top:3rem;padding-top:2rem;border-top:3px solid var(--black)}
-.idc_cases_intro{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(260px,.65fr);gap:1.5rem;align-items:start}
-.idc_cases_intro h2{max-width:820px}
-.idc_scope_note{padding:1rem;border:1px solid var(--black);background:var(--soft)}
-.idc_scope_note strong{display:block;margin-bottom:.4rem}.idc_scope_note p{margin:0;font-size:.88rem;line-height:1.55}
-.idc_case_group{margin-top:2.5rem}.idc_group_heading{display:flex;align-items:center;gap:.8rem;padding-bottom:.65rem;border-bottom:2px solid var(--black)}
-.idc_group_heading h3{margin:0;font-size:1.2rem}.idc_geo{display:inline-block;padding:.3rem .48rem;border:1px solid var(--black);font:700 .62rem/1 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.07em;text-transform:uppercase}.idc_geo_il{background:var(--black);color:var(--white)}
-.idc_case{border-bottom:1px solid var(--line)}.idc_case summary{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,.35fr) 1.25rem;gap:.75rem 1rem;align-items:center;padding:1rem 0;cursor:pointer;list-style:none}.idc_case summary::-webkit-details-marker{display:none}.idc_case summary::after{content:"+";grid-column:3;grid-row:1 / span 2;align-self:center;font:700 1.25rem/1 ui-monospace,SFMono-Regular,Consolas,monospace}.idc_case[open] summary::after{content:"−"}.idc_case[open] summary{border-bottom:1px solid var(--line)}
-.idc_case_kicker{grid-column:1;color:var(--muted);font:700 .63rem/1.25 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.07em}.idc_case_title{grid-column:1;font:700 clamp(1rem,2vw,1.25rem)/1.35 "Century Gothic",Arial,sans-serif}.idc_case_result{grid-column:2;grid-row:1 / span 2;font:700 .68rem/1.45 ui-monospace,SFMono-Regular,Consolas,monospace;text-transform:uppercase;color:var(--muted)}
-.idc_case_body{padding:1.1rem 0 1.35rem;max-width:900px}.idc_case_body p{line-height:1.65}.idc_takeaway{margin:1rem 0;padding:.9rem 1rem;border-left:4px solid var(--black);background:var(--soft);line-height:1.55}.idc_sources{margin-top:1rem;padding-top:.75rem;border-top:1px solid var(--line);font-size:.82rem}
-.idc_rule{margin-top:2.75rem;padding:1.25rem;border:2px solid var(--black)}.idc_rule h3{margin:.25rem 0 .8rem;font-size:clamp(1.4rem,3vw,2rem)}.idc_rule p:last-child{margin-bottom:0}
-@media(max-width:760px){.idc_cases_intro{grid-template-columns:1fr}.idc_case summary{grid-template-columns:minmax(0,1fr) 1.25rem}.idc_case_kicker,.idc_case_title{grid-column:1}.idc_case_result{grid-column:1;grid-row:auto;margin-top:.15rem}.idc_case summary::after{grid-column:2;grid-row:1 / span 3}}
-
-
-.idc_case_count{display:inline-block;margin:.2rem 0 .8rem;padding:.28rem .45rem;border:1px solid var(--line);font:700 .61rem/1.2 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.06em;color:var(--muted)}
-
-
-/* IDC — safeguards and surveillance failure model */
-.idc_case_group_featured{margin-top:3rem}
-.idc_case_featured{border-top:3px solid var(--black);border-bottom:3px solid var(--black)}
-.idc_safeguards{margin:1.5rem 0 2.5rem;padding:1.2rem;border:2px solid var(--black);background:var(--soft)}
-.idc_safeguards h4{margin:.25rem 0 1rem;font-size:1.25rem}
-.idc_safeguard_grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--black);border:1px solid var(--black)}
-.idc_safeguard_grid div{display:flex;flex-direction:column;gap:.35rem;padding:.85rem;background:var(--white)}
-.idc_safeguard_grid strong{font-size:.82rem;text-transform:uppercase}.idc_safeguard_grid span{font-size:.78rem;line-height:1.45;color:var(--muted)}
-.idc_safeguard_end{margin:1rem 0 0;padding-top:1rem;border-top:1px solid var(--line);font-size:1.02rem}
-.idc_failure_model{margin:3rem 0 1rem;padding:1.3rem;border:3px solid var(--black)}
-.idc_failure_model h3{margin:.3rem 0 1.2rem;font-size:clamp(1.4rem,3vw,2rem)}
-.idc_failure_grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem}
-.idc_failure_grid article{padding:1rem;border:1px solid var(--line)}
-.idc_failure_grid article>span{display:block;margin-bottom:.7rem;font:700 .65rem/1 ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--muted)}
-.idc_failure_grid article>strong{display:block;font-size:.95rem;text-transform:uppercase}
-.idc_failure_grid article p{margin:.45rem 0 0;font-size:.8rem;line-height:1.5}
-.idc_failure_end{margin:1.2rem 0 0;padding-top:1rem;border-top:2px solid var(--black);font-size:1.05rem}
-@media(max-width:900px){.idc_safeguard_grid,.idc_failure_grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:520px){.idc_safeguard_grid,.idc_failure_grid{grid-template-columns:1fr}}
-
-
-/* IDC — consumer surveillance / public-space distinction */
-.idc_context_compare{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin:1rem 0 1.25rem;background:var(--black);border:2px solid var(--black)}
-.idc_context_compare article{padding:1.2rem;background:var(--white)}
-.idc_context_compare h4{margin:.3rem 0 .55rem;font-size:1.3rem}
-.idc_context_compare p{margin:0;font-size:.86rem;line-height:1.55}
-.idc_compare_label{font:700 .61rem/1.2 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.06em;color:var(--muted)}
-.idc_quote_case{margin:1.4rem 0;padding:1.3rem;border:3px solid var(--black)}
-.idc_quote_case blockquote{margin:.5rem 0 .65rem;font-size:clamp(1.35rem,3vw,2.2rem);font-weight:800;line-height:1.12}
-.idc_quote_attr{font-size:.74rem;color:var(--muted)}
-.idc_takeaway_large{display:flex;flex-direction:column;gap:.35rem;padding:1.2rem}
-.idc_takeaway_large strong{font-size:1.15rem}
-@media(max-width:650px){.idc_context_compare{grid-template-columns:1fr}}
-
-
-
-/* Evidence library */
-.evidence_category_grid,
-.evidence_library_grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
-  margin: 1.25rem 0 2rem;
-}
-.evidence_category_grid > a,
-.evidence_library_card {
-  border: 1px solid var(--border, #303030);
-  background: rgba(255,255,255,.025);
-  padding: 1.1rem;
-}
-.evidence_category_grid > a {
-  display: grid;
-  gap: .45rem;
-  text-decoration: none;
-}
-.evidence_category_grid strong { font-size: 1.05rem; }
-.evidence_category_grid span,
-.evidence_category_grid small { opacity: .78; }
-.evidence_library_card h3 { margin: .65rem 0 .55rem; }
-.evidence_library_card h3 a { text-decoration: none; }
-.evidence_library_meta {
+/* Deployment lifecycle metadata; evidence quality remains in the primary status badge. */
+.deployment_meta {
   display: flex;
   flex-wrap: wrap;
-  gap: .4rem .8rem;
-  font-size: .72rem;
-  letter-spacing: .07em;
-  text-transform: uppercase;
-  opacity: .72;
-}
-.evidence_library_actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .8rem;
-  margin-top: .9rem;
-  font-size: .9rem;
-}
-.evidence_detail_body {
-  max-width: 900px;
-}
-.evidence_detail_body .idc_takeaway {
-  margin: 1rem 0;
-}
-.jurisdiction_related_evidence {
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
-}
-.idc_evidence_bridge {
-  border-top: 1px solid var(--border, #303030);
-  border-bottom: 1px solid var(--border, #303030);
-  padding: 2rem 0;
+  gap: 0.4rem 0.55rem;
+  margin: 0.65rem 0 0.8rem;
+  font-size: 0.78rem;
+  line-height: 1.35;
 }
 
+.deployment_state,
+.deployment_dates span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.65rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid rgba(0,0,0,0.14);
+  border-radius: 999px;
+  background: rgba(0,0,0,0.035);
+}
 
-/* IDC capstone: What if the system works? */
-.idc_capstone {
-  margin: 4rem auto;
-  padding: clamp(1.5rem, 4vw, 3rem);
-  border: 1px solid var(--border, #333);
-  max-width: 980px;
+.deployment_state_active { border-color: rgba(0, 112, 60, 0.34); }
+.deployment_state_planned,
+.deployment_state_pending-deactivation { border-color: rgba(155, 99, 0, 0.42); }
+.deployment_state_paused { border-color: rgba(165, 81, 0, 0.42); }
+.deployment_state_ended { border-color: rgba(120, 0, 0, 0.34); }
+.deployment_state_unknown { border-style: dashed; }
+
+.deployment_dates {
+  display: contents;
 }
-.idc_capstone h2,
-.idc_failure_model h2 {
-  font-size: clamp(2rem, 6vw, 4.5rem);
-  line-height: .95;
-  letter-spacing: -.04em;
-  margin: .35rem 0 2rem;
+
+/* --------------------------------------------------------------------------
+   Navbar compatibility restoration — 2026-09-18
+   Matches the current checkbox-based mobile-nav markup in BaseLayout.astro.
+   Kept as a final override so older recovered navigation CSS cannot leak the
+   toggle input or flatten the Surveillance dropdown on desktop.
+   -------------------------------------------------------------------------- */
+.nav_toggle_state{
+  position:absolute;
+  inline-size:1px;
+  block-size:1px;
+  opacity:0;
+  pointer-events:none;
 }
-.idc_capstone_sequence {
-  margin: 2rem 0;
-  padding-left: 1rem;
-  border-left: 3px solid currentColor;
+.nav_toggle{
+  display:none;
+  width:100%;
+  border:0;
+  background:#171919;
+  color:#eef0ed;
+  padding:.8rem 1rem;
+  align-items:center;
+  justify-content:space-between;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  font:700 .75rem/1 Arial,sans-serif;
+  cursor:pointer;
 }
-.idc_capstone_sequence p {
-  margin: .45rem 0;
-  font-size: clamp(1rem, 2vw, 1.25rem);
+.nav_toggle_icon{
+  display:grid;
+  gap:4px;
+  width:20px;
 }
-.idc_capstone_zero {
-  margin: 2.5rem 0;
-  padding: 1.5rem;
-  border: 1px solid var(--border, #444);
-  font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+.nav_toggle_icon i{
+  display:block;
+  height:2px;
+  background:currentColor;
+  transition:transform .16s ease,opacity .16s ease;
 }
-.idc_capstone_zero p:last-child {
-  font-size: clamp(1.8rem, 5vw, 3.5rem);
-  margin-bottom: 0;
+#nav_toggle_state:checked + .nav_toggle .nav_toggle_icon i:nth-child(1){transform:translateY(6px) rotate(45deg)}
+#nav_toggle_state:checked + .nav_toggle .nav_toggle_icon i:nth-child(2){opacity:0}
+#nav_toggle_state:checked + .nav_toggle .nav_toggle_icon i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+ul#menu > li.selected > a{
+  position:relative;
+  background:#2b3030;
+  color:#fff;
 }
-.idc_failure_model {
-  max-width: 1100px;
-  margin: 4rem auto;
-}
-.idc_failure_grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: .75rem;
-}
-.idc_failure_grid article {
-  display: flex;
-  flex-direction: column;
-  gap: .65rem;
-  padding: 1.25rem;
-  border: 1px solid var(--border, #333);
-  min-height: 140px;
-}
-.idc_failure_grid article strong {
-  font-size: .85rem;
-  letter-spacing: .08em;
-}
-.idc_failure_grid article span {
-  line-height: 1.5;
-}
-@media (max-width: 600px) {
-  .idc_capstone { margin: 2.5rem 0; padding: 1.25rem; }
-  .idc_failure_model { margin: 2.5rem 0; }
-  .idc_failure_grid { grid-template-columns: 1fr; }
+ul#menu > li.selected > a::after{
+  content:"";
+  position:absolute;
+  left:12px;
+  right:12px;
+  bottom:4px;
+  height:2px;
+  background:#dfe2de;
 }
 
 /* Surveillance primary-navigation dropdown */
@@ -1661,10 +1545,6 @@ ul#menu > li.selected > a::after{
 .nav_submenu_toggle::marker{
   content:"";
 }
-.nav_submenu_details[open] > .nav_submenu_toggle .nav_submenu_caret{
-  transform:rotate(180deg);
-}
-
 ul#menu > li.nav_has_submenu{
   position:relative;
 }
@@ -1765,6 +1645,55 @@ ul#menu .nav_submenu_divider span{
 }
 
 @media(max-width:760px){
+  #menubar{
+    position:relative;
+    min-height:0;
+  }
+  .nav_toggle{
+    display:flex;
+  }
+  ul#menu{
+    display:none;
+    position:absolute;
+    z-index:100;
+    top:100%;
+    left:0;
+    right:0;
+    margin:0;
+    padding:.45rem;
+    background:#171919;
+    border-top:1px solid #303535;
+    border-bottom:1px solid #303535;
+    box-shadow:0 12px 22px rgba(0,0,0,.42);
+  }
+  #nav_toggle_state:checked ~ ul#menu,
+  ul#menu.menu_open{
+    display:grid;
+    grid-template-columns:1fr;
+  }
+  ul#menu li{
+    width:100%;
+  }
+  ul#menu li a{
+    width:100%;
+    padding:.85rem .9rem;
+    text-align:left;
+    font-size:.72rem;
+  }
+  ul#menu li.selected a::after{
+    top:8px;
+    bottom:8px;
+    left:4px;
+    right:auto;
+    width:2px;
+    height:auto;
+  }
+  ul#menu .nav_github{
+    margin-left:0;
+  }
+  ul#menu .nav_github a{
+    justify-content:flex-start;
+  }
   ul#menu > li.nav_has_submenu{
     display:block;
   }
@@ -1800,37 +1729,9 @@ ul#menu .nav_submenu_divider span{
   }
 }
 
-
-/* QR landing-page media */
-.qr_media{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:1rem;
-  margin:1.5rem 0 2.5rem;
-}
-.qr_media figure{
-  margin:0;
-  border:1px solid var(--border,#333);
-  background:#0d1010;
-  overflow:hidden;
-}
-.qr_media img{
-  display:block;
-  width:100%;
-  height:auto;
-}
-.qr_media figcaption{
-  padding:.65rem .8rem;
-  font-size:.78rem;
-  letter-spacing:.06em;
-  text-transform:uppercase;
-  opacity:.75;
-}
-.qr_reassurance{
-  margin-top:1.5rem;
-  padding:1rem 1.1rem;
-  border-left:3px solid currentColor;
-}
-@media(max-width:700px){
-  .qr_media{grid-template-columns:1fr;}
+@media(prefers-reduced-motion:reduce){
+  .nav_toggle_icon i,
+  .nav_submenu_caret{
+    transition:none;
+  }
 }

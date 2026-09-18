@@ -5,151 +5,95 @@ import QrLessonOverlay from '../../components/QrLessonOverlay.astro';
 
 <BaseLayout
   title="You scanned a QR code | NoRec.US"
-  description="NoRec.US documents surveillance in Illinois. This landing page also explains what an untrusted QR code can reveal or lead you to before taking you to the underlying research."
+  description="NoRec.US documents surveillance systems and the records behind them. A short reminder to treat unknown QR codes like unknown links."
 >
   <QrLessonOverlay />
 
   <main class="qr_shell">
     <section class="qr_intro">
-      <p class="eyebrow">YOU FOUND NOREC.US</p>
-      <h1>The information is real. The QR code is part of the lesson.</h1>
+      <p class="eyebrow">YOU SCANNED A QR CODE</p>
+      <h1>I wouldn’t make that a habit.</h1>
       <p class="qr_intro_lede">
-        NoRec.US documents surveillance systems, policies, contracts, public records,
-        and the unanswered questions around them. If you scanned one of our QR codes,
-        you can read the material immediately — no gate, login, or surprise download.
+        <strong>NoRec.US documents surveillance</strong> systems, policies, contracts,
+        public records, and the unanswered questions around them.
       </p>
       <p>
-        But a QR code is still a trust decision. The pattern itself is usually just
-        encoded data; the risk is what the phone, browser, or app is asked to do with
-        that data next.
+        A QR code is just encoded data. The catch is that you usually cannot tell by looking
+        at the pattern where it will send you or what the destination will ask your phone,
+        browser, or app to do next.
       </p>
-
-      <figure class="qr_intro_rick">
-        <img
-          src="/media/qr/rickroll-roll.gif"
-          alt="Animated Rick Astley Never Gonna Give You Up clip used as a Rickroll joke."
-          loading="eager"
-        />
-        <figcaption>This site chose a harmless lesson instead.</figcaption>
-      </figure>
+      <div class="hero_actions">
+        <a class="button button_dark button_big" href="/">Visit NoRec.US →</a>
+      </div>
     </section>
 
     <section class="qr_warning">
-      <p class="eyebrow">WHAT COULD A RANDOM CODE DO?</p>
-      <h2>Treat QR destinations like links you cannot read until you decode them.</h2>
+      <p class="eyebrow">WHY BE CAREFUL?</p>
+      <h2>Treat an unknown QR code like an unknown link.</h2>
 
       <div class="qr_warning_grid">
         <div>
-          <strong>Tracking links can log the scan.</strong>
+          <strong>Tracking and redirects</strong>
           <p>
-            A unique redirect or URL can tell an operator which poster, card, or location
-            was scanned and can receive ordinary connection metadata such as a timestamp,
-            IP address, and browser/device information.
+            A unique link can record that a particular code was visited and receive ordinary
+            connection metadata such as time, IP address, and browser or device information.
           </p>
         </div>
         <div>
-          <strong>Send you to phishing.</strong>
+          <strong>Phishing and payment scams</strong>
           <p>
-            A code can open a convincing login, payment, delivery, parking, or account page
-            whose domain is not the organization you thought you were dealing with.
+            A code can send you to a convincing login, parking, payment, delivery, or account
+            page that is not operated by the organization you expected.
           </p>
         </div>
         <div>
-          <strong>Replace a payment destination.</strong>
+          <strong>Downloads and app actions</strong>
           <p>
-            A sticker placed over a legitimate code can redirect a payment or account setup
-            to somebody else without changing the sign, meter, menu, or machine underneath it.
+            A destination can prompt a file download, open a deep link, launch an app workflow,
+            or ask for permissions you did not intend to grant.
           </p>
         </div>
         <div>
-          <strong>Prompt an app, permission, or download.</strong>
+          <strong>Vulnerable software</strong>
           <p>
-            A destination can try to open a deep link, convince you to install software,
-            download a file, add a profile, or grant a permission you did not intend to give.
-          </p>
-        </div>
-        <div>
-          <strong>Reach vulnerable software.</strong>
-          <p>
-            Security researchers have demonstrated exploit chains delivered through crafted
-            links and QR-driven workflows. That does not mean decoding an ordinary QR code
-            automatically compromises a modern phone; it means untrusted destinations deserve
-            the same caution as other untrusted links, and updates matter.
-          </p>
-        </div>
-        <div>
-          <strong>Simply annoy the hell out of you.</strong>
-          <p>
-            Sometimes the payload is not malware or credential theft. Sometimes somebody
-            merely gives you a song you are going to remember every time you see a QR code.
+            Crafted destinations can target flaws in browsers, apps, or operating systems.
+            Simply decoding a normal QR code is not the same thing as being compromised, but
+            the destination still deserves the same caution as any other untrusted link.
           </p>
         </div>
       </div>
     </section>
 
-    <section class="qr_media" aria-label="A brief visual lesson in QR-code trust">
+    <section class="qr_media" aria-label="QR-code safety reminder">
       <figure>
         <img
           src="/media/qr/random-qr-superbowl-meme.png"
-          alt="Meme joking about people scanning a random QR code and discovering it is a cyberattack."
-          loading="eager"
+          alt="Meme about scanning an unknown QR code and discovering an unexpected destination."
+          loading="lazy"
         />
         <figcaption>Unknown code, unknown destination.</figcaption>
       </figure>
-    </section>
-
-    <section class="qr_warning">
-      <p class="eyebrow">WHAT HAPPENED HERE</p>
-      <h2>This could have been far less friendly.</h2>
-      <p>
-        A malicious operator could have used a unique redirect to correlate a scan with a
-        particular sticker or location, sent you to a credential phish, prompted a download,
-        or attempted to exploit vulnerable software. NoRec did none of that. This page serves
-        static information, and the small lesson card only plays a deliberately obnoxious
-        audio file hosted on NoRec.US if you explicitly click the demonstration button.
-      </p>
-      <p class="qr_reassurance">
-        <strong>The practical rule:</strong> preview the destination when your scanner allows it,
-        check the domain, keep your device updated, and be especially suspicious when an
-        unexpected scan asks for credentials, payment, software, a profile, or unusual permissions.
-      </p>
-    </section>
-
-    <section class="qr_turn">
-      <p class="eyebrow">NOW FOR WHY THE CODE WAS HERE</p>
-      <h2>Illinois credential photos and facial-recognition access.</h2>
-      <p>
-        If you have an Illinois driver’s license, permit, or state ID, the Secretary of State
-        maintains a photograph captured through that credential process. Illinois law also
-        expressly addresses facial-recognition search services involving those photographs.
-      </p>
-      <p>
-        <strong>The credential population is not adult-only.</strong> Illinois says there is no
-        minimum age for a state ID card, and instruction permits may be issued beginning at age
-        15 under specified conditions.
-      </p>
-      <div class="hero_actions">
-        <a class="button button_dark button_big" href="/surveillance/face/illinois-id-photos/">See the Illinois evidence →</a>
-        <a class="button button_light" href="/illinois/">Browse Illinois surveillance</a>
-      </div>
-    </section>
-
-    <section class="qr_receipt_panel">
-      <p class="eyebrow">THE SHORT VERSION</p>
-      <div class="receipt_row"><span>DOCUMENTED</span><strong>Illinois maintains captured credential photographs.</strong></div>
-      <div class="receipt_row"><span>DOCUMENTED</span><strong>State law expressly addresses facial-recognition search services.</strong></div>
-      <div class="receipt_row"><span>DOCUMENTED</span><strong>The credential population includes minors.</strong></div>
-      <div class="receipt_row receipt_unknown"><span>UNKNOWN</span><strong>Exact historical retention, template architecture, and total search volume.</strong></div>
+      <figure class="qr_intro_rick">
+        <img
+          src="/media/qr/rickroll-roll.gif"
+          alt="Looping reaction image emphasizing that QR destinations can be unexpected."
+          loading="lazy"
+        />
+      </figure>
     </section>
 
     <section class="qr_rule">
-      <p class="eyebrow">THE RULE</p>
-      <h2>If the evidence does not establish it, NoRec does not present it as fact.</h2>
+      <p class="eyebrow">NOREC.US</p>
+      <h2>Surveillance, documented.</h2>
       <p>
-        NoRec.US documents government surveillance systems using statutes, policies, contracts,
-        public records, government reports, and other source material. Unknowns stay unknown
-        until the record answers them.
+        NoRec.US follows the records: statutes, contracts, policies, procurement documents,
+        audits, public reports, and public-records responses. When the evidence stops, the
+        claim stops with it.
       </p>
+      <div class="hero_actions">
+        <a class="button button_dark button_big" href="/">Visit the homepage →</a>
+        <a class="button button_light" href="/sources/">Browse the sources</a>
+      </div>
     </section>
   </main>
 </BaseLayout>

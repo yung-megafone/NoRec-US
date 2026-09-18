@@ -1397,6 +1397,33 @@ ul#menu li.selected a::after{
   color:var(--muted);
   line-height:1.5;
 }
+.qr_intro>p:not(.eyebrow){
+  max-width:760px;
+  line-height:1.6;
+}
+.qr_media{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:1rem;
+  padding:2.5rem 0;
+  border-bottom:1px solid var(--line);
+}
+.qr_media figure{
+  margin:0;
+  border:1px solid var(--line);
+  background:var(--soft);
+  overflow:hidden;
+}
+.qr_media img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+.qr_media figcaption{
+  padding:.75rem .9rem;
+  color:var(--muted);
+  font-size:.85rem;
+}
 .qr_turn p{
   max-width:760px;
   line-height:1.6;
@@ -1415,6 +1442,7 @@ ul#menu li.selected a::after{
   .qr_intro{padding-top:1rem}
   .qr_intro h1{font-size:3.5rem}
   .qr_warning_grid{grid-template-columns:1fr}
+  .qr_media{grid-template-columns:1fr}
 }
 
 

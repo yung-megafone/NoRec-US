@@ -1,21 +1,139 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import PublicRecords from '../../../../components/jurisdictions/PublicRecords.astro';
+import DeploymentStatusMeta from '../../../../components/jurisdictions/DeploymentStatusMeta.astro';
+import { peoriaCountyRecords } from '../../../../data/illinois/counties/peoria-records';
+import { ispAlprProgram } from '../../../../data/illinois/state-alpr';
 ---
-<BaseLayout title="Peoria County Surveillance | NoRec.US" description="Community surveillance research for Peoria County, Illinois." active="surveillance">
+<BaseLayout
+  title="Peoria County Surveillance | NoRec.US"
+  description="Documented surveillance infrastructure in Peoria County, Illinois, including state-owned Motorola ALPRs, Peoria Police FUSUS camera integration, local ALPR funding, and county Flock records."
+  active="surveillance"
+>
 <main class="page_shell">
   <nav class="jurisdiction_breadcrumbs" aria-label="Breadcrumb">
     <a href="/illinois/">Illinois</a><span>→</span><strong>Peoria County</strong>
   </nav>
+
   <header class="article_header">
     <p class="eyebrow">LOCAL SURVEILLANCE · PEORIA COUNTY, ILLINOIS</p>
     <h1>Peoria County</h1>
-    <p class="article_deck">No surveillance research has been contributed for this county yet. This does not mean surveillance technology is absent.</p>
+    <p class="article_deck">Peoria is a useful example of overlapping surveillance layers: a large state-owned ISP/Motorola ALPR footprint, city camera integration through FUSUS, local ALPR investment, and county Flock records. Ownership is kept separate even when the equipment is physically located in the same county.</p>
   </header>
+
   <section class="evidence_box">
-    <span class="status_label">UNRESEARCHED</span>
-    <h2>Research needed.</h2>
-    <p>NoRec.US has not yet reviewed enough primary records to publish findings for Peoria County. Contracts, policies, procurement records, meeting packets, FOIA responses, audits, inventories, and other primary records are welcome.</p>
-    <a class="button button_dark" href="https://github.com/yung-megafone/NoRec-US">Contribute on GitHub</a>
+    <span class="status_label">DOCUMENTED · VERIFIED 2026-09-18</span>
+    <h2>State, city, and county systems overlap here.</h2>
+    <p>The archived ISP dashboard snapshot shows <strong>{ispAlprProgram.dashboardSnapshot.peoriaCountyCameras} ISP ALPR cameras in Peoria County</strong>. Those cameras belong to the statewide ISP program; they are not counted as Peoria County Sheriff or City of Peoria equipment.</p>
+  </section>
+
+  <section>
+    <p class="eyebrow">ILLINOIS STATE POLICE · MOTOROLA</p>
+    <h2>A large state-owned ALPR deployment.</h2>
+    <div class="finding_grid">
+      <article>
+        <span class="status_label">DOCUMENTED</span>
+        <h3>{ispAlprProgram.dashboardSnapshot.peoriaCountyCameras} ISP cameras in the dashboard snapshot</h3>
+        <DeploymentStatusMeta operationalStatus="active" verifiedAsOf="2026-09-18" sourceAsOf="2026-09-18" owner="Illinois State Police" />
+        <p>The ISP ALPR Statistics Dashboard snapshot archived on September 18, 2026 shows 145 cameras in Peoria County. The statewide transparency page says ISP manages procurement, installation, ownership, and maintenance of the state system.</p>
+      </article>
+      <article>
+        <span class="status_label">DOCUMENTED</span>
+        <h3>54 FY2025 installations / $1,950,996</h3>
+        <p>The FY2025 annual report says 54 ISP cameras were installed in Peoria County from July 1, 2024 through June 2025 and lists Peoria installation cost at $1,950,996.</p>
+      </article>
+      <article>
+        <span class="status_label">DOCUMENTED · CURRENT PROGRAM</span>
+        <h3>Motorola Vehicle Manager / 90-day ISP retention</h3>
+        <p>ISP's FY2026 report identifies Motorola Solutions Vehicle Manager as the storage platform and states a 90-day retention period for data collected by the state ALPR system.</p>
+      </article>
+      <article>
+        <span class="status_label">DOCUMENTED</span>
+        <h3>$22,905.48 FY2026 annual maintenance</h3>
+        <p>The FY2026 annual report lists $22,905.48 in annual maintenance cost for Peoria County within the statewide ISP ALPR program.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">CITY OF PEORIA · CAMERA INTEGRATION</p>
+    <h2>FUSUS connects public and participating private video.</h2>
+    <div class="finding_grid">
+      <article>
+        <span class="status_label">DOCUMENTED</span>
+        <h3>240 city cameras + 241 IDOT cameras</h3>
+        <p>A City of Peoria 2025 budget report says Peoria Police was continuing FUSUS implementation and had <strong>240 city cameras</strong> and <strong>another 241 IDOT cameras</strong> on FUSUS at the time of the report.</p>
+      </article>
+      <article>
+        <span class="status_label">DOCUMENTED</span>
+        <h3>Participating private-camera feeds</h3>
+        <p>The same city report says participating businesses, apartments, schools, gas stations, restaurants, dealerships, and other camera owners can connect through a FUSUS core device. The city describes camera access as conditional on the agreement between the camera owner and Peoria Police.</p>
+      </article>
+      <article>
+        <span class="status_label">DOCUMENTED</span>
+        <h3>$375,000 in ALPR camera funding</h3>
+        <p>Peoria's FY2025 budget says 2024 DCEO funding included $375,000 allocated to ALPR camera technology. The budget does not, by itself, establish the final camera count or vendor purchased with that allocation.</p>
+      </article>
+      <article>
+        <span class="status_label">DOCUMENTED · CURRENT USE</span>
+        <h3>Flock technology documented in September 2026</h3>
+        <DeploymentStatusMeta operationalStatus="active" verifiedAsOf="2026-09-18" sourceAsOf="2026-09-07" owner="Peoria Police Department" />
+        <p>In a September 2026 press release, Peoria Police said detectives located a suspect using Flock technology. The release does not identify which Flock product was used, how many devices Peoria Police operates, or the system's sharing configuration.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">PEORIA COUNTY SHERIFF</p>
+    <h2>Flock funding is documented; the current inventory is not.</h2>
+    <div class="finding_grid">
+      <article>
+        <span class="status_label">DOCUMENTED</span>
+        <h3>JAG-funded Flock intersection-camera support</h3>
+        <DeploymentStatusMeta operationalStatus="unknown" verifiedAsOf="2026-09-18" sourceAsOf="2024-02-27" owner="Peoria County Sheriff’s Office" />
+        <p>A 2024 Peoria County resolution says the County's $36,766 share of a Justice Assistance Grant would be used for body armor and annual support for Flock intersection cameras.</p>
+      </article>
+      <article>
+        <span class="status_label">UNKNOWN</span>
+        <h3>Current Sheriff camera count and configuration</h3>
+        <p>The record reviewed for this update does not establish the Sheriff's current number of Flock cameras, exact locations, retention settings, sharing partners, hot-list configuration, or current authorized-user count.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="evidence_box evidence_unknown">
+    <span class="status_label">SOURCE CONFLICT · UNDER INVESTIGATION</span>
+    <h2>ISP's FY2025 and FY2026 reports disagree about Peoria's FY2025 installation count.</h2>
+    <p>The contemporaneous FY2025 report says <strong>54</strong> Peoria County cameras were installed during FY2025. The FY2026 report's retrospective FY2025 table lists <strong>15</strong> for Peoria while still printing a FY2025 total of 160 and omitting several counties that appear in the FY2025 report. NoRec preserves both records and does not silently choose a replacement number.</p>
+  </section>
+
+  <PublicRecords records={peoriaCountyRecords} />
+
+  <section>
+    <p class="eyebrow">SOURCE LIBRARY</p>
+    <h2>Indexed records used in this dossier.</h2>
+    <ul class="provider_source_list">
+      <li><a href="/sources/#il-isp-alpr-stats-001">IL-ISP-ALPR-STATS-001 — ISP ALPR Statistics Dashboard</a></li>
+      <li><a href="/sources/#il-isp-alpr-fy25-001">IL-ISP-ALPR-FY25-001 — FY2025 ALPR Annual Report</a></li>
+      <li><a href="/sources/#il-isp-alpr-fy26-001">IL-ISP-ALPR-FY26-001 — FY2026 ALPR Annual Report</a></li>
+      <li><a href="/sources/#il-peoria-fusus-001">IL-PEORIA-FUSUS-001 — 2025 FUSUS budget report</a></li>
+      <li><a href="/sources/#il-peoria-alpr-budget-001">IL-PEORIA-ALPR-BUDGET-001 — ALPR funding</a></li>
+      <li><a href="/sources/#il-peoria-county-flock-001">IL-PEORIA-COUNTY-FLOCK-001 — County Flock JAG record</a></li>
+      <li><a href="/sources/#il-peoria-lpr-fusus-001">IL-PEORIA-LPR-FUSUS-001 — 2025 State of the City LPR/FUSUS statement</a></li>
+      <li><a href="/sources/#il-peoria-flock-use-2026">IL-PEORIA-FLOCK-USE-2026 — current Peoria Police Flock use</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <p class="eyebrow">UNRESOLVED</p>
+    <h2>Next records worth obtaining.</h2>
+    <ul class="about_questions">
+      <li>Current Peoria Police ALPR inventory, vendors, device locations, retention settings, and sharing configuration.</li>
+      <li>Current Peoria County Sheriff Flock inventory, contract, retention, sharing, hot-list, and audit records.</li>
+      <li>Current 2026 FUSUS inventory: public cameras, IDOT feeds, private integrations, user roles, retention, audit logs, and access conditions.</li>
+      <li>ISP clarification of the Peoria FY2025 54-versus-15 annual-report discrepancy.</li>
+      <li>Whether the 145-camera ISP dashboard total changes as the statewide deployment continues.</li>
+    </ul>
   </section>
 </main>
 </BaseLayout>

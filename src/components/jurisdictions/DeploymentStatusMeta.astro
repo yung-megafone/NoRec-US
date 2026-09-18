@@ -1,0 +1,32 @@
+---
+import type { DeploymentStatusMeta as DeploymentStatusMetaProps } from '../../data/illinois/deployment-status';
+import { operationalStatusLabel } from '../../data/illinois/deployment-status';
+
+const {
+  operationalStatus,
+  verifiedAsOf,
+  statusChangedOn,
+  sourceAsOf,
+  owner,
+} = Astro.props as DeploymentStatusMetaProps;
+
+const hasContent = Boolean(
+  operationalStatus || verifiedAsOf || statusChangedOn || sourceAsOf || owner
+);
+---
+
+{hasContent && (
+  <div class="deployment_meta">
+    {operationalStatus && (
+      <span class={`deployment_state deployment_state_${operationalStatus}`}>
+        Status: {operationalStatusLabel(operationalStatus)}
+      </span>
+    )}
+    <div class="deployment_dates">
+      {owner && <span>Owner: {owner}</span>}
+      {verifiedAsOf && <span>Verified <time datetime={verifiedAsOf}>{verifiedAsOf}</time></span>}
+      {statusChangedOn && <span>Status changed <time datetime={statusChangedOn}>{statusChangedOn}</time></span>}
+      {sourceAsOf && <span>Source dated <time datetime={sourceAsOf}>{sourceAsOf}</time></span>}
+    </div>
+  </div>
+)}

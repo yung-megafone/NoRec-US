@@ -1,43 +1,45 @@
-<!--
-  NoRec.US QR lesson overlay
-
-  IMPORTANT: The production CSP is `script-src 'self'; style-src 'self'`.
-  Keep the behavior and styles in same-origin external files under public/.
-  Do not move these back into inline <script is:inline> or <style> blocks.
--->
+---
+/**
+ * NoRec.US QR safety lesson card.
+ *
+ * Non-blocking by design: the page remains readable and scrollable.
+ * Audio starts only after an explicit click/tap and is served locally.
+ * No cookies, localStorage, analytics, external requests, or third-party players.
+ */
+---
 
 <link rel="stylesheet" href="/styles/qr-lesson.css" />
 
-<div
-  id="qr-lesson-modal"
-  class="qr-lesson-modal"
+<aside
+  id="qr-lesson-card"
+  class="qr-lesson-card"
   role="dialog"
-  aria-modal="true"
   aria-labelledby="qr-lesson-title"
   aria-describedby="qr-lesson-description"
 >
-  <div class="qr-lesson-card" role="document">
-    <p class="qr-lesson-label">QR SAFETY</p>
+  <p class="qr-lesson-label">HARMLESS DEMONSTRATION</p>
+  <h2 id="qr-lesson-title">A QR code just asked you to trust it.</h2>
+  <p id="qr-lesson-description">
+    This one is NoRec.US. Want a memorable demonstration of why blindly trusting
+    whatever a QR code opens can still be a bad habit?
+  </p>
 
-    <h2 id="qr-lesson-title">Want to hear more?</h2>
-    <p id="qr-lesson-description">
-      Would you like to hear more about the dangers of scanning unknown QR codes
-      and clicking unfamiliar links?
-    </p>
-
-    <div class="qr-lesson-actions">
-      <button id="qr-lesson-yes" class="qr-lesson-button qr-lesson-yes" type="button">
-        YES
-      </button>
-
-      <button id="qr-lesson-no" class="qr-lesson-button qr-lesson-no" type="button">
-        NO
-      </button>
-    </div>
+  <div class="qr-lesson-actions">
+    <button id="qr-lesson-yes" class="qr-lesson-button qr-lesson-yes" type="button">
+      SHOW ME
+    </button>
+    <button id="qr-lesson-no" class="qr-lesson-button qr-lesson-no" type="button">
+      DISMISS
+    </button>
   </div>
-</div>
+</aside>
 
-<audio id="qr-lesson-audio" preload="none" loop></audio>
+<audio
+  id="qr-lesson-audio"
+  preload="none"
+  loop
+  data-playlist="/audio/nggyu-dnb.mp3,/audio/nggyu-pop.mp3"
+></audio>
 
 <button
   id="qr-lesson-stop"
@@ -51,5 +53,4 @@
   <span class="qr-lesson-stop-label">STOP</span>
 </button>
 
-<!-- Same-origin external script: allowed by the production CSP. -->
-<script is:inline src="/scripts/qr-lesson.js"></script>
+<script src="/scripts/qr-lesson.js" defer></script>

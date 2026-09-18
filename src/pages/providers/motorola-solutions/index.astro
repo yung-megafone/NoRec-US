@@ -1,24 +1,41 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { ispAlprProgram } from '../../../data/illinois/state-alpr';
 ---
-<BaseLayout title="Motorola Solutions / Vigilant | Providers | NoRec.US" description="ALPR cameras, vehicle-location analytics, body/in-car video, evidence and public-safety communications systems." active="surveillance">
+<BaseLayout title="Motorola Solutions / Vigilant | Providers | NoRec.US" description="Motorola Solutions / Vigilant ALPR cameras, Vehicle Manager analytics, Illinois State Police contracting, body/in-car video, and public-safety systems." active="surveillance">
 <main class="page_shell provider_detail">
   <header class="article_header provider_header">
     <p class="eyebrow">PROVIDER / PLATFORM</p>
     <h1>Motorola Solutions / Vigilant</h1>
-    <p class="article_deck">ALPR cameras, vehicle-location analytics, body/in-car video, evidence and public-safety communications systems.</p>
+    <p class="article_deck">ALPR cameras, Vehicle Manager analytics, body/in-car video, evidence and public-safety communications systems.</p>
   </header>
 
   <section class="provider_scope_notice">
     <span class="status_label">EVIDENCE SCOPE</span>
-    <p><strong>Vendor capability</strong> describes the provider’s published product features. <strong>Illinois deployment</strong> is listed only when supported by Illinois records or a clearly labeled secondary source.</p>
+    <p><strong>Vendor capability</strong> describes the provider's published product features. <strong>Illinois deployment</strong> is listed only when supported by Illinois records or a clearly labeled secondary source.</p>
+  </section>
+
+  <section>
+    <p class="eyebrow">ILLINOIS STATE POLICE · CURRENT STATE CONTRACT</p>
+    <h2>Motorola is the primary vendor for the statewide ISP ALPR project.</h2>
+    <div class="provider_evidence_grid">
+      <article><span class="status_label">DOCUMENTED · CURRENT CONTRACT</span><h3>$25,000,000 statewide award</h3><p>The Illinois Chief Procurement Office Notice of Award identifies Motorola Solutions as the vendor selected for the ISP statewide ALPR project through Sourcewell contract 101223-MOT. The listed award amount is <strong>$25,000,000</strong>.</p></article>
+      <article><span class="status_label">DOCUMENTED</span><h3>Initial term through December 15, 2027</h3><p>The award lists an initial term from May 1, 2024 through <strong>December 15, 2027</strong>. ISP's transparency page says the agency executed the Motorola contract on June 28, 2024.</p></article>
+      <article><span class="status_label">DOCUMENTED</span><h3>Installation and maintenance scope</h3><p>The award scope includes system integration, project management, engineering, staging, LPR-system permitting, drawings, site walks, camera installation, and maintenance of new and previously installed ALPR equipment.</p></article>
+      <article><span class="status_label">DOCUMENTED · CURRENT</span><h3>VehicleManager / 90-day ISP retention</h3><p>ISP currently says the statewide program uses <strong>Motorola Solutions Vehicle Manager</strong> and retains state ALPR reads for a maximum of <strong>{ispAlprProgram.retentionDays} days</strong>. That is an ISP policy, not a universal Illinois retention rule.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">STATE PROGRAM SCALE</p>
+    <h2>{ispAlprProgram.statewideInstalled} cameras reported statewide.</h2>
+    <p>ISP's current transparency page reports {ispAlprProgram.statewideInstalled} state ALPR cameras installed statewide. An archived September 18, 2026 dashboard snapshot shows {ispAlprProgram.dashboardSnapshot.cookCountyCameras} in Cook County and {ispAlprProgram.dashboardSnapshot.peoriaCountyCameras} in Peoria County. NoRec treats those as state-owned ISP infrastructure rather than county-owned inventories.</p>
   </section>
 
   <section>
     <p class="eyebrow">ILLINOIS CONNECTION</p>
-    <h2>Documented Illinois relationships</h2>
+    <h2>Other documented Illinois relationships</h2>
     <div class="provider_evidence_grid">
-      <article><span class="status_label">DOCUMENTED</span><h3>Illinois State Police ALPR</h3><p>ISP identifies Motorola Solutions as the primary vendor for its statewide ALPR project.</p></article>
       <article><span class="status_label">DOCUMENTED</span><h3>Forest Park</h3><p>A 2025 Illinois Secretary of State audit identified Motorola ALPR technology in the Forest Park Police Department context.</p></article>
       <article><span class="status_label">DOCUMENTED</span><h3>Illinois State Police video</h3><p>State procurement records document Motorola body-worn and in-car camera systems.</p></article>
     </div>
@@ -39,13 +56,12 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     <p class="eyebrow">PRIVACY / GOVERNANCE QUESTIONS</p>
     <h2>Privacy and governance</h2>
     <div class="provider_questions">
-      <details><summary>Retention</summary><p>Motorola's product materials describe configurable retention settings rather than one universal retention period.</p></details>
-      <details><summary>Sharing</summary><p>VehicleManager materials describe agency-managed data sharing and access.</p></details>
-      <details><summary>Integrations</summary><p>Motorola describes third-party LPR integration into VehicleManager.</p></details>
-      <details><summary>Scale</summary><p>Vendor material advertises access to billions of detections; a particular Illinois agency's accessible dataset must still be proven from agency/vendor records.</p></details>
+      <details open><summary>Illinois State Police retention</summary><p>ISP's current transparency material states that its Vehicle Manager ALPR reads are kept for a maximum of 90 days and then automatically deleted. Other Motorola customers can have different policies or settings.</p></details>
+      <details><summary>Sharing</summary><p>VehicleManager materials describe agency-managed data sharing and access. ISP says its ALPR data is restricted to trained law-enforcement personnel and that federal sharing access previously provided to agencies such as FBI and HSI has been removed.</p></details>
+      <details><summary>Auditing</summary><p>ISP says all state ALPR activity is permanently logged and audited monthly. NoRec treats the audit log itself separately from the 90-day retention period for ALPR reads.</p></details>
+      <details><summary>Scale</summary><p>Vendor material can describe access to large data networks, but a particular Illinois agency's accessible dataset must still be established from agency/vendor records.</p></details>
     </div>
   </section>
-
 
   <section class="official_product_links">
     <p class="eyebrow">OFFICIAL PRODUCT INFORMATION</p>
@@ -61,8 +77,10 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     <p class="eyebrow">EVIDENCE REFERENCES</p>
     <h2>Illinois records and supporting sources</h2>
     <ul class="provider_source_list">
-      <li><a href="https://www.motorolasolutions.com/content/dam/msi/docs/msi-standards_terms-conditions/vigilant-addendum.pdf">Motorola Vigilant contractual addendum</a></li>
-      <li><a href="https://isp.illinois.gov/CriminalInvestigations/TransparencyPage">Illinois State Police ALPR transparency page</a></li>
+      <li><a href="/sources/#il-isp-moto-alpr-001">IL-ISP-MOTO-ALPR-001 — ISP statewide Motorola contract</a></li>
+      <li><a href="/sources/#il-isp-alpr-001">IL-ISP-ALPR-001 — ISP ALPR transparency page</a></li>
+      <li><a href="/sources/#il-isp-alpr-stats-001">IL-ISP-ALPR-STATS-001 — ISP ALPR statistics dashboard</a></li>
+      <li><a href="/sources/#il-isp-alpr-fy26-001">IL-ISP-ALPR-FY26-001 — FY2026 ALPR annual report</a></li>
       <li><a href="https://www.ilsos.gov/news/2025/september-5-2025-giannoulias-audit-uncovers-forest-park-police-department-sharing-license-plate-reader-data.html">Illinois Secretary of State — Forest Park / Motorola audit</a></li>
     </ul>
   </section>

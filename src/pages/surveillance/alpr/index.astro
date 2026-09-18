@@ -1,27 +1,67 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { ispAlprProgram } from '../../../data/illinois/state-alpr';
 ---
-<BaseLayout title="Automated License Plate Readers (ALPR) | Surveillance | NoRec.US" description="Illinois automated license plate reader systems, law, providers, data sharing, retention, and documented deployments." active="surveillance">
+<BaseLayout title="Automated License Plate Readers (ALPR) | Surveillance | NoRec.US" description="Illinois automated license plate reader systems, law, providers, state contracts, data sharing, retention, and documented deployments." active="surveillance">
 <main class="page_shell">
 <header class="article_header">
 <p class="eyebrow">SURVEILLANCE TECHNOLOGY · VEHICLES</p>
 <h1>Automated License Plate Readers</h1>
-<p class="article_deck">ALPR systems turn vehicle observations into searchable records. Illinois records document statewide and local deployments, multiple vendors, statutory restrictions, agency-specific retention practices, and data sharing.</p>
+<p class="article_deck">ALPR systems turn vehicle observations into searchable records. Illinois records document statewide and local deployments, multiple vendors, statutory restrictions, agency-specific retention practices, data sharing, and a large state-owned Motorola network.</p>
 </header>
 
-<section class="evidence_box"><span class="status_label">DOCUMENTED IN ILLINOIS · REVIEWED 2026-09-18</span><p>Illinois law expressly defines ALPR devices, ALPR information, and multi-agency/vendor ALPR systems. Illinois State Police maintains a public ALPR transparency page with annual reports, statistics, agreements, directives, and its Motorola Solutions contract.</p></section>
+<section class="evidence_box"><span class="status_label">DOCUMENTED IN ILLINOIS · REVIEWED {ispAlprProgram.verifiedAsOf}</span><p>Illinois law expressly defines ALPR devices, ALPR information, and multi-agency/vendor ALPR systems. Illinois State Police maintains a public ALPR transparency page with annual reports, statistics, agreements, directives, and its Motorola Solutions contract.</p></section>
 
-<section class="evidence_box evidence_unknown"><span class="status_label">RETENTION CORRECTION</span><h2>Illinois does not impose one universal 30-day ALPR retention period.</h2><p>625 ILCS 5/2-130 regulates ALPR information and prohibited uses/sharing, but the current statutory text does not create a blanket 30-day deletion rule for every Illinois ALPR system. Thirty-day, seven-day, or other periods shown on NoRec are agency/vendor policies or contract settings only when the cited record says so.</p></section>
+<section class="evidence_box evidence_unknown"><span class="status_label">RETENTION CORRECTION</span><h2>Illinois does not impose one universal 30-day ALPR retention period.</h2><p>625 ILCS 5/2-130 regulates ALPR information and prohibited uses/sharing, but the current statutory text does not create a blanket 30-day deletion rule for every Illinois ALPR system. Thirty-day, seven-day, 90-day, or other periods shown on NoRec are agency/vendor policies or contract settings only when the cited record says so. ISP currently states that its own Vehicle Manager data is retained for a maximum of <strong>{ispAlprProgram.retentionDays} days</strong>.</p></section>
 
 <section>
 <p class="eyebrow">WHAT THE SYSTEM RECORDS</p><h2>More than a plate number.</h2>
-<p>Illinois law defines ALPR broadly around the automated capture and comparison of vehicle or plate information. Commercial systems may add vehicle characteristics, timestamps, camera location, hot-list alerts, and other searchable attributes. Agency-specific capabilities are listed only when supported by records.</p>
+<p>Illinois law defines ALPR broadly around the automated capture and comparison of vehicle or plate information. ISP says its state system records a vehicle and plate image with date, time, and geographic location. Commercial systems may add vehicle characteristics, hot-list alerts, search tools, and other attributes. Agency-specific capabilities are listed only when supported by records.</p>
+</section>
+
+<section>
+<p class="eyebrow">ILLINOIS STATE POLICE · STATEWIDE PROGRAM</p>
+<h2>Motorola is under a statewide ALPR contract.</h2>
+<div class="finding_grid">
+<article><span class="status_label">DOCUMENTED · CURRENT CONTRACT</span><h3>$25,000,000 Motorola award</h3><p>The Illinois Chief Procurement Office Notice of Award for the statewide ALPR project identifies Motorola Solutions as the selected vendor through Sourcewell cooperative contract 101223-MOT. The award amount is <strong>$25,000,000</strong>.</p></article>
+<article><span class="status_label">DOCUMENTED</span><h3>Initial term through December 15, 2027</h3><p>The contract's initial term is May 1, 2024 through <strong>December 15, 2027</strong>. ISP's transparency page says the agency executed the Motorola contract on June 28, 2024 and identifies Motorola as the primary vendor for the ALPR project.</p></article>
+<article><span class="status_label">DOCUMENTED</span><h3>Integration, installation, and maintenance</h3><p>The award scope includes system integration, Motorola project management and engineering, staging, LPR permitting, drawings, site walks, camera installation, and maintenance of new and previously installed ALPR equipment.</p></article>
+<article><span class="status_label">DOCUMENTED · CURRENT</span><h3>Vehicle Manager / state ownership</h3><p>ISP currently identifies <strong>Motorola Solutions Vehicle Manager</strong> as its ALPR platform and says the system hardware and data are ISP property. IDOT provides funding and procurement assistance.</p></article>
+</div>
+</section>
+
+<section>
+<p class="eyebrow">STATE DASHBOARD SNAPSHOT · 2026-09-18</p>
+<h2>{ispAlprProgram.statewideInstalled} state cameras reported statewide.</h2>
+<p>ISP's current transparency page reports {ispAlprProgram.statewideInstalled} cameras installed statewide. The dashboard snapshot archived by NoRec on September 18, 2026 shows <strong>{ispAlprProgram.dashboardSnapshot.cookCountyCameras} in Cook County</strong> and <strong>{ispAlprProgram.dashboardSnapshot.peoriaCountyCameras} in Peoria County</strong>. These are ISP-state-program counts and should not be added to local-agency inventories as though the county or municipality owns the hardware.</p>
+<div class="finding_grid">
+<article><span class="status_label">DASHBOARD SNAPSHOT</span><h3>{ispAlprProgram.dashboardSnapshot.previousMonthDetections.toLocaleString()} detections</h3><p>The archived dashboard labels a detection as the capture of plate/vehicle imagery with associated metadata such as date, time, GPS coordinates, and a vehicle image.</p></article>
+<article><span class="status_label">DASHBOARD SNAPSHOT</span><h3>{ispAlprProgram.dashboardSnapshot.previousMonthHits.toLocaleString()} hits</h3><p>The dashboard defines a hit as a read that matched a license plate entered into a hot list or hot plate. NoRec keeps detections and hits separate rather than treating them as the same event.</p></article>
+<article><span class="status_label">PEORIA COUNTY</span><h3>{ispAlprProgram.dashboardSnapshot.peoriaCountyCameras} ISP cameras</h3><p>Peoria is now one of the largest state ALPR concentrations visible in the dashboard snapshot. <a href="/illinois/counties/peoria/">See the Peoria County dossier</a> for the state/local split.</p></article>
+</div>
+</section>
+
+<section>
+<p class="eyebrow">ANNUAL REPORT HISTORY</p>
+<h2>The program migrated from Vigilant LEARN to Motorola Vehicle Manager.</h2>
+<p>The FY2022 and FY2023 reports identify Vigilant Solutions LEARN as the state platform. Later reports identify Vehicle Manager, and the FY2024 report notes that LEARN was renamed VehicleManager in 2023. The FY2025 and FY2026 reports identify Motorola Solutions in the current program.</p>
+<div class="finding_grid">
+<article><span class="status_label">FY2025</span><h3>160 installations reported</h3><p>The FY2025 report says 160 additional cameras were installed from July 1, 2024 through June 2025, including <strong>54 in Peoria County</strong>.</p></article>
+<article><span class="status_label">FY2026</span><h3>190 installations / 3.38 billion detections</h3><p>The FY2026 report lists 190 FY2026 camera installations, 3.38 billion detections, 94.8 million criminal-database hits, and 958,482 investigative searches.</p></article>
+</div>
+</section>
+
+<section class="evidence_box evidence_unknown">
+<span class="status_label">SOURCE CONFLICT · UNDER INVESTIGATION</span>
+<h2>The FY2026 retrospective table conflicts with the FY2025 report.</h2>
+<p>The FY2025 report says Peoria County received <strong>{ispAlprProgram.reportDiscrepancy.contemporaneousFy25PeoriaInstallations}</strong> cameras during FY2025. The FY2026 report's retrospective FY2025 table lists Peoria as <strong>{ispAlprProgram.reportDiscrepancy.fy26RetrospectiveFy25PeoriaInstallations}</strong>, still prints a total of 160, and omits several counties that appear in the FY2025 report. NoRec publishes the disagreement as an unresolved source conflict rather than silently reconciling it.</p>
 </section>
 
 <section>
 <p class="eyebrow">ILLINOIS DEPLOYMENTS</p><h2>Statewide and local systems coexist.</h2>
 <div class="finding_grid">
-<article><span class="status_label">DOCUMENTED · CURRENT</span><h3>Illinois State Police</h3><p>ISP identifies Motorola Solutions as the primary vendor for its statewide ALPR project. Its current transparency page reports 808 state cameras installed statewide and says ISP owns the statewide system hardware and data. February 2026 funding added installations in Bureau, Champaign, Grundy, Henry, Kendall, LaSalle, Madison, Rock Island, and Winnebago counties.</p></article>
+<article><span class="status_label">DOCUMENTED · CURRENT</span><h3>Illinois State Police</h3><p>ISP identifies Motorola Solutions as the primary vendor for its statewide ALPR project. Its current transparency page reports {ispAlprProgram.statewideInstalled} state cameras installed statewide and says ISP owns the statewide system hardware and data.</p></article>
+<article><span class="status_label">DOCUMENTED</span><h3>Peoria County / Peoria</h3><p>The state dashboard snapshot shows 145 ISP cameras in Peoria County. City records separately document FUSUS camera integration and local ALPR investment, while county records document Flock intersection-camera support.</p></article>
 <article><span class="status_label">DOCUMENTED</span><h3>Boone County / Belvidere</h3><p>Local records document Flock Safety ALPR use, Policy 450, retention rules, audits, and Belvidere camera locations.</p></article>
 <article><span class="status_label">DOCUMENTED</span><h3>Huntley</h3><p>Huntley's public-board process documented a 17-camera Flock deployment and vehicle-attribute searching.</p></article>
 <article><span class="status_label">DOCUMENTED</span><h3>Winnebago County / Rockford</h3><p>County and city records document separate Flock deployments, including a five-year Sheriff's agreement and a 2026 Rockford Police contract covering Flock software, LPR, and PTZ systems.</p></article>
@@ -33,36 +73,33 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 <section>
 <p class="eyebrow">GOVERNANCE</p><h2>Retention, sharing, access, and enforcement</h2>
 <div class="provider_questions">
-<details open><summary>Retention</summary><p>How long a vendor hosts detections can differ from how long an agency retains downloaded/exported evidence. NoRec records both when the documents allow it.</p></details>
+<details open><summary>Retention</summary><p>How long a vendor hosts detections can differ from how long an agency retains downloaded/exported evidence. ISP currently states a 90-day maximum for its Vehicle Manager ALPR data. Local Flock, Genetec, Motorola, or other systems may use different settings.</p></details>
 <details><summary>Ownership and sharing</summary><p>Illinois law recognizes multi-agency and vendor ALPR systems. A reader's practical reach can therefore exceed the cameras physically owned by one department. NoRec also keeps state-owned ISP cameras separate from county and municipal systems even when the hardware is physically located inside the same county.</p></details>
-<details><summary>Queries and audits</summary><p>Policies may require a reason for searches, individual credentials, audit trails, supervisory review, or periodic audits. NoRec treats the existence of an audit requirement separately from evidence that an audit occurred and what it found.</p></details>
+<details><summary>Queries and audits</summary><p>ISP says all ALPR activity is permanently logged and audited monthly. Other agencies may have different requirements. NoRec treats the existence of an audit requirement separately from evidence that an audit occurred and what it found.</p></details>
 <details><summary>Enforcement</summary><p>An automated alert and the legal basis for enforcement are separate questions. Relevant agency policy and Illinois law govern verification and subsequent action.</p></details>
 </div>
 </section>
 
 <section>
-<p class="eyebrow">STATE PROGRAM STATUS · 2026-09-18</p><h2>State hardware is not a local-agency inventory.</h2>
-<p>ISP says it manages procurement, installation, ownership, and maintenance for the statewide Motorola ALPR system, with IDOT providing funding and procurement assistance. NoRec therefore labels those installations as Illinois State Police infrastructure rather than attributing them to whichever county or municipality contains the pole.</p>
-</section>
-
-<section>
 <p class="eyebrow">PROVIDERS</p><h2>Known Illinois relationships.</h2>
 <div class="provider_grid">
-<a href="/providers/motorola-solutions/"><strong>Motorola Solutions / Vigilant</strong><span>Primary vendor identified by Illinois State Police.</span></a>
-<a href="/providers/flock-safety/"><strong>Flock Safety</strong><span>Documented in Boone/Belvidere, Huntley, and other Illinois local deployments.</span></a>
+<a href="/providers/motorola-solutions/"><strong>Motorola Solutions / Vigilant</strong><span>Primary statewide ISP vendor under the current $25 million ALPR project award.</span></a>
+<a href="/providers/flock-safety/"><strong>Flock Safety</strong><span>Documented in Boone/Belvidere, Huntley, Peoria-area records, and other Illinois local deployments.</span></a>
 </div>
 </section>
 
 <section>
-<p class="eyebrow">PRIMARY SOURCES</p>
+<p class="eyebrow">INDEXED PRIMARY SOURCES</p>
 <ul class="provider_source_list">
-<li><a href="https://www.ilga.gov/legislation/ilcs/fulltext?DocName=062500050K2-130">625 ILCS 5/2-130 — ALPR definitions and restrictions</a></li>
-<li><a href="https://isp.illinois.gov/CriminalInvestigations/TransparencyPage">Illinois State Police — ALPR Transparency Page</a></li>
-<li><a href="/illinois/counties/boone/">NoRec — Boone County / Belvidere jurisdiction file</a></li>
-<li><a href="/illinois/counties/mchenry/">NoRec — McHenry County / Huntley jurisdiction file</a></li>
-<li><a href="/illinois/counties/winnebago/">NoRec — Winnebago County / Rockford jurisdiction file</a></li>
-<li><a href="/illinois/counties/dekalb/">NoRec — DeKalb County jurisdiction file</a></li>
-<li><a href="/illinois/counties/kane/">NoRec — Kane County jurisdiction file</a></li>
+<li><a href="/sources/#il-alpr-001">IL-ALPR-001 — 625 ILCS 5/2-130</a></li>
+<li><a href="/sources/#il-isp-alpr-001">IL-ISP-ALPR-001 — ISP ALPR Transparency Page</a></li>
+<li><a href="/sources/#il-isp-alpr-stats-001">IL-ISP-ALPR-STATS-001 — ISP ALPR Statistics Dashboard snapshot</a></li>
+<li><a href="/sources/#il-isp-moto-alpr-001">IL-ISP-MOTO-ALPR-001 — ISP / Motorola statewide contract</a></li>
+<li><a href="/sources/#il-isp-alpr-fy22-001">IL-ISP-ALPR-FY22-001 — FY2022 report</a></li>
+<li><a href="/sources/#il-isp-alpr-fy23-001">IL-ISP-ALPR-FY23-001 — FY2023 report</a></li>
+<li><a href="/sources/#il-isp-alpr-fy24-001">IL-ISP-ALPR-FY24-001 — FY2024 report</a></li>
+<li><a href="/sources/#il-isp-alpr-fy25-001">IL-ISP-ALPR-FY25-001 — FY2025 report</a></li>
+<li><a href="/sources/#il-isp-alpr-fy26-001">IL-ISP-ALPR-FY26-001 — FY2026 report</a></li>
 </ul>
 </section>
 </main>

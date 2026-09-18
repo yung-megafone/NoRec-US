@@ -249,9 +249,12 @@ export const sources: SourceRecord[] = [
     agency: 'Illinois General Assembly',
     type: 'Statute',
     status: 'Primary',
-    reviewed: '2026-09-09',
+    reviewed: '2026-09-18',
     originalUrl: 'https://www.ilga.gov/legislation/ilcs/fulltext?DocName=062500050K2-130',
-    notes: 'Defines ALPR devices, ALPR information, ALPR systems, users, and Illinois restrictions.',
+    archivedFiles: [
+      { label: 'Archived statute PDF', url: '/archive/625-ilcs-5-2-130-alpr.pdf', sha256: 'c68d5ae7ef68e08ee2d8d1254c04fe535355df6f024a3d1f7cf851b100262bfa' },
+    ],
+    notes: 'Defines ALPR devices, ALPR information, ALPR systems, users, and Illinois restrictions. The current text does not impose a universal 30-day retention period.',
     tags: ['ALPR', 'license plate readers', 'vehicle surveillance', 'Illinois']
   },
   {
@@ -263,9 +266,12 @@ export const sources: SourceRecord[] = [
     agency: 'Illinois State Police',
     type: 'Agency transparency page',
     status: 'Primary',
-    reviewed: '2026-09-09',
+    reviewed: '2026-09-18',
     originalUrl: 'https://isp.illinois.gov/CriminalInvestigations/TransparencyPage',
-    notes: 'Statewide ALPR program information, annual reports, statistics, agreements, directives, and vendor records.',
+    archivedFiles: [
+      { label: 'Archived transparency page PDF', url: '/archive/isp-alpr-transparency-page-2026-09-18.pdf', sha256: '877564b6309db34e87dc3640b5df86a1b99de6ef3f57fc6d1d4f751d52f659d2' },
+    ],
+    notes: 'Statewide ALPR program information, annual reports, statistics, agreements, directives, Motorola Vehicle Manager, 90-day ISP retention, and vendor records.',
     tags: ['ALPR', 'Motorola Solutions', 'Illinois State Police', 'vehicle surveillance']
   },
   {
@@ -277,9 +283,12 @@ export const sources: SourceRecord[] = [
     agency: 'Illinois General Assembly',
     type: 'Statute',
     status: 'Primary',
-    reviewed: '2026-09-09',
+    reviewed: '2026-09-18',
     originalUrl: 'https://www.ilga.gov/Legislation/ILCS/Articles?ActID=3520&Chapter=CRIMINAL+PROCEDURE&ChapterID=54&MajorTopic=RIGHTS+AND+REMEDIES',
-    notes: 'Illinois framework governing law-enforcement drone use, statutory exceptions, disclosure, and reporting.',
+    archivedFiles: [
+      { label: 'Archived Act PDF', url: '/archive/725-ilcs-167-freedom-from-drone-surveillance-act.pdf', sha256: '185b11bfbbbb5928ee632c81540441590ce541b3b0bce4904db25e2ac177e78b' },
+    ],
+    notes: 'Illinois framework governing law-enforcement drone use, statutory exceptions, disclosure, reporting, retention, and facial-recognition restrictions.',
     tags: ['drones', 'UAS', 'law enforcement', 'Illinois']
   },
   {
@@ -463,6 +472,193 @@ export const sources: SourceRecord[] = [
     originalUrl: 'https://www.axon.com/products/axon-fusus',
     notes: 'Official Axon product documentation for Fusus real-time video, alerts, field data, ALPR overlays, and RTCC integration. Vendor capability does not establish local configuration.',
     tags: ['Axon', 'Fusus', 'RTCC', 'video integration', 'ALPR']
+  }
+
+  ,{
+    id: 'IL-ISP-ALPR-STATS-001',
+    citation: 30,
+    title: 'Illinois State Police Automated License Plate Reader Statistics Dashboard',
+    shortTitle: 'ISP ALPR Statistics Dashboard',
+    jurisdiction: 'Illinois',
+    agency: 'Illinois State Police',
+    type: 'Agency dashboard',
+    status: 'Primary',
+    reviewed: '2026-09-18',
+    originalUrl: 'https://isp.maps.arcgis.com/apps/dashboards/77d1b36b7d9f419289cffe58d8ac9e54#',
+    archivedFiles: [
+      { label: 'Dashboard snapshot PDF (2026-09-18)', url: '/archive/isp-alpr-stats-dashboard-2026-09-18.pdf', sha256: 'a3a6e2f34108c4c5d7faad32c23e8538a817cc547296bb9167fefff0e3cdbabb' },
+    ],
+    notes: 'Archived dashboard snapshot showing county-level ISP ALPR counts and previous-month activity. The snapshot shows 402 cameras in Cook County, 145 in Peoria County, 273,994,699 detections, and 7,299,261 hits.',
+    tags: ['ALPR', 'Illinois State Police', 'Motorola Solutions', 'dashboard', 'Peoria County', 'Cook County']
+  },
+  {
+    id: 'IL-ISP-ALPR-FY22-001',
+    citation: 31,
+    title: 'Expressway Camera Act Annual Report 2021-2022',
+    shortTitle: 'ISP FY2022 ALPR Annual Report',
+    jurisdiction: 'Illinois',
+    agency: 'Illinois State Police',
+    type: 'Government report',
+    status: 'Primary',
+    reviewed: '2026-09-18',
+    originalUrl: 'https://isp.illinois.gov/StaticFiles/docs/DII/FY%202022%20ALPR%20Annual%20Report.pdf',
+    archivedFiles: [
+      { label: 'Archived FY2022 report PDF', url: '/archive/isp-fy2022-alpr-annual-report.pdf', sha256: '13cd014090381afa620b7ccc7a733be555ceeb6b9dc5f176d47e6f5b58d842a9' },
+    ],
+    notes: 'Early statewide-program report documenting the Vigilant Solutions LEARN platform, ISP ownership, Cook County costs, and planned statewide expansion.',
+    tags: ['ALPR', 'Vigilant Solutions', 'LEARN', 'Illinois State Police', 'annual report']
+  },
+  {
+    id: 'IL-ISP-ALPR-FY23-001',
+    citation: 32,
+    title: 'Expressway Camera Act Annual Report FY2023',
+    shortTitle: 'ISP FY2023 ALPR Annual Report',
+    jurisdiction: 'Illinois',
+    agency: 'Illinois State Police',
+    type: 'Government report',
+    status: 'Primary',
+    reviewed: '2026-09-18',
+    originalUrl: 'https://isp.illinois.gov/StaticFiles/docs/DII/FY%202023%20ALPR%20Annual%20Report.pdf',
+    archivedFiles: [
+      { label: 'Archived FY2023 report PDF', url: '/archive/isp-fy2023-alpr-annual-report.pdf', sha256: '60ef786766ad178d5d0629a33a91b0d7935384dc2546071d9de246191ec5b887' },
+    ],
+    notes: 'Documents 309 Cook County cameras at the end of 2022, 33 Metro East cameras by June 2023, LEARN/Vigilant use, and program costs and activity.',
+    tags: ['ALPR', 'Vigilant Solutions', 'LEARN', 'Illinois State Police', 'annual report']
+  },
+  {
+    id: 'IL-ISP-ALPR-FY24-001',
+    citation: 33,
+    title: 'Expressway Camera Act Annual Report FY2024',
+    shortTitle: 'ISP FY2024 ALPR Annual Report',
+    jurisdiction: 'Illinois',
+    agency: 'Illinois State Police',
+    type: 'Government report',
+    status: 'Primary',
+    reviewed: '2026-09-18',
+    originalUrl: 'https://isp.illinois.gov/StaticFiles/docs/DII/FY%202024%20ALPR%20Annual%20Report.pdf',
+    archivedFiles: [
+      { label: 'Archived FY2024 report PDF', url: '/archive/isp-fy2024-alpr-annual-report.pdf', sha256: '1f570369c95ee4e923c50f2bcbdc9b1400dec3d78744458ab8d891b6504c59c4' },
+    ],
+    notes: 'Documents FY2024 camera installations and the transition in naming from LEARN to VehicleManager.',
+    tags: ['ALPR', 'Motorola Solutions', 'VehicleManager', 'Illinois State Police', 'annual report']
+  },
+  {
+    id: 'IL-ISP-ALPR-FY25-001',
+    citation: 34,
+    title: 'Expressway Camera Act Annual Report FY2025',
+    shortTitle: 'ISP FY2025 ALPR Annual Report',
+    jurisdiction: 'Illinois',
+    agency: 'Illinois State Police',
+    type: 'Government report',
+    status: 'Primary',
+    reviewed: '2026-09-18',
+    originalUrl: 'https://isp.illinois.gov/StaticFiles/docs/DII/FY%202025%20ALPR%20Annual%20Report.pdf',
+    archivedFiles: [
+      { label: 'Archived FY2025 report PDF', url: '/archive/isp-fy2025-alpr-annual-report.pdf', sha256: '7cd7ef86782ba6bae5012f3824174baa929dc2118ff1b84ec40a6aa3b52a0bf1' },
+    ],
+    notes: 'Documents 160 installations during FY2025, including 54 in Peoria County, and $1,950,996 in Peoria installation costs. Identifies VehicleManager from Motorola Solutions.',
+    tags: ['ALPR', 'Motorola Solutions', 'VehicleManager', 'Illinois State Police', 'Peoria County', 'annual report']
+  },
+  {
+    id: 'IL-ISP-ALPR-FY26-001',
+    citation: 35,
+    title: 'Expressway Camera Act Annual Report FY2026',
+    shortTitle: 'ISP FY2026 ALPR Annual Report',
+    jurisdiction: 'Illinois',
+    agency: 'Illinois State Police',
+    type: 'Government report',
+    status: 'Primary',
+    reviewed: '2026-09-18',
+    originalUrl: 'https://isp.illinois.gov/StaticFiles/docs/DII/FY26%20ALPR%20Annual%20Report-signed.pdf',
+    archivedFiles: [
+      { label: 'Archived FY2026 report PDF', url: '/archive/isp-fy2026-alpr-annual-report.pdf', sha256: '0e1a9048c1b92cb6cb3b5cae099fc22dcdd37330b30755482b4209257cf2a081' },
+    ],
+    notes: 'Current annual report documenting VehicleManager, 90-day retention, 190 FY2026 installations, 3.38 billion detections, 94.8 million criminal-database hits, and 958,482 investigative searches. Its retrospective FY2025 table conflicts with the FY2025 report on Peoria.',
+    tags: ['ALPR', 'Motorola Solutions', 'VehicleManager', 'Illinois State Police', 'retention', 'annual report']
+  },
+  {
+    id: 'IL-ISP-MOTO-ALPR-001',
+    citation: 36,
+    title: 'Illinois State Police / Motorola Solutions Statewide ALPR Project Contract',
+    shortTitle: 'ISP statewide Motorola ALPR contract',
+    jurisdiction: 'Illinois',
+    agency: 'Illinois State Police / Illinois Chief Procurement Office',
+    type: 'Contract / procurement',
+    status: 'Primary',
+    reviewed: '2026-09-18',
+    originalUrl: 'https://isp.illinois.gov/StaticFiles/docs/CriminalInvestigations/ISP%20and%20Motorola%20Solutions%20Contract.pdf',
+    notes: 'Statewide ALPR project award to Motorola Solutions through Sourcewell. Notice of Award lists a $25,000,000 award amount and an initial term of May 1, 2024 through December 15, 2027; scope includes integration, permitting, installation, and maintenance of new and previously installed ALPR equipment.',
+    tags: ['ALPR', 'Motorola Solutions', 'Vigilant', 'VehicleManager', 'Illinois State Police', 'contract', 'Sourcewell']
+  },
+  {
+    id: 'IL-PEORIA-FUSUS-001',
+    citation: 37,
+    title: 'City of Peoria 2025 Budget Report Back — FUSUS Implementation',
+    shortTitle: 'Peoria 2025 FUSUS report back',
+    jurisdiction: 'Peoria, Illinois',
+    agency: 'City of Peoria / Peoria Police Department',
+    type: 'Budget / official report',
+    status: 'Primary',
+    reviewed: '2026-09-18',
+    originalUrl: 'https://www.peoriagov.org/DocumentCenter/View/6349/2025-Budget-Report-Back-1',
+    notes: 'City report says PPD partnered with FUSUS and was continuing implementation, with 240 city cameras and another 241 IDOT cameras on FUSUS. It describes conditional access to participating private-camera feeds.',
+    tags: ['Fusus', 'Axon', 'RTCC', 'camera integration', 'Peoria', 'IDOT']
+  },
+  {
+    id: 'IL-PEORIA-ALPR-BUDGET-001',
+    citation: 38,
+    title: 'City of Peoria FY2025 Revised Budget — Police Technology and ALPR Funding',
+    shortTitle: 'Peoria FY2025 police technology budget',
+    jurisdiction: 'Peoria, Illinois',
+    agency: 'City of Peoria / Peoria Police Department',
+    type: 'Budget',
+    status: 'Primary',
+    reviewed: '2026-09-18',
+    originalUrl: 'https://www.peoriagov.org/DocumentCenter/View/6426/FY-2025-Revised-Budget',
+    notes: 'Budget states 2024 DCEO funding allocated $375,000 to ALPR camera technology and separately describes FUSUS as a real-time camera integration platform.',
+    tags: ['ALPR', 'Fusus', 'Peoria', 'police', 'budget']
+  },
+  {
+    id: 'IL-PEORIA-COUNTY-FLOCK-001',
+    citation: 39,
+    title: 'Peoria County FY2023 JAG Resolution — Flock Intersection Camera Support',
+    shortTitle: 'Peoria County Flock JAG record',
+    jurisdiction: 'Peoria County, Illinois',
+    agency: 'Peoria County Sheriff’s Office / County Board',
+    type: 'Resolution / committee record',
+    status: 'Primary',
+    reviewed: '2026-09-18',
+    originalUrl: 'https://www.peoriacounty.gov/AgendaCenter/ViewFile/Agenda/_02272024-1571',
+    notes: 'County resolution states its $36,766 share of the FY2023 Justice Assistance Grant would purchase body armor and provide annual support for Flock intersection cameras.',
+    tags: ['ALPR', 'Flock Safety', 'Peoria County', 'Sheriff', 'JAG']
+  },
+  {
+    id: 'IL-PEORIA-LPR-FUSUS-001',
+    citation: 40,
+    title: 'City of Peoria 2025 State of the City Address — LPR and FUSUS Use',
+    shortTitle: 'Peoria 2025 LPR/FUSUS statement',
+    jurisdiction: 'Peoria, Illinois',
+    agency: 'City of Peoria',
+    type: 'Official statement',
+    status: 'Primary',
+    reviewed: '2026-09-18',
+    originalUrl: 'https://www.peoriagov.org/DocumentCenter/View/7540/2025-State-of-the-City-Address?bidId=',
+    notes: 'Official city address describes investments in license-plate readers and the FUSUS camera system and describes the two systems being used together in investigations.',
+    tags: ['ALPR', 'Fusus', 'Peoria', 'police', 'camera integration']
+  },
+  {
+    id: 'IL-PEORIA-FLOCK-USE-2026',
+    citation: 41,
+    title: 'Peoria Police September 2026 Press Release — Flock Technology Used to Locate Suspect',
+    shortTitle: 'Peoria Police 2026 Flock use',
+    jurisdiction: 'Peoria, Illinois',
+    agency: 'Peoria Police Department',
+    type: 'Agency press release',
+    status: 'Primary',
+    reviewed: '2026-09-18',
+    originalUrl: 'https://peoriagov.org/m/newsflash/Archive/Item/2017?arcId=2624',
+    notes: 'Peoria Police said detectives located a suspect using Flock technology in September 2026. The release does not identify the specific Flock product, camera count, or sharing configuration.',
+    tags: ['Flock Safety', 'Peoria', 'police', '2026']
   }
 
 ];

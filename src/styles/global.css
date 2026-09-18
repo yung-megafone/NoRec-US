@@ -1735,3 +1735,48 @@ ul#menu .nav_submenu_divider span{
     transition:none;
   }
 }
+
+/* Related evidence cards */
+.evidence_library_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0 2rem;
+}
+
+.evidence_library_card {
+  border: 1px solid var(--border, #303030);
+  background: #ffffff06;
+  padding: 1.1rem;
+}
+
+.evidence_library_card h3 {
+  margin: 0.65rem 0 0.55rem;
+}
+
+.evidence_library_card h3 a {
+  text-decoration: none;
+}
+
+.evidence_library_meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.8rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+
+.evidence_library_actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 0.9rem;
+  font-size: 0.9rem;
+}
+
+.jurisdiction_related_evidence {
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}

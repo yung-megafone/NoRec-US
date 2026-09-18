@@ -9,6 +9,13 @@ export type PublicRecordLink = {
 
 export const kendallCountyRecords: PublicRecordLink[] = [
   {
+    title: 'Illinois State Police — ALPR Transparency Page',
+    description: 'Current statewide program page documenting ISP ownership, Motorola Solutions infrastructure, the 808-camera statewide total, and February 2026 funding for new installations in Kendall County.',
+    officialUrl: 'https://isp.illinois.gov/CriminalInvestigations/TransparencyPage',
+    kind: 'Official record',
+    date: '2026-09-18',
+  },
+  {
     title: 'Kendall County — FOIA postings and online request portal',
     description: 'Official county FOIA hub covering Administration, KenCom, Sheriff, and other county offices.',
     officialUrl: 'https://www.kendallcountyil.gov/transparency/foia-postings-532',

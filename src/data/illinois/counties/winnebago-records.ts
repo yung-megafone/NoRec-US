@@ -9,6 +9,13 @@ export type PublicRecordLink = {
 
 export const winnebagoCountyRecords: PublicRecordLink[] = [
   {
+    title: 'Illinois State Police — ALPR Transparency Page',
+    description: 'Current statewide ALPR program page documenting ISP ownership, 10 Winnebago County state cameras installed outside the original grant, and additional February 2026 funding for Winnebago County installations.',
+    officialUrl: 'https://isp.illinois.gov/CriminalInvestigations/TransparencyPage',
+    kind: 'Official record',
+    date: '2026-09-18',
+  },
+  {
     title: 'Winnebago County — jurisdiction and municipal directory',
     description: 'Official county page identifying municipal roadway jurisdictions and listing the municipalities used to cross-check this county directory.',
     officialUrl: 'https://wincoil.gov/departments/highway-department/jurisdiction-and-map',

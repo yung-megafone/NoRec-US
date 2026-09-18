@@ -108,12 +108,29 @@ export const crystalLakeFindings: SurveillanceFinding[] = [
 
 export const woodstockFindings: SurveillanceFinding[] = [
   {
+    id: 'woodstock-square-cameras-2026',
+    technology: 'Fixed security cameras / Flock Safety',
+    title: 'Six Flock security cameras operate on the Woodstock Square',
+    status: 'documented',
+    summary: 'Woodstock’s current transparency materials identify six fixed-position Flock security cameras on the Square, plus separate non-Flock city cameras at Benton and Main. The security cameras are not ALPRs. Woodstock says footage is deleted after 30 days unless preserved as evidence or otherwise required by law.',
+    sourceIds: ['woodstock-alpr'],
+    evidenceStatus: 'documented',
+    operationalStatus: 'active',
+    verifiedAsOf: '2026-09-18',
+    sourceAsOf: '2026-09-18',
+    owner: 'City of Woodstock / Woodstock Police Department',
+  },
+  {
     id: 'woodstock-flock',
     technology: 'ALPR / Flock Safety',
-    title: 'Flock ALPR network with 30-day retention',
+    title: 'Thirteen-camera Flock ALPR network with 30-day retention',
     status: 'documented',
     summary: 'Woodstock Police states that it uses Flock Safety ALPR technology, retains ordinary plate data for 30 days, logs searches, and does not use the system for facial recognition. Exact camera locations are not publicly disclosed by the department.',
     sourceIds: ['woodstock-alpr-page'],
+    evidenceStatus: 'documented',
+    operationalStatus: 'active',
+    verifiedAsOf: '2026-09-18',
+    owner: 'Woodstock Police Department',
   },
   {
     id: 'woodstock-fixed-mobile-history',

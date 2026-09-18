@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import DeploymentStatusMeta from '../../../../components/jurisdictions/DeploymentStatusMeta.astro';
 ---
 <BaseLayout
   title="DeKalb County Surveillance | NoRec.US"
@@ -28,6 +29,24 @@ import BaseLayout from '../../../../layouts/BaseLayout.astro';
   
 
   
+
+  <section>
+    <p class="eyebrow">CURRENT ALPR CONTRACT</p>
+    <h2>DeKalb Police has a 2026–2027 Flock service agreement.</h2>
+    <div class="finding_grid">
+      <article>
+        <span class="status_label">DOCUMENTED</span>
+        <DeploymentStatusMeta evidenceStatus="documented" operationalStatus="active" verifiedAsOf="2026-09-18" sourceAsOf="2026-06-22" owner="DeKalb Police Department" />
+        <h3>Two-year Flock ALPR service contract</h3>
+        <p>Resolution 2026-059, approved June 22, 2026, authorizes a Flock Safety contract for Police Department automatic-license-plate-reader service for a two-year 2026–2027 term, not to exceed $27,500.</p>
+      </article>
+      <article>
+        <span class="status_label">HISTORICAL BASELINE</span>
+        <h3>2021 Genetec purchase remains a separate dated record</h3>
+        <p>DeKalb's 2021 resolution documented 12 Genetec LPRs. The newer Flock contract does not, by itself, establish whether every Genetec reader was removed, retained, or integrated, so NoRec does not combine the two procurements into a current device total.</p>
+      </article>
+    </div>
+  </section>
 
   <section>
     <p class="eyebrow">DRONES</p>

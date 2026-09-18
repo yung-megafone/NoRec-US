@@ -2,6 +2,7 @@
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import CountyMunicipalityMap from '../../../../components/jurisdictions/CountyMunicipalityMap.astro';
 import PublicRecords from '../../../../components/jurisdictions/PublicRecords.astro';
+import DeploymentStatusMeta from '../../../../components/jurisdictions/DeploymentStatusMeta.astro';
 import { dupageMunicipalities, dupageMunicipalitySources, dupageCountyFindings } from '../../../../data/illinois/counties/dupage';
 import { dupageCountyRecords } from '../../../../data/illinois/counties/dupage-records';
 ---
@@ -14,7 +15,7 @@ import { dupageCountyRecords } from '../../../../data/illinois/counties/dupage-r
 <CountyMunicipalityMap county="DuPage" municipalities={dupageMunicipalities} />
 <div class="jurisdiction_cards municipality_directory">{dupageMunicipalities.map(m => (<a href={`/illinois/counties/dupage/cities/${m.slug}/`}><strong>{m.name}</strong><span>{m.form.charAt(0).toUpperCase()+m.form.slice(1)} · {m.status === 'documented' || m.status === 'partial' ? 'Municipal dossier available' : 'Research needed'}{m.crossCounty ? ` · crosses ${m.counties.join(' / ')} counties` : ''}</span></a>))}</div>
 <p class="map_note"><a href={dupageMunicipalitySources.countyMunicipalities}>DuPage municipality reference</a> · <a href={dupageMunicipalitySources.mobilityPlan}>DuPage Mobility Framework map</a></p></section>
-<section><p class="eyebrow">COUNTY SYSTEMS</p><h2>Documented county infrastructure.</h2><div class="finding_grid">{dupageCountyFindings.map(f => (<article><span class="status_label">{f.status.toUpperCase()}</span><p class="eyebrow finding_technology">{f.technology}</p><h3>{f.title}</h3><p>{f.summary}</p></article>))}</div></section>
+<section><p class="eyebrow">COUNTY SYSTEMS</p><h2>Documented county infrastructure.</h2><div class="finding_grid">{dupageCountyFindings.map(f => (<article><span class="status_label">{(f.evidenceStatus ?? f.status).toUpperCase()}</span><DeploymentStatusMeta evidenceStatus={f.evidenceStatus} operationalStatus={f.operationalStatus} verifiedAsOf={f.verifiedAsOf} statusChangedOn={f.statusChangedOn} sourceAsOf={f.sourceAsOf} owner={f.owner} /><p class="eyebrow finding_technology">{f.technology}</p><h3>{f.title}</h3><p>{f.summary}</p></article>))}</div></section>
 <PublicRecords records={dupageCountyRecords} />
 <section><p class="eyebrow">NEXT RECORDS</p><h2>High-value follow-up.</h2><ul class="about_questions"><li>Current county-campus LPR inventory, vendor, locations, retention, sharing, and audit configuration.</li><li>DuPage County Sheriff ALPR, UAS, fixed-camera, body/in-car camera, facial-recognition, analytics, and investigative-software inventories and policies.</li><li>Current municipal Flock/ALPR contracts and camera inventories across the remaining DuPage municipalities.</li></ul></section>
 </main></BaseLayout>

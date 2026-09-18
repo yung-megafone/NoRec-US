@@ -74,6 +74,10 @@ export const mundeleinFindings: SurveillanceFinding[] = [
     status: 'documented',
     summary: 'Mundelein Police states that 14 Flock ALPR cameras are approved: 10 became operational in September 2024, one additional unit was installed in January 2026, and three remain pending permit approval. The department states ordinary ALPR data is generally retained for 30 days.',
     sourceIds: ['mundelein-alpr-page'],
+    evidenceStatus: 'documented',
+    operationalStatus: 'active',
+    verifiedAsOf: '2026-09-18',
+    owner: 'Mundelein Police Department',
   },
 ];
 
@@ -85,6 +89,10 @@ export const vernonHillsFindings: SurveillanceFinding[] = [
     status: 'documented',
     summary: 'Vernon Hills Police states 28 fixed ALPR units were contracted: 10 went into effect in February 2022, six more in March 2023, and 12 more in August 2023. The department states ordinary ALPR data is generally maintained for 30 days.',
     sourceIds: ['vernon-hills-alpr-page'],
+    evidenceStatus: 'documented',
+    operationalStatus: 'active',
+    verifiedAsOf: '2026-09-18',
+    owner: 'Vernon Hills Police Department',
   },
   {
     id: 'vernon-hills-portable-flock',
@@ -112,6 +120,10 @@ export const lakeZurichFindings: SurveillanceFinding[] = [
     status: 'documented',
     summary: 'Lake Zurich Police states it contracted with Flock Safety for installation and maintenance of six ALPR devices, with installations occurring as IDOT permits are issued. The department states ordinary ALPR data is generally retained for seven days and says it does not allow agencies outside Illinois access to its camera network.',
     sourceIds: ['lake-zurich-alpr-page'],
+    evidenceStatus: 'documented',
+    operationalStatus: 'active',
+    verifiedAsOf: '2026-09-18',
+    owner: 'Lake Zurich Police Department',
   },
 ];
 

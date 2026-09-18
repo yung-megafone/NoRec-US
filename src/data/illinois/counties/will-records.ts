@@ -60,3 +60,24 @@ export const willMunicipalityFoiaLinks: Record<string, PublicRecordLink[]> = {
   plainfield: plainfieldRecords,
   romeoville: romeovilleRecords,
 };
+
+
+export const homerGlenRecords: PublicRecordLink[] = [
+  {
+    title: 'Homer Glen — FLOCK Update',
+    description: 'Village notice suspending utilization of Flock ALPR cameras located within Homer Glen pending a Will County Sheriff investigation and protocol review.',
+    officialUrl: 'https://www.homerglenil.org/m/newsflash/home/detail/990',
+    kind: 'Official record',
+    date: '2026-08-31',
+  },
+];
+
+export const channahonRecords: PublicRecordLink[] = [
+  {
+    title: 'Channahon — statement on alleged unauthorized Flock use',
+    description: 'Village statement describing an internal audit, administrative leave, internal investigation, ISP review, and additional audit controls.',
+    officialUrl: 'https://www.channahon.org/m/newsflash/home/detail/596',
+    kind: 'Official record',
+    date: '2026-08-27',
+  },
+];

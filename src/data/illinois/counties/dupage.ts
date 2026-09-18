@@ -33,7 +33,7 @@ export const dupageMunicipalities: MunicipalityRecord[] = [
   { id: 'il-villa-park', name: 'Villa Park', slug: 'villa-park', form: 'village', status: 'unresearched', counties: ['DuPage'] },
   { id: 'il-warrenville', name: 'Warrenville', slug: 'warrenville', form: 'city', status: 'unresearched', counties: ['DuPage'] },
   { id: 'il-wayne', name: 'Wayne', slug: 'wayne', form: 'village', status: 'unresearched', counties: ['DuPage', 'Kane'], crossCounty: true },
-  { id: 'il-west-chicago', name: 'West Chicago', slug: 'west-chicago', form: 'city', status: 'unresearched', counties: ['DuPage'] },
+  { id: 'il-west-chicago', name: 'West Chicago', slug: 'west-chicago', form: 'city', status: 'documented', counties: ['DuPage'] },
   { id: 'il-westmont', name: 'Westmont', slug: 'westmont', form: 'village', status: 'unresearched', counties: ['DuPage'] },
   { id: 'il-wheaton', name: 'Wheaton', slug: 'wheaton', form: 'city', status: 'documented', counties: ['DuPage'] },
   { id: 'il-willowbrook', name: 'Willowbrook', slug: 'willowbrook', form: 'village', status: 'unresearched', counties: ['DuPage'] },
@@ -43,6 +43,19 @@ export const dupageMunicipalities: MunicipalityRecord[] = [
 ];
 
 export const dupageCountyFindings: SurveillanceFinding[] = [
+  {
+    id: 'dupage-sheriff-flock-2025-2029',
+    technology: 'ALPR / Flock Safety',
+    title: 'Sheriff Flock ALPR program contracted through February 2029',
+    status: 'documented',
+    summary: 'DuPage County approved continuation of the Sheriff’s Flock ALPR program for March 1, 2025 through February 28, 2029, with a contract amount not to exceed $777,602.74. The active contract establishes the county program, but NoRec does not infer a current device count from the contract total alone.',
+    sourceIds: ['dupage-sheriff-flock-2025'],
+    evidenceStatus: 'documented',
+    operationalStatus: 'active',
+    verifiedAsOf: '2026-09-18',
+    sourceAsOf: '2025-03-11',
+    owner: 'DuPage County Sheriff’s Office',
+  },
   {
     id: 'dupage-campus-lpr-2023',
     technology: 'License-plate readers / county campus security',
@@ -107,6 +120,23 @@ export const elmhurstFindings: SurveillanceFinding[] = [
     status: 'documented',
     summary: 'Elmhurst capital-budget records document implementation of integrated Police Department body-worn and in-car camera systems in response to Illinois SAFE-T Act requirements.',
     sourceIds: ['elmhurst-2023-capital-budget'],
+  },
+];
+
+
+export const westChicagoFindings: SurveillanceFinding[] = [
+  {
+    id: 'west-chicago-flock-review-2026',
+    technology: 'ALPR / Flock Safety',
+    title: 'Officer placed on leave during investigation of alleged unauthorized Flock use',
+    status: 'documented',
+    summary: 'On August 31, 2026, West Chicago said an internal review found information indicating that an officer may have used the Flock ALPR system for an unauthorized purpose between late 2024 and early 2025. The officer was placed on administrative leave, the DuPage County State’s Attorney was asked to investigate possible criminal conduct, and the City began a separate internal review. Administrative leave is not a finding of wrongdoing.',
+    sourceIds: ['west-chicago-flock-review-2026'],
+    evidenceStatus: 'under investigation',
+    operationalStatus: 'active',
+    verifiedAsOf: '2026-09-18',
+    sourceAsOf: '2026-08-31',
+    owner: 'West Chicago Police Department',
   },
 ];
 

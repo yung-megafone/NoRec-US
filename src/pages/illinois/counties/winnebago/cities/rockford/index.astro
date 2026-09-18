@@ -2,6 +2,7 @@
 import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
 import MunicipalityBoundaryMap from '../../../../../../components/jurisdictions/MunicipalityBoundaryMap.astro';
 import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
+import DeploymentStatusMeta from '../../../../../../components/jurisdictions/DeploymentStatusMeta.astro';
 import { rockfordFindings } from '../../../../../../data/illinois/counties/winnebago';
 import { rockfordRecords } from '../../../../../../data/illinois/counties/winnebago-records';
 ---
@@ -24,7 +25,7 @@ import { rockfordRecords } from '../../../../../../data/illinois/counties/winneb
     <div class="finding_grid">
       {rockfordFindings.map(finding => (
         <article>
-          <span class="status_label">{finding.status.toUpperCase()}</span>
+          <span class="status_label">{finding.status.toUpperCase()}</span><DeploymentStatusMeta evidenceStatus={finding.evidenceStatus} operationalStatus={finding.operationalStatus} verifiedAsOf={finding.verifiedAsOf} statusChangedOn={finding.statusChangedOn} sourceAsOf={finding.sourceAsOf} owner={finding.owner} />
           <p class="eyebrow finding_technology">{finding.technology}</p>
           <h3>{finding.title}</h3>
           <p>{finding.summary}</p>

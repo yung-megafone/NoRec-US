@@ -2,6 +2,7 @@
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import CountyMunicipalityMap from '../../../../components/jurisdictions/CountyMunicipalityMap.astro';
 import PublicRecords from '../../../../components/jurisdictions/PublicRecords.astro';
+import DeploymentStatusMeta from '../../../../components/jurisdictions/DeploymentStatusMeta.astro';
 import {
   carrollMunicipalities,
   carrollCountyFindings,
@@ -47,7 +48,7 @@ import { carrollCountyRecords } from '../../../../data/illinois/counties/carroll
   <div class="finding_grid">
     {carrollCountyFindings.map(f => (
       <article>
-        <span class="status_label">{f.status.toUpperCase()}</span>
+        <span class="status_label">{(f.evidenceStatus ?? f.status).toUpperCase()}</span><DeploymentStatusMeta evidenceStatus={f.evidenceStatus} operationalStatus={f.operationalStatus} verifiedAsOf={f.verifiedAsOf} statusChangedOn={f.statusChangedOn} sourceAsOf={f.sourceAsOf} owner={f.owner} />
         <p class="eyebrow finding_technology">{f.technology}</p>
         <h3>{f.title}</h3>
         <p>{f.summary}</p>

@@ -9,6 +9,13 @@ export type PublicRecordLink = {
 
 export const dupageCountyRecords: PublicRecordLink[] = [
   {
+    title: 'DuPage County — Sheriff Flock ALPR continuation contract',
+    description: 'County Board-approved Flock contract covering March 1, 2025 through February 28, 2029, not to exceed $777,602.74.',
+    officialUrl: 'https://dupage.legistar.com/ViewReport.ashx?Extra=WithText&GID=919&GUID=DBD00FE0-56F2-4D2A-BA1E-FB65F9404A78&ID=7158815&M=R&N=Master&Title=Legislation+Details+%28With+Text%29',
+    kind: 'Official record',
+    date: '2025-03-11',
+  },
+  {
     title: 'DuPage County — Freedom of Information Act',
     description: 'Official county FOIA entry point linked throughout the DuPage County website.',
     officialUrl: 'https://www.dupagecounty.gov/',
@@ -110,3 +117,14 @@ export const dupageMunicipalityFoiaLinks: Record<string, PublicRecordLink[]> = {
   naperville: napervilleRecords,
   elmhurst: elmhurstRecords,
 };
+
+
+export const westChicagoRecords: PublicRecordLink[] = [
+  {
+    title: 'West Chicago — statement regarding Flock camera system review',
+    description: 'City statement announcing an investigation into alleged unauthorized Flock use and administrative leave for an officer; it expressly notes leave is not a finding of wrongdoing.',
+    officialUrl: 'https://westchicago.org/news/city-of-west-chicago-statement-regarding-flock-camera-system-review/',
+    kind: 'Official record',
+    date: '2026-08-31',
+  },
+];

@@ -2,6 +2,7 @@
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import CountyMunicipalityMap from '../../../../components/jurisdictions/CountyMunicipalityMap.astro';
 import PublicRecords from '../../../../components/jurisdictions/PublicRecords.astro';
+import DeploymentStatusMeta from '../../../../components/jurisdictions/DeploymentStatusMeta.astro';
 import { winnebagoMunicipalities, winnebagoMunicipalitySources } from '../../../../data/illinois/counties/winnebago';
 import { winnebagoCountyRecords } from '../../../../data/illinois/counties/winnebago-records';
 ---
@@ -56,8 +57,9 @@ import { winnebagoCountyRecords } from '../../../../data/illinois/counties/winne
     <div class="finding_grid">
       <article>
         <span class="status_label">DOCUMENTED</span>
+        <DeploymentStatusMeta evidenceStatus="documented" operationalStatus="active" verifiedAsOf="2026-09-18" sourceAsOf="2024-05-23" owner="Winnebago County Sheriff's Office" />
         <h3>Five-year Flock agreement</h3>
-        <p>Winnebago County approved a five-year agreement with Flock Group in May 2024 for license-plate readers deployed throughout the county. The appropriation was $719,250, with $174,250 for the first year and $136,250 for each subsequent year.</p>
+        <p>Winnebago County approved a five-year agreement with Flock Group in May 2024 for license-plate readers deployed throughout the county. The appropriation was $719,250, with $174,250 for the first year and $136,250 for each subsequent year. The contract remains within its stated five-year term; NoRec does not turn that contract into an inferred current reader count.</p>
       </article>
       <article>
         <span class="status_label">DOCUMENTED</span>
@@ -68,6 +70,12 @@ import { winnebagoCountyRecords } from '../../../../data/illinois/counties/winne
         <span class="status_label">DOCUMENTED</span>
         <h3>Nine drones / 13 reported flights</h3>
         <p>Illinois' SFY 2024 drone report lists the Sheriff's Department as owning nine drones and reports 13 flights in the reporting data.</p>
+      </article>
+      <article>
+        <span class="status_label">DOCUMENTED</span>
+        <DeploymentStatusMeta evidenceStatus="documented" operationalStatus="active" verifiedAsOf="2026-09-18" sourceAsOf="2026-09-18" owner="Illinois State Police" />
+        <h3>State-owned ISP ALPR infrastructure is a separate layer</h3>
+        <p>ISP states that 10 state cameras were installed in Winnebago County outside the original IDOT grant and that February 2026 funding included additional state-owned ALPR installations in Winnebago County. Those cameras belong to the ISP statewide Motorola system and are not counted as Winnebago County Sheriff or Rockford Police equipment.</p>
       </article>
       <article>
         <span class="status_label">FOLLOW-UP NEEDED</span>

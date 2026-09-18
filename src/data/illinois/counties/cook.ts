@@ -43,7 +43,7 @@ export const cookMunicipalities: MunicipalityRecord[] = [
   { id: 'il-evergreen-park', name: 'Evergreen Park', slug: 'evergreen-park', form: 'village', status: 'unresearched', counties: ['Cook'] },
   { id: 'il-flossmoor', name: 'Flossmoor', slug: 'flossmoor', form: 'village', status: 'unresearched', counties: ['Cook'] },
   { id: 'il-ford-heights', name: 'Ford Heights', slug: 'ford-heights', form: 'village', status: 'unresearched', counties: ['Cook'] },
-  { id: 'il-forest-park', name: 'Forest Park', slug: 'forest-park', form: 'village', status: 'unresearched', counties: ['Cook'] },
+  { id: 'il-forest-park', name: 'Forest Park', slug: 'forest-park', form: 'village', status: 'documented', counties: ['Cook'] },
   { id: 'il-forest-view', name: 'Forest View', slug: 'forest-view', form: 'village', status: 'unresearched', counties: ['Cook'] },
   { id: 'il-frankfort', name: 'Frankfort', slug: 'frankfort', form: 'village', status: 'unresearched', counties: ['Cook'] },
   { id: 'il-franklin-park', name: 'Franklin Park', slug: 'franklin-park', form: 'village', status: 'unresearched', counties: ['Cook'] },
@@ -81,7 +81,7 @@ export const cookMunicipalities: MunicipalityRecord[] = [
   { id: 'il-merrionette-park', name: 'Merrionette Park', slug: 'merrionette-park', form: 'village', status: 'unresearched', counties: ['Cook'] },
   { id: 'il-midlothian', name: 'Midlothian', slug: 'midlothian', form: 'village', status: 'unresearched', counties: ['Cook'] },
   { id: 'il-morton-grove', name: 'Morton Grove', slug: 'morton-grove', form: 'village', status: 'unresearched', counties: ['Cook'] },
-  { id: 'il-mount-prospect', name: 'Mount Prospect', slug: 'mount-prospect', form: 'village', status: 'unresearched', counties: ['Cook'] },
+  { id: 'il-mount-prospect', name: 'Mount Prospect', slug: 'mount-prospect', form: 'village', status: 'documented', counties: ['Cook'] },
   { id: 'il-niles', name: 'Niles', slug: 'niles', form: 'village', status: 'unresearched', counties: ['Cook'] },
   { id: 'il-norridge', name: 'Norridge', slug: 'norridge', form: 'village', status: 'unresearched', counties: ['Cook'] },
   { id: 'il-north-riverside', name: 'North Riverside', slug: 'north-riverside', form: 'village', status: 'unresearched', counties: ['Cook'] },
@@ -191,6 +191,11 @@ export const skokieFindings: SurveillanceFinding[] = [
     status: 'documented',
     summary: 'Skokie’s current ALPR page reports 20 pole-mounted Flock cameras on high-traffic roads, Axon Fleet cameras on all marked squad cars, one Vigilant pole-mounted camera at the police department, and six Alltech red-light cameras along McCormick Boulevard that also contain ALPR technology. Skokie states that ALPR data is retained for 30 days unless preserved as evidence.',
     sourceIds: ['skokie-alpr-2026'],
+    evidenceStatus: 'documented',
+    operationalStatus: 'active',
+    verifiedAsOf: '2026-09-18',
+    sourceAsOf: '2026-09',
+    owner: 'Skokie Police Department',
   },
   {
     id: 'skokie-bwc-2024',
@@ -221,6 +226,46 @@ export const oakParkFindings: SurveillanceFinding[] = [
     status: 'formerly-used',
     summary: 'Oak Park’s official ALPR page states that eight Flock units entered service in August 2022, were renewed in June 2024, and were terminated by Village Board action on August 5, 2025. NoRec therefore records Flock as formerly used rather than an active Oak Park system.',
     sourceIds: ['oak-park-alpr-2025'],
+    evidenceStatus: 'historically documented',
+    operationalStatus: 'ended',
+    verifiedAsOf: '2026-09-18',
+    statusChangedOn: '2025-08-05',
+    sourceAsOf: '2025-08-06',
+    owner: 'Village of Oak Park',
+  },
+];
+
+
+export const mountProspectFindings: SurveillanceFinding[] = [
+  {
+    id: 'mount-prospect-flock-sharing-2025',
+    technology: 'ALPR / Flock Safety',
+    title: 'Mount Prospect restricted Flock sharing after state audit found immigration-related searches',
+    status: 'documented',
+    summary: 'Mount Prospect states that an Illinois Secretary of State audit found 262 immigration-related searches of data from Mount Prospect Flock cameras by law-enforcement agencies around the country. After notification, the Police Department opted out of Flock National Lookup, canceled data-sharing agreements with agencies it identified as violating Illinois law, and revoked access to Mount Prospect ALPR data for law-enforcement agencies outside Illinois.',
+    sourceIds: ['mount-prospect-flock-2025'],
+    evidenceStatus: 'documented',
+    operationalStatus: 'active',
+    verifiedAsOf: '2026-09-18',
+    sourceAsOf: '2025-06-12',
+    owner: 'Mount Prospect Police Department',
+  },
+];
+
+export const forestParkFindings: SurveillanceFinding[] = [
+  {
+    id: 'forest-park-motorola-cbp-2025',
+    technology: 'ALPR / Motorola Solutions',
+    title: 'Federal ALPR sharing disabled after Secretary of State audit',
+    status: 'documented',
+    summary: 'The Illinois Secretary of State reported in September 2025 that Forest Park Police Motorola ALPR technology had provided Customs and Border Protection access to local plate-reader data. At the Secretary’s direction, Motorola and Forest Park disabled data-sharing capabilities with CBP and other federal agencies. The finding documents the access and the corrective change; it does not imply federal access remains enabled.',
+    sourceIds: ['forest-park-motorola-cbp-2025'],
+    evidenceStatus: 'documented',
+    operationalStatus: 'active',
+    verifiedAsOf: '2026-09-18',
+    statusChangedOn: '2025-09-05',
+    sourceAsOf: '2025-09-05',
+    owner: 'Forest Park Police Department',
   },
 ];
 

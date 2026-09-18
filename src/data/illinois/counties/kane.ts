@@ -35,12 +35,30 @@ export const kaneMunicipalities: MunicipalityRecord[] = [
 
 export const kaneCountyFindings: SurveillanceFinding[] = [
   {
+    id: 'kcso-dfr-2026',
+    technology: 'Drone as First Responder / Flock Safety',
+    title: 'Kane County and Aurora approved a Drone as First Responder trial',
+    status: 'documented',
+    summary: 'Kane County Board Resolution 26-350, passed August 11, 2026, authorizes an intergovernmental Drone as First Responder program between Kane County, the Sheriff’s Office, and Aurora Police. The resolution states KCSO leased a Flock drone platform and associated software on a trial basis, while Aurora provides pilots and operational support for monitored calls for service.',
+    sourceIds: ['kcso-dfr-2026'],
+    evidenceStatus: 'documented',
+    operationalStatus: 'active',
+    verifiedAsOf: '2026-09-18',
+    sourceAsOf: '2026-08-11',
+    owner: 'Kane County Sheriff’s Office / City of Aurora',
+  },
+  {
     id: 'kcso-flock-23',
     technology: 'ALPR / Flock Safety',
-    title: 'Sheriff deployed 23 grant-funded Flock LPR cameras',
+    title: 'Sheriff renewed 25-camera Flock LPR deployment for 2026',
     status: 'documented',
-    summary: 'A 2025 Kane County Sheriff contract-renewal packet states that the Sheriff originally received a 2023 grant to install 23 license-plate-reader cameras in public areas across Kane County. The Sheriff sought a $61,000 Flock renewal after the grant expired. NoRec treats 23 as the documented grant deployment baseline, not a independently field-verified 2026 installed count.',
-    sourceIds: ['kcso-flock-renewal-2025'],
+    summary: 'Kane County Board Resolution 26-069, passed February 10, 2026, renewed the Sheriff’s Flock contract for 25 license-plate-reader cameras dispersed countywide, including the Judicial Center and Government Center, at $72,000 per year. This is the current contracted county inventory; individual field locations remain a separate verification question.',
+    sourceIds: ['kcso-flock-renewal-2025','kcso-flock-renewal-2026'],
+    evidenceStatus: 'documented',
+    operationalStatus: 'active',
+    verifiedAsOf: '2026-09-18',
+    sourceAsOf: '2026-02-10',
+    owner: 'Kane County Sheriff’s Office',
   },
   {
     id: 'kcso-getac-bwc-incar',

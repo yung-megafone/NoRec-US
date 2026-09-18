@@ -9,6 +9,20 @@ export type PublicRecordLink = {
 
 export const kaneCountyRecords: PublicRecordLink[] = [
   {
+    title: 'Kane County Resolution 26-069 — 25-camera Flock renewal',
+    description: 'County Board resolution passed February 10, 2026 renewing 25 countywide Flock LPR cameras at $72,000 per year.',
+    officialUrl: 'https://countyofkane.legistar.com/LegislationDetail.aspx?GUID=3777224E-2F10-490E-8367-BF1E2DD038C3&ID=7799097&Options=&Search=',
+    kind: 'Official record',
+    date: '2026-02-10',
+  },
+  {
+    title: 'Kane County Resolution 26-350 — Drone as First Responder IGA',
+    description: 'County Board resolution passed August 11, 2026 authorizing the KCSO/Aurora DFR trial and identifying the leased Flock drone platform and software.',
+    officialUrl: 'https://countyofkane.legistar.com/LegislationDetail.aspx?FullText=1&GUID=C39DFC36-6792-4998-A81E-8E9FF339CC04&ID=8158114&Options=&Search=',
+    kind: 'Official record',
+    date: '2026-08-11',
+  },
+  {
     title: 'Kane County — Communities and Schools',
     description: 'Official county directory listing all 30 cities and villages in or partly within Kane County.',
     officialUrl: 'https://www2.kanecountyil.gov/Pages/communities.aspx',

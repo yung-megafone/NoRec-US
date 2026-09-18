@@ -20,6 +20,19 @@ export const kendallMunicipalities: MunicipalityRecord[] = [
 
 export const kendallCountyFindings: SurveillanceFinding[] = [
   {
+    id: 'kendall-isp-state-alpr-2026',
+    technology: 'ALPR / Illinois State Police',
+    title: 'State-owned ISP ALPR expansion funded in Kendall County in 2026',
+    status: 'documented',
+    summary: 'Illinois State Police states that February 2026 IDOT funding included new state-owned ALPR installations in Kendall County. ISP manages procurement, installation, ownership, and maintenance of the statewide Motorola Solutions system. This state layer is kept separate from KenCom, Sheriff, and municipal Flock equipment.',
+    sourceIds: ['isp-alpr-transparency-2026'],
+    evidenceStatus: 'documented',
+    operationalStatus: 'active',
+    verifiedAsOf: '2026-09-18',
+    sourceAsOf: '2026-09-18',
+    owner: 'Illinois State Police',
+  },
+  {
     id: 'kendall-kencom-flock-network',
     technology: 'ALPR / regional data sharing',
     title: 'KenCom-coordinated Flock license-plate-reader network',

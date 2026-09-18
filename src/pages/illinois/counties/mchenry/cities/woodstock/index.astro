@@ -2,6 +2,7 @@
 import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
 import MunicipalityBoundaryMap from '../../../../../../components/jurisdictions/MunicipalityBoundaryMap.astro';
 import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
+import DeploymentStatusMeta from '../../../../../../components/jurisdictions/DeploymentStatusMeta.astro';
 import { woodstockFindings } from '../../../../../../data/illinois/counties/mchenry';
 import { woodstockRecords } from '../../../../../../data/illinois/counties/mchenry-records';
 ---
@@ -11,7 +12,7 @@ import { woodstockRecords } from '../../../../../../data/illinois/counties/mchen
 <header class="article_header"><p class="eyebrow">LOCAL SURVEILLANCE · WOODSTOCK, ILLINOIS</p><h1>Woodstock</h1><p class="article_deck">Municipal findings are attributed to Woodstock or its police department only when the source supports that attribution. McHenry County systems are not automatically counted as municipal equipment.</p></header>
 <MunicipalityBoundaryMap name="Woodstock" county="McHenry" />
 
-<section><p class="eyebrow">WOODSTOCK</p><h2>Documented surveillance systems.</h2><div class="finding_grid">{woodstockFindings.map(f => (<article><span class="status_label">{f.status.toUpperCase()}</span><p class="eyebrow finding_technology">{f.technology}</p><h3>{f.title}</h3><p>{f.summary}</p></article>))}</div></section>
+<section><p class="eyebrow">WOODSTOCK</p><h2>Documented surveillance systems.</h2><div class="finding_grid">{woodstockFindings.map(f => (<article><span class="status_label">{(f.evidenceStatus ?? f.status).toUpperCase()}</span><DeploymentStatusMeta evidenceStatus={f.evidenceStatus} operationalStatus={f.operationalStatus} verifiedAsOf={f.verifiedAsOf} statusChangedOn={f.statusChangedOn} sourceAsOf={f.sourceAsOf} owner={f.owner} /><p class="eyebrow finding_technology">{f.technology}</p><h3>{f.title}</h3><p>{f.summary}</p></article>))}</div></section>
 <PublicRecords records={woodstockRecords} />
 <section><p class="eyebrow">UNRESOLVED</p><h2>What still needs primary records.</h2><ul class="about_questions"><li>Current device inventory, installation status, locations, vendors, contracts, retention, sharing, and audit configuration.</li><li>Other surveillance systems not yet documented in the primary-source set.</li></ul></section>
 </main></BaseLayout>

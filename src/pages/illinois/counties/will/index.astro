@@ -2,6 +2,7 @@
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import CountyMunicipalityMap from '../../../../components/jurisdictions/CountyMunicipalityMap.astro';
 import PublicRecords from '../../../../components/jurisdictions/PublicRecords.astro';
+import DeploymentStatusMeta from '../../../../components/jurisdictions/DeploymentStatusMeta.astro';
 import { willMunicipalities, willCountyFindings, willMunicipalitySource } from '../../../../data/illinois/counties/will';
 import { willCountyRecords } from '../../../../data/illinois/counties/will-records';
 ---
@@ -14,7 +15,7 @@ import { willCountyRecords } from '../../../../data/illinois/counties/will-recor
 <CountyMunicipalityMap county="Will" municipalities={willMunicipalities} />
 <div class="jurisdiction_cards municipality_directory">{willMunicipalities.map(m => (<a href={`/illinois/counties/will/cities/${m.slug}/`}><strong>{m.name}</strong><span>{m.form.charAt(0).toUpperCase()+m.form.slice(1)} · {m.status === 'documented' || m.status === 'partial' ? 'Municipal dossier available' : 'Research needed'}{m.crossCounty ? ` · crosses ${m.counties.join(' / ')} counties` : ''}</span></a>))}</div>
 <p class="map_note"><a href={willMunicipalitySource}>Will County official government source</a></p></section>
-<section><p class="eyebrow">WILL COUNTY SHERIFF'S OFFICE</p><h2>County-level findings.</h2><div class="finding_grid">{willCountyFindings.map(f => (<article><span class="status_label">{f.status.toUpperCase()}</span><p class="eyebrow finding_technology">{f.technology}</p><h3>{f.title}</h3><p>{f.summary}</p></article>))}</div></section>
+<section><p class="eyebrow">WILL COUNTY SHERIFF'S OFFICE</p><h2>County-level findings.</h2><div class="finding_grid">{willCountyFindings.map(f => (<article><span class="status_label">{(f.evidenceStatus ?? f.status).toUpperCase()}</span><DeploymentStatusMeta evidenceStatus={f.evidenceStatus} operationalStatus={f.operationalStatus} verifiedAsOf={f.verifiedAsOf} statusChangedOn={f.statusChangedOn} sourceAsOf={f.sourceAsOf} owner={f.owner} /><p class="eyebrow finding_technology">{f.technology}</p><h3>{f.title}</h3><p>{f.summary}</p></article>))}</div></section>
 <PublicRecords records={willCountyRecords} />
 <section><p class="eyebrow">RESEARCH GAPS</p><h2>High-value follow-up.</h2><ul class="about_questions"><li>Current Sheriff ALPR inventory, vendor, locations, retention, sharing, hot lists, audits, and users.</li><li>Current Sheriff UAS, fixed-camera, facial-recognition, analytics, social-media, and investigative-software inventories.</li><li>Municipal surveillance inventories for entries still marked unresearched.</li></ul></section>
 </main></BaseLayout>

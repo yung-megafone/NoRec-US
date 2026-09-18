@@ -1,5 +1,17 @@
 ---
-import MunicipalityStub from '../../../../../../components/jurisdictions/MunicipalityStub.astro';
-import { cookMunicipalityFoiaLinks } from '../../../../../../data/illinois/counties/cook-records';
+import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
+import MunicipalityBoundaryMap from '../../../../../../components/jurisdictions/MunicipalityBoundaryMap.astro';
+import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
+import DeploymentStatusMeta from '../../../../../../components/jurisdictions/DeploymentStatusMeta.astro';
+import { forestParkFindings } from '../../../../../../data/illinois/counties/cook';
+import { forestParkRecords } from '../../../../../../data/illinois/counties/cook-records';
 ---
-<MunicipalityStub name='Forest Park' form='village' county="Cook" counties={['Cook']} records={cookMunicipalityFoiaLinks['forest-park'] ?? []} />
+<BaseLayout title="Forest Park Surveillance | NoRec.US" description="Source-backed surveillance research for Forest Park, Illinois." active="surveillance">
+<main class="page_shell">
+<nav class="jurisdiction_breadcrumbs" aria-label="Breadcrumb"><a href="/illinois/">Illinois</a><span>→</span><a href="/illinois/counties/cook/">Cook County</a><span>→</span><strong>Forest Park</strong></nav>
+<header class="article_header"><p class="eyebrow">LOCAL SURVEILLANCE · FOREST PARK, ILLINOIS</p><h1>Forest Park</h1><p class="article_deck">Current findings are attributed to the agency named in the source. Operational state is shown separately from evidence quality so an investigation, pause, or sharing change does not erase the underlying deployment record.</p></header>
+<MunicipalityBoundaryMap name="Forest Park" county="Cook" />
+<section><p class="eyebrow">DOCUMENTED SYSTEMS</p><h2>Current and date-scoped findings.</h2><div class="finding_grid">{forestParkFindings.map(f => (<article><span class="status_label">{(f.evidenceStatus ?? f.status).toUpperCase()}</span><DeploymentStatusMeta evidenceStatus={f.evidenceStatus} operationalStatus={f.operationalStatus} verifiedAsOf={f.verifiedAsOf} statusChangedOn={f.statusChangedOn} sourceAsOf={f.sourceAsOf} owner={f.owner} /><p class="eyebrow finding_technology">{f.technology}</p><h3>{f.title}</h3><p>{f.summary}</p></article>))}</div></section>
+<PublicRecords records={forestParkRecords} />
+<section><p class="eyebrow">UNRESOLVED</p><h2>What still needs primary records.</h2><ul class="about_questions"><li>Current device inventory, exact locations, retention, sharing, authorized-user counts, and audit results where the cited record does not establish them.</li><li>Any additional surveillance systems not yet represented in the published source set.</li></ul></section>
+</main></BaseLayout>

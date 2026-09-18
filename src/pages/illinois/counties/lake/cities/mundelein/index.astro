@@ -2,6 +2,7 @@
 import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
 import MunicipalityBoundaryMap from '../../../../../../components/jurisdictions/MunicipalityBoundaryMap.astro';
 import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
+import DeploymentStatusMeta from '../../../../../../components/jurisdictions/DeploymentStatusMeta.astro';
 import { mundeleinFindings } from '../../../../../../data/illinois/counties/lake';
 import { mundeleinRecords } from '../../../../../../data/illinois/counties/lake-records';
 ---
@@ -10,7 +11,7 @@ import { mundeleinRecords } from '../../../../../../data/illinois/counties/lake-
 <nav class="jurisdiction_breadcrumbs" aria-label="Breadcrumb"><a href="/illinois/">Illinois</a><span>→</span><a href="/illinois/counties/lake/">Lake County</a><span>→</span><strong>Mundelein</strong></nav>
 <header class="article_header"><p class="eyebrow">LOCAL SURVEILLANCE · MUNDELEIN, ILLINOIS</p><h1>Mundelein</h1><p class="article_deck">Findings on this page are attributed only to Mundelein or its Police Department when supported by the cited record. Lake County Sheriff and privately owned systems remain separate unless the source establishes municipal access or ownership.</p></header>
 <MunicipalityBoundaryMap name="Mundelein" county="Lake" />
-<section><p class="eyebrow">MUNDELEIN</p><h2>Documented surveillance systems.</h2><div class="finding_grid">{mundeleinFindings.map(f => (<article><span class="status_label">{f.status.toUpperCase()}</span><p class="eyebrow finding_technology">{f.technology}</p><h3>{f.title}</h3><p>{f.summary}</p></article>))}</div></section>
+<section><p class="eyebrow">MUNDELEIN</p><h2>Documented surveillance systems.</h2><div class="finding_grid">{mundeleinFindings.map(f => (<article><span class="status_label">{(f.evidenceStatus ?? f.status).toUpperCase()}</span><DeploymentStatusMeta evidenceStatus={f.evidenceStatus} operationalStatus={f.operationalStatus} verifiedAsOf={f.verifiedAsOf} statusChangedOn={f.statusChangedOn} sourceAsOf={f.sourceAsOf} owner={f.owner} /><p class="eyebrow finding_technology">{f.technology}</p><h3>{f.title}</h3><p>{f.summary}</p></article>))}</div></section>
 <PublicRecords records={mundeleinRecords} />
 <section><p class="eyebrow">UNRESOLVED</p><h2>What still needs primary records.</h2><ul class="about_questions"><li>Current installed inventory and exact installation status where contract or historical counts are the newest available source.</li><li>Current locations, sharing configuration, audits, users, retention exceptions, and other surveillance technologies not yet documented.</li></ul></section>
 </main></BaseLayout>

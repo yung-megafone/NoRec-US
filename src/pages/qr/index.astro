@@ -5,56 +5,129 @@ import QrLessonOverlay from '../../components/QrLessonOverlay.astro';
 
 <BaseLayout
   title="You scanned a QR code | NoRec.US"
-  description="A quick reminder about unknown QR codes, followed by the Illinois ID-photo surveillance research this code was meant to show you."
+  description="NoRec.US documents surveillance in Illinois. This landing page also explains what an untrusted QR code can reveal or lead you to before taking you to the underlying research."
 >
   <QrLessonOverlay />
 
   <main class="qr_shell">
     <section class="qr_intro">
-      <p class="eyebrow">YOU SCANNED A RANDOM QR CODE</p>
-      <h1>Probably don't make a habit of that.</h1>
+      <p class="eyebrow">YOU FOUND NOREC.US</p>
+      <h1>The information is real. The QR code is part of the lesson.</h1>
+      <p class="qr_intro_lede">
+        NoRec.US documents surveillance systems, policies, contracts, public records,
+        and the unanswered questions around them. If you scanned one of our QR codes,
+        you can read the material immediately — no gate, login, or surprise download.
+      </p>
+      <p>
+        But a QR code is still a trust decision. The pattern itself is usually just
+        encoded data; the risk is what the phone, browser, or app is asked to do with
+        that data next.
+      </p>
 
       <figure class="qr_intro_rick">
-        <img src="/media/qr/rickroll-roll.gif" alt="Animated Rick Astley Never Gonna Give You Up clip used as a Rickroll joke." loading="eager" />
-        <figcaption>Threat model: catastrophic</figcaption>
-      </figure>
-
-      <p class="qr_intro_lede">QR codes can hide phishing pages, malicious links, replacement-payment scams, and other attacks. Security researchers have even demonstrated QR-triggered exploit chains that reached remote code execution in vulnerable software.</p>
-      <p>And, perhaps most dangerously, this could have been a Rickroll.</p>
-    </section>
-
-    <section class="qr_media" aria-label="A brief visual lesson in QR-code trust">
-      <figure>
-        <img src="/media/qr/random-qr-superbowl-meme.png" alt="Meme joking about people scanning a random QR code and discovering it is a cyberattack." loading="eager" />
-        <figcaption>Threat model: moderate</figcaption>
+        <img
+          src="/media/qr/rickroll-roll.gif"
+          alt="Animated Rick Astley Never Gonna Give You Up clip used as a Rickroll joke."
+          loading="eager"
+        />
+        <figcaption>This site chose a harmless lesson instead.</figcaption>
       </figure>
     </section>
 
     <section class="qr_warning">
-      <p class="eyebrow">THE ACTUAL SECURITY ADVICE</p>
-      <h2>Treat random QR codes like random links.</h2>
+      <p class="eyebrow">WHAT COULD A RANDOM CODE DO?</p>
+      <h2>Treat QR destinations like links you cannot read until you decode them.</h2>
+
       <div class="qr_warning_grid">
         <div>
-          <strong>Preview the destination.</strong>
-          <p>Check the domain before opening it. A convincing page means nothing if the address is wrong.</p>
+          <strong>Tracking links can log the scan.</strong>
+          <p>
+            A unique redirect or URL can tell an operator which poster, card, or location
+            was scanned and can receive ordinary connection metadata such as a timestamp,
+            IP address, and browser/device information.
+          </p>
         </div>
         <div>
-          <strong>Don't trust the sticker.</strong>
-          <p>Codes on signs, parking meters, payment terminals, flyers, and menus can be covered by somebody else's QR code.</p>
+          <strong>Send you to phishing.</strong>
+          <p>
+            A code can open a convincing login, payment, delivery, parking, or account page
+            whose domain is not the organization you thought you were dealing with.
+          </p>
         </div>
         <div>
-          <strong>Don't hand it credentials.</strong>
-          <p>If a random scan suddenly wants a password, payment, app, profile, certificate, or unusual permission, stop there.</p>
+          <strong>Replace a payment destination.</strong>
+          <p>
+            A sticker placed over a legitimate code can redirect a payment or account setup
+            to somebody else without changing the sign, meter, menu, or machine underneath it.
+          </p>
+        </div>
+        <div>
+          <strong>Prompt an app, permission, or download.</strong>
+          <p>
+            A destination can try to open a deep link, convince you to install software,
+            download a file, add a profile, or grant a permission you did not intend to give.
+          </p>
+        </div>
+        <div>
+          <strong>Reach vulnerable software.</strong>
+          <p>
+            Security researchers have demonstrated exploit chains delivered through crafted
+            links and QR-driven workflows. That does not mean decoding an ordinary QR code
+            automatically compromises a modern phone; it means untrusted destinations deserve
+            the same caution as other untrusted links, and updates matter.
+          </p>
+        </div>
+        <div>
+          <strong>Simply annoy the hell out of you.</strong>
+          <p>
+            Sometimes the payload is not malware or credential theft. Sometimes somebody
+            merely gives you a song you are going to remember every time you see a QR code.
+          </p>
         </div>
       </div>
-      <p class="qr_reassurance"><strong>This one just brought you to NoRec.US.</strong> No login. No surprise download. No Rick Astley. Now that you're here, here's what you missed on the 1999 episode of <em>How You're Getting Watched.</em></p>
+    </section>
+
+    <section class="qr_media" aria-label="A brief visual lesson in QR-code trust">
+      <figure>
+        <img
+          src="/media/qr/random-qr-superbowl-meme.png"
+          alt="Meme joking about people scanning a random QR code and discovering it is a cyberattack."
+          loading="eager"
+        />
+        <figcaption>Unknown code, unknown destination.</figcaption>
+      </figure>
+    </section>
+
+    <section class="qr_warning">
+      <p class="eyebrow">WHAT HAPPENED HERE</p>
+      <h2>This could have been far less friendly.</h2>
+      <p>
+        A malicious operator could have used a unique redirect to correlate a scan with a
+        particular sticker or location, sent you to a credential phish, prompted a download,
+        or attempted to exploit vulnerable software. NoRec did none of that. This page serves
+        static information, and the small lesson card only plays a deliberately obnoxious
+        audio file hosted on NoRec.US if you explicitly click the demonstration button.
+      </p>
+      <p class="qr_reassurance">
+        <strong>The practical rule:</strong> preview the destination when your scanner allows it,
+        check the domain, keep your device updated, and be especially suspicious when an
+        unexpected scan asks for credentials, payment, software, a profile, or unusual permissions.
+      </p>
     </section>
 
     <section class="qr_turn">
-      <p class="eyebrow">THIS ONE</p>
-      <h2>Now for why the code was here.</h2>
-      <p>If you have an Illinois driver’s license, permit, or state ID, the Secretary of State maintains a photograph captured through that credential process. Illinois law also expressly addresses facial-recognition search services involving those photographs.</p>
-      <p><strong>The credential population is not adult-only.</strong> Illinois says there is no minimum age for a state ID card, and instruction permits may be issued beginning at age 15 under specified conditions.</p>
+      <p class="eyebrow">NOW FOR WHY THE CODE WAS HERE</p>
+      <h2>Illinois credential photos and facial-recognition access.</h2>
+      <p>
+        If you have an Illinois driver’s license, permit, or state ID, the Secretary of State
+        maintains a photograph captured through that credential process. Illinois law also
+        expressly addresses facial-recognition search services involving those photographs.
+      </p>
+      <p>
+        <strong>The credential population is not adult-only.</strong> Illinois says there is no
+        minimum age for a state ID card, and instruction permits may be issued beginning at age
+        15 under specified conditions.
+      </p>
       <div class="hero_actions">
         <a class="button button_dark button_big" href="/surveillance/face/illinois-id-photos/">See the Illinois evidence →</a>
         <a class="button button_light" href="/illinois/">Browse Illinois surveillance</a>
@@ -72,7 +145,11 @@ import QrLessonOverlay from '../../components/QrLessonOverlay.astro';
     <section class="qr_rule">
       <p class="eyebrow">THE RULE</p>
       <h2>If the evidence does not establish it, NoRec does not present it as fact.</h2>
-      <p>NoRec.US documents government surveillance systems using statutes, policies, contracts, public records, government reports, and other source material. Unknowns stay unknown until the record answers them.</p>
+      <p>
+        NoRec.US documents government surveillance systems using statutes, policies, contracts,
+        public records, government reports, and other source material. Unknowns stay unknown
+        until the record answers them.
+      </p>
     </section>
   </main>
 </BaseLayout>

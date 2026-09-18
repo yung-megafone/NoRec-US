@@ -2,6 +2,7 @@
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import CountyMunicipalityMap from '../../../../components/jurisdictions/CountyMunicipalityMap.astro';
 import PublicRecords from '../../../../components/jurisdictions/PublicRecords.astro';
+import DeploymentStatusMeta from '../../../../components/jurisdictions/DeploymentStatusMeta.astro';
 import { leeMunicipalities, leeMunicipalitySources, leeCountyFindings } from '../../../../data/illinois/counties/lee';
 import { leeCountyRecords } from '../../../../data/illinois/counties/lee-records';
 ---
@@ -62,7 +63,7 @@ import { leeCountyRecords } from '../../../../data/illinois/counties/lee-records
     <div class="finding_grid">
       {leeCountyFindings.map(finding => (
         <article>
-          <span class="status_label">{finding.status.toUpperCase()}</span>
+          <span class="status_label">{finding.status.toUpperCase()}</span><DeploymentStatusMeta evidenceStatus={finding.evidenceStatus} operationalStatus={finding.operationalStatus} verifiedAsOf={finding.verifiedAsOf} statusChangedOn={finding.statusChangedOn} sourceAsOf={finding.sourceAsOf} owner={finding.owner} />
           <p class="eyebrow finding_technology">{finding.technology}</p>
           <h3>{finding.title}</h3>
           <p>{finding.summary}</p>

@@ -28,6 +28,11 @@ export const rockfordFindings: SurveillanceFinding[] = [
     status: 'documented',
     summary: 'Rockford approved a $443,998.16 sole-source Flock contract in 2026. Supporting city material states earlier organized-retail-crime grant funding paid for Flock Operating System software, Flock license-plate readers, and Flock PTZ cameras for the Police Department Intelligence Unit.',
     sourceIds: ['rockford-flock-contract-2026'],
+    evidenceStatus: 'documented',
+    operationalStatus: 'active',
+    verifiedAsOf: '2026-09-18',
+    sourceAsOf: '2026-03-02',
+    owner: 'Rockford Police Department',
   },
   {
     id: 'rockford-lpr-150',

@@ -2,6 +2,7 @@
 import BaseLayout from '../../../../../../layouts/BaseLayout.astro';
 import MunicipalityBoundaryMap from '../../../../../../components/jurisdictions/MunicipalityBoundaryMap.astro';
 import PublicRecords from '../../../../../../components/jurisdictions/PublicRecords.astro';
+import DeploymentStatusMeta from '../../../../../../components/jurisdictions/DeploymentStatusMeta.astro';
 import { skokieFindings } from '../../../../../../data/illinois/counties/cook';
 import { skokieRecords } from '../../../../../../data/illinois/counties/cook-records';
 ---
@@ -20,7 +21,7 @@ import { skokieRecords } from '../../../../../../data/illinois/counties/cook-rec
   <div class="finding_grid">
     {skokieFindings.map(f => (
       <article>
-        <span class="status_label">{f.status.toUpperCase()}</span>
+        <span class="status_label">{(f.evidenceStatus ?? f.status).toUpperCase()}</span><DeploymentStatusMeta evidenceStatus={f.evidenceStatus} operationalStatus={f.operationalStatus} verifiedAsOf={f.verifiedAsOf} statusChangedOn={f.statusChangedOn} sourceAsOf={f.sourceAsOf} owner={f.owner} />
         <p class="eyebrow finding_technology">{f.technology}</p>
         <h3>{f.title}</h3>
         <p>{f.summary}</p>

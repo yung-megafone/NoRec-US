@@ -120,3 +120,24 @@ export const cookMunicipalityFoiaLinks: Record<string, PublicRecordLink[]> = {
   evanston: evanstonRecords,
   'oak-park': oakParkRecords,
 };
+
+
+export const mountProspectRecords: PublicRecordLink[] = [
+  {
+    title: 'Mount Prospect — Flock LPR Cameras / state audit response',
+    description: 'Village transparency page describing the Secretary of State audit, 262 immigration-related searches, and subsequent sharing restrictions.',
+    officialUrl: 'https://www.mountprospect.org/services/transparency-and-fact-check-portal/flock-lpr-cameras',
+    kind: 'Official record',
+    date: '2025-06-12',
+  },
+];
+
+export const forestParkRecords: PublicRecordLink[] = [
+  {
+    title: 'Illinois Secretary of State — Forest Park Motorola ALPR audit',
+    description: 'State audit announcement reporting CBP access to Forest Park ALPR data and the subsequent disabling of federal sharing capabilities.',
+    officialUrl: 'https://www.ilsos.gov/news/2025/september-5-2025-giannoulias-audit-uncovers-forest-park-police-department-sharing-license-plate-reader-data.html',
+    kind: 'Official record',
+    date: '2025-09-05',
+  },
+];

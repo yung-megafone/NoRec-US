@@ -6,7 +6,7 @@ export const willMunicipalities: MunicipalityRecord[] = [
   { id: 'il-bolingbrook', name: 'Bolingbrook', slug: 'bolingbrook', form: 'village', status: 'unresearched', counties: ['Will', 'DuPage'], crossCounty: true },
   { id: 'il-braceville', name: 'Braceville', slug: 'braceville', form: 'village', status: 'unresearched', counties: ['Will', 'Grundy'], crossCounty: true },
   { id: 'il-braidwood', name: 'Braidwood', slug: 'braidwood', form: 'city', status: 'unresearched', counties: ['Will'] },
-  { id: 'il-channahon', name: 'Channahon', slug: 'channahon', form: 'village', status: 'unresearched', counties: ['Will', 'Grundy'], crossCounty: true },
+  { id: 'il-channahon', name: 'Channahon', slug: 'channahon', form: 'village', status: 'documented', counties: ['Will', 'Grundy'], crossCounty: true },
   { id: 'il-coal-city', name: 'Coal City', slug: 'coal-city', form: 'village', status: 'unresearched', counties: ['Will', 'Grundy'], crossCounty: true },
   { id: 'il-crest-hill', name: 'Crest Hill', slug: 'crest-hill', form: 'city', status: 'unresearched', counties: ['Will'] },
   { id: 'il-crete', name: 'Crete', slug: 'crete', form: 'village', status: 'unresearched', counties: ['Will'] },
@@ -14,7 +14,7 @@ export const willMunicipalities: MunicipalityRecord[] = [
   { id: 'il-elwood', name: 'Elwood', slug: 'elwood', form: 'village', status: 'unresearched', counties: ['Will'] },
   { id: 'il-frankfort', name: 'Frankfort', slug: 'frankfort', form: 'village', status: 'unresearched', counties: ['Will', 'Cook'], crossCounty: true },
   { id: 'il-godley', name: 'Godley', slug: 'godley', form: 'village', status: 'unresearched', counties: ['Will', 'Grundy'], crossCounty: true },
-  { id: 'il-homer-glen', name: 'Homer Glen', slug: 'homer-glen', form: 'village', status: 'unresearched', counties: ['Will'] },
+  { id: 'il-homer-glen', name: 'Homer Glen', slug: 'homer-glen', form: 'village', status: 'documented', counties: ['Will'] },
   { id: 'il-joliet', name: 'Joliet', slug: 'joliet', form: 'city', status: 'documented', counties: ['Will', 'Kendall'], crossCounty: true },
   { id: 'il-lemont', name: 'Lemont', slug: 'lemont', form: 'village', status: 'unresearched', counties: ['Will', 'Cook', 'DuPage'], crossCounty: true },
   { id: 'il-lockport', name: 'Lockport', slug: 'lockport', form: 'city', status: 'unresearched', counties: ['Will'] },
@@ -88,6 +88,40 @@ export const romeovilleFindings: SurveillanceFinding[] = [
     status: 'documented',
     summary: 'Romeoville public meeting and procurement records document Police Department Flock Safety ALPR technology. The dossier distinguishes contract/procurement evidence from a verified current camera inventory.',
     sourceIds: ['romeoville-flock'],
+  },
+];
+
+
+export const homerGlenFindings: SurveillanceFinding[] = [
+  {
+    id: 'homer-glen-flock-paused-2026',
+    technology: 'ALPR / Flock Safety',
+    title: 'Village suspended use of Flock ALPR cameras pending Sheriff investigation',
+    status: 'documented',
+    summary: 'On August 31, 2026, Homer Glen announced that it suspended utilization of Flock ALPR cameras located within the village pending final determination of a Will County Sheriff investigation and review of the Sheriff’s ALPR protocol. NoRec records the system as paused, not decommissioned.',
+    sourceIds: ['homer-glen-flock-2026'],
+    evidenceStatus: 'documented',
+    operationalStatus: 'paused',
+    verifiedAsOf: '2026-09-18',
+    statusChangedOn: '2026-08-31',
+    sourceAsOf: '2026-08-31',
+    owner: 'Will County Sheriff / cameras located in Homer Glen',
+  },
+];
+
+export const channahonFindings: SurveillanceFinding[] = [
+  {
+    id: 'channahon-flock-review-2026',
+    technology: 'ALPR / Flock Safety',
+    title: 'Police investigating alleged unauthorized Flock use',
+    status: 'documented',
+    summary: 'On August 27, 2026, Channahon said an internal audit found that an officer allegedly used the department’s Flock system for unauthorized purposes. The officer was placed on administrative leave, the Village opened an internal investigation, and Illinois State Police began reviewing the matter. The Village also said it added advanced audit tools. The statement does not say the Flock system itself was suspended.',
+    sourceIds: ['channahon-flock-review-2026'],
+    evidenceStatus: 'under investigation',
+    operationalStatus: 'active',
+    verifiedAsOf: '2026-09-18',
+    sourceAsOf: '2026-08-27',
+    owner: 'Channahon Police Department',
   },
 ];
 

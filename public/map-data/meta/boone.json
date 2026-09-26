@@ -1,0 +1,8 @@
+{
+  "county": "boone",
+  "fetchedAt": "2026-09-19T08:19:24.064Z",
+  "source": "OpenStreetMap via Overpass API",
+  "queryArea": "Boone County",
+  "count": 315,
+  "attribution": "© OpenStreetMap contributors · ODbL"
+}

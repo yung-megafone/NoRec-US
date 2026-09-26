@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Tools · NoRec.US"
+  description="Privacy-focused browser tools from NoRec.US."
+  active="tools"
+>
+  <section class="content_section">
+    <p class="eyebrow">TOOLS</p>
+    <h1>Tools</h1>
+    <p class="lede">Small utilities for handling sensitive information without handing it to another service.</p>
+
+    <div class="evidence_library_grid tools_grid">
+      <article class="evidence_library_card">
+        <p class="eyebrow">LOCAL IMAGE PROCESSING</p>
+        <h2><a href="/tools/redact/">Image Redactor</a></h2>
+        <p>Blur, black out, erase, crop, rotate, or otherwise remove sensitive portions of an image before sharing it.</p>
+        <p class="muted">Runs in your browser. Images are not uploaded to NoRec.US.</p>
+        <p class="evidence_library_actions"><a href="/tools/redact/">OPEN TOOL →</a></p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .tools_grid { max-width: 760px; }
+  .tools_grid h2 { margin-top: .2rem; }
+</style>

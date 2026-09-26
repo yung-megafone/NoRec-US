@@ -1,0 +1,141 @@
+.county_map_shell {
+  margin: 2rem 0 3rem;
+  border-top: 3px solid var(--black);
+  padding-top: 1.6rem;
+}
+
+.county_map_intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(260px, .7fr);
+  gap: 1rem;
+  align-items: start;
+  margin-bottom: 1rem;
+}
+
+.county_map_meta {
+  display: grid;
+  gap: .7rem;
+  margin: 0;
+}
+
+.county_map_meta div {
+  border: 1px solid var(--line);
+  background: var(--white);
+  padding: .85rem .95rem;
+}
+
+.county_map_meta dt {
+  font: 700 .62rem/1.1 ui-monospace, SFMono-Regular, Consolas, monospace;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.county_map_meta dd {
+  margin: .28rem 0 0;
+  font-size: .88rem;
+}
+
+.county_map_panel {
+  display: grid;
+  grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.county_map_sidebar {
+  display: grid;
+  gap: 1rem;
+}
+
+.county_map_card {
+  border: 1px solid var(--line);
+  background: var(--white);
+  padding: 1rem;
+}
+
+.county_map_card h3 {
+  margin-top: .15rem;
+  margin-bottom: .65rem;
+}
+
+.county_map_card label {
+  display: block;
+  margin-bottom: .55rem;
+  line-height: 1.45;
+}
+
+.county_map_card input[type='checkbox'] {
+  margin-right: .45rem;
+}
+
+.county_map_delta ul,
+.county_map_errors ul {
+  margin: .5rem 0 0;
+  padding-left: 1rem;
+}
+
+.county_map_canvas_wrap {
+  position: relative;
+  border: 2px solid var(--black);
+  background: var(--soft);
+  min-height: 680px;
+}
+
+.county_map_canvas {
+  width: 100%;
+  min-height: 680px;
+}
+
+.county_map_banner {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  display: grid;
+  gap: .25rem;
+  background: rgba(255, 255, 255, .94);
+  border: 1px solid var(--line);
+  padding: .8rem .95rem;
+}
+
+.county_map_popup {
+  font-size: .85rem;
+  line-height: 1.35;
+}
+
+.county_map_consent_backdrop {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, .2);
+  padding: 1rem;
+  z-index: 10000;
+}
+
+.county_map_consent {
+  width: min(32rem, 100%);
+  background: var(--white);
+  border: 2px solid var(--black);
+  padding: 1rem 1.05rem;
+}
+
+.county_map_consent_actions {
+  display: flex;
+  gap: .7rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 980px) {
+  .county_map_intro,
+  .county_map_panel {
+    grid-template-columns: 1fr;
+  }
+
+  .county_map_canvas,
+  .county_map_canvas_wrap {
+    min-height: 520px;
+  }
+}

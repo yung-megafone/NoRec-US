@@ -8,7 +8,6 @@ DirectoryIndex index.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-
   # Legacy NoRec county routes -> county-seat ZIP routes
   RewriteRule ^surveillance/winnebago-county/?$ /illinois/counties/winnebago/ [R=301,L]
   RewriteRule ^surveillance/boone-county/?$ /illinois/counties/boone/ [R=301,L]
@@ -31,7 +30,7 @@ DirectoryIndex index.html
 
 # Custom static error documents.
 ErrorDocument 403 /403.html
-ErrorDocument 404 /404.html
+ErrorDocument 404 /404.shtml
 ErrorDocument 500 /500.html
 
 <IfModule mod_headers.c>
@@ -43,8 +42,9 @@ ErrorDocument 500 /500.html
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=(), browsing-topics=()"
   Header always set Cross-Origin-Opener-Policy "same-origin"
 
-  # The public site deliberately loads code/assets only from NoRec.US.
-  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; frame-src 'none'; worker-src 'self'; manifest-src 'self'; upgrade-insecure-requests"
+  # Astro emits the resource policy and per-build script/style hashes in a CSP meta tag.
+  # Keep frame-ancestors here because browsers ignore that directive in meta CSP.
+  Header always set Content-Security-Policy "frame-ancestors 'none'"
 
   # HTTPS only, but intentionally no includeSubDomains/preload yet.
   Header always set Strict-Transport-Security "max-age=31536000"

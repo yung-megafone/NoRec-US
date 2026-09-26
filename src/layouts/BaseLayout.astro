@@ -16,6 +16,7 @@ const nav = [
   ['map', '/illinois/', 'Map'],
   ['sources', '/sources/', 'Sources'],
   ['research', '/research/', 'Research'],
+  ['tools', '/tools/', 'Tools'],
   ['privacy', '/why-privacy-matters/', 'IDC?'],
   ['about', '/about/', 'About']
 ];
@@ -32,11 +33,13 @@ const inferredActive =
           ? 'sources'
           : pathname.startsWith('/research/')
             ? 'research'
-            : pathname.startsWith('/why-privacy-matters/')
-              ? 'privacy'
-              : pathname.startsWith('/about/')
-                ? 'about'
-                : active;
+            : pathname.startsWith('/tools/')
+              ? 'tools'
+              : pathname.startsWith('/why-privacy-matters/')
+                ? 'privacy'
+                : pathname.startsWith('/about/')
+                  ? 'about'
+                  : active;
 const currentNav = inferredActive || active;
 
 const canonicalUrl =
@@ -62,7 +65,7 @@ const robots = noindex
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png?v=3" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3" />
     <link rel="manifest" href="/site.webmanifest?v=3" />
-
+    <link rel="stylesheet" href="/style/nav-selected-hotfix.css?v=1" />
 
     <link rel="canonical" href={canonicalUrl} />
 
@@ -79,7 +82,7 @@ const robots = noindex
     <meta name="twitter:image" content={new URL("/brand/norec-wordmark.png", Astro.site ?? Astro.url.origin).toString()} />
 
     <title>{title}</title>
-    <script is:inline>
+    <script>
       document.documentElement.classList.add('js');
     </script>
   </head>
@@ -120,7 +123,6 @@ const robots = noindex
             <span>Menu</span>
             <span class="nav_toggle_icon" aria-hidden="true"><i></i><i></i><i></i></span>
           </label>
-
           <ul id="menu">
             {nav.map(([key, href, label]) => (
               key === 'surveillance' ? (
@@ -131,20 +133,32 @@ const robots = noindex
                       <span class="nav_submenu_caret" aria-hidden="true">▾</span>
                     </summary>
                     <ul class="nav_submenu" id="surveillance_submenu">
-                    <li><a href="/surveillance/">Surveillance overview</a></li>
-                    <li><a href="/surveillance/evidence/">Evidence library</a></li>
-                    <li><a href="/illinois/">Illinois jurisdictions + map</a></li>
-                    <li><a href="/sources/">Sources + receipts</a></li>
-                    <li class="nav_submenu_divider"><span>Evidence by category</span></li>
-                    <li><a href="/surveillance/evidence/government/">Government</a></li>
-                    <li><a href="/surveillance/evidence/workplace/">Workplace</a></li>
-                    <li><a href="/surveillance/evidence/consumer/">Consumer / retail</a></li>
-                    <li><a href="/surveillance/evidence/private/">Private / residential</a></li>
-                    <li><a href="/surveillance/evidence/students/">Students / schools</a></li>
-                    <li><a href="/surveillance/evidence/health/">Health / reproductive</a></li>
-                    <li><a href="/surveillance/evidence/biometrics/">Biometrics</a></li>
-                    <li><a href="/surveillance/evidence/aerial/">Aerial / drones</a></li>
-                    <li><a href="/surveillance/evidence/infrastructure/">Data brokers / infrastructure</a></li>
+                      <li><a href="/surveillance/">Surveillance overview</a></li>
+                      <li><a href="/surveillance/evidence/">Evidence library</a></li>
+                      <li><a href="/illinois/">Illinois jurisdictions + map</a></li>
+                      <li><a href="/sources/">Sources + receipts</a></li>
+                      <li class="nav_submenu_divider"><span>Evidence by category</span></li>
+                      <li><a href="/surveillance/evidence/government/">Government</a></li>
+                      <li><a href="/surveillance/evidence/workplace/">Workplace</a></li>
+                      <li><a href="/surveillance/evidence/consumer/">Consumer / retail</a></li>
+                      <li><a href="/surveillance/evidence/private/">Private / residential</a></li>
+                      <li><a href="/surveillance/evidence/students/">Students / schools</a></li>
+                      <li><a href="/surveillance/evidence/health/">Health / reproductive</a></li>
+                      <li><a href="/surveillance/evidence/biometrics/">Biometrics</a></li>
+                      <li><a href="/surveillance/evidence/aerial/">Aerial / drones</a></li>
+                      <li><a href="/surveillance/evidence/infrastructure/">Data brokers / infrastructure</a></li>
+                    </ul>
+                  </details>
+                </li>
+              ) : key === 'tools' ? (
+                <li class:list={[currentNav === key && 'selected', 'nav_has_submenu']}>
+                  <details class="nav_submenu_details">
+                    <summary class="nav_submenu_toggle">
+                      <span>{label}</span><span class="nav_submenu_caret" aria-hidden="true">▾</span>
+                    </summary>
+                    <ul class="nav_submenu" id="tools_submenu">
+                      <li><a href="/tools/">Tools overview</a></li>
+                      <li><a href="/tools/redact/">Image Redactor</a></li>
                     </ul>
                   </details>
                 </li>
@@ -188,16 +202,16 @@ const robots = noindex
           NoRec.US original material · MIT License · <a href="/privacy/">Privacy Notice</a> ·
           Design inspiration: black_white · <a href="https://github.com/yung-megafone/NoRec-US">GitHub</a>
         </p>
-</footer>
+      </footer>
     </div>
 
-    <script is:inline>
+    <script>
       (() => {
         const root = document.documentElement;
         const loader = document.getElementById('site_loader');
         const navState = document.getElementById('nav_toggle_state');
         const menu = document.getElementById('menu');
-        const surveillanceDetails = menu?.querySelector('.nav_submenu_details');
+        const submenuDetails = menu ? Array.from(menu.querySelectorAll('.nav_submenu_details')) : [];
 
         const hideLoader = () => {
           root.classList.add('site_ready');
@@ -216,11 +230,9 @@ const robots = noindex
         }
 
         window.addEventListener('pageshow', hideLoader);
-
         document.addEventListener('click', (event) => {
           const target = event.target;
           if (!(target instanceof Element)) return;
-
           const link = target.closest('a[href]');
           if (!link) return;
           if (
@@ -232,7 +244,6 @@ const robots = noindex
             event.altKey
           ) return;
           if (link.target === '_blank' || link.hasAttribute('download')) return;
-
           const url = new URL(link.href, window.location.href);
           if (url.origin !== window.location.origin) return;
           if (url.pathname === window.location.pathname && url.search === window.location.search && url.hash) return;
@@ -242,7 +253,7 @@ const robots = noindex
 
         const closeNavigation = () => {
           if (navState instanceof HTMLInputElement) navState.checked = false;
-          if (surveillanceDetails instanceof HTMLDetailsElement) surveillanceDetails.open = false;
+          for (const details of submenuDetails) if (details instanceof HTMLDetailsElement) details.open = false;
         };
 
         menu?.addEventListener('click', (event) => {

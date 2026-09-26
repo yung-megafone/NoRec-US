@@ -1,0 +1,53 @@
+/*
+ * NoRec.US selected-navigation containment hotfix.
+ *
+ * Older selectors such as `ul#menu li.selected a` match every descendant
+ * anchor inside a selected top-level dropdown. Keep the active treatment on
+ * the top-level item only and explicitly return submenu links to their normal
+ * state. This file is intentionally loaded after the main site stylesheet.
+ */
+
+ul#menu > li.selected > a {
+  position: relative;
+  background: #2b3030;
+  color: #fff;
+}
+
+ul#menu > li.selected > a::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 4px;
+  height: 2px;
+  background: #dfe2de;
+}
+
+ul#menu > li.selected .nav_submenu li a,
+ul#menu > li.selected .nav_submenu li a:link,
+ul#menu > li.selected .nav_submenu li a:visited {
+  background: transparent !important;
+  color: #dfe2de !important;
+}
+
+ul#menu > li.selected .nav_submenu li a::after {
+  content: none !important;
+  display: none !important;
+}
+
+ul#menu > li.selected .nav_submenu li a:hover,
+ul#menu > li.selected .nav_submenu li a:focus-visible {
+  background: #2b3030 !important;
+  color: #f2f3f1 !important;
+}
+
+@media (max-width: 760px) {
+  ul#menu > li.selected > a::after {
+    top: 8px;
+    bottom: 8px;
+    left: 4px;
+    right: auto;
+    width: 2px;
+    height: auto;
+  }
+}

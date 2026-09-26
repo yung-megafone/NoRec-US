@@ -9,7 +9,8 @@
   --line: #343838;
   --soft: #191c1c;
   --signal: #e05a60;
-  --max-width: 900px;
+  --max-width: 1500px;
+  --reading-width: 900px;
   font-family: "Trebuchet MS", Arial, sans-serif;
   color: var(--ink);
   background: var(--page-bg) url('/style/background.png') repeat;

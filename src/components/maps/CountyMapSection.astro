@@ -1,0 +1,35 @@
+---
+import CountyMap from './CountyMap.jsx';
+import { countyMapConfigs } from '../../data/maps/countyMapConfig';
+
+const {
+  countySlug,
+  countyName,
+  center,
+  zoom,
+  overpassAreaName,
+  aerialTiles,
+  boundaryPath,
+  municipalitiesPath,
+  norecPath,
+  osmPath,
+  osmMetaPath
+} = Astro.props;
+
+const fromConfig = countySlug ? countyMapConfigs[countySlug] : undefined;
+
+const config = {
+  countySlug: countySlug ?? fromConfig?.slug,
+  countyName: countyName ?? fromConfig?.name,
+  center: center ?? fromConfig?.center,
+  zoom: zoom ?? fromConfig?.zoom,
+  overpassAreaName: overpassAreaName ?? fromConfig?.overpassAreaName,
+  aerialTiles: aerialTiles ?? fromConfig?.aerialTiles ?? null,
+  boundaryPath: boundaryPath ?? fromConfig?.boundaryPath ?? null,
+  municipalitiesPath: municipalitiesPath ?? fromConfig?.municipalitiesPath ?? null,
+  norecPath: norecPath ?? fromConfig?.norecPath ?? `/map-data/norec/${countySlug}.geojson`,
+  osmPath: osmPath ?? fromConfig?.osmPath ?? `/map-data/osm/${countySlug}.geojson`,
+  osmMetaPath: osmMetaPath ?? fromConfig?.osmMetaPath ?? `/map-data/meta/${countySlug}.json`
+};
+---
+<CountyMap client:load {...config} />

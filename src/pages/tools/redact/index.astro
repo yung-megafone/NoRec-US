@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ImageRedactor from '../../../components/tools/redactor/ImageRedactor.jsx';
+---
+<BaseLayout
+  title="Image Redactor · Tools · NoRec.US"
+  description="Redact sensitive portions of an image locally in your browser."
+  active="tools"
+>
+  <section class="redactor_page_intro">
+    <p class="eyebrow">TOOLS / IMAGE REDACTOR</p>
+    <h1>Image Redactor</h1>
+    <p class="lede">Blur or remove sensitive information before you share an image.</p>
+    <p class="redactor_privacy"><strong>Your image stays in this browser.</strong> NoRec does not receive or store it.</p>
+    <p class="muted">Automatic detection is optional and starts off every time this page opens. Manual redaction works without it.</p>
+  </section>
+
+  <div class="redactor_page_shell">
+    <ImageRedactor client:only="react" />
+  </div>
+
+  <p class="redactor_credit">
+    Image redactor adapted from blurrr by creativar (ISC).
+    <a href="https://github.com/creativar/blurrr" rel="external">View upstream source</a>.
+  </p>
+</BaseLayout>
+
+<style>
+  .redactor_page_intro { margin-bottom: 1rem; }
+  .redactor_privacy { border-left: 3px solid currentColor; padding: .8rem 1rem; background: rgba(127,127,127,.08); }
+  .redactor_page_shell { width: 100%; }
+  .redactor_credit { font-size: .88rem; opacity: .78; margin-top: 1rem; }
+</style>

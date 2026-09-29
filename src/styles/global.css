@@ -1809,3 +1809,38 @@ ul#menu .nav_submenu_divider span{
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
 }
+
+/* Breaches: selected failures involving compulsory / indirect data custody */
+.breaches_header{max-width:66rem}.breaches_scope{margin:1.5rem 0 1rem}.breach_jump{display:flex;flex-wrap:wrap;gap:.45rem;margin:1rem 0 2.5rem}.breach_jump a{border:1px solid var(--line);padding:.5rem .65rem;text-decoration:none;font:700 .66rem/1.2 ui-monospace,SFMono-Regular,Consolas,monospace;text-transform:uppercase;letter-spacing:.045em}.breach_jump a:hover{border-color:var(--black)}.breach_section{margin-top:2.7rem}.breach_case{margin:1rem 0 1.4rem;padding:1.15rem;border:1px solid var(--line);background:var(--white);scroll-margin-top:1rem}.breach_case_head{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:.8rem}.breach_case_head .eyebrow{margin:0 0 .35rem}.breach_case_head h3{margin:0;font-size:1.65rem}.breach_status{flex:0 0 auto;max-width:19rem;border:1px solid var(--black);padding:.38rem .5rem;font:700 .61rem/1.25 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.055em;text-transform:uppercase;text-align:right}.breach_status.documented{background:var(--black);color:var(--white)}.breach_status.developing{border-style:dashed}.breach_status.historical{opacity:.78}.breach_status.disclosure{border-width:2px}.breach_summary{max-width:62rem;margin:1rem 0;font-size:1.06rem;line-height:1.55}.breach_facts{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;margin:1rem 0;border:1px solid var(--line)}.breach_facts>div{padding:.7rem;border-left:1px solid var(--line)}.breach_facts>div:first-child{border-left:0}.breach_facts dt{font:700 .59rem/1.2 ui-monospace,SFMono-Regular,Consolas,monospace;text-transform:uppercase;letter-spacing:.045em;color:var(--muted)}.breach_facts dd{margin:.3rem 0 0;font-size:.78rem;line-height:1.45}.breach_body{max-width:68rem}.breach_unknown,.breach_takeaway{margin:.9rem 0;padding:.75rem .85rem;background:var(--soft);border-left:3px solid var(--black);font-size:.85rem;line-height:1.55}.breach_unknown{border-left-style:dashed}.breach_sources{margin-top:.9rem;border-top:1px solid var(--line);padding-top:.75rem}.breach_sources summary{cursor:pointer;font-weight:700}.breach_sources li{margin:.55rem 0;line-height:1.45}.breach_sources li span{display:inline-block;margin-left:.35rem;color:var(--muted);font:700 .6rem/1.2 ui-monospace,SFMono-Regular,Consolas,monospace;text-transform:uppercase}.breach_divider{margin:4rem -24px 2rem;padding:2.2rem 24px;background:var(--black);color:var(--white)}.breach_divider h2,.breach_divider .eyebrow{color:var(--white)}.breach_divider h2{margin:.15rem 0 .8rem;font-size:clamp(2rem,5vw,3.5rem)}.breach_divider p:last-child{max-width:66rem;margin-bottom:0;font-size:1.02rem}.disclosure_case{border-width:2px}.breach_closing{margin-top:3.5rem;padding-top:1.5rem;border-top:2px solid var(--black);max-width:68rem}@media(max-width:900px){.breach_facts{grid-template-columns:repeat(2,minmax(0,1fr))}.breach_facts>div{border-left:0;border-top:1px solid var(--line)}.breach_facts>div:nth-child(-n+2){border-top:0}.breach_facts>div:nth-child(even){border-left:1px solid var(--line)}}@media(max-width:620px){.breach_case_head{display:block}.breach_status{display:inline-block;max-width:none;margin-top:.7rem;text-align:left}.breach_facts{grid-template-columns:1fr}.breach_facts>div,.breach_facts>div:nth-child(-n+2){border-top:1px solid var(--line);border-left:0}.breach_facts>div:first-child{border-top:0}.breach_divider{margin-inline:-18px;padding-inline:18px}}
+
+/* Data fusion explainer */
+.fusion_page { max-width: 1120px; margin: 0 auto; }
+.fusion_intro_grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1.5rem 0 2rem; }
+.fusion_panel, .fusion_section, .fusion_failure_callout { border: 1px solid var(--line); padding: clamp(1rem, 2.5vw, 1.6rem); background: var(--white); }
+.fusion_panel h2, .fusion_section h2, .fusion_failure_callout h2 { margin-top: .2rem; }
+.fusion_section { margin: 1rem 0; }
+.fusion_flow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .65rem; margin: 1.2rem 0; }
+.fusion_flow > div, .fusion_example > div { border: 1px solid var(--line); padding: .9rem; background: var(--white); }
+.fusion_flow strong, .fusion_flow span, .fusion_example strong, .fusion_example span { display: block; }
+.fusion_flow span, .fusion_example span { margin-top: .35rem; font-size: .94rem; line-height: 1.45; }
+.fusion_note { font-size: .92rem; opacity: .78; }
+.fusion_example { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .65rem; margin: 1.2rem 0; }
+.fusion_example .fusion_result { grid-column: 1 / -1; }
+.fusion_scale blockquote { margin: 1.25rem 0 0; padding: 1rem 1.2rem; border-left: 4px solid currentColor; font-size: 1.08rem; font-weight: 700; }
+.fusion_failure_callout { margin: 1.5rem 0; }
+.fusion_failure_callout .button { display: inline-block; margin-top: .5rem; }
+.fusion_boundary { margin-top: 1.5rem; }
+.breach_backlink { margin: .75rem 0 1.25rem; }
+@media (max-width: 820px) {
+  .fusion_intro_grid, .fusion_example { grid-template-columns: 1fr; }
+  .fusion_flow { grid-template-columns: 1fr; }
+  .fusion_example .fusion_result { grid-column: auto; }
+}
+
+/* Breach resource directory */
+.breach_resources { margin-top: 2rem; padding: 1.35rem; border: 1px solid var(--line); border-radius: 18px; background: var(--white); }
+.breach_resources h2 { margin-top: .2rem; }
+.breach_resource_list { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: .7rem; }
+.breach_resource_list li { padding: .8rem .9rem; border: 1px solid var(--line); border-radius: 12px; background: var(--soft); }
+.breach_resource_list a { font-weight: 700; }
+.breach_resource_list span { display: block; margin-top: .2rem; color: var(--muted); font-size: .92rem; }

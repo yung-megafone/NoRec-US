@@ -1,0 +1,207 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="When Data Systems Fail | NoRec.US"
+  description="Documented examples of breaches, compromised access, and disclosure failures showing how failures in connected data systems can scale."
+  active="fusion"
+>
+  <main class="page_shell breaches_page">
+    <header class="article_header breaches_header">
+      <p class="eyebrow">DATA FUSION · FAILURE MODES</p>
+      <h1>When data systems fail.</h1>
+      <p class="article_deck">Connected data systems are useful because they make information easier to collect, correlate, retrieve, and share. These documented cases show the other side of that utility: when infrastructure, credentials, or disclosure controls fail, the same efficiency can increase the scale of exposure.</p>
+    </header>
+
+    <p class="breach_backlink"><a href="/data-fusion/">← What is data fusion?</a></p>
+
+    <section class="evidence_box breaches_scope">
+      <span class="status_label">SCOPE + EVIDENCE RULE</span>
+      <p>This is a selected set of documented failure modes, not a catalogue of every breach. Some cases involve compulsory or effectively unavoidable records; others show what can happen when privileged access, connected infrastructure, or trusted disclosure mechanisms are compromised.</p>
+      <p><strong>Claims are not confirmations.</strong> NoRec separates an organization's acknowledgement, independently verified reporting, regulator findings, and claims made by attackers. A number advertised on a leak site is not presented as a confirmed victim count unless the evidence supports it.</p>
+    </section>
+
+    <nav class="breach_jump" aria-label="Breach page sections">
+      <a href="#fbijobs">FBIJobs</a>
+      <a href="#idscan">IDScan.net</a>
+      <a href="#equifax">Equifax</a>
+      <a href="#salt-typhoon">Salt Typhoon</a>
+      <a href="#no-hack">Sometimes, you don't even need to hack</a>
+    </nav>
+
+    <section class="breach_section" aria-labelledby="breaches-heading">
+      <p class="eyebrow">DATA BREACHES</p>
+      <h2 id="breaches-heading">Data was taken from systems entrusted with it.</h2>
+
+      <article class="breach_case" id="fbijobs">
+        <div class="breach_case_head">
+          <div><p class="eyebrow">FEDERAL · PERSONNEL / APPLICANT DATA · 2026</p><h3>FBIJobs.gov</h3></div>
+          <span class="breach_status developing">CONFIRMED PORTAL COMPROMISE · SCOPE DEVELOPING</span>
+        </div>
+        <p class="breach_summary">The FBI confirmed a compromise of the FBIJobs.gov portal and is investigating potential impact to employee personally identifiable information. The Bureau says the point of breach—its own enterprise or a third party—has not yet been determined.</p>
+        <dl class="breach_facts">
+          <div><dt>Custodian / system</dt><dd>FBIJobs.gov and supporting providers</dd></div>
+          <div><dt>Official status</dt><dd>Compromise acknowledged; investigation ongoing</dd></div>
+          <div><dt>Independently checked sample</dt><dd>Reuters verified portions of a roughly 5,000-person sample</dd></div>
+          <div><dt>Attacker claim</dt><dd>2–3 TB; not confirmed by the FBI</dd></div>
+          <div><dt>Last reviewed</dt><dd>September 29, 2026</dd></div>
+        </dl>
+        <div class="breach_body">
+          <p>On September 23, the FBI said it was aware of a cybercriminal group claiming compromise of FBIJobs.gov and alleged impact to FBI employee PII. The Bureau explicitly said it had not yet determined whether the breach point was a third party or the FBI enterprise.</p>
+          <p>Reuters subsequently reported on a sample containing information about current and former personnel and independently corroborated portions of that sample. That supports treating some exposed material as genuine; it does not validate every field or the attackers' claimed multi-terabyte total.</p>
+        </div>
+        <div class="breach_unknown"><strong>What remains unknown:</strong> the final affected population, complete data categories, total volume, breach path, and how much material came from FBI infrastructure versus systems operated by supporting providers.</div>
+        <details class="breach_sources"><summary>Sources + evidence boundary</summary><ul><li><a href="https://www.fbi.gov/news/press-releases/fbi-statement-on-compromise-of-fbijobsgov-portal-and-alleged-impact-to-fbi-employee-pii">FBI — September 23 statement</a> <span>primary</span></li><li><a href="https://www.reuters.com/world/hacked-fbi-data-has-sensitive-information-about-employees-intelligence-roles-2026-09-23/">Reuters — sample verification and reporting</a> <span>secondary / independently checked sample</span></li></ul></details>
+      </article>
+
+      <article class="breach_case" id="idscan">
+        <div class="breach_case_head">
+          <div><p class="eyebrow">IDENTITY VERIFICATION · GOVERNMENT IDs · 2026</p><h3>IDScan.net</h3></div>
+          <span class="breach_status documented">DOCUMENTED BREACH</span>
+        </div>
+        <p class="breach_summary">IDScan.net says an unauthorized third party may have accessed or copied customer information stored in accounts on its cloud—including names and driver's-license or other government-issued identification numbers.</p>
+        <dl class="breach_facts">
+          <div><dt>System</dt><dd>IDScan.net cloud customer accounts</dd></div>
+          <div><dt>Company notice</dt><dd>September 4, 2026</dd></div>
+          <div><dt>Confirmed possible data types</dt><dd>Names and driver's-license / government-ID numbers</dd></div>
+          <div><dt>Nexus marketplace claim</dt><dd>153M+ driver's-license records; not a confirmed unique-person count</dd></div>
+          <div><dt>Last reviewed</dt><dd>September 29, 2026</dd></div>
+        </dl>
+        <div class="breach_body">
+          <p>The company said it received information around September 1 indicating possible unauthorized access and later determined that an unauthorized party may have accessed or copied customer information stored in its cloud. This is especially relevant to involuntary data custody because the person presenting an ID may know the business scanning it while never forming a direct relationship with the verification provider behind the transaction.</p>
+          <p>Separate reporting connected sampled identity documents offered through a service called Nexus to IDScan.net workflows. Nexus advertised more than 153 million U.S. and Canadian driver's-license records, but that marketplace figure should not be treated as IDScan.net's confirmed affected-person count.</p>
+        </div>
+        <div class="breach_unknown"><strong>What remains unknown:</strong> the final unique-person count, how the Nexus inventory maps to the confirmed IDScan.net incident, which customers contributed which records, and the complete set of fields or document images obtained.</div>
+        <details class="breach_sources"><summary>Sources + evidence boundary</summary><ul><li><a href="https://www.mass.gov/doc/2026-1577-idscannet/download">IDScan.net breach notice filed with Massachusetts</a> <span>primary company notice via state regulator</span></li><li><a href="https://www.reuters.com/world/us/fbi-says-it-is-investigating-report-that-millions-us-drivers-licenses-exposed-2026-09-02/">Reuters — Nexus reporting and investigation</a> <span>secondary</span></li></ul></details>
+      </article>
+
+      <article class="breach_case" id="equifax">
+        <div class="breach_case_head">
+          <div><p class="eyebrow">HISTORICAL CASE STUDY · CONSUMER REPORTING · 2017</p><h3>Equifax</h3></div>
+          <span class="breach_status historical">HISTORICALLY DOCUMENTED</span>
+        </div>
+        <p class="breach_summary">The 2017 Equifax breach exposed personal information belonging to approximately 147 million people. It remains a useful example because a consumer does not need to open an Equifax account for Equifax to maintain a file about them.</p>
+        <dl class="breach_facts">
+          <div><dt>Affected</dt><dd>Approximately 147 million people</dd></div>
+          <div><dt>Exposed at scale</dt><dd>Names, dates of birth, SSNs, addresses and other personal information</dd></div>
+          <div><dt>Security finding</dt><dd>FTC alleged failures including patching, segmentation and intrusion detection</dd></div>
+          <div><dt>Why it matters here</dt><dd>Consumer reporting is largely indirect data collection</dd></div>
+          <div><dt>Last reviewed</dt><dd>September 29, 2026</dd></div>
+        </dl>
+        <div class="breach_body">
+          <p>The FTC alleged that Equifax failed to patch a critical vulnerability after being alerted to it, and that attackers subsequently reached large amounts of consumer PII. The settlement described approximately 147 million affected people, including roughly 145.5 million Social Security numbers.</p>
+          <p>The CFPB describes Equifax as collecting and organizing data on most adult Americans to produce reports sold for decisions involving loans, jobs, housing and other products. Credit-reporting information can be furnished by lenders and other businesses; a consumer does not need to deliberately create an Equifax account for a credit file to exist.</p>
+        </div>
+        <div class="breach_takeaway"><strong>The database you never signed up for:</strong> ordinary participation in credit, lending and housing markets can create records at consumer-reporting companies with which the individual never established a conventional customer relationship.</div>
+        <details class="breach_sources"><summary>Sources + evidence boundary</summary><ul><li><a href="https://www.ftc.gov/news-events/news/press-releases/2019/07/equifax-pay-575-million-part-settlement-ftc-cfpb-states-related-2017-data-breach">FTC — Equifax settlement and security allegations</a> <span>primary regulator</span></li><li><a href="https://www.consumerfinance.gov/enforcement/actions/equifax-inc-and-equifax-information-services-llc/">CFPB — Equifax consumer-reporting role</a> <span>primary regulator</span></li><li><a href="https://www.consumerfinance.gov/consumer-tools/credit-reports-and-scores/consumer-reporting-companies/">CFPB — consumer reporting companies and housing/credit uses</a> <span>primary regulator</span></li></ul></details>
+      </article>
+      <article class="breach_case" id="salt-typhoon">
+        <div class="breach_case_head">
+          <div><p class="eyebrow">TELECOMMUNICATIONS · LAWFUL-ACCESS DATA · 2024</p><h3>Salt Typhoon</h3></div>
+          <span class="breach_status documented">DOCUMENTED COMPROMISE</span>
+        </div>
+        <p class="breach_summary">The FBI and CISA confirmed that PRC-affiliated actors compromised multiple telecommunications companies, stealing call-record data and copying some information that was subject to U.S. law-enforcement requests pursuant to court orders.</p>
+        <dl class="breach_facts">
+          <div><dt>Targets</dt><dd>Multiple telecommunications companies</dd></div>
+          <div><dt>Confirmed exposure</dt><dd>Customer call records, limited private communications, and select court-order-related information</dd></div>
+          <div><dt>Attributed by</dt><dd>FBI and CISA to PRC-affiliated actors</dd></div>
+          <div><dt>Last reviewed</dt><dd>September 29, 2026</dd></div>
+        </dl>
+        <div class="breach_body">
+          <p>The November 2024 FBI/CISA statement described a broad cyber-espionage campaign against commercial telecommunications infrastructure. The agencies said the intrusion enabled theft of customer call-record data, compromise of private communications belonging to a limited number of primarily government or political targets, and copying of certain information subject to U.S. law-enforcement court orders.</p>
+          <p>NoRec does not describe this more broadly as proof that every lawful-intercept mechanism was compromised. The documented point is narrower: information associated with lawful government requests was among the material copied during a major compromise of telecommunications providers.</p>
+        </div>
+        <details class="breach_sources"><summary>Sources + evidence boundary</summary><ul><li><a href="https://www.fbi.gov/news/press-releases/joint-statement-from-fbi-and-cisa-on-the-peoples-republic-of-china-targeting-of-commercial-telecommunications-infrastructure">FBI/CISA — November 13, 2024 joint statement</a> <span>primary</span></li><li><a href="https://www.fbi.gov/investigate/cyber/alerts/2025/fbi-seeking-tips-about-prc-targeting-of-us-telecommunications">FBI — April 24, 2025 public service announcement</a> <span>primary follow-up</span></li></ul></details>
+      </article>
+    </section>
+
+    <section class="breach_divider" id="no-hack" aria-labelledby="no-hack-heading">
+      <p class="eyebrow">ACCESS + DISCLOSURE VULNERABILITIES</p>
+      <h2 id="no-hack-heading">Sometimes, you don't even need to hack.</h2>
+      <p>Humans make mistakes. Systems make mistakes. Stolen credentials, compromised accounts, forged requests, social engineering, and ordinary human error can expose the same information. The vulnerability isn't always the database itself. Sometimes it's the trust surrounding access to it.</p>
+    </section>
+
+    <section class="breach_section">
+      <article class="breach_case" id="david">
+        <div class="breach_case_head">
+          <div><p class="eyebrow">FLORIDA · DRIVER RECORDS · 2026</p><h3>Florida DAVID</h3></div>
+          <span class="breach_status disclosure">DOCUMENTED ACCESS FAILURE</span>
+        </div>
+        <p class="breach_summary">Florida confirmed unauthorized access to its Driver And Vehicle Information Database through a compromised law-enforcement credential. The officially confirmed scale remains undisclosed.</p>
+        <dl class="breach_facts">
+          <div><dt>Custodian</dt><dd>Florida Department of Highway Safety and Motor Vehicles</dd></div>
+          <div><dt>Access path</dt><dd>Compromised Plant City Police Department user credential</dd></div>
+          <div><dt>Official affected-record count</dt><dd>Not disclosed</dd></div>
+          <div><dt>Reported attacker claim</dt><dd>200,000+ records; not confirmed by Florida</dd></div>
+          <div><dt>Last reviewed</dt><dd>September 29, 2026</dd></div>
+        </dl>
+        <div class="breach_body">
+          <p>Florida said it learned of the incident on September 4, 2026 and determined that access occurred through credentials belonging to a Plant City Police Department employee that had been improperly stored on the employee's personal electronic device. The state said the incident was mitigated and its investigation continued.</p>
+          <p>This did not require defeating DAVID itself: valid credentials became the access path. The important boundary is scale: reporting on the incident has described an attacker claim of more than 200,000 records, but Florida has not publicly confirmed that number. NoRec therefore treats the breach and credential path as documented while leaving the total number of affected records unresolved.</p>
+        </div>
+        <div class="breach_unknown"><strong>What remains unknown:</strong> the authoritative number of records accessed or copied, the complete fields exposed, and whether additional access paths existed.</div>
+        <details class="breach_sources"><summary>Sources + evidence boundary</summary><ul><li><a href="https://www.thetrustobservatory.com/bulletins/TTO-2026-0911-115.html">Trust Observatory — Florida confirmation and quoted FLHSMV statement</a> <span>secondary record preserving agency statement</span></li></ul></details>
+      </article>
+
+      <article class="breach_case disclosure_case" id="vile">
+        <div class="breach_case_head">
+          <div><p class="eyebrow">STOLEN POLICE ACCESS · IMPERSONATION · 2022–2025</p><h3>ViLE: privileged access became an attack surface.</h3></div>
+          <span class="breach_status disclosure">DOCUMENTED · CONVICTIONS</span>
+        </div>
+        <p class="breach_summary">Two ViLE members used a law-enforcement officer's stolen password to access a federal intelligence-sharing portal. One also used a compromised foreign police email account to impersonate law enforcement and obtain subscriber information from a U.S. social platform.</p>
+        <dl class="breach_facts">
+          <div><dt>Failure modes</dt><dd>Stolen police credentials; compromised police email; fraudulent emergency requests</dd></div>
+          <div><dt>Portal contents</dt><dd>Nonpublic seizure records and law-enforcement intelligence reports</dd></div>
+          <div><dt>Outcome</dt><dd>Both defendants pleaded guilty and received federal prison sentences</dd></div>
+          <div><dt>Sentences</dt><dd>27 months and 25 months</dd></div>
+          <div><dt>Last reviewed</dt><dd>September 29, 2026</dd></div>
+        </dl>
+        <div class="breach_body">
+          <p>DOJ says Sagar Steven Singh and Nicholas Ceraolo used a police officer's stolen password to enter a nonpublic federal portal used to share intelligence with state and local law enforcement. The portal exposed detailed nonpublic seizure records and intelligence reports, and information obtained through it was later used to threaten victims.</p>
+          <p>Ceraolo also accessed a Bangladeshi police official's email account and used it to pose as law enforcement when requesting information from U.S. online services. In one documented instance, a social platform supplied a subscriber's address, email address, and telephone number. The case therefore shows both sides of the same trust problem: possession of privileged credentials can open government systems, while the appearance of official authority can open private disclosure channels.</p>
+        </div>
+        <details class="breach_sources"><summary>Primary sources</summary><ul><li><a href="https://www.justice.gov/usao-edny/pr/two-men-charged-breaching-federal-law-enforcement-database-and-posing-police-officers">DOJ — 2023 charges and detailed conduct</a> <span>primary court/prosecution account</span></li><li><a href="https://www.justice.gov/usao-edny/pr/two-men-plead-guilty-computer-intrusion-and-aggravated-identity-theft-hacking-federal">DOJ — 2024 guilty pleas</a> <span>primary</span></li><li><a href="https://www.justice.gov/usao-edny/pr/two-men-sentenced-prison-aggravated-identity-theft-and-computer-hacking-crimes">DOJ — 2025 sentencings</a> <span>primary</span></li></ul></details>
+      </article>
+
+      <article class="breach_case disclosure_case" id="fake-edr">
+        <div class="breach_case_head">
+          <div><p class="eyebrow">LAW-ENFORCEMENT IMPERSONATION · EMERGENCY DATA REQUEST</p><h3>A request that looked official was enough.</h3></div>
+          <span class="breach_status disclosure">DOCUMENTED DISCLOSURE FAILURE</span>
+        </div>
+        <p class="breach_summary">WIRED documented a case in which a fraudulent emergency request impersonating the Jacksonville Sheriff's Office was sent to Charter Communications. The target's information was returned in roughly 20 minutes.</p>
+        <dl class="breach_facts">
+          <div><dt>Failure mode</dt><dd>Fraudulent emergency law-enforcement request</dd></div>
+          <div><dt>Impersonated agency</dt><dd>Jacksonville Sheriff's Office</dd></div>
+          <div><dt>Recipient</dt><dd>Charter Communications</dd></div>
+          <div><dt>Reported response time</dt><dd>About 20 minutes</dd></div>
+          <div><dt>Last reviewed</dt><dd>September 29, 2026</dd></div>
+        </dl>
+        <div class="breach_body">
+          <p>This was not described as an attacker breaking through Charter's perimeter and extracting a database. The disclosure mechanism itself was targeted: the requester presented as law enforcement and used the emergency-request process to obtain information about another person.</p>
+          <p>The broader lesson is different from a conventional breach. A system can be technically functioning while identity verification, human review, or institutional trust fails. Privileged disclosure channels therefore belong in the threat model alongside software vulnerabilities and stolen passwords.</p>
+        </div>
+        <details class="breach_sources"><summary>Source + evidence boundary</summary><ul><li><a href="https://www.wired.com/story/doxers-posing-as-cops-are-tricking-big-tech-firms-into-sharing-peoples-private-data/">WIRED — Doxers Posing as Cops Are Tricking Big Tech Firms Into Sharing People's Private Data</a> <span>reported case / secondary source</span></li></ul></details>
+      </article>
+    </section>
+
+    <section class="breach_resources" aria-labelledby="breach-resources-heading">
+      <p class="eyebrow">MORE BREACH RESOURCES</p>
+      <h2 id="breach-resources-heading">Want to dig deeper?</h2>
+      <p>These examples are only a small selection of documented incidents. For broader and more frequently updated reporting, these public resources track data breaches and compromises in greater detail.</p>
+      <ul class="breach_resource_list">
+        <li><a href="https://www.idtheftcenter.org/breach-alert/data-breach-results/">Identity Theft Resource Center — Breach Alert</a><span>Public database of reported data compromises.</span></li>
+        <li><a href="https://haveibeenpwned.com/PwnedWebsites">Have I Been Pwned — Pwned Websites</a><span>Catalogue of known breaches loaded into Have I Been Pwned.</span></li>
+        <li><a href="https://www.databreaches.net/">DataBreaches.net</a><span>Reporting focused on breaches, leaks, and data-security incidents.</span></li>
+        <li><a href="https://recentbreaches.com/">Recent Breaches</a><span>Public tracker for recently reported breach incidents.</span></li>
+      </ul>
+    </section>
+
+    <section class="breach_closing">
+      <p class="eyebrow">THE COMMON THREAD</p>
+      <h2>Collection creates a consequence before anyone attacks it.</h2>
+      <p>These incidents have different causes: compromised infrastructure, stolen credentials, trusted-access failures, third-party custody, and fraudulent disclosure requests. They should not be collapsed into one technical category. What they share is simpler: once sensitive information is accumulated, every system, credential, contractor, employee, disclosure process, export and retained copy becomes another place where security has to work.</p>
+      <p>NoRec will add cases selectively. The goal is not the largest breach counter on the internet; it is a documented record of failures that help explain the consequences of collecting identity and surveillance data in the first place.</p>
+    </section>
+  </main>
+</BaseLayout>

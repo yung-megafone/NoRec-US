@@ -18,6 +18,7 @@ const nav = [
   ['research', '/research/', 'Research'],
   ['tools', '/tools/', 'Tools'],
   ['privacy', '/why-privacy-matters/', 'IDC?'],
+  ['fusion', '/data-fusion/', 'Data Fusion'],
   ['about', '/about/', 'About']
 ];
 
@@ -37,7 +38,9 @@ const inferredActive =
               ? 'tools'
               : pathname.startsWith('/why-privacy-matters/')
                 ? 'privacy'
-                : pathname.startsWith('/about/')
+                : pathname.startsWith('/data-fusion/') || pathname.startsWith('/breaches/')
+                  ? 'fusion'
+                  : pathname.startsWith('/about/')
                   ? 'about'
                   : active;
 const currentNav = inferredActive || active;
@@ -147,6 +150,18 @@ const robots = noindex
                       <li><a href="/surveillance/evidence/biometrics/">Biometrics</a></li>
                       <li><a href="/surveillance/evidence/aerial/">Aerial / drones</a></li>
                       <li><a href="/surveillance/evidence/infrastructure/">Data brokers / infrastructure</a></li>
+                    </ul>
+                  </details>
+                </li>
+              ) : key === 'fusion' ? (
+                <li class:list={[currentNav === key && 'selected', 'nav_has_submenu']}>
+                  <details class="nav_submenu_details">
+                    <summary class="nav_submenu_toggle">
+                      <span>{label}</span><span class="nav_submenu_caret" aria-hidden="true">▾</span>
+                    </summary>
+                    <ul class="nav_submenu" id="fusion_submenu">
+                      <li><a href="/data-fusion/" aria-current={pathname.startsWith('/data-fusion/') ? 'page' : undefined}>What is Data Fusion?</a></li>
+                      <li><a href="/breaches/" aria-current={pathname.startsWith('/breaches/') ? 'page' : undefined}>When Data Systems Fail</a></li>
                     </ul>
                   </details>
                 </li>

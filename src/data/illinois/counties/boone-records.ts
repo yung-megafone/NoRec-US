@@ -28,6 +28,13 @@ export const booneCountyRecords: JurisdictionRecord[] = [
     officialUrl: 'https://cms8.revize.com/revize/booneil/Departments/sheriff/FOIA%20request.pdf',
     kind: 'FOIA portal',
   },
+  {
+    title: 'Flock transparency portal — Portage, Michigan Police Department sharing list',
+    description: 'Vendor-hosted transparency page that lists both Belvidere IL PD and Boone County IL SO among organizations granted access by that agency. This establishes their presence in at least one external Flock sharing network; it does not establish Boone/Belvidere outward-sharing settings or searches.',
+    officialUrl: 'https://transparency.flocksafety.com/portage-mi-pd',
+    kind: 'Official record',
+    date: '2026-09-29',
+  },
 ];
 
 export const belvidereRecords: JurisdictionRecord[] = [
@@ -60,6 +67,13 @@ export const belvidereRecords: JurisdictionRecord[] = [
     description: 'Official catalog of categories of records maintained by the police department.',
     officialUrl: 'https://www.belvidereil.gov/wp-content/uploads/2023/09/Police_Dept._Public_Records_for_FOIA_2010.doc.pdf',
     kind: 'Official record',
+  },
+  {
+    title: 'Flock transparency portal — Portage, Michigan Police Department sharing list',
+    description: 'Vendor-hosted transparency page listing Belvidere IL PD among organizations granted access by that agency. This is evidence of Belvidere appearing in an external Flock sharing network, not evidence of its own outward-sharing configuration.',
+    officialUrl: 'https://transparency.flocksafety.com/portage-mi-pd',
+    kind: 'Official record',
+    date: '2026-09-29',
   },
 ];
 

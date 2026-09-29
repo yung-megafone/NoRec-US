@@ -330,8 +330,22 @@ export const sources: SourceRecord[] = [
     status: 'Primary',
     reviewed: '2026-09-09',
     originalUrl: 'https://rockfordil.legistar.com/LegislationDetail.aspx?GUID=4A7C95F1-BFEC-4ECC-BFE1-0ED3276BCC38&ID=7870155&Options=ID%7CText%7C&Search=Flock',
-    notes: '$443,998.16 contract; supporting memo identifies Flock Operating System software, LPRs, and PTZ cameras used by the Police Department Intelligence Unit.',
+    notes: '$443,998.16 sole-source contract adopted March 2, 2026. Procurement material assigns $110,999.54 for FY2026 to an Organized Retail Crime grant and $110,999.54 for each FY2027-FY2029 renewal option to the Police Department Intel Unit budget; it also says ORC24/ORC25 grants funded Flock OS, LPRs, and PTZ cameras for Intelligence Unit expansion.',
     tags: ['ALPR', 'Flock Safety', 'PTZ', 'Rockford', 'intelligence']
+  },
+  {
+    id: 'rockford-community-camera-network',
+    citation: 42,
+    title: 'Rockford Police Department — Community Camera Network',
+    shortTitle: 'Rockford Community Camera Network',
+    jurisdiction: 'Rockford, Illinois',
+    agency: 'Rockford Police Department',
+    type: 'Agency page',
+    status: 'Primary',
+    reviewed: '2026-09-29',
+    originalUrl: 'https://www.rockfordil.gov/241/Community-Camera-Network',
+    notes: 'RPD invites voluntary registration of private cameras and says registered homes/businesses are placed on an RPD-only map for identifying cameras near incidents. The page does not say registration itself provides live feed access.',
+    tags: ['private cameras', 'camera registry', 'Rockford', 'video surveillance']
   },
   {
     id: 'IL-RFD-BWC-001',

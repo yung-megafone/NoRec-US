@@ -31,7 +31,7 @@ export const winnebagoCountyRecords: PublicRecordLink[] = [
   },
   {
     title: 'Winnebago County Board — May 23, 2024 agenda packet / Flock agreement',
-    description: 'County Board packet containing the five-year Flock agreement and related appropriation material.',
+    description: 'County Board packet containing the five-year Flock agreement. The executive summary says the $719,250 appropriation was not budgeted, identifies the Federal Seizure account as the funding source, and schedules $174,250 for year one plus $136,250 for each subsequent year.',
     officialUrl: 'https://wincoil.gov/images/2024_05_23_Board_Agenda_PACKET.pdf',
     localUrl: '/archive/winnebago/2024-05-23-county-board-agenda-packet-flock.pdf',
     kind: 'Official record',
@@ -93,10 +93,17 @@ export const rockfordRecords: PublicRecordLink[] = [
   },
   {
     title: 'Rockford City Council — 2026 Flock sole-source contract',
-    description: 'Official legislative record for the 2026 Flock contract and supporting procurement material.',
+    description: 'Official legislative record for the $443,998.16 Flock sole-source contract adopted March 2, 2026. Supporting material assigns FY2026 to an Organized Retail Crime grant and FY2027-FY2029 renewal options to the Police Department Intel Unit budget.',
     officialUrl: 'https://rockfordil.legistar.com/LegislationDetail.aspx?GUID=4A7C95F1-BFEC-4ECC-BFE1-0ED3276BCC38&ID=7870155&Options=ID%7CText%7C&Search=Flock',
     kind: 'Official record',
     date: '2026',
+  },
+  {
+    title: 'Rockford Police Department — Community Camera Network',
+    description: 'Official RPD page for the voluntary private-camera registry. RPD says registered homes and businesses are placed on a department-only map so investigators can identify cameras near an incident.',
+    officialUrl: 'https://www.rockfordil.gov/241/Community-Camera-Network',
+    kind: 'Official record',
+    date: '2026-09-29',
   },
   {
     title: 'Illinois SFY 2024 Freedom from Drone Surveillance Act report',

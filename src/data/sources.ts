@@ -587,7 +587,7 @@ export const sources: SourceRecord[] = [
     archivedFiles: [
       { label: 'Archived FY2026 report PDF', url: '/archive/isp-fy2026-alpr-annual-report.pdf', sha256: '0e1a9048c1b92cb6cb3b5cae099fc22dcdd37330b30755482b4209257cf2a081' },
     ],
-    notes: 'Current annual report documenting VehicleManager, 90-day retention, 190 FY2026 installations, 3.38 billion detections, 94.8 million criminal-database hits, and 958,482 investigative searches. Its retrospective FY2025 table conflicts with the FY2025 report on Peoria.',
+    notes: 'Current annual report documenting VehicleManager, 90-day retention, 190 FY2026 installations, 3.38 billion detections, 94.8 million criminal-database hits, and 958,482 investigative searches. Its retrospective FY2025 table lists 15 cameras for Peoria and 145 for Illinois State Police, which together account for the printed 160-camera FY2025 total. The contemporaneous FY2025 report separately states that 54 Peoria County cameras were installed during FY2025; the records therefore appear to use different accounting or attribution.',
     tags: ['ALPR', 'Motorola Solutions', 'VehicleManager', 'Illinois State Police', 'retention', 'annual report']
   },
   {

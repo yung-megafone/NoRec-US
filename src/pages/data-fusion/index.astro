@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="What is Data Fusion? | NoRec.US"
+  description="How data fusion combines information from multiple systems, why organizations use it, and why the same efficiency can increase the consequences of a security or access failure."
+  active="fusion"
+>
+  <main class="page_shell fusion_page">
+    <header class="article_header fusion_header">
+      <p class="eyebrow">DATA FUSION · EXPLAINER</p>
+      <h1>More useful together.</h1>
+      <p class="article_deck">Data fusion is the process of combining information from multiple sources so it can be searched, compared, analyzed, or acted on as a more complete picture. That can make legitimate work faster and more accurate. It can also make a single access decision—or a single failure—reach much farther.</p>
+    </header>
+
+    <section class="fusion_intro_grid" aria-label="Data fusion overview">
+      <article class="fusion_panel">
+        <p class="eyebrow">WHY FUSE DATA?</p>
+        <h2>Efficiency is the point.</h2>
+        <p>Separate systems create duplicate work. An analyst may have to search several databases, reconcile different identifiers, and manually determine whether records describe the same person, vehicle, account, device, or event.</p>
+        <p>Fusion can automate some of that work. A shared identifier, timestamp, location, plate, phone number, account, or other attribute can connect records that would otherwise remain isolated.</p>
+      </article>
+      <article class="fusion_panel">
+        <p class="eyebrow">THE TRADEOFF</p>
+        <h2>Utility cuts both ways.</h2>
+        <p>The features that make a fused system useful—centralized search, interoperability, remote access, enrichment, and rapid retrieval—can also increase the consequences of excessive access, stolen credentials, a vulnerable endpoint, or a mistaken disclosure.</p>
+        <p>A failure no longer has to remain confined to one filing cabinet, one workstation, or one dataset.</p>
+      </article>
+    </section>
+
+    <section class="fusion_section">
+      <p class="eyebrow">THE BASIC PIPELINE</p>
+      <h2>Collection becomes context.</h2>
+      <div class="fusion_flow" aria-label="Simplified data fusion pipeline">
+        <div><strong>1 · Collect</strong><span>Records originate in separate systems and workflows.</span></div>
+        <div><strong>2 · Normalize</strong><span>Formats and identifiers are made comparable.</span></div>
+        <div><strong>3 · Link</strong><span>Records are associated through shared attributes or relationships.</span></div>
+        <div><strong>4 · Enrich</strong><span>Additional sources add context that no single record contained.</span></div>
+        <div><strong>5 · Query + share</strong><span>Authorized users can retrieve the combined picture more efficiently.</span></div>
+      </div>
+      <p class="fusion_note">Not every system performs every step, and “data fusion” can describe architectures ranging from a local integration between two databases to large multi-agency or commercial platforms.</p>
+    </section>
+
+    <section class="fusion_section">
+      <p class="eyebrow">A SIMPLE EXAMPLE</p>
+      <h2>Three ordinary records can say more together than separately.</h2>
+      <div class="fusion_example">
+        <div><strong>System A</strong><span>A vehicle plate and timestamp.</span></div>
+        <div><strong>System B</strong><span>A registration record connecting the plate to an identity.</span></div>
+        <div><strong>System C</strong><span>Another record associated with that identity.</span></div>
+        <div class="fusion_result"><strong>Fused result</strong><span>The systems can provide context that none of the individual records supplied on its own.</span></div>
+      </div>
+      <p>This does not automatically make the use improper. Context is exactly why fusion is valuable for investigations, fraud detection, emergency response, administration, security, logistics, and many other legitimate purposes. The privacy and security questions concern what is collected, how relationships are inferred, who receives access, how long the information persists, and what happens when those controls fail.</p>
+    </section>
+
+    <section class="fusion_section fusion_scale">
+      <p class="eyebrow">DIGITIZATION + SCALE</p>
+      <h2>The economics of a data failure changed.</h2>
+      <p>Unauthorized disclosure existed long before networked databases. Paper records could be stolen, copied, photographed, misplaced, or deliberately disclosed. But physical records impose physical constraints: someone generally has to reach them and then remove or reproduce them.</p>
+      <p>Digital systems can remove much of that friction. Depending on the architecture and permissions involved, one compromised account or vulnerable system can potentially expose records at a scale that would be impractical to reproduce from physical files.</p>
+      <blockquote>Digitization did not create data theft. It changed how far a single failure can reach.</blockquote>
+    </section>
+
+    <section class="fusion_failure_callout">
+      <p class="eyebrow">WHEN THE SYSTEM FAILS</p>
+      <h2>The failure does not always look like a “hack.”</h2>
+      <p>Some incidents begin with vulnerable infrastructure. Others begin with valid credentials on the wrong device, a compromised government account, excessive privileges, or a convincing request sent to someone authorized to disclose information.</p>
+      <p>NoRec maintains a selected set of documented cases showing those different failure modes, including Equifax, IDScan.net, FBIJobs, Salt Typhoon, Florida DAVID, ViLE, and fraudulent emergency data requests.</p>
+      <a class="button" href="/breaches/">Read: When Data Systems Fail →</a>
+    </section>
+
+    <section class="evidence_box fusion_boundary">
+      <span class="status_label">EVIDENCE BOUNDARY</span>
+      <p>Data fusion describes a capability and architecture, not proof of a particular use. NoRec does not treat the technical ability to combine datasets as evidence that a specific agency, company, or user actually combined them. Deployment and use claims require their own records.</p>
+    </section>
+  </main>
+</BaseLayout>
